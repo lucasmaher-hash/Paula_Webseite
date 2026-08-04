@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Beauty — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-background:#F2EDE5;
+  --color-surface:#EAE3D8;
+  --color-surface-raised:#F7F3EC;
+  --color-primary:#221C16;
+  --color-on-primary:#F5F1EA;
+  --color-on-surface:#221C16;
+  --color-on-surface-muted:#75695C;
+  --color-accent:#8A6D57;
+  --color-accent-pink:#D9A8A4;
+  --color-accent-pink-soft:#EFD9D6;
+  --color-border:#D9CFC1;
+
+  --font-sans:"Instrument Sans",system-ui,sans-serif;
+  --font-mono:"Space Mono",monospace;
+
+  --type-display-size:clamp(2.6rem,7vw,4.75rem);
+  --type-h2-size:clamp(1.7rem,3.5vw,2.4rem);
+  --type-h3-size:1.2rem;
+  --type-body-size:1rem;
+  --type-mono-label-size:.72rem;
+  --type-mono-value-size:.9rem;
+
+  --rounded-sm:6px; --rounded-md:14px; --rounded-lg:26px; --rounded-full:999px;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:72px; --space-9:112px;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--color-background);color:var(--color-on-surface);font-family:var(--font-sans);font-size:var(--type-body-size);line-height:1.65;padding:var(--space-7) var(--space-5) var(--space-9)}
+main{max-width:960px;margin:0 auto}
+h1{font-size:var(--type-h2-size);letter-spacing:-.02em;font-weight:600}
+h2{font-size:var(--type-h3-size);font-weight:600;margin:var(--space-8) 0 var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--color-border)}
+.note,.spec{font-family:var(--font-mono);font-size:var(--type-mono-label-size);letter-spacing:.12em;text-transform:uppercase;color:var(--color-on-surface-muted)}
+.note{margin:var(--space-3) 0 0}
+.grid{display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fill,minmax(210px,1fr));margin-top:var(--space-5)}
+.swatch{border:1px solid var(--color-border);border-radius:var(--rounded-md);overflow:hidden;background:var(--color-surface-raised)}
+.swatch .chip{height:84px;display:flex;align-items:flex-end;padding:var(--space-3)}
+.swatch .meta{padding:var(--space-3);font-family:var(--font-mono);font-size:var(--type-mono-label-size);letter-spacing:.08em;color:var(--color-on-surface-muted)}
+.swatch .meta b{display:block;color:var(--color-on-surface);letter-spacing:.02em}
+.spec-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-5);padding:var(--space-5) 0;border-bottom:1px dashed var(--color-border)}
+.spec-row .spec{min-width:220px}
+.bar{background:var(--color-accent-pink-soft);border:1px solid var(--color-accent-pink);height:22px;border-radius:var(--rounded-sm)}
+.radius-box{width:110px;height:80px;background:var(--color-surface);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:var(--type-mono-label-size);color:var(--color-on-surface-muted)}
+.row{display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;margin-top:var(--space-5)}
+.btn{font-family:var(--font-mono);font-size:var(--type-mono-value-size);border-radius:var(--rounded-full);padding:16px 32px;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--color-primary);color:var(--color-on-primary)}
+.btn-primary-hover{background:var(--color-accent);color:var(--color-on-primary)}
+.btn-outline{background:var(--color-background);color:var(--color-primary);border-color:var(--color-primary)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.chip-mono{display:inline-block;background:var(--color-surface);color:var(--color-on-surface-muted);font-family:var(--font-mono);font-size:var(--type-mono-label-size);letter-spacing:.12em;text-transform:uppercase;border-radius:var(--rounded-full);padding:6px 14px}
+.card{background:var(--color-surface);border-radius:var(--rounded-lg);padding:var(--space-6);max-width:440px}
+.accordion-row{background:var(--color-surface-raised);border:1px solid var(--color-border);border-radius:var(--rounded-md);padding:20px 24px;display:flex;justify-content:space-between;gap:var(--space-4);max-width:560px;margin-top:var(--space-3)}
+.accordion-row .price{font-family:var(--font-mono);font-size:var(--type-mono-value-size);white-space:nowrap}
+.voucher{background:var(--color-surface-raised);border:1px solid var(--color-border);border-radius:var(--rounded-lg);padding:var(--space-6);max-width:260px}
+.voucher .amount{font-size:var(--type-h2-size);font-weight:600;letter-spacing:-.02em}
+.dd{display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:var(--space-5)}
+.dd ul{list-style:none;padding:var(--space-5);border-radius:var(--rounded-md);border:1px solid var(--color-border)}
+.dd li{padding:var(--space-1) 0}
+.dd .do{background:var(--color-surface-raised)}
+.dd .dont{background:var(--color-accent-pink-soft)}
+</style>
+</head>
+<body>
+<main>
+  <h1>PM Beauty — Design System</h1>
+  <p class="note">Menschlich lesbarer Spiegel von docs/design.md — Quelle der Wahrheit ist die .md</p>
+  <p style="margin-top:var(--space-4)">Warm-minimal in Beige/Braun/Schwarz mit technischen Mono-Akzenten.</p>
+
+  <h2>Colors</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#F2EDE5"><span style="color:#221C16">Aa</span></div><div class="meta"><b>background</b>#F2EDE5</div></div>
+    <div class="swatch"><div class="chip" style="background:#EAE3D8"><span style="color:#221C16">Aa</span></div><div class="meta"><b>surface</b>#EAE3D8</div></div>
+    <div class="swatch"><div class="chip" style="background:#F7F3EC"><span style="color:#221C16">Aa</span></div><div class="meta"><b>surface-raised</b>#F7F3EC</div></div>
+    <div class="swatch"><div class="chip" style="background:#221C16"><span style="color:#F5F1EA">Aa</span></div><div class="meta"><b>primary</b>#221C16</div></div>
+    <div class="swatch"><div class="chip" style="background:#F5F1EA"><span style="color:#221C16">Aa</span></div><div class="meta"><b>on-primary</b>#F5F1EA</div></div>
+    <div class="swatch"><div class="chip" style="background:#75695C"><span style="color:#F5F1EA">Aa</span></div><div class="meta"><b>on-surface-muted</b>#75695C</div></div>
+    <div class="swatch"><div class="chip" style="background:#8A6D57"><span style="color:#F5F1EA">Aa</span></div><div class="meta"><b>accent</b>#8A6D57</div></div>
+    <div class="swatch"><div class="chip" style="background:#D9A8A4"><span style="color:#221C16">Aa</span></div><div class="meta"><b>accent-pink</b>#D9A8A4</div></div>
+    <div class="swatch"><div class="chip" style="background:#EFD9D6"><span style="color:#221C16">Aa</span></div><div class="meta"><b>accent-pink-soft</b>#EFD9D6</div></div>
+    <div class="swatch"><div class="chip" style="background:#D9CFC1"><span style="color:#221C16">Aa</span></div><div class="meta"><b>border</b>#D9CFC1</div></div>
+  </div>
+
+  <h2>Typography</h2>
+  <div class="spec-row"><span class="spec">display · 600 · -0.03em</span><span style="font-size:var(--type-display-size);font-weight:600;letter-spacing:-.03em;line-height:1.02">Präzision</span></div>
+  <div class="spec-row"><span class="spec">h2 · 600 · -0.02em</span><span style="font-size:var(--type-h2-size);font-weight:600;letter-spacing:-.02em">Behandlungen &amp; Preise</span></div>
+  <div class="spec-row"><span class="spec">h3 · 600</span><span style="font-size:var(--type-h3-size);font-weight:600">Russische Maniküre</span></div>
+  <div class="spec-row"><span class="spec">body · 400 · 1.65</span><span>Beauty war für mich nie nur ein Trend, sondern schon immer eine Leidenschaft.</span></div>
+  <div class="spec-row"><span class="spec">mono-label · .12em</span><span class="chip-mono">[Maniküre — 14]</span></div>
+  <div class="spec-row"><span class="spec">mono-value</span><span style="font-family:var(--font-mono);font-size:var(--type-mono-value-size)">65 € · 1 Std. 10 Min.</span></div>
+
+  <h2>Spacing</h2>
+  <div class="spec-row"><span class="spec">space-2 · 8px</span><div class="bar" style="width:8px"></div></div>
+  <div class="spec-row"><span class="spec">space-4 · 16px</span><div class="bar" style="width:16px"></div></div>
+  <div class="spec-row"><span class="spec">space-5 · 24px</span><div class="bar" style="width:24px"></div></div>
+  <div class="spec-row"><span class="spec">space-6 · 32px</span><div class="bar" style="width:32px"></div></div>
+  <div class="spec-row"><span class="spec">space-7 · 48px</span><div class="bar" style="width:48px"></div></div>
+  <div class="spec-row"><span class="spec">space-8 · 72px</span><div class="bar" style="width:72px"></div></div>
+  <div class="spec-row"><span class="spec">space-9 · 112px</span><div class="bar" style="width:112px"></div></div>
+
+  <h2>Radius</h2>
+  <div class="row">
+    <div class="radius-box" style="border-radius:var(--rounded-sm)">sm 6</div>
+    <div class="radius-box" style="border-radius:var(--rounded-md)">md 14</div>
+    <div class="radius-box" style="border-radius:var(--rounded-lg)">lg 26</div>
+    <div class="radius-box" style="border-radius:var(--rounded-full)">full</div>
+  </div>
+
+  <h2>Elevation &amp; Depth</h2>
+  <p>Flach: Tiefe nur über Flächen-Abstufung (background → surface → surface-raised) und 1-px-Border. Kein Schatten außer hauchzart auf Hover interaktiver Elemente.</p>
+
+  <h2>Components</h2>
+  <div class="row">
+    <button class="btn btn-primary">Termin buchen</button>
+    <button class="btn btn-primary-hover">Termin buchen (hover)</button>
+    <button class="btn btn-outline">Gutschein kaufen</button>
+    <button class="btn btn-primary" disabled>Deaktiviert</button>
+    <span class="chip-mono">München · Mo–Fr 10–20</span>
+  </div>
+  <div class="card" style="margin-top:var(--space-5)">
+    <span class="chip-mono">[Bewertung]</span>
+    <p style="margin-top:var(--space-4)">„Eine sehr sympathische Person und der Service war echt super."</p>
+    <p class="spec" style="margin-top:var(--space-3)">Viktoria · Korean Lashlift</p>
+  </div>
+  <div class="accordion-row"><span>Korean Lashlift<br><span class="spec" style="text-transform:none;letter-spacing:.02em">Natürlicher Schwung ohne Extensions</span></span><span class="price">70&nbsp;€ · 1&nbsp;Std.</span></div>
+  <div class="voucher" style="margin-top:var(--space-5)">
+    <span class="chip-mono">[Gutschein]</span>
+    <div class="amount" style="margin-top:var(--space-4)">100&nbsp;€</div>
+    <button class="btn btn-outline" style="margin-top:var(--space-5)">Kaufen</button>
+  </div>
+
+  <h2>Do's and Don'ts</h2>
+  <div class="dd">
+    <ul class="do">
+      <li>✓ Mono nur für Labels &amp; Zahlen</li>
+      <li>✓ Viel Leerraum zwischen Sektionen</li>
+      <li>✓ Pink sparsam als Detail</li>
+      <li>✓ Alle Werte aus Tokens</li>
+      <li>✓ Große Radien konsequent</li>
+    </ul>
+    <ul class="dont">
+      <li>✗ Kein reines Weiß / kaltes Grau</li>
+      <li>✗ Keine Schlagschatten-Orgien</li>
+      <li>✗ Kein Pink als Flächenfarbe</li>
+      <li>✗ Keine Serifen- oder Script-Fonts</li>
+      <li>✗ Preise nie im Fließtext verstecken</li>
+    </ul>
+  </div>
+</main>
+</body>
+</html>
