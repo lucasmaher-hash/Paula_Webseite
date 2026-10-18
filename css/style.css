@@ -30,6 +30,8 @@
   --gutter:20px;
 }
 @media(min-width:900px){:root{--brand-w:112px;--gutter:32px}}
+/* Handy: Rahmen von Panels und Fotos ca. 30 % weniger rund (Buttons und Kacheln bleiben) */
+@media(max-width:899px){:root{--rounded-lg:17px;--rounded-xl:22px}}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
@@ -297,34 +299,29 @@ body.menu-open{overflow:hidden}
 
 /* ---------- Schulungen: Kurs-Karten ---------- */
 .courses{display:grid;gap:var(--space-5)}
-/* Zwei Rahmen dicht nebeneinander: Bild und Text je eigene abgerundete Fläche (Referenz NovaFaces) */
-.course{display:flex;flex-direction:column}
-.course-heading{
-  order:0;padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);margin-top:8px;
-  background:var(--color-surface);border-radius:var(--rounded-xl) var(--rounded-xl) 0 0;
-}
+/* Handy: eine Karte. Desktop: zwei Rahmen dicht nebeneinander, Bild und Text je eigene Fläche (Referenz NovaFaces) */
+.course{display:flex;flex-direction:column;background:var(--color-surface);border-radius:var(--rounded-xl);overflow:hidden}
+.course-heading{order:0;padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4)}
 .course-title{display:flex;align-items:center;gap:var(--space-3)}
 .course-title h3{flex:1;min-width:0}
 .course-toggle[hidden]{display:none}
 .course-toggle svg{transition:transform .25s ease}
 .course-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
 .course-media{order:-1}
-.course-media{border-radius:var(--rounded-xl);overflow:hidden}
 .course-media img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.course-content{order:2;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);background:var(--color-surface);border-radius:0 0 var(--rounded-xl) var(--rounded-xl)}
+.course-content{order:2;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5)}
 @media(max-width:899px){
   .course.is-collapsed .course-content{display:none}
-  .course.is-collapsed .course-heading{border-radius:var(--rounded-xl)}
   .course-heading .badges{gap:6px}
   .course-heading .badge{font-size:.7rem;padding:6px 9px}
 }
 @media(min-width:900px){
   .courses{gap:var(--space-6)}
-  .course{display:grid;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;column-gap:10px}
-  .course-media{grid-column:1;grid-row:1 / 3;position:relative}
+  .course{display:grid;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;column-gap:10px;background:none;border-radius:0;overflow:visible}
+  .course-media{grid-column:1;grid-row:1 / 3;position:relative;border-radius:var(--rounded-xl);overflow:hidden}
   .course-media img{position:absolute;inset:0;height:100%;aspect-ratio:auto}
-  .course-heading{grid-column:2;grid-row:1;padding:var(--space-6) var(--space-6) 0;margin-top:0}
-  .course-content{grid-column:2;grid-row:2;padding:var(--space-4) var(--space-6) var(--space-6)}
+  .course-heading{grid-column:2;grid-row:1;padding:var(--space-6) var(--space-6) 0;background:var(--color-surface);border-radius:var(--rounded-xl) var(--rounded-xl) 0 0}
+  .course-content{grid-column:2;grid-row:2;padding:var(--space-4) var(--space-6) var(--space-6);background:var(--color-surface);border-radius:0 0 var(--rounded-xl) var(--rounded-xl)}
   .course:nth-child(even){grid-template-columns:55fr 45fr}
   .course:nth-child(even) .course-media{grid-column:2}
   .course:nth-child(even) .course-heading,.course:nth-child(even) .course-content{grid-column:1}

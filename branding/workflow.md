@@ -207,6 +207,16 @@
 - **Funktioniert:** Der Innenabstand pro Leistung ist von 14 auf 18 px oben und unten gestiegen. Der Abstand zwischen zwei Leistungen wächst damit von 28 auf 36 px (+29 %). Keine Konsolenfehler, kein horizontales Scrollen bei 375, 430 und 1440 px.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Styleguide-Seite
+- **Versucht:** Lucas' Aufgabenstellung verlangt neben der Website eine eigene Styleguide-Seite für die Marke: Logo, Farben, Schrift, Bausteine und Arbeitsweise. Das alte `docs/design.html` war veraltet (andere Radien, Space Mono auf Buttons).
+- **Funktioniert:** Die neue Seite `styleguide.html` liegt im Repo-Root und ist live erreichbar. Sie lädt dieselbe `css/style.css` wie die Website, deshalb sind alle Farben, Buttons, Badges, Panels, Lorbeer-Badges und das Akkordeon echte Bausteine und keine Nachbauten. Kapitel: Marke, Logo (hell/dunkel, Größen, Schutzzone, Regeln), Farben (12 Töne mit Einsatz und Kontrastwerten nach WCAG), Schrift, Abstände und Radien, Komponenten, Bewegung (Dauern und Kurve), Bildsprache, Sprache, Verfahren. Logo und Lorbeer sind aus `index.html` übernommen. Die Seite ist auf `noindex` gesetzt. Geprüft bei 375 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Die Kontrastprüfung ergab: Muted `#75695C` auf Surface `#EAE3D8` hat nur 4,2 : 1 und liegt damit knapp unter AA für kleinen Text. Das steht als Hinweis im Styleguide. `docs/design.md` und `docs/design.html` sind weiterhin veraltet.
+
+### 18.10.2026 · Handy: weniger Rundung, Schulung wieder eine Karte, Teilwertungen raus
+- **Versucht:** Auf dem Handy sollten die Rahmen von Panels und Fotos etwa 30 % weniger rund sein. Die Schulungen sollen dort wieder eine einzige Karte sein (Bild nicht separat). Unter Bewertungen sollen Service, Sauberkeit und Pünktlichkeit weg.
+- **Funktioniert:** Unter 900 px gilt `--rounded-xl` 22 statt 32 px und `--rounded-lg` 17 statt 24 px. Buttons, Badges und Kacheln bleiben unverändert. Die Schulungskarte ist mobil wieder eine Fläche mit Bild oben, am Desktop bleiben es zwei Rahmen. Die drei Teilwertungs-Badges sind entfernt, „5.0 · 26 Bewertungen auf Beautinda“ bleibt. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
