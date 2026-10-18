@@ -342,7 +342,7 @@ body.menu-open{overflow:hidden}
 @media(min-width:560px){.perks{grid-template-columns:repeat(4,1fr)}}
 .perks li{
   display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
-  padding:12px 6px;border-radius:var(--rounded-md);background:var(--color-surface-raised);
+  padding:12px 6px;border-radius:var(--rounded-md);background:transparent;border:1px solid #CBBFAF;   /* nur Kontur, Fläche wie die Karte */
   font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted);line-height:1.3;
 }
 .perks svg{width:22px;height:22px;color:var(--color-accent)}

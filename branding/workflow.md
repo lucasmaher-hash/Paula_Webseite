@@ -222,6 +222,11 @@
 - **Funktioniert:** Unter 900 px ist `.about-grid` selbst die Fläche (ohne Container-Rand, Radius 22 px). Das Foto sitzt 10 px eingerückt mit 12 px Radius, also Außenradius minus Abstand, damit die Rundungen parallel laufen. Bei den Schulungen hat das Foto oben, links und rechts 10 px Abstand und ebenfalls 12 px Radius. Am Desktop bleibt alles wie vorher. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen. Der Styleguide ist nachgezogen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Schulungs-Kacheln nur mit Kontur
+- **Versucht:** Die vier hellen Kacheln in den Schulungskarten (Ratenzahlung, Zertifikat, Starterpaket, Betreuung) sollen keine eigene helle Fläche mehr haben, sondern nur eine dünne Kontur in der Farbe der Karte.
+- **Funktioniert:** Die Kacheln sind transparent mit 1 px Kontur `#CBBFAF`, dem gleichen Ton wie die Trennlinien der Öffnungszeiten. Die Fläche hat damit die Kartenfarbe. Geprüft bei 375 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
