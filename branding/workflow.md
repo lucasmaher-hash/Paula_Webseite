@@ -145,7 +145,7 @@
 ### 18.10.2026 · Akkordeon-Gleiten ohne Ruckeln (FLIP statt JS-Scroll)
 - **Versucht:** Lucas: Das Gleiten zur geöffneten Kategorie funktioniert, ruckelt aber stark. Ursache war der eigene Ansatz: Scrollen per JavaScript in jedem Frame läuft auf dem Haupt-Thread und konkurriert in Safari mit dem Neuzeichnen der Nav-Leiste mit Weichzeichner.
 - **Funktioniert:** Umbau auf FLIP. Die Seite springt sofort an die Zielposition, `<main>` wird per `translate3d` an die alte Lage geschoben und gleitet per CSS-Transition (0,9 s) zurück. Das rechnet die GPU. Header und Menü liegen außerhalb von `<main>` und bleiben unberührt. Eine laufende Bewegung wird vor jeder neuen Messung beendet, damit Mehrfachklicks nicht falsch landen. Gemessen: Titel 500 → 466 → 281 → 236 px, Ende mittig (163/162 px), danach ist der Transform entfernt.
-- **Nicht funktioniert / offen:** Die Flüssigkeit lässt sich im Vorschaufenster nicht beurteilen, Lucas muss sie auf dem iPhone prüfen. Scrollt man während der Bewegung selbst, springt der Inhalt sofort ans Ziel.
+- **Nicht funktioniert / offen:** Lucas hat bestätigt, dass es auf dem iPhone jetzt flüssig läuft (18.10.2026). Scrollt man während der Bewegung selbst, springt der Inhalt sofort ans Ziel.
 
 ## Werkzeuge
 
