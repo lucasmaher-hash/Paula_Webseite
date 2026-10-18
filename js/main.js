@@ -12,16 +12,19 @@
     var intro = document.querySelector('.intro');
     if (!brand || !slot || !header || !intro) return;
 
-    var s0 = 1, y0 = 0, y1 = 0, range = 1, ticking = false;
+    // Scharf bleiben: Das Logo wird in voller Intro-Breite gerendert und beim Scrollen
+    // nur verkleinert (nie hochskaliert). Angedockt bekommt es seine echte Nav-Breite ohne scale().
+    var slotW = 1, bigW = 1, y0 = 0, y1 = 0, range = 1, ticking = false, docked = null;
 
     function measure() {
       var r = slot.getBoundingClientRect();
       var vw = window.innerWidth, vh = window.innerHeight;
-      var bigW = Math.min(vw * 0.84, 820);
-      s0 = Math.max(1, bigW / r.width);
+      slotW = r.width;
+      bigW = Math.max(slotW, Math.min(vw * 0.84, 820));
       y1 = r.top;
-      y0 = vh / 2 - (r.height * s0) / 2;
+      y0 = vh / 2 - (r.height * bigW / slotW) / 2;
       range = Math.max(1, intro.offsetHeight - header.offsetHeight);
+      docked = null;
     }
 
     function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
@@ -29,8 +32,14 @@
     function update() {
       ticking = false;
       var p = clamp(window.scrollY / range);
-      var s = s0 + (1 - s0) * p;
       var y = y0 + (y1 - y0) * p;
+      var isDocked = p >= 1;
+      if (isDocked !== docked) {
+        brand.style.width = (isDocked ? slotW : bigW) + 'px';
+        docked = isDocked;
+      }
+      // Breite in px: von bigW linear auf slotW
+      var s = isDocked ? 1 : (bigW + (slotW - bigW) * p) / bigW;
       brand.style.transform = 'translate3d(-50%,' + y.toFixed(2) + 'px,0) scale(' + s.toFixed(4) + ')';
       root.style.setProperty('--dock', p.toFixed(3));
       root.style.setProperty('--nav-o', clamp((p - 0.55) / 0.45).toFixed(3));
