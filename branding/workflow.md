@@ -117,6 +117,11 @@
 - **Funktioniert:** Den Kartenabschnitt vollständig aus dem HTML entfernt. Die eigentlichen Inhaltsbereiche und Navigationslinks bleiben erhalten. Mobil und Desktop geprüft: keine Bereichskarten mehr, Ergebnisse gehen direkt in den Über-Paula-Abschnitt über, kein horizontales Scrollen und keine JavaScript-Fehler.
 - **Nicht funktioniert / offen:** Keine technische Blockade.
 
+### 18.10.2026 · Nav-Feinschliff nach Codex-Session (Claude)
+- **Versucht:** Lucas arbeitete zwischendurch in Codex weiter (Hero-Outpainting, Übersichtskarten entfernt, aufklappbare Kurskarten auf dem Handy). Danach meldete er: Instagram-Button und Buchungspfeil in der Desktop-Nav sitzen nicht mittig. Außerdem sollte der Kreis hinter den Pfeilen in allen Buttons weg.
+- **Funktioniert:** Gemessen statt geschätzt. Vertikal lag alles exakt auf der Leistenmitte. Das Instagram-Icon saß aber 1 px vom linken und 23 px vom rechten Kreisrand entfernt. Ursache war die eigene Regel `.hide-mobile{display:inline-flex}`, die das Grid des Kreises überschrieb; sie blendet jetzt nur noch aus. Die Pfeile stehen ohne Kreis in Textfarbe (weiß auf dunklen Buttons) mit symmetrischem Innenabstand. Codex' noch nicht committete Kurskarten wurden auf Lucas' Ansage mit übernommen.
+- **Nicht funktioniert / offen:** Zwei Werkzeuge (Codex und Claude) schrieben zeitweise in dieselben Dateien. Vor dem Bearbeiten wurde deshalb geprüft, ob Codex noch aktiv ist, und Lucas gefragt. Auf hellen Buttons ist der Pfeil dunkel statt weiß, weil Weiß dort nicht sichtbar wäre.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

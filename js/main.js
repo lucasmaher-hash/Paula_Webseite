@@ -2,6 +2,25 @@
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Schulungen: mobil aufklappbar, am Desktop immer vollständig sichtbar.
+  var courseDesktop = window.matchMedia('(min-width: 900px)');
+  document.querySelectorAll('.course').forEach(function (course) {
+    var toggle = course.querySelector('.course-toggle');
+    var expanded = false;
+    function updateCourse() {
+      var open = courseDesktop.matches || expanded;
+      course.classList.toggle('is-collapsed', !open);
+      toggle.hidden = courseDesktop.matches;
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', function () {
+      expanded = !expanded;
+      updateCourse();
+    });
+    courseDesktop.addEventListener('change', updateCourse);
+    updateCourse();
+  });
+
   // Mobiles Menü (Vollbild)
   var menu = document.getElementById('mobile-menu');
   var menuBtn = document.querySelector('.menu-btn');
