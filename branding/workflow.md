@@ -82,6 +82,11 @@
 - **Funktioniert:** Intro-Fläche, fixiertes Logo und Scroll-JS sind entfernt. Der Header ist wieder eine einfache Sticky-Leiste: Logo links, Links mittig, Button rechts. Transparenter Hintergrund und Hover-Unterstrich bleiben. Geprüft in 1280 px und 375 px, ohne Konsolenfehler. Commit `78d4f92`.
 - **Nicht funktioniert / offen:** Nichts technisch offen. Die Arbeit an Intro, Easing und Ruckel-Fix (vier Commits) steckt in der Git-Historie, falls das Intro später doch zurückkommen soll.
 
+### 18.10.2026 · Redesign nach Referenz (Kurzprojekt 2)
+- **Versucht:** Paula gefällt novafacesmunich.com. Übernommen wurden nur Layout-Muster, keine Texte: Labels mit Punkt, große Karten mit ↗, ein Bilderstreifen, Pillen-Buttons mit Pfeilkreis, eine Dropdown-Nav und ein Vollbild-Menü auf dem Handy. Die Farben blieben. Neu: Abschnitt Schulungen (Platzhaltertext auf Lucas' Wunsch), Behandlungen ohne Preise (Link zu Beautinda), echte Fotos statt Platzhalter, Hero mit Paula und links verlängerter Wand, dünne Hover-Linie ohne Serifen.
+- **Funktioniert:** Vor dem Bauen wurden vier Inhaltsfragen per Fragebogen geklärt (Schulungen-Inhalt, Hero-Foto, Gutschein-Beträge, Einwilligung der Kundinnen). Mobil zuerst getestet: kein horizontales Scrollen, Menü inklusive Unterpunkten, Sprung zur Kategorie öffnet das Akkordeon. Danach Desktop mit 1440 px. Commit `4fb42aa`, Deploy bestätigt.
+- **Nicht funktioniert / offen:** Die erste Bildverlängerung ergab einen harten braunen Streifen, weil unten am Bildrand Haar ist. Gelöst über den Wandton aus der oberen Bildhälfte; Lucas ersetzt das später durch ein KI-Outpainting. Ein Bug in der ersten Fassung: Das `height`-Attribut der Bilder setzte `aspect-ratio` außer Kraft, behoben mit `height:auto`. Offen: echte Inhalte für Schulungen, Stripe-Links für Gutscheine, ein Studio-Foto.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
