@@ -242,6 +242,11 @@
 - **Funktioniert:** Das Raster hat 4 Spalten und 10 Zeilen-Einheiten mit 10 px Abstand. Spalte 1 ist ein hohes Bild über die volle Höhe, Spalte 2 hoch und darunter kurz, Spalte 3 kurz und darunter hoch, Spalte 4 hoch mit Luft darunter. Die Referenz hat 7 Bilder, es gibt aber nur 6 echte, deshalb ist Spalte 1 ein einziges Bild statt zwei. Der Radius sitzt jetzt am Rahmen (`figure`, `overflow:hidden`), das Bild skaliert beim Hover in 0,8 s auf 106 %. Gemessen bei 1024 und 1440 px: Rahmen unverändert, Bild `scale(1.06)`. Zoom nur bei Geräten mit Maus, bei „Bewegung reduzieren“ ohne Übergang. Am Handy bleibt der Wischstreifen. Keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Mit einem 7. Foto ließe sich die Referenz genau nachbauen (Spalte 1 kurz und hoch).
 
+### 18.10.2026 · Pinker Glow hinter dem Mauszeiger
+- **Versucht:** Lucas wollte einen Effekt wie auf yedeni.com/en/contact: Ein leichter farbiger Schein folgt der Maus, bei uns in Pink. Die Seite war aus der Cloud nicht erreichbar (DNS gesperrt), der Code konnte also nicht gelesen werden. Der Effekt ist nach der üblichen Technik nachgebaut.
+- **Funktioniert:** Ein fixierter Kreis (520 px, radialer Verlauf in Pink `#D9A8A4`, nach außen transparent) folgt der Maus. Er läuft per `requestAnimationFrame` mit 12 % des Restwegs pro Frame nach und wirkt dadurch weich. Er erscheint erst bei der ersten Mausbewegung und blendet aus, wenn die Maus das Fenster verlässt. Nur bei Geräten mit Maus (`hover: hover` und `pointer: fine`), nicht bei „Bewegung reduzieren“, nicht auf dem Handy. Gemessen: Nach der Bewegung hängt der Kreis etwa 67 px hinterher und sitzt nach rund 1 s genau unter der Maus.
+- **Nicht funktioniert / offen:** Hinter dem Inhalt (`z-index:-1`) war der Glow kaum zu sehen, weil fast die ganze Fläche aus Panels besteht. Jetzt liegt er als Tönung darüber (`mix-blend-mode:multiply`, unter dem Header): Helle Flächen werden zart pink, Text bleibt dunkel. Fotos werden dabei ebenfalls leicht getönt.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
