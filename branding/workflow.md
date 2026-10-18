@@ -147,6 +147,11 @@
 - **Funktioniert:** Umbau auf FLIP. Die Seite springt sofort an die Zielposition, `<main>` wird per `translate3d` an die alte Lage geschoben und gleitet per CSS-Transition (0,9 s) zurück. Das rechnet die GPU. Header und Menü liegen außerhalb von `<main>` und bleiben unberührt. Eine laufende Bewegung wird vor jeder neuen Messung beendet, damit Mehrfachklicks nicht falsch landen. Gemessen: Titel 500 → 466 → 281 → 236 px, Ende mittig (163/162 px), danach ist der Transform entfernt.
 - **Nicht funktioniert / offen:** Lucas hat bestätigt, dass es auf dem iPhone jetzt flüssig läuft (18.10.2026). Scrollt man während der Bewegung selbst, springt der Inhalt sofort ans Ziel.
 
+### 18.10.2026 · Kategorien klappen animiert auf, Hero mobil schmaler
+- **Versucht:** Das Öffnen und Schließen der Behandlungs-Kategorien sollte nicht mehr sofort passieren, sondern Zeit brauchen. Außerdem sollte das Hero-Bild auf dem Handy links und rechts um je 10 % beschnitten werden.
+- **Funktioniert:** Der Inhalt jeder Kategorie steckt jetzt in einem eigenen Panel. Die Höhe wird per Web Animations API animiert: Öffnen 0,5 s, Schließen 0,4 s, mit Einblenden. Gleichzeitig läuft das GPU-Gleiten der Seite, das Ziel wird vor dem Start im Endzustand gemessen. Liegt eine offene Kategorie über der angeklickten, schließt sie sofort, damit der Titel nicht wegrutscht; liegt sie darunter, schrumpft sie sichtbar. Messung: Öffnen 20 → 606 → 781 px, Wechsel mit Titel fest bei 500 px und Ende mittig (163/162 px), Schließen mit Linie, die beim Schrumpfen verschwindet. Hero mobil per `aspect-ratio:918/1795`: genau 10,0 % pro Seite weg.
+- **Nicht funktioniert / offen:** Höhen-Animationen laufen technisch nie auf der GPU, sind bei kurzen Listen aber unkritisch. Das schmalere Hero-Bild ist auf dem Handy 733 statt 586 px hoch, die Überschrift liegt dadurch unter dem ersten Bildschirm.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

@@ -114,19 +114,53 @@
     var maxTop = document.documentElement.scrollHeight - window.innerHeight;
     return Math.max(0, Math.min(maxTop, window.scrollY + r.top - offset));
   }
+  var OPEN_MS = 500, CLOSE_MS = 400, EASE = 'cubic-bezier(.4,0,.2,1)';
+  function panelOf(d) { return d.querySelector('.service-panel'); }
+  function closePanel(d, animate) {
+    var panel = panelOf(d);
+    if (d._anim) { d._anim.cancel(); d._anim = null; }
+    if (!animate || reduced || !panel || !panel.animate) { d.classList.remove('closing'); d.open = false; return; }
+    d.classList.add('closing');
+    d._anim = panel.animate([{ height: panel.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
+      { duration: CLOSE_MS, easing: EASE });
+    d._anim.onfinish = function () { d._anim = null; d.classList.remove('closing'); d.open = false; };
+  }
+  function openPanel(d) {
+    var summary = d.querySelector('summary');
+    endGlide();
+    var before = summary.getBoundingClientRect().top;
+    groups.forEach(function (o) {
+      if (o === d || !o.open) return;
+      // liegt die offene Kategorie über der angeklickten, sofort schließen (sonst rutscht der Titel weg)
+      var above = o.compareDocumentPosition(d) & Node.DOCUMENT_POSITION_FOLLOWING;
+      closePanel(o, !above);
+    });
+    if (d._anim) { d._anim.cancel(); d._anim = null; }
+    d.classList.remove('closing');
+    d._opening = true; d.open = true;
+    // Titel an seiner Stelle halten, falls sich darüber etwas geschlossen hat
+    var shift = summary.getBoundingClientRect().top - before;
+    if (Math.abs(shift) > 1) window.scrollTo({ top: window.scrollY + shift, behavior: 'instant' });
+    var target = targetFor(d);             // Layout ist hier schon im Endzustand
+    var panel = panelOf(d);
+    if (!reduced && panel && panel.animate) {
+      d._anim = panel.animate([{ height: '0px', opacity: 0 }, { height: panel.offsetHeight + 'px', opacity: 1 }],
+        { duration: OPEN_MS, easing: EASE });
+      d._anim.onfinish = function () { d._anim = null; };
+    }
+    glideTo(target);
+  }
   groups.forEach(function (d) {
     var summary = d.querySelector('summary');
-    summary.addEventListener('click', function () { endGlide(); d._clickTop = summary.getBoundingClientRect().top; });
+    summary.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (d.open && !d.classList.contains('closing')) closePanel(d, true); else openPanel(d);
+    });
+    // Öffnen über Links (Nav, Hash): ohne Animation, nur eins offen
     d.addEventListener('toggle', function () {
-      if (!d.open) { d._clickTop = null; return; }
-      groups.forEach(function (other) { if (other !== d) other.open = false; });
-      if (d._clickTop == null) return;
-      endGlide();                       // laufende Bewegung beenden, sonst misst getBoundingClientRect mit Transform
-      var before = d._clickTop; d._clickTop = null;
-      // Titel an seiner Stelle halten, falls sich darüber etwas geschlossen hat
-      var shift = summary.getBoundingClientRect().top - before;
-      if (Math.abs(shift) > 1) window.scrollTo({ top: window.scrollY + shift, behavior: 'instant' });
-      glideTo(targetFor(d));
+      if (!d.open) return;
+      if (d._opening) { d._opening = false; return; }
+      groups.forEach(function (o) { if (o !== d) closePanel(o, false); });
     });
   });
   function openFromHash(id) {

@@ -171,7 +171,7 @@ body.menu-open{overflow:hidden}
 /* ---------- Hero: Paula rechts, Text links; Handy: Bild oben, Text darunter ---------- */
 .hero{padding:0;margin-top:calc(-1 * var(--header-h));position:relative}
 .hero-media{display:block;background:var(--hero-wall)}
-.hero-media img{width:100%;height:auto;aspect-ratio:auto;object-fit:cover;object-position:50% 18%}
+.hero-media img{width:100%;height:auto;aspect-ratio:918/1795;object-fit:cover;object-position:50% 18%}   /* Handy: links und rechts je 10 % weg (1148 px Bildbreite → 918) */
 .hero-content{padding-top:var(--space-6);padding-bottom:var(--space-7)}
 /* Handy: Bewertung und Zeiten als reiner Text oben rechts im Bild */
 .hero-info{
@@ -275,6 +275,7 @@ body.menu-open{overflow:hidden}
 .indicator::before,.indicator::after{content:"";position:absolute;left:11px;right:11px;top:50%;height:1.4px;margin-top:-.7px;background:currentColor;transition:transform .25s ease}
 .indicator::after{transform:rotate(90deg)}
 .accordion details[open] .indicator::after{transform:rotate(0)}
+.service-panel{overflow:hidden}   /* Höhe wird beim Öffnen/Schließen animiert (js/main.js) */
 .service-list{list-style:none;display:flex;flex-direction:column;padding:0 22px}
 .service-list li{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-top:1px solid var(--color-border)}
 .service-list .name{font-weight:500}
@@ -391,6 +392,7 @@ body.menu-open{overflow:hidden}
 @media(hover:none){
   .accordion summary h3::after{transition-duration:.7s}
   .accordion details[open] summary h3::after{transform:scaleX(1);transition-duration:.9s}
+  .accordion details.closing summary h3::after{transform:scaleX(0);transition-duration:.7s}
 }
 .nav-dd-btn.ul::after{bottom:0}
 
