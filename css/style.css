@@ -201,7 +201,7 @@ body.menu-open{overflow:hidden}
   .hero-content{color:var(--color-on-primary);text-shadow:0 1px 12px rgba(34,28,22,.22)}
   .hero .lead{color:color-mix(in srgb,var(--color-on-primary) 92%,transparent)}
   .hero .eyebrow{color:var(--color-on-primary)}
-  .hero h1 em{color:#EAD9CB}           /* Akzent hell statt braun */
+  .hero h1 em{color:var(--color-on-primary)}   /* „Qualität.“ weiß wie der Rest */
   .hero-badges .badge{background:transparent;border-color:color-mix(in srgb,var(--color-on-primary) 55%,transparent);color:var(--color-on-primary)}
   .hero-actions .btn{text-shadow:none}
 }
@@ -243,9 +243,8 @@ body.menu-open{overflow:hidden}
 /* ---------- Über Paula ---------- */
 .about-grid{display:grid;gap:var(--space-6)}
 @media(min-width:900px){.about-grid{grid-template-columns:.9fr 1.1fr;gap:var(--space-8);align-items:center}}
-.about-figure{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
-.about-figure img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--rounded-lg)}
-.about-figure img:last-child{margin-top:var(--space-7)}
+.about-figure img{width:100%;aspect-ratio:675/925;object-fit:cover;border-radius:var(--rounded-lg)}
+@media(min-width:900px){.about-figure img{max-width:460px}}
 .about blockquote{font-size:clamp(1.1rem,2.6vw,1.3rem);line-height:1.5;letter-spacing:-.01em;margin:0 0 var(--space-6)}
 .facts{list-style:none;display:flex;flex-direction:column;border-top:1px solid var(--color-border)}
 .fact{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-1) var(--space-4);padding:14px 0;border-bottom:1px solid var(--color-border);font-size:.95rem}

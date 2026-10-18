@@ -152,6 +152,11 @@
 - **Funktioniert:** Der Inhalt jeder Kategorie steckt jetzt in einem eigenen Panel. Die Höhe wird per Web Animations API animiert: Öffnen 0,5 s, Schließen 0,4 s, mit Einblenden. Gleichzeitig läuft das GPU-Gleiten der Seite, das Ziel wird vor dem Start im Endzustand gemessen. Liegt eine offene Kategorie über der angeklickten, schließt sie sofort, damit der Titel nicht wegrutscht; liegt sie darunter, schrumpft sie sichtbar. Messung: Öffnen 20 → 606 → 781 px, Wechsel mit Titel fest bei 500 px und Ende mittig (163/162 px), Schließen mit Linie, die beim Schrumpfen verschwindet. Hero mobil per `aspect-ratio:918/1795`: genau 10,0 % pro Seite weg.
 - **Nicht funktioniert / offen:** Höhen-Animationen laufen technisch nie auf der GPU, sind bei kurzen Listen aber unkritisch. Das schmalere Hero-Bild ist auf dem Handy 733 statt 586 px hoch, die Überschrift liegt dadurch unter dem ersten Bildschirm.
 
+### 18.10.2026 · Neues Foto von Paula im „Über mich", „Qualität." weiß
+- **Versucht:** Lucas lieferte ein Foto von Paula im Studio (schwarzer Blazer, Handschuhe) für den Abschnitt „Hey, ich bin Paula". Außerdem sollte „Qualität." im Desktop-Hero weiß statt beige sein.
+- **Funktioniert:** Foto als `images/paula-studio.jpg` (43 KB), Original in `branding/assets/photos/originals/`. Es ersetzt die zwei Behandlungsfotos: am Desktop max. 460 px breit, auf dem Handy volle Breite. Akzentwort jetzt in derselben Weißstufe wie die Überschrift.
+- **Nicht funktioniert / offen:** Das Foto hat nur 675 × 925 px. Auf Retina-Desktops (doppelte Pixeldichte, ~920 px nötig) wirkt es leicht weich. Eine größere Version wäre besser.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
