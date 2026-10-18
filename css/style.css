@@ -195,9 +195,15 @@ body.menu-open{overflow:hidden}
   .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 0}
   .hero-content{position:relative;width:100%;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
   .hero-content > *{max-width:540px}
-  .hero .lead{color:#3c332b}
-  .hero .eyebrow{color:#4a4037}
-  .hero h1 em{color:#5b4636}           /* Akzent dunkler, damit er auf dem Taupe lesbar bleibt */
+  /* Text weiß; die Wand links minimal abgedunkelt (läuft zu Paula hin auf 0 aus), damit Weiß lesbar bleibt */
+  .hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,rgba(34,28,22,.28) 0%,rgba(34,28,22,.22) 38%,rgba(34,28,22,0) 62%)}
+  .hero-content{color:var(--color-on-primary);text-shadow:0 1px 12px rgba(34,28,22,.22)}
+  .hero .lead{color:color-mix(in srgb,var(--color-on-primary) 92%,transparent)}
+  .hero .eyebrow{color:var(--color-on-primary)}
+  .hero h1 em{color:#EAD9CB}           /* Akzent hell statt braun */
+  .hero-badges .badge{background:transparent;border-color:color-mix(in srgb,var(--color-on-primary) 55%,transparent);color:var(--color-on-primary)}
+  .hero-actions .btn{text-shadow:none}
 }
 
 /* ---------- Ergebnisse: horizontaler Streifen ---------- */

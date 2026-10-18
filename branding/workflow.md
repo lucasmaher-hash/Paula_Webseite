@@ -127,6 +127,11 @@
 - **Funktioniert:** Ein IntersectionObserver auf das Hero-Bild setzt am Header die Klasse `over-hero`; der Verlauf greift nur ohne diese Klasse. Für die Textfarbe auf dem Bild wurde vorher der Bildton oben rechts gemessen (#715e50): heller Text kommt auf 6,2:1, dunkler nur auf 2,8:1, also Creme mit leichtem Schatten. Am Desktop bleiben die zwei Badges unter den Knöpfen.
 - **Nicht funktioniert / offen:** Die Pfeilkreise, die Lucas erneut ansprach, waren bereits seit `c87f54f` entfernt. Vermutlich sah sein Handy eine zwischengespeicherte Version. Auf einem echten Handy ist das noch nicht getestet.
 
+### 18.10.2026 · Weißer Hero-Text am Desktop, Akkordeon gleitet in die Mitte
+- **Versucht:** Am Desktop sollte der Text auf dem Hero-Bild weiß sein, der Hintergrund dafür minimal dunkler. Eine geöffnete Behandlungs-Kategorie sollte weich in die Bildschirmmitte gleiten; Kategorien, die länger als der Bildschirm sind, sollten oben anfangen.
+- **Funktioniert:** Vorher den Kontrast gerechnet. Weiß auf dem Taupe kommt nur auf 2,6:1; „minimal" abdunkeln (15 %) reicht für die Überschrift, nicht für den Absatz. Deshalb wird nur die linke Seite hinter dem Text um rund 28 % abgedunkelt, das läuft zu Paula hin auf 0 aus. Akkordeon: Nach dem Öffnen wartet das Skript zwei Frames (bis die andere Kategorie zu ist) und scrollt dann weich. Gemessen am Desktop: Augenbrauen 230/230 px Abstand, Permanent Make-up 70/70 px, Maniküre (länger als der Bildschirm) 16 px unter der Leiste. Am Handy gleich.
+- **Nicht funktioniert / offen:** Das bisherige „automatische Scrollen" war kein Code, sondern der Browser, der beim Schließen der vorherigen Kategorie die Seite nachzieht. Der Absatz im Hero liegt mit Weiß knapp unter dem WCAG-Wert für Fließtext. Echte Gerätetests stehen aus.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

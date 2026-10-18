@@ -75,11 +75,30 @@
     });
   });
 
-  // Akkordeon: immer nur eins offen; Links mit data-open öffnen die passende Kategorie
+  // Akkordeon: immer nur eins offen; Links mit data-open öffnen die passende Kategorie.
+  // Per Klick geöffnete Kategorie gleitet in die Mitte des sichtbaren Bereichs unter der Leiste;
+  // ist sie höher als dieser Bereich, steht ihr Anfang oben direkt unter der Leiste.
   var groups = document.querySelectorAll('.accordion details');
+  var headerEl = document.querySelector('.site-header');
+  function bringIntoView(d) {
+    var hh = headerEl ? headerEl.offsetHeight : 0;
+    var r = d.getBoundingClientRect();
+    var avail = window.innerHeight - hh;
+    var gap = 16;
+    var offset = r.height <= avail - 2 * gap ? hh + (avail - r.height) / 2 : hh + gap;
+    var top = Math.max(0, window.scrollY + r.top - offset);
+    window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+  }
   groups.forEach(function (d) {
+    d.querySelector('summary').addEventListener('click', function () { d._byClick = true; });
     d.addEventListener('toggle', function () {
-      if (d.open) groups.forEach(function (other) { if (other !== d) other.open = false; });
+      if (!d.open) { d._byClick = false; return; }
+      groups.forEach(function (other) { if (other !== d) other.open = false; });
+      if (d._byClick) {
+        d._byClick = false;
+        // zwei Frames warten, bis das Schließen der anderen Kategorie im Layout angekommen ist
+        requestAnimationFrame(function () { requestAnimationFrame(function () { bringIntoView(d); }); });
+      }
     });
   });
   function openFromHash(id) {
