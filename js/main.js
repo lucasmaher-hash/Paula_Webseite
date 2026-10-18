@@ -76,29 +76,49 @@
   });
 
   // Akkordeon: immer nur eins offen; Links mit data-open öffnen die passende Kategorie.
-  // Per Klick geöffnete Kategorie gleitet in die Mitte des sichtbaren Bereichs unter der Leiste;
-  // ist sie höher als dieser Bereich, steht ihr Anfang oben direkt unter der Leiste.
+  // Per Klick geöffnete Kategorie: Schließt sich dabei eine andere, bleibt der angeklickte Titel
+  // zuerst genau an seiner Stelle (sonst springt er aus dem Bild). Danach gleitet die Seite langsam
+  // in die Mitte des sichtbaren Bereichs; ist die Kategorie höher, steht ihr Anfang oben unter der Leiste.
   var groups = document.querySelectorAll('.accordion details');
   var headerEl = document.querySelector('.site-header');
-  function bringIntoView(d) {
+  var scrollAnim = null;
+  function stopScrollAnim() { if (scrollAnim) { cancelAnimationFrame(scrollAnim); scrollAnim = null; } }
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, stopScrollAnim, { passive: true }); });
+  function glideTo(top) {
+    stopScrollAnim();
+    var from = window.scrollY, dist = top - from;
+    if (reduced || Math.abs(dist) < 2) { window.scrollTo({ top: top, behavior: 'instant' }); return; }
+    var dur = Math.min(1300, 700 + Math.abs(dist) * 0.4);   // etwa halb so schnell wie der Browser-Standard
+    var t0 = null;
+    function step(now) {
+      if (t0 === null) t0 = now;
+      var t = Math.min(1, (now - t0) / dur);
+      var e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;   // easeInOutCubic
+      window.scrollTo({ top: from + dist * e, behavior: 'instant' });
+      scrollAnim = t < 1 ? requestAnimationFrame(step) : null;
+    }
+    scrollAnim = requestAnimationFrame(step);
+  }
+  function targetFor(d) {
     var hh = headerEl ? headerEl.offsetHeight : 0;
     var r = d.getBoundingClientRect();
-    var avail = window.innerHeight - hh;
-    var gap = 16;
+    var avail = window.innerHeight - hh, gap = 16;
     var offset = r.height <= avail - 2 * gap ? hh + (avail - r.height) / 2 : hh + gap;
-    var top = Math.max(0, window.scrollY + r.top - offset);
-    window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+    var maxTop = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.max(0, Math.min(maxTop, window.scrollY + r.top - offset));
   }
   groups.forEach(function (d) {
-    d.querySelector('summary').addEventListener('click', function () { d._byClick = true; });
+    var summary = d.querySelector('summary');
+    summary.addEventListener('click', function () { d._clickTop = summary.getBoundingClientRect().top; });
     d.addEventListener('toggle', function () {
-      if (!d.open) { d._byClick = false; return; }
+      if (!d.open) { d._clickTop = null; return; }
       groups.forEach(function (other) { if (other !== d) other.open = false; });
-      if (d._byClick) {
-        d._byClick = false;
-        // zwei Frames warten, bis das Schließen der anderen Kategorie im Layout angekommen ist
-        requestAnimationFrame(function () { requestAnimationFrame(function () { bringIntoView(d); }); });
-      }
+      if (d._clickTop == null) return;
+      var before = d._clickTop; d._clickTop = null;
+      // Titel an seiner Stelle halten, falls sich darüber etwas geschlossen hat
+      var shift = summary.getBoundingClientRect().top - before;
+      if (Math.abs(shift) > 1) window.scrollTo({ top: window.scrollY + shift, behavior: 'instant' });
+      requestAnimationFrame(function () { glideTo(targetFor(d)); });
     });
   });
   function openFromHash(id) {

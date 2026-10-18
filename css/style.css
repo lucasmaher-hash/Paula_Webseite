@@ -258,7 +258,7 @@ body.menu-open{overflow:hidden}
 .section-head{display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-6)}
 @media(min-width:900px){.section-head{flex-direction:row;justify-content:space-between;align-items:flex-end}}
 .section-head p{max-width:54ch}
-.accordion{display:flex;flex-direction:column;gap:var(--space-3)}
+.accordion{display:flex;flex-direction:column;gap:var(--space-3);overflow-anchor:none}   /* Scroll-Ausgleich macht main.js */
 .accordion details{background:var(--color-surface-raised);border-radius:var(--rounded-lg);border:1px solid var(--color-border);overflow:hidden}
 .accordion summary{
   list-style:none;cursor:pointer;
@@ -290,11 +290,11 @@ body.menu-open{overflow:hidden}
 .course-toggle[hidden]{display:none}
 .course-toggle svg{transition:transform .25s ease}
 .course-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
-.course-media{order:1}
+.course-media{order:-1}
 .course-media img{width:100%;aspect-ratio:16/10;object-fit:cover}
 .course-content{order:2;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5)}
 @media(max-width:899px){
-  .course.is-collapsed .course-media,.course.is-collapsed .course-content{display:none}
+  .course.is-collapsed .course-content{display:none}
   .course-heading .badges{gap:6px}
   .course-heading .badge{font-size:.7rem;padding:6px 9px}
 }
@@ -378,9 +378,20 @@ body.menu-open{overflow:hidden}
   content:"";position:absolute;left:0;right:0;bottom:-.22em;height:1px;background:currentColor;pointer-events:none;
   transform:scaleX(0);transform-origin:50% 50%;transition:transform .35s cubic-bezier(.4,0,.2,1);
 }
-:is(.ul,.footer-links a,.fact a,.voucher-hint a):is(:hover,:focus-visible)::after,
-.accordion summary:is(:hover,:focus-visible) h3::after,
-.nav-dd:hover .nav-dd-btn::after,.nav-dd.open .nav-dd-btn::after{transform:scaleX(1);transition-duration:.45s}
+:is(.ul,.footer-links a,.fact a,.voucher-hint a):focus-visible::after,
+.accordion summary:focus-visible h3::after,
+.nav-dd.open .nav-dd-btn::after{transform:scaleX(1);transition-duration:.45s}
+/* Hover nur auf Geräten mit Maus (auf Touch bleibt ein Tipp-„Hover" sonst hängen) */
+@media(hover:hover){
+  :is(.ul,.footer-links a,.fact a,.voucher-hint a):hover::after,
+  .accordion summary:hover h3::after,
+  .nav-dd:hover .nav-dd-btn::after{transform:scaleX(1);transition-duration:.45s}
+}
+/* Touch: Linie unter der Kategorie gehört zum Zustand „offen", halb so schnell */
+@media(hover:none){
+  .accordion summary h3::after{transition-duration:.7s}
+  .accordion details[open] summary h3::after{transform:scaleX(1);transition-duration:.9s}
+}
 .nav-dd-btn.ul::after{bottom:0}
 
 /* ---------- Rechtsseiten ---------- */

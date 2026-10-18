@@ -137,6 +137,11 @@
 - **Funktioniert:** Abschnitte auf dem Handy 104 statt 72 px oben und unten. Titel mit `hyphens:auto` (Seite ist `lang="de"`) und `overflow-wrap:anywhere` als Rückfall. Getestet im Extremfall (340 px Breite, vergrößerte Schrift): sauberer Umbruch mit Bindestrich, keine Überlappung. Hintergrund #EFD9D6.
 - **Nicht funktioniert / offen:** In Chrome ließ sich die Überlappung bei 375 und 430 px nicht nachstellen. Vermutlich tritt sie nur in Safari auf Lucas' iPhone auf, das Schrift und Breite etwas anders rechnet. Dort ist der Fix noch nicht geprüft.
 
+### 18.10.2026 · Akkordeon-Scroll repariert, Linie mobil, Kurskarten mit Bild
+- **Versucht:** Lucas meldete: Öffnet man unten eine Kategorie, scrollt die Seite hoch statt nach unten. Die Scroll-Animation sollte halb so schnell sein. Auf dem Handy blieb die Linie unter der Kategorie nach dem Schließen stehen. Bei den Schulungen sollte mobil im eingeklappten Zustand Bild, Titel und die drei Badges zu sehen sein, mit dem Bild oben.
+- **Funktioniert:** Den Fehler zuerst nachgestellt: War oben eine lange Kategorie offen, schloss sie sich beim Klick, und der angeklickte Titel sprang von 500 auf −972 px aus dem Bild. Jetzt wird der Titel nach dem Schließen an seiner Stelle gehalten, danach gleitet die Seite in einer eigenen Animation (etwa 0,9 s statt rund 0,4 s, easeInOutCubic, abbrechbar durch Scrollen). Messung: Titel bleibt bei 500 px und gleitet nach unten in die Mitte (163/162 px). Die Linie hing an einem auf Touch „klebenden" Hover; Hover gilt jetzt nur bei `hover:hover`, auf Touch hängt die Linie am Zustand „offen", mit doppelter Dauer. Kurskarten: Das Bild steht mobil oben und bleibt sichtbar, nur der Inhalt klappt.
+- **Nicht funktioniert / offen:** Wie sich 0,9 s auf dem echten Gerät anfühlen, ist nicht geprüft; das Vorschaufenster läuft mit wenigen Bildern pro Sekunde.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
