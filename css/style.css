@@ -179,8 +179,8 @@ body.menu-open{overflow:hidden}
 .hero-actions .btn{justify-content:space-between}
 @media(min-width:560px){.hero-actions{flex-direction:row;flex-wrap:wrap}.hero-actions .btn{justify-content:center}}
 @media(min-width:900px){
-  .hero{min-height:min(92vh,880px);display:flex;align-items:center;background:var(--hero-wall)}
-  .hero-media{position:absolute;inset:0}
+  .hero{min-height:max(min(92vh,880px),calc(100vw * 1091 / 2400 + var(--header-h)));display:flex;align-items:center;background:var(--hero-wall)}
+  .hero-media{position:absolute;inset:var(--header-h) 0 0}
   .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 0}
   .hero-content{position:relative;width:100%;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
   .hero-content > *{max-width:540px}

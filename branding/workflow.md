@@ -107,6 +107,11 @@
 - **Funktioniert:** Datei bytegleich kopiert (1148 × 1795), feste 4:5-Beschneidung entfernt und CSS-Version auf 17 erhöht. Bei 375 px beträgt die Bildfläche 375 × 586,34 px entsprechend dem Originalverhältnis. Mobil und bei 1440 px korrekte Bildquelle, keine JavaScript-Fehler und kein horizontales Scrollen; mobilen Screenshot angesehen. Desktop verwendet weiterhin v3.
 - **Nicht funktioniert / offen:** Keine technische Blockade.
 
+### 18.10.2026 · Codex: Desktop-Framing korrigiert und Reload-Sprung behoben
+- **Versucht:** Auf Lucas' Korrektur die übertriebene obere Erweiterung zurücknehmen und verhindern, dass Neuladen zum Schulungsbereich springt.
+- **Funktioniert:** Desktop verwendet wieder v2, beginnt direkt unter der 72-px-Navigation und erhält ausreichend Höhe für das vollständige Bild ohne vertikalen Beschnitt. Mobiles Bild bleibt unverändert. Reload-Fehler im Browser reproduziert: nach Schulungslink bei y=3588 statt 0. Frühes Entfernen des URL-Ankers plus Scroll-Reset im ersten Frame nach pageshow behebt den Sprung. Bei 375, 1440 und 1920 px geprüft: Reload nach Anker und nach manuellem Scrollen landet oben, direkte Abschnittslinks funktionieren weiterhin, keine JavaScript-Fehler. Desktop-Framing bei 1920 px visuell geprüft; kein zusätzlicher vertikaler Beschnitt. CSS-Version 18.
+- **Nicht funktioniert / offen:** Die vorherige v3-Erweiterung war gestalterisch übertrieben. Ein Reset direkt im pageshow-Handler wurde von der nachfolgenden Browser-Wiederherstellung überschrieben; Ausführung per requestAnimationFrame löst dies in den geprüften Chrome-Fällen.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
