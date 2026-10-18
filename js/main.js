@@ -43,6 +43,7 @@
       brand.style.transform = 'translate3d(-50%,' + y.toFixed(2) + 'px,0) scale(' + s.toFixed(4) + ')';
       root.style.setProperty('--dock', p.toFixed(3));
       root.style.setProperty('--nav-o', clamp((p - 0.55) / 0.45).toFixed(3));
+      root.style.setProperty('--line', clamp((p - 0.88) / 0.12).toFixed(3));
       header.classList.toggle('is-intro', p < 0.98);
     }
 

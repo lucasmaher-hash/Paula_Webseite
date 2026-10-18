@@ -87,8 +87,13 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
   content:"";position:absolute;inset:0;z-index:-1;
   background:color-mix(in srgb,var(--color-background) 68%,transparent);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid color-mix(in srgb,var(--color-border) 70%,transparent);
   opacity:var(--dock);
+}
+/* Linie der Nav-Leiste: erst kurz bevor das Logo andockt (--line, js/main.js) */
+.site-header::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:color-mix(in srgb,var(--color-border) 70%,transparent);
+  opacity:var(--line,1);
 }
 .header-inner{
   display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:var(--space-5);
