@@ -217,6 +217,11 @@
 - **Funktioniert:** Unter 900 px gilt `--rounded-xl` 22 statt 32 px und `--rounded-lg` 17 statt 24 px. Buttons, Badges und Kacheln bleiben unverändert. Die Schulungskarte ist mobil wieder eine Fläche mit Bild oben, am Desktop bleiben es zwei Rahmen. Die drei Teilwertungs-Badges sind entfernt, „5.0 · 26 Bewertungen auf Beautinda“ bleibt. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Handy: Foto im Rahmen bei „Über mich“ und den Schulungen
+- **Versucht:** Lucas wollte auf dem Handy „Über mich & Studio“ als einen einzigen Rahmen, in dem das Foto mit etwas Abstand sitzt (Referenzbild), und zwar von Rand zu Rand ohne seitlichen Abstand. Die Schulungskarten sollen dasselbe Prinzip bekommen, aber in der bisherigen Breite: das Foto mit kleinem Abstand links, rechts und oben, alle Ecken rund.
+- **Funktioniert:** Unter 900 px ist `.about-grid` selbst die Fläche (ohne Container-Rand, Radius 22 px). Das Foto sitzt 10 px eingerückt mit 12 px Radius, also Außenradius minus Abstand, damit die Rundungen parallel laufen. Bei den Schulungen hat das Foto oben, links und rechts 10 px Abstand und ebenfalls 12 px Radius. Am Desktop bleibt alles wie vorher. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen. Der Styleguide ist nachgezogen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
