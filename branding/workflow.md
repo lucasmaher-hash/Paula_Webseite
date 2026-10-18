@@ -132,6 +132,11 @@
 - **Funktioniert:** Vorher den Kontrast gerechnet. Weiß auf dem Taupe kommt nur auf 2,6:1; „minimal" abdunkeln (15 %) reicht für die Überschrift, nicht für den Absatz. Deshalb wird nur die linke Seite hinter dem Text um rund 28 % abgedunkelt, das läuft zu Paula hin auf 0 aus. Akkordeon: Nach dem Öffnen wartet das Skript zwei Frames (bis die andere Kategorie zu ist) und scrollt dann weich. Gemessen am Desktop: Augenbrauen 230/230 px Abstand, Permanent Make-up 70/70 px, Maniküre (länger als der Bildschirm) 16 px unter der Leiste. Am Handy gleich.
 - **Nicht funktioniert / offen:** Das bisherige „automatische Scrollen" war kein Code, sondern der Browser, der beim Schließen der vorherigen Kategorie die Seite nachzieht. Der Absatz im Hero liegt mit Weiß knapp unter dem WCAG-Wert für Fließtext. Echte Gerätetests stehen aus.
 
+### 18.10.2026 · Mehr Luft mobil, Umbruch in Kategorien, Behandlungen pink
+- **Versucht:** Auf dem Handy mehr Abstand zwischen den Abschnitten. Kategorie-Titel wie „Wimpernbehandlungen" sollen nicht mehr mit „7 Leistungen" überlappen, sondern umbrechen. Der Behandlungen-Bereich bekommt dasselbe Pink wie die Bewertungen.
+- **Funktioniert:** Abschnitte auf dem Handy 104 statt 72 px oben und unten. Titel mit `hyphens:auto` (Seite ist `lang="de"`) und `overflow-wrap:anywhere` als Rückfall. Getestet im Extremfall (340 px Breite, vergrößerte Schrift): sauberer Umbruch mit Bindestrich, keine Überlappung. Hintergrund #EFD9D6.
+- **Nicht funktioniert / offen:** In Chrome ließ sich die Überlappung bei 375 und 430 px nicht nachstellen. Vermutlich tritt sie nur in Safari auf Lucas' iPhone auf, das Schrift und Breite etwas anders rechnet. Dort ist der Fix noch nicht geprüft.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
