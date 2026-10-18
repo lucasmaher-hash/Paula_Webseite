@@ -1,16 +1,66 @@
-// PM Beauty — sanfte Einblend-Animation, Akkordeon
+// PM Beauty — mobiles Menü, Dropdown, Akkordeon, sanftes Einblenden
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Immer nur ein Akkordeon offen halten
+  // Mobiles Menü (Vollbild)
+  var menu = document.getElementById('mobile-menu');
+  var menuBtn = document.querySelector('.menu-btn');
+  function setMenu(open) {
+    if (!menu || !menuBtn) return;
+    menu.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+    if (open) { var first = menu.querySelector('.mobile-menu-list a, .mm-toggle'); if (first) first.focus(); }
+    else menuBtn.focus({ preventScroll: true });
+  }
+  if (menu && menuBtn) {
+    menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', function () { setMenu(false); });
+    });
+    menu.querySelectorAll('.mm-toggle').forEach(function (t) {
+      t.addEventListener('click', function () {
+        var sub = document.getElementById(t.getAttribute('aria-controls'));
+        var open = t.getAttribute('aria-expanded') !== 'true';
+        t.setAttribute('aria-expanded', String(open));
+        if (sub) sub.hidden = !open;
+      });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', function (m) { if (m.matches && !menu.hidden) setMenu(false); });
+  }
+
+  // Desktop-Dropdown „Behandlungen“: Hover per CSS, Klick/Tastatur per Klasse
+  document.querySelectorAll('.nav-dd').forEach(function (dd) {
+    var btn = dd.querySelector('.nav-dd-btn');
+    btn.addEventListener('click', function () {
+      var open = !dd.classList.contains('open');
+      dd.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!dd.contains(e.target)) { dd.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+    });
+    dd.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { dd.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+    });
+  });
+
+  // Akkordeon: immer nur eins offen; Links mit data-open öffnen die passende Kategorie
   var groups = document.querySelectorAll('.accordion details');
   groups.forEach(function (d) {
     d.addEventListener('toggle', function () {
-      if (d.open) {
-        groups.forEach(function (other) { if (other !== d) other.open = false; });
-      }
+      if (d.open) groups.forEach(function (other) { if (other !== d) other.open = false; });
     });
   });
+  function openFromHash(id) {
+    var d = document.getElementById(id);
+    if (d && d.tagName === 'DETAILS') d.open = true;
+  }
+  document.querySelectorAll('[data-open]').forEach(function (a) {
+    a.addEventListener('click', function () { openFromHash(a.getAttribute('data-open')); });
+  });
+  if (location.hash) openFromHash(location.hash.slice(1));
 
   // Einblenden beim Scrollen
   var items = document.querySelectorAll('.reveal');
@@ -20,10 +70,7 @@
   }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
     });
   }, { threshold: 0.12 });
   items.forEach(function (el) { io.observe(el); });
