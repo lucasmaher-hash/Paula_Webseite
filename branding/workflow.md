@@ -112,6 +112,11 @@
 - **Funktioniert:** Desktop verwendet wieder v2, beginnt direkt unter der 72-px-Navigation und erhält ausreichend Höhe für das vollständige Bild ohne vertikalen Beschnitt. Mobiles Bild bleibt unverändert. Reload-Fehler im Browser reproduziert: nach Schulungslink bei y=3588 statt 0. Frühes Entfernen des URL-Ankers plus Scroll-Reset im ersten Frame nach pageshow behebt den Sprung. Bei 375, 1440 und 1920 px geprüft: Reload nach Anker und nach manuellem Scrollen landet oben, direkte Abschnittslinks funktionieren weiterhin, keine JavaScript-Fehler. Desktop-Framing bei 1920 px visuell geprüft; kein zusätzlicher vertikaler Beschnitt. CSS-Version 18.
 - **Nicht funktioniert / offen:** Die vorherige v3-Erweiterung war gestalterisch übertrieben. Ein Reset direkt im pageshow-Handler wurde von der nachfolgenden Browser-Wiederherstellung überschrieben; Ausführung per requestAnimationFrame löst dies in den geprüften Chrome-Fällen.
 
+### 18.10.2026 · Codex: Drei Bereichs-Karten entfernt
+- **Versucht:** Auf Lucas' Wunsch die drei Übersichtskarten für Behandlungen, Schulungen und Gutscheine entfernen.
+- **Funktioniert:** Den Kartenabschnitt vollständig aus dem HTML entfernt. Die eigentlichen Inhaltsbereiche und Navigationslinks bleiben erhalten. Mobil und Desktop geprüft: keine Bereichskarten mehr, Ergebnisse gehen direkt in den Über-Paula-Abschnitt über, kein horizontales Scrollen und keine JavaScript-Fehler.
+- **Nicht funktioniert / offen:** Keine technische Blockade.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
