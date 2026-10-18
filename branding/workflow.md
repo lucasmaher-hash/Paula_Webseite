@@ -227,6 +227,11 @@
 - **Funktioniert:** Die Kacheln sind transparent mit 1 px Kontur `#CBBFAF`, dem gleichen Ton wie die Trennlinien der Öffnungszeiten. Die Fläche hat damit die Kartenfarbe. Geprüft bei 375 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Schulungen per Tipp auf den Namen aufklappen
+- **Versucht:** Auf dem Handy sollen sich die Schulungskarten auch öffnen, wenn man auf den Namen tippt, nicht nur über den Pfeil-Knopf rechts. So funktionieren auch die Behandlungskategorien.
+- **Funktioniert:** Der ganze Kopf der Karte (Badges und Titel) löst jetzt denselben Knopf aus, mit derselben Animation. Ein Tipp auf den Pfeil selbst wird nicht doppelt gezählt. Am Desktop passiert nichts, dort sind die Karten immer offen. Getestet bei 375 und 430 px mit Touch: Titel öffnet, Badge schließt, Pfeil öffnet und schließt. Keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

@@ -36,6 +36,11 @@
         anim.onfinish = function () { stopAnim(); expanded = false; updateCourse(); };
       }
     });
+    // Mobil klappt auch ein Tipp auf den Kopf der Karte (Badges, Titel) auf, wie bei den Kategorien
+    course.querySelector('.course-heading').addEventListener('click', function (e) {
+      if (courseDesktop.matches || toggle.contains(e.target)) return;
+      toggle.click();
+    });
     courseDesktop.addEventListener('change', updateCourse);
     updateCourse();
   });
