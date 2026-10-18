@@ -162,6 +162,11 @@
 - **Funktioniert:** `aspect-ratio:1033/1795`, gemessen 5,0 % pro Seite. Das Bild ist bei 375 px Breite jetzt 652 statt 733 px hoch.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Lokaler Server fürs Handy, Wechsel auf Cloud-Workflow
+- **Versucht:** Der lokale Server war vom Handy aus nicht mehr erreichbar. Er war im Benutzerordner statt im Repo gestartet, und Safari erreichte `localhost:8080` nicht. Der Pfad `~/Paula_Webseite` existiert auf Lucas' Mac nicht, deshalb schlug der `cd` fehl.
+- **Funktioniert:** In der Cloud geprüft: Die Seite selbst hat bei 375, 430 und 1440 px keine Konsolenfehler und kein horizontales Scrollen. Lucas hat entschieden, ab jetzt in der Cloud-Sitzung zu arbeiten, direkt auf `main` zu pushen und Änderungen nach dem Pages-Deploy auf der Live-Seite zu prüfen.
+- **Nicht funktioniert / offen:** Der lokale Server ist nicht repariert. Nächste Schritte dafür: das Repo per `find` finden, den Server dort starten und `127.0.0.1` statt `localhost` öffnen.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
