@@ -204,6 +204,15 @@
   });
   if (location.hash) openFromHash(location.hash.slice(1));
 
+  // Gutscheine (Desktop): im Abschnitt driften die Karten senkrecht auseinander, beim Verlassen wieder zusammen
+  var vouchers = document.querySelector('.vouchers-grid');
+  if (vouchers) {
+    if (reduced || !('IntersectionObserver' in window)) vouchers.classList.add('spread');
+    else new IntersectionObserver(function (entries) {
+      vouchers.classList.toggle('spread', entries[0].isIntersecting);
+    }, { threshold: 0.4 }).observe(vouchers);
+  }
+
   // Einblenden beim Scrollen
   var items = document.querySelectorAll('.reveal');
   if (reduced || !('IntersectionObserver' in window)) {

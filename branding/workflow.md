@@ -232,6 +232,11 @@
 - **Funktioniert:** Der ganze Kopf der Karte (Badges und Titel) löst jetzt denselben Knopf aus, mit derselben Animation. Ein Tipp auf den Pfeil selbst wird nicht doppelt gezählt. Am Desktop passiert nichts, dort sind die Karten immer offen. Getestet bei 375 und 430 px mit Touch: Titel öffnet, Badge schließt, Pfeil öffnet und schließt. Keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Gutscheine: Bestseller, Geschenk-Icon, Drift am Desktop, versetzt am Handy
+- **Versucht:** Lucas wollte die 100-€-Karte etwa 30 % größer als die beiden anderen, mit dem Label „Bestseller“ statt „Gutschein“. Bei 50 € und 150 € soll das Label wegfallen, und auf alle Karten kommt ein Geschenk-Icon. Am Desktop sollen die Karten beim Erreichen des Abschnitts leicht senkrecht auseinanderdriften und beim Weiterscrollen wieder zusammen, ausgelöst durch das Erreichen und nicht an den Scrollweg gekoppelt. Am Handy sollen die Karten schmaler und versetzt stehen (links, rechts, links), 100 € etwas größer.
+- **Funktioniert:** Das Geschenk-Icon ist selbst gezeichnet, im Stil der anderen Linien-Icons (1,3 px, Accent), weil Icon-Seiten aus der Cloud nicht erreichbar sind. Das Bestseller-Badge ist eine Pille in Accent mit weißer Schrift. Am Desktop sind die Spalten im Verhältnis 1 : 1,3 : 1, Beträge 2,6 rem und 3,4 rem. Ein IntersectionObserver (40 % sichtbar) setzt `.spread`: Die äußeren Karten sinken 36 px, die mittlere steigt 14 px, in 1,4 s über die CSS-Eigenschaft `translate`. So kommt sich die Bewegung nicht mit dem Einblenden (`transform`) in die Quere. Am Handy sind die Karten 80 % breit, 100 € ist 90 % breit und steht rechts. Gemessen bei 1440 px: drin `36 / −14 / 36 px`, nach dem Wegscrollen wieder 0. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Lucas' Nachricht brach ab bei „dass der 100-Euro-Ding ein bisschen …“. Ich habe „etwas größer“ angenommen. Am Handy gibt es keinen Drift.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

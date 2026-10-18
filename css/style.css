@@ -353,13 +353,34 @@ body.menu-open{overflow:hidden}
 @media(min-width:560px){.course .btn{align-self:flex-start;justify-content:center}}
 
 /* ---------- Gutscheine ---------- */
+/* Handy: versetzt (links, rechts, links), schmaler als die volle Breite, 100 € etwas größer.
+   Desktop: 100 € ca. 30 % breiter; beim Erreichen des Abschnitts driften die Karten senkrecht auseinander (js/main.js) */
 .vouchers-grid{display:grid;gap:var(--space-4)}
-@media(min-width:768px){.vouchers-grid{grid-template-columns:repeat(3,1fr)}}
 .voucher{
-  background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5);
+  position:relative;width:80%;
+  background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-5);
   display:flex;flex-direction:column;gap:var(--space-4);
 }
-.voucher .amount{font-size:clamp(2.4rem,6vw,3.2rem);font-weight:500;letter-spacing:-.03em;line-height:1}
+.voucher:nth-child(odd){justify-self:start}
+.voucher:nth-child(even){justify-self:end}
+.voucher-featured{width:90%;padding:var(--space-6) var(--space-5)}
+.voucher-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}
+.voucher-ic{width:30px;height:30px;color:var(--color-accent)}
+.badge-accent{background:var(--color-accent);border-color:transparent;color:#fff;font-weight:500;letter-spacing:.02em}
+.voucher .amount{font-size:2.3rem;font-weight:500;letter-spacing:-.03em;line-height:1}
+.voucher-featured .amount{font-size:3rem}
+@media(min-width:900px){
+  .vouchers-grid{grid-template-columns:1fr 1.3fr 1fr;align-items:center;gap:var(--space-4)}
+  .voucher,.voucher-featured{width:auto;justify-self:stretch}
+  .voucher-featured{padding:var(--space-7) var(--space-6)}
+  .voucher .amount{font-size:2.6rem}
+  .voucher-featured .amount{font-size:3.4rem}
+  .voucher-featured .voucher-ic{width:36px;height:36px}
+  .vouchers-grid .voucher{transition:opacity .6s ease,transform .6s ease,translate 1.4s cubic-bezier(.4,0,.2,1)}
+  .vouchers-grid.spread .voucher{translate:0 36px}
+  .vouchers-grid.spread .voucher-featured{translate:0 -14px}
+  .voucher-hint{margin-top:calc(var(--space-5) + 36px)}   /* Platz für die abgesenkten Karten */
+}
 .voucher p{color:var(--color-on-surface-muted);font-size:.95rem}
 .voucher .btn{margin-top:auto;justify-content:space-between}
 .voucher-hint{margin-top:var(--space-5);color:var(--color-on-surface-muted);font-size:.92rem;max-width:70ch}
