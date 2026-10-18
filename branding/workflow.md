@@ -157,6 +157,11 @@
 - **Funktioniert:** Foto als `images/paula-studio.jpg` (43 KB), Original in `branding/assets/photos/originals/`. Es ersetzt die zwei Behandlungsfotos: am Desktop max. 460 px breit, auf dem Handy volle Breite. Akzentwort jetzt in derselben Weißstufe wie die Überschrift.
 - **Nicht funktioniert / offen:** Das Foto hat nur 675 × 925 px. Auf Retina-Desktops (doppelte Pixeldichte, ~920 px nötig) wirkt es leicht weich. Eine größere Version wäre besser.
 
+### 18.10.2026 · Hero mobil nur 5 % Beschnitt
+- **Versucht:** Lucas wollte den seitlichen Beschnitt des Hero-Bilds auf dem Handy von 10 % auf 5 % pro Seite verringern.
+- **Funktioniert:** `aspect-ratio:1033/1795`, gemessen 5,0 % pro Seite. Das Bild ist bei 375 px Breite jetzt 652 statt 733 px hoch.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
