@@ -290,7 +290,7 @@ body.menu-open{overflow:hidden}
 .accordion details[open] .indicator::after{transform:rotate(0)}
 .service-panel{overflow:hidden}   /* Höhe wird beim Öffnen/Schließen animiert (js/main.js) */
 .service-list{list-style:none;display:flex;flex-direction:column;padding:0 22px}
-.service-list li{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-top:1px solid var(--color-border)}
+.service-list li{display:flex;flex-direction:column;gap:2px;padding:18px 0;border-top:1px solid var(--color-border)}
 .service-list .name{font-weight:500}
 .service-list .desc{color:var(--color-on-surface-muted);font-size:.92rem;max-width:62ch}
 .book-link{margin:6px 22px 22px;font-size:.92rem;text-decoration:none;font-weight:500}

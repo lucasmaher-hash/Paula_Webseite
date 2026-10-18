@@ -202,6 +202,11 @@
 - **Funktioniert:** In „Über mich“ sind Foto und Text je ein eigenes abgerundetes Panel. Am Desktop füllt das Foto die volle Höhe neben dem Textpanel. Im Kontakt ist der linke Block ein Panel in `--color-surface`, die Öffnungszeiten liegen in einem dunkleren Panel (`#DED5C8`, Trennlinien `#CBBFAF`). Abstand 10 px am Desktop, 8 px am Handy, wie bei den Schulungen. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Weitere Abschnitte (Gutscheine, Bewertungen) könnten denselben Look bekommen. Noch nicht umgesetzt.
 
+### 18.10.2026 · Mehr Luft zwischen den Leistungen
+- **Versucht:** In einer aufgeklappten Kategorie standen die Leistungen zu dicht, viel Text auf wenig Fläche. Lucas wollte etwa 30 % mehr Abstand.
+- **Funktioniert:** Der Innenabstand pro Leistung ist von 14 auf 18 px oben und unten gestiegen. Der Abstand zwischen zwei Leistungen wächst damit von 28 auf 36 px (+29 %). Keine Konsolenfehler, kein horizontales Scrollen bei 375, 430 und 1440 px.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
