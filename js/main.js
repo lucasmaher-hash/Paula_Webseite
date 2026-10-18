@@ -5,7 +5,6 @@
   // Logo: beim Öffnen groß und mittig, beim Scrollen gerade nach oben in den Nav-Platz.
   // Ein einziges Element, nur translateY + scale, horizontal bleibt es immer zentriert.
   (function initBrand() {
-    var root = document.documentElement;
     var brand = document.querySelector('.brand');
     var slot = document.querySelector('.brand-slot');
     var header = document.querySelector('.site-header');
@@ -21,9 +20,12 @@
     var FOLLOW = reduced ? 1 : 0.16;          // Anteil pro 60-fps-Frame
     function ease(t) { return -(Math.cos(Math.PI * t) - 1) / 2; }   // easeInOutSine: weich, reagiert aber sofort
 
+    var lastW = 0, written = {};
     function measure() {
       var r = slot.getBoundingClientRect();
-      var vw = window.innerWidth, vh = window.innerHeight;
+      // Intro-Höhe (100svh) statt innerHeight: bleibt stabil, wenn die mobile Adressleiste ein-/ausfährt
+      var vw = window.innerWidth, vh = intro.offsetHeight || window.innerHeight;
+      lastW = vw;
       slotW = r.width;
       bigW = Math.max(slotW, Math.min(vw * 0.84, 820));
       y1 = r.top;
@@ -45,10 +47,16 @@
       // Breite in px: von bigW auf slotW, gleiche Kurve wie die Position
       var s = isDocked ? 1 : (bigW + (slotW - bigW) * e) / bigW;
       brand.style.transform = 'translate3d(-50%,' + y.toFixed(2) + 'px,0) scale(' + s.toFixed(4) + ')';
-      root.style.setProperty('--dock', e.toFixed(3));
-      root.style.setProperty('--nav-o', clamp((e - 0.55) / 0.45).toFixed(3));
-      root.style.setProperty('--line', clamp((e - 0.88) / 0.12).toFixed(3));
-      header.classList.toggle('is-intro', q < 0.98);
+      // Variablen nur am Header (nicht :root, das würde die ganze Seite neu berechnen) und nur bei Änderung
+      setVar('--dock', e.toFixed(3));
+      setVar('--nav-o', clamp((e - 0.55) / 0.45).toFixed(3));
+      setVar('--line', clamp((e - 0.88) / 0.12).toFixed(3));
+      var intro_ = q < 0.98;
+      if (written.intro !== intro_) { header.classList.toggle('is-intro', intro_); written.intro = intro_; }
+    }
+
+    function setVar(name, val) {
+      if (written[name] !== val) { header.style.setProperty(name, val); written[name] = val; }
     }
 
     function frame(now) {
@@ -71,7 +79,8 @@
 
     snap();
     window.addEventListener('scroll', kick, { passive: true });
-    window.addEventListener('resize', snap);
+    // Nur bei Breitenänderung neu messen; reine Höhenänderungen (mobile Adressleiste) ignorieren
+    window.addEventListener('resize', function () { if (window.innerWidth !== lastW) snap(); });
     window.addEventListener('load', snap);
   })();
 
