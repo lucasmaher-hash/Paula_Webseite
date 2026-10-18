@@ -181,7 +181,7 @@ body.menu-open{overflow:hidden}
 @media(min-width:900px){
   .hero{min-height:min(92vh,880px);display:flex;align-items:center;background:var(--hero-wall)}
   .hero-media{position:absolute;inset:0}
-  .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 30%}
+  .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 0}
   .hero-content{position:relative;width:100%;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
   .hero-content > *{max-width:540px}
   .hero .lead{color:#3c332b}

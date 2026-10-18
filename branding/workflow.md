@@ -97,6 +97,11 @@
 - **Funktioniert:** Lucas hat die zweite Fassung zur Umsetzung freigegeben. Zwei neue JPEGs eingebunden, Originalbilder erhalten. Im Browser bei 375 px und 1440 px geprüft: passende Bildquelle geladen, kein horizontales Scrollen, keine JavaScript-Fehler; mobiles Menü und Behandlungs-Akkordeon funktionieren. Bildgenerierung ist keine pixelgenaue Erhaltung des Originalporträts.
 - **Nicht funktioniert / offen:** Playwrights Standard-Browser fehlte; Prüfung mit installiertem Chrome erfolgreich. Die alten Hero-Dateien und das bisherige Bildskript bleiben erhalten; letzteres erzeugt weiterhin nur die frühere Notlösung. Prompts und neue Dateinamen stehen unter `branding/assets/photos/HERO-OUTPAINT.md`.
 
+### 18.10.2026 · Codex: Mehr Kopffreiheit im Desktop-Hero
+- **Versucht:** Den Desktop-Hero nach oben erweitern, weil die Navigation Paulas Haare verdeckte.
+- **Funktioniert:** Neue Bildfassung v3 mit zusätzlicher Taupe-Wand oben eingebunden und Desktop-Bildausschnitt oben ausgerichtet; CSS-Cache-Version auf 16 erhöht. Bei 375, 1024, 1440 und 1920 px geprüft: korrekte Bildquelle, kein horizontales Scrollen und keine JavaScript-Fehler. Desktop-Screenshots bei 1024 und 1920 px visuell geprüft, Kopf unterhalb der Navigation sichtbar. Handy-Bild unverändert.
+- **Nicht funktioniert / offen:** Keine technische Blockade; frühere Bildfassungen bleiben erhalten.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
