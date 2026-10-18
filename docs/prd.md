@@ -1,5 +1,7 @@
 # PRD — PM Beauty Website
 
+> **Stand 18.10.2026:** Teilweise veraltet. Preise werden auf der Website nicht mehr gezeigt, die Bilder sind echte Fotos, Schulungen sind dazugekommen. Aktueller Stand und Arbeitsweise: `docs/HANDOFF.md`. Die Fakten unten (Leistungen, Zitate, Links, Zeiten) gelten weiter.
+
 ## Overview
 
 - **Produkt:** Einseitige Marketing-Website für „PM Beauty" — Beauty-Studio von Paula Maher, Fürstenrieder Straße 11, München.

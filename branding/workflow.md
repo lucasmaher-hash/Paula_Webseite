@@ -87,6 +87,11 @@
 - **Funktioniert:** Vor dem Bauen wurden vier Inhaltsfragen per Fragebogen geklärt (Schulungen-Inhalt, Hero-Foto, Gutschein-Beträge, Einwilligung der Kundinnen). Mobil zuerst getestet: kein horizontales Scrollen, Menü inklusive Unterpunkten, Sprung zur Kategorie öffnet das Akkordeon. Danach Desktop mit 1440 px. Commit `4fb42aa`, Deploy bestätigt.
 - **Nicht funktioniert / offen:** Die erste Bildverlängerung ergab einen harten braunen Streifen, weil unten am Bildrand Haar ist. Gelöst über den Wandton aus der oberen Bildhälfte; Lucas ersetzt das später durch ein KI-Outpainting. Ein Bug in der ersten Fassung: Das `height`-Attribut der Bilder setzte `aspect-ratio` außer Kraft, behoben mit `height:auto`. Offen: echte Inhalte für Schulungen, Stripe-Links für Gutscheine, ein Studio-Foto.
 
+### 18.10.2026 · Schulungen ergänzt, Übergabe an Codex
+- **Versucht:** Paulas zwei Kurse eingebaut: Korean Lash & Browlifting Intensiv-Schulung und Masterclass Russian Manicure & Gel, mit ihren Texten. Bilder vorläufig aus dem Studio, die Kursgrafiken bewusst noch nicht. Danach hat Lucas die Weiterarbeit an Codex übergeben.
+- **Funktioniert:** Kurskarten mit Checkliste und vier Icon-Kacheln wie in Paulas Instagram-Grafiken, mobil und auf dem Desktop geprüft. Instagram-Links auf das aktive Konto `@pm_beauty___` umgestellt. Für die Übergabe: `docs/HANDOFF.md` (Stand, Aufbau, Regeln, Bildaufgaben), `AGENTS.md` als Codex-Einstieg, Originalfotos ohne Metadaten in `branding/assets/photos/originals/` und das Bildskript `make_images.py` reproduzierbar im Repo.
+- **Nicht funktioniert / offen:** Zeitweise arbeiteten zwei Claude-Sessions parallel im selben Ordner (Restsession nach Neustart). Das ging ohne Konflikt, ist aber riskant, sobald Codex dazukommt. Ab jetzt sollte nur ein Agent schreiben. Offen bleiben Hero-Outpainting, Kursgrafiken, Studiofoto, Stripe-Links und die Felder in Impressum/Datenschutz.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
