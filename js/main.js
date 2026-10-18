@@ -14,7 +14,12 @@
 
     // Scharf bleiben: Das Logo wird in voller Intro-Breite gerendert und beim Scrollen
     // nur verkleinert (nie hochskaliert). Angedockt bekommt es seine echte Nav-Breite ohne scale().
-    var slotW = 1, bigW = 1, y0 = 0, y1 = 0, range = 1, ticking = false, docked = null;
+    var slotW = 1, bigW = 1, y0 = 0, y1 = 0, range = 1, docked = null;
+    // Bewegung: Scrollfortschritt → Easing-Kurve (langsamer Start, weiche Landung)
+    // plus leichte Nachführung, damit Mausrad-Rasten nicht ruckeln.
+    var cur = null, running = false, last = 0;
+    var FOLLOW = reduced ? 1 : 0.16;          // Anteil pro 60-fps-Frame
+    function ease(t) { return -(Math.cos(Math.PI * t) - 1) / 2; }   // easeInOutSine: weich, reagiert aber sofort
 
     function measure() {
       var r = slot.getBoundingClientRect();
@@ -29,33 +34,45 @@
 
     function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
-    function update() {
-      ticking = false;
-      var p = clamp(window.scrollY / range);
-      var y = y0 + (y1 - y0) * p;
-      var isDocked = p >= 1;
+    function render(q) {
+      var e = ease(q);
+      var y = y0 + (y1 - y0) * e;
+      var isDocked = q >= 1;
       if (isDocked !== docked) {
         brand.style.width = (isDocked ? slotW : bigW) + 'px';
         docked = isDocked;
       }
-      // Breite in px: von bigW linear auf slotW
-      var s = isDocked ? 1 : (bigW + (slotW - bigW) * p) / bigW;
+      // Breite in px: von bigW auf slotW, gleiche Kurve wie die Position
+      var s = isDocked ? 1 : (bigW + (slotW - bigW) * e) / bigW;
       brand.style.transform = 'translate3d(-50%,' + y.toFixed(2) + 'px,0) scale(' + s.toFixed(4) + ')';
-      root.style.setProperty('--dock', p.toFixed(3));
-      root.style.setProperty('--nav-o', clamp((p - 0.55) / 0.45).toFixed(3));
-      root.style.setProperty('--line', clamp((p - 0.88) / 0.12).toFixed(3));
-      header.classList.toggle('is-intro', p < 0.98);
+      root.style.setProperty('--dock', e.toFixed(3));
+      root.style.setProperty('--nav-o', clamp((e - 0.55) / 0.45).toFixed(3));
+      root.style.setProperty('--line', clamp((e - 0.88) / 0.12).toFixed(3));
+      header.classList.toggle('is-intro', q < 0.98);
     }
 
-    function onScroll() {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    function frame(now) {
+      var target = clamp(window.scrollY / range);
+      var dt = last ? Math.min(64, now - last) : 16.7;
+      last = now;
+      if (cur === null) cur = target;
+      cur += (target - cur) * (1 - Math.pow(1 - FOLLOW, dt / 16.7));
+      if (Math.abs(target - cur) < 0.0005) cur = target;
+      render(cur);
+      if (cur !== target) { window.requestAnimationFrame(frame); }
+      else { running = false; last = 0; }
     }
 
-    measure();
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () { measure(); update(); });
-    window.addEventListener('load', function () { measure(); update(); });
+    function kick() {
+      if (!running) { running = true; window.requestAnimationFrame(frame); }
+    }
+
+    function snap() { measure(); cur = clamp(window.scrollY / range); render(cur); }
+
+    snap();
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', snap);
+    window.addEventListener('load', snap);
   })();
 
   // Immer nur ein Akkordeon offen halten
