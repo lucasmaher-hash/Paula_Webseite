@@ -19,7 +19,7 @@
   - `docs/` — Planungs- und Design-Dokumente
 - **Externe Links:**
   - Buchung: `https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders` (bzw. Artist-Profil `https://beautinda.de/artist/hebb68m5vleBjoPRrOEG3Bi5mP43`)
-  - Instagram: `https://www.instagram.com/pm_paulabeauty/`
+  - Instagram: `https://www.instagram.com/pm_beauty___/`
   - Gutscheine: Stripe Payment Links — Platzhalter `https://buy.stripe.com/PLATZHALTER_50` (50 €), `_100` (100 €), `_150` (150 €). Paula ersetzt sie durch echte Links.
 
 ## Inhalt (Fakten von Beautinda, Stand 2026-08)
