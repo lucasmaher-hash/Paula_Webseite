@@ -78,25 +78,100 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
   border-radius:var(--rounded-full);padding:7px 15px;white-space:nowrap;
 }
 
-/* Header */
-.site-header{
-  position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb,var(--color-background) 88%,transparent);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--color-border);
+/* Header: Logo mittig, Links links und rechts davon.
+   --dock (0…1) setzt js/main.js beim Scrollen: 0 = Intro (nur Logo), 1 = Logo in der Nav. */
+:root{--dock:1;--brand-w:112px}
+@media(max-width:899px){:root{--brand-w:96px}}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50}
+.site-header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:color-mix(in srgb,var(--color-background) 68%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid color-mix(in srgb,var(--color-border) 70%,transparent);
+  opacity:var(--dock);
 }
-.site-header .container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding-top:var(--space-4);padding-bottom:var(--space-4)}
-.wordmark{text-decoration:none;line-height:1.05}
-.wordmark strong{display:block;font-weight:600;font-size:1.15rem;letter-spacing:-.01em}
-.wordmark span{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--color-on-surface-muted)}
-.site-nav{display:none;gap:var(--space-5)}
-.site-nav a{
+.header-inner{
+  display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:var(--space-5);
+  padding-top:var(--space-4);padding-bottom:var(--space-4);
+}
+.site-nav{display:contents}
+.nav-group{display:flex;align-items:center;gap:var(--space-5);opacity:var(--nav-o,1)}
+.nav-left{grid-column:1;justify-self:start}
+.nav-right{grid-column:3;justify-self:end}
+.brand-slot{grid-column:2;grid-row:1;display:block;width:var(--brand-w);aspect-ratio:273.331/98}
+.site-nav a:not(.btn){
   text-decoration:none;font-size:.95rem;color:var(--color-on-surface-muted);
   transition:color .2s ease;
 }
-.site-nav a:hover{color:var(--color-primary)}
-@media(min-width:900px){.site-nav{display:flex}}
-.header-cta{padding:11px 22px}
+.site-nav a:not(.btn):hover{color:var(--color-primary)}
+@media(max-width:1023px){.site-nav a:not(.btn){display:none}}
+.header-cta{padding:11px 22px;white-space:nowrap}
+@media(max-width:899px){.header-cta{padding:9px 16px;font-size:.78rem}}
+.cta-short{display:none}
+@media(max-width:519px){.cta-long{display:none}.cta-short{display:inline}}
+.site-header.is-intro .nav-group{pointer-events:none}
+
+/* Footer-Wortmarke (Text) */
+.wordmark{text-decoration:none;line-height:1.05}
+.wordmark strong{display:block;font-weight:600;font-size:1.15rem;letter-spacing:-.01em}
+.wordmark span{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--color-on-surface-muted)}
+
+/* Logo: ein Element, per transform von groß/mittig in den Nav-Platz */
+.brand{
+  position:fixed;top:0;left:50%;z-index:60;
+  width:var(--brand-w);color:var(--color-primary);
+  transform-origin:50% 0;transform:translate3d(-50%,var(--space-4),0);
+  will-change:transform;-webkit-tap-highlight-color:transparent;
+}
+.brand svg{display:block;width:100%;height:auto;overflow:visible}
+.brand:focus-visible{outline:2px solid var(--color-accent);outline-offset:6px;border-radius:var(--rounded-sm)}
+
+/* Intro-Fläche: volle Höhe, sonst nichts. Ohne JS entfällt sie. */
+.intro{display:none}
+.js .intro{display:block;height:100vh;height:100svh}
+main{padding-top:calc(var(--brand-w) * 98 / 273.331 + 2 * var(--space-4))}
+.js main{padding-top:0}
+
+/* Hover-Unterstrich wie der Fuß des Logo-E:
+   Linie wächst von der Mitte nach außen, danach wachsen die Serifen an beiden Enden nach unten.
+   Gesamt 0,7 s (Linie 0,45 s, Serifen 0,25 s). */
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a,.accordion summary h3){
+  --u-t:max(1px,.075em);     /* Strichstärke Linie */
+  --u-f:.42em;               /* Serifenlänge nach unten */
+  --u-r:.3em;                /* Kehle zwischen Linie und Serife */
+  --u-w:max(1px,.075em);     /* Serifenbreite */
+  --u-y:-.28em;              /* Abstand unter der Grundlinie */
+  position:relative;display:inline-block;text-decoration:none;
+}
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a,.accordion summary h3)::after,
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a,.accordion summary h3)::before{
+  content:"";position:absolute;left:0;right:0;pointer-events:none;
+}
+/* Linie */
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a,.accordion summary h3)::after{
+  bottom:var(--u-y);height:var(--u-t);background:currentColor;
+  transform:scaleX(0);transform-origin:50% 50%;
+  transition:transform .3s cubic-bezier(.4,0,.2,1) .15s;
+}
+/* Serifen mit Kehle (wie die Füße des E) */
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a,.accordion summary h3)::before{
+  top:calc(100% - var(--u-y) - var(--u-t));height:calc(var(--u-f) + var(--u-t));
+  background:
+    linear-gradient(currentColor,currentColor) left top/var(--u-w) 100% no-repeat,
+    linear-gradient(currentColor,currentColor) right top/var(--u-w) 100% no-repeat,
+    radial-gradient(circle at 100% 100%,transparent calc(var(--u-r) - .5px),currentColor var(--u-r)) var(--u-w) var(--u-t)/var(--u-r) var(--u-r) no-repeat,
+    radial-gradient(circle at 0 100%,transparent calc(var(--u-r) - .5px),currentColor var(--u-r)) calc(100% - var(--u-w)) var(--u-t)/var(--u-r) var(--u-r) no-repeat;
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .15s ease-in 0s;
+}
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a):is(:hover,:focus-visible)::after,
+.accordion summary:is(:hover,:focus-visible) h3::after{
+  transform:scaleX(1);transition:transform .45s cubic-bezier(.22,.7,.2,1) 0s;
+}
+:is(.ul,.footer-links a,.fact a,.contact-list a,.voucher-hint a):is(:hover,:focus-visible)::before,
+.accordion summary:is(:hover,:focus-visible) h3::before{
+  clip-path:inset(0 0 0 0);transition:clip-path .25s cubic-bezier(.3,.6,.3,1) .45s;
+}
 
 /* Hero */
 .hero{padding-top:var(--space-7)}
@@ -123,8 +198,7 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
 .fact{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-2) var(--space-4);font-family:var(--font-mono);font-size:var(--type-mono-value)}
 .fact span:last-child{text-align:right;overflow-wrap:anywhere}
 .fact span:first-child{color:var(--color-on-surface-muted);font-size:var(--type-mono-label);letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
-.fact a{text-decoration:none;border-bottom:1px solid var(--color-border);transition:border-color .2s}
-.fact a:hover{border-color:var(--color-accent)}
+.fact a{text-decoration:none}
 
 /* Services */
 .services{background:var(--color-surface);border-radius:var(--rounded-lg) var(--rounded-lg) 0 0}
@@ -212,8 +286,7 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
 @media(min-width:900px){.contact .container{grid-template-columns:1.2fr .8fr;gap:var(--space-8)}}
 .contact h2{margin-bottom:var(--space-4)}
 .contact-list{list-style:none;display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-5)}
-.contact-list a{text-decoration:none;border-bottom:1px solid var(--color-border);transition:border-color .2s}
-.contact-list a:hover{border-color:var(--color-accent)}
+.contact-list a{text-decoration:none}
 .hours{border:1px solid var(--color-border);border-radius:var(--rounded-lg);padding:var(--space-6)}
 .hours table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:var(--type-mono-value)}
 .hours td{padding:var(--space-2) 0}
