@@ -197,6 +197,11 @@
 - **Funktioniert:** Die Karte selbst hat keinen Hintergrund mehr. Das Bild ist ein eigener Rahmen, Überschrift und Inhalt bilden zusammen den zweiten (oben bzw. unten abgerundet, aufgeklappt mobil ohne Naht). Abstand am Desktop 10 px, am Handy 8 px. Die Checklisten sind samt CSS entfernt. Der neue `.btn-brown` nutzt die Akzentfarbe `#8A6D57` mit weißer Schrift, beim Hover `#74594a`. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Panel-Look für „Über mich“ und Kontakt
+- **Versucht:** Lucas möchte die ganze Seite mehr im Panel-Look wie NovaFaces: abgerundete Flächen dicht nebeneinander. Konkret sollen „Besuch mich im Studio“ und „Öffnungszeiten“ zwei Panels nebeneinander werden, die Öffnungszeiten etwas dunkler. Dasselbe gilt für „Über mich & Studio“.
+- **Funktioniert:** In „Über mich“ sind Foto und Text je ein eigenes abgerundetes Panel. Am Desktop füllt das Foto die volle Höhe neben dem Textpanel. Im Kontakt ist der linke Block ein Panel in `--color-surface`, die Öffnungszeiten liegen in einem dunkleren Panel (`#DED5C8`, Trennlinien `#CBBFAF`). Abstand 10 px am Desktop, 8 px am Handy, wie bei den Schulungen. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Weitere Abschnitte (Gutscheine, Bewertungen) könnten denselben Look bekommen. Noch nicht umgesetzt.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

@@ -248,10 +248,17 @@ body.menu-open{overflow:hidden}
 .tile img{margin:var(--space-3) calc(-1 * var(--space-5)) 0;width:calc(100% + 2 * var(--space-5));max-width:none;aspect-ratio:4/3;object-fit:cover}
 
 /* ---------- Über Paula ---------- */
-.about-grid{display:grid;gap:var(--space-6)}
-@media(min-width:900px){.about-grid{grid-template-columns:.9fr 1.1fr;gap:var(--space-8);align-items:center}}
-.about-figure img{width:100%;aspect-ratio:675/925;object-fit:cover;border-radius:var(--rounded-lg)}
-@media(min-width:900px){.about-figure img{max-width:460px}}
+/* Panel-Look (Referenz NovaFaces): Bild und Text je eigene abgerundete Fläche, dicht nebeneinander */
+.about-grid{display:grid;gap:8px}
+.about-figure{border-radius:var(--rounded-xl);overflow:hidden}
+.about-figure img{display:block;width:100%;aspect-ratio:675/925;object-fit:cover}
+.about-panel{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
+@media(min-width:900px){
+  .about-grid{grid-template-columns:.9fr 1.1fr;gap:10px}
+  .about-figure{position:relative;min-height:560px}
+  .about-figure img{position:absolute;inset:0;height:100%;aspect-ratio:auto}
+  .about-panel{display:flex;flex-direction:column;justify-content:center;padding:var(--space-8) var(--space-7)}
+}
 .about blockquote{font-size:clamp(1.1rem,2.6vw,1.3rem);line-height:1.5;letter-spacing:-.01em;margin:0 0 var(--space-6)}
 .facts{list-style:none;display:flex;flex-direction:column;border-top:1px solid var(--color-border)}
 .fact{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-1) var(--space-4);padding:14px 0;border-bottom:1px solid var(--color-border);font-size:.95rem}
@@ -363,15 +370,17 @@ body.menu-open{overflow:hidden}
 .reviews-link{margin-top:var(--space-6)}
 
 /* ---------- Kontakt / Footer ---------- */
-.contact-grid{display:grid;gap:var(--space-6)}
-@media(min-width:900px){.contact-grid{grid-template-columns:1.2fr .8fr;gap:var(--space-8)}}
+.contact-grid{display:grid;gap:8px}
+@media(min-width:900px){.contact-grid{grid-template-columns:1.2fr .8fr;gap:10px}}
+.contact-panel{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
+@media(min-width:900px){.contact-panel,.hours{padding:var(--space-7)}}
 .contact .muted{max-width:46ch}
 .contact-list{margin:var(--space-5) 0 var(--space-6)}
-.hours{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
+.hours{background:#DED5C8;border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */
 .hours table{width:100%;border-collapse:collapse;margin-top:var(--space-4);font-size:.95rem}
 .hours td{padding:10px 0}
 .hours td:last-child{text-align:right}
-.hours tr+tr td{border-top:1px solid var(--color-border)}
+.hours tr+tr td{border-top:1px solid #CBBFAF}
 
 .site-footer{border-top:1px solid var(--color-border);padding:var(--space-6) 0 calc(var(--space-6) + env(safe-area-inset-bottom))}
 .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-5);align-items:center}
