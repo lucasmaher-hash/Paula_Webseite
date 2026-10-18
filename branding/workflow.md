@@ -102,6 +102,11 @@
 - **Funktioniert:** Neue Bildfassung v3 mit zusätzlicher Taupe-Wand oben eingebunden und Desktop-Bildausschnitt oben ausgerichtet; CSS-Cache-Version auf 16 erhöht. Bei 375, 1024, 1440 und 1920 px geprüft: korrekte Bildquelle, kein horizontales Scrollen und keine JavaScript-Fehler. Desktop-Screenshots bei 1024 und 1920 px visuell geprüft, Kopf unterhalb der Navigation sichtbar. Handy-Bild unverändert.
 - **Nicht funktioniert / offen:** Keine technische Blockade; frühere Bildfassungen bleiben erhalten.
 
+### 18.10.2026 · Codex: Exakte Handy-Bildvorlage übernommen
+- **Versucht:** Lucas' hochgeladenes JPEG unverändert als mobiles Hero-Bild verwenden und dessen Seitenverhältnis erhalten.
+- **Funktioniert:** Datei bytegleich kopiert (1148 × 1795), feste 4:5-Beschneidung entfernt und CSS-Version auf 17 erhöht. Bei 375 px beträgt die Bildfläche 375 × 586,34 px entsprechend dem Originalverhältnis. Mobil und bei 1440 px korrekte Bildquelle, keine JavaScript-Fehler und kein horizontales Scrollen; mobilen Screenshot angesehen. Desktop verwendet weiterhin v3.
+- **Nicht funktioniert / offen:** Keine technische Blockade.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

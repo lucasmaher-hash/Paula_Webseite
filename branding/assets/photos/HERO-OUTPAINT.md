@@ -4,7 +4,8 @@ Mit dem eingebauten Imagegen erstellt, von Lucas nach der zweiten Bildrunde zur 
 
 - Desktop aktuell: `images/hero-paula-wide-outpaint-v3.jpg`, 2400 × 1294. Zusätzlich nach oben erweitert, damit der Kopf unter der Navigation sichtbar bleibt. Desktop-Ausschnitt oben ausgerichtet; CSS-Version 16.
 - Desktop vorher: `images/hero-paula-wide-outpaint-v2.jpg`, 2400 × 1091, erhalten.
-- Handy: `images/hero-paula-mobile-outpaint-v2.jpg`, 900 × 1124.
+- Handy aktuell: `images/hero-paula-mobile-approved.jpg`, 1148 × 1795. Von Lucas am 18.10.2026 hochgeladene, exakt übernommene JPEG-Datei; Darstellung im natürlichen Seitenverhältnis ohne Beschnitt, CSS-Version 17.
+- Handy vorher: `images/hero-paula-mobile-outpaint-v2.jpg`, 900 × 1124, erhalten.
 
 ## Prompts
 
