@@ -182,6 +182,11 @@
 - **Funktioniert:** Ab 900 px ist die Fläche ein Raster mit 4 × 2 Feldern. Das erste und das letzte Foto gehen hoch über beide Reihen, die vier anderen füllen die Mitte. So füllen die 6 echten Fotos die Fläche ohne Lücke. Auf dem Handy bleibt der Wischstreifen. Die Stockfoto-Regel steht in `docs/HANDOFF.md`: Quelle und Lizenz festhalten, Stockfotos nie als Paulas Arbeit ausgeben. Geprüft bei 375, 430, 1024 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Die Netzwerk-Policy der Cloud-Umgebung sperrt Unsplash, Pexels und Pixabay, daher sind noch keine Stockfotos eingebaut. Sobald die Hosts freigegeben sind, kann die Collage auf 8 Bilder gehen.
 
+### 18.10.2026 · Drei Auszeichnungen, Hero ohne Labels, Öffnungszeiten bei den Behandlungen
+- **Versucht:** Lucas hat die Zahlen für die Auszeichnungen genannt: 5 Jahre Erfahrung, 5-Sterne-Bewertungen, 4 Weiterbildungen. Es sollen nur diese drei Badges sein. Die Labels „5.0 ★ 26 Bewertungen“ und „Mo–Fr · 10–20 Uhr“ im Hero sollen weg, die Öffnungszeiten stattdessen in die Kopfzeile der Behandlungen.
+- **Funktioniert:** Die drei Badges stehen auf allen Breiten in einer Reihe. Auf dem Handy sind die Unterzeilen normal geschrieben (nicht in Großbuchstaben) und kleiner, „Weiter-bildungen“ wird per weichem Trennstrich umbrochen, damit nichts in die Blätter läuft. Die Hero-Labels sind samt CSS entfernt (Handy-Text oben rechts im Bild, Desktop-Badges). Die Kopfzeile der Behandlungen lautet jetzt „Behandlungen · Mo–Fr 10–20 Uhr“. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Der erste Handy-Entwurf mit Großbuchstaben ragte in die Blätter. Außerdem stand die Desktop-Regel vor der Basisregel und wurde von ihr überschrieben. Beides ist behoben.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
