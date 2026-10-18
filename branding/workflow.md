@@ -122,6 +122,11 @@
 - **Funktioniert:** Gemessen statt geschätzt. Vertikal lag alles exakt auf der Leistenmitte. Das Instagram-Icon saß aber 1 px vom linken und 23 px vom rechten Kreisrand entfernt. Ursache war die eigene Regel `.hide-mobile{display:inline-flex}`, die das Grid des Kreises überschrieb; sie blendet jetzt nur noch aus. Die Pfeile stehen ohne Kreis in Textfarbe (weiß auf dunklen Buttons) mit symmetrischem Innenabstand. Codex' noch nicht committete Kurskarten wurden auf Lucas' Ansage mit übernommen.
 - **Nicht funktioniert / offen:** Zwei Werkzeuge (Codex und Claude) schrieben zeitweise in dieselben Dateien. Vor dem Bearbeiten wurde deshalb geprüft, ob Codex noch aktiv ist, und Lucas gefragt. Auf hellen Buttons ist der Pfeil dunkel statt weiß, weil Weiß dort nicht sichtbar wäre.
 
+### 18.10.2026 · Mobiler Hero: Nav-Transparenz, Infos aufs Bild, schwarze Knöpfe
+- **Versucht:** Auf dem Handy sollte die Nav-Leiste über dem Hero-Bild gleichmäßig transparent sein und erst danach oben deckend werden. Außerdem: „Top Rated auf Beautinda" entfernen, Bewertung und Öffnungszeiten als reinen Text oben rechts aufs Bild setzen, beide Hero-Knöpfe schwarz machen.
+- **Funktioniert:** Ein IntersectionObserver auf das Hero-Bild setzt am Header die Klasse `over-hero`; der Verlauf greift nur ohne diese Klasse. Für die Textfarbe auf dem Bild wurde vorher der Bildton oben rechts gemessen (#715e50): heller Text kommt auf 6,2:1, dunkler nur auf 2,8:1, also Creme mit leichtem Schatten. Am Desktop bleiben die zwei Badges unter den Knöpfen.
+- **Nicht funktioniert / offen:** Die Pfeilkreise, die Lucas erneut ansprach, waren bereits seit `c87f54f` entfernt. Vermutlich sah sein Handy eine zwischengespeicherte Version. Auf einem echten Handy ist das noch nicht getestet.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

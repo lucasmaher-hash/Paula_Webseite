@@ -105,9 +105,10 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid color-mix(in srgb,var(--color-border) 70%,transparent);
 }
-/* Handy: nur das obere Drittel läuft von deckend (Oberkante) in die normale Transparenz */
+/* Handy: über dem Hero gleichmäßig transparent; erst nach dem Hero (Klasse .over-hero fehlt, js/main.js)
+   läuft das obere Drittel von deckend (Oberkante) in die normale Transparenz */
 @media(max-width:899px){
-  .site-header::before{
+  .site-header:not(.over-hero)::before{
     background:linear-gradient(to bottom,var(--color-background) 0%,color-mix(in srgb,var(--color-background) 68%,transparent) 33%,color-mix(in srgb,var(--color-background) 68%,transparent) 100%);
   }
 }
@@ -172,6 +173,16 @@ body.menu-open{overflow:hidden}
 .hero-media{display:block;background:var(--hero-wall)}
 .hero-media img{width:100%;height:auto;aspect-ratio:auto;object-fit:cover;object-position:50% 18%}
 .hero-content{padding-top:var(--space-6);padding-bottom:var(--space-7)}
+/* Handy: Bewertung und Zeiten als reiner Text oben rechts im Bild */
+.hero-info{
+  position:absolute;top:calc(var(--header-h) + 14px);right:var(--gutter);z-index:1;
+  display:flex;flex-direction:column;align-items:flex-end;gap:2px;
+  font-size:.82rem;line-height:1.35;color:var(--color-on-primary);text-align:right;
+  text-shadow:0 1px 8px rgba(34,28,22,.35);
+}
+.hero-info strong{font-weight:600}
+.hero-badges{display:none}
+@media(min-width:900px){.hero-info{display:none}.hero-badges{display:flex}}
 .hero h1{font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02;margin:var(--space-4) 0}
 .hero h1 em{font-style:normal;color:var(--color-accent)}
 .hero .lead{color:var(--color-on-surface-muted);max-width:46ch;margin-bottom:var(--space-6)}

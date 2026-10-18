@@ -21,6 +21,16 @@
     updateCourse();
   });
 
+  // Header weiß, ob er noch über dem Hero liegt (Handy: dann gleichmäßig transparent)
+  var hero = document.querySelector('.hero-media');
+  var siteHeader = document.querySelector('.site-header');
+  if (hero && siteHeader && 'IntersectionObserver' in window) {
+    var heroIO = new IntersectionObserver(function (entries) {
+      siteHeader.classList.toggle('over-hero', entries[0].isIntersecting);
+    }, { rootMargin: '-' + siteHeader.offsetHeight + 'px 0px 0px 0px' });
+    heroIO.observe(hero);
+  }
+
   // Mobiles Menü (Vollbild)
   var menu = document.getElementById('mobile-menu');
   var menuBtn = document.querySelector('.menu-btn');
