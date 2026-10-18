@@ -172,6 +172,11 @@
 - **Funktioniert:** Die Überschrift dehnt sich nicht mehr über die Zeile (`flex:0 1 auto`), deshalb ist die Linie so breit wie der Text. Gemessen sind es 356 px bei „Gesichts- & Körperbehandlungen“ statt der vollen Zeile, Zähler und Plus bleiben rechts. In der Nav öffnet Hover die Liste wie bisher, ein Klick springt zum Abschnitt. Per Tastatur öffnet der erste Klick die Liste, der zweite springt. Die Unterkategorien öffnen weiter ihre Kategorie. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 18.10.2026 · Instagram-Knopf dunkel, Auszeichnungen unter dem Hero
+- **Versucht:** Der Instagram-Knopf in der Kopfzeile soll dieselbe Farbe haben wie „Termin buchen“. Unter dem Hero sollen etwa vier kleine Auszeichnungs-Badges stehen, angelehnt an Lucas' Screenshot mit Lorbeerkränzen.
+- **Funktioniert:** Der Instagram-Knopf ist dunkel mit hellem Symbol (`.icon-btn-primary`). Die Lorbeerkränze sind per Python als ein SVG-Symbol erzeugt (Blätter entlang eines Kreisbogens, gespiegelt, Stern unten) und in Akzentfarbe gesetzt. Es gibt vier Badges: 5.0 ★ auf Beautinda, 26 Bewertungen, Top Rated · Beautinda, 38 Behandlungen (nachgezählt in der Leistungsliste). Auf dem Handy stehen sie 2 × 2, auf dem Desktop in einer Reihe. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Lucas' Beispiele „10 Jahre Erfahrung“ und „Anzahl Zertifikate“ sind nicht eingebaut. Dafür gibt es keine belegten Zahlen. Wenn Paula sie nennt, können sie zwei der Badges ersetzen. Beim ersten Entwurf waren die Blätter schwarz, weil `fill` fehlte.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

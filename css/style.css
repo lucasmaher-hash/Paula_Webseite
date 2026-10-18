@@ -88,6 +88,8 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
 .icon-btn svg{width:20px;height:20px}
 .icon-btn:hover{background:var(--color-surface-raised)}
 .icon-btn:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
+.icon-btn-primary{background:var(--color-primary);border-color:transparent;color:var(--color-on-primary)}   /* wie „Termin buchen" */
+.icon-btn-primary:hover{background:#3a3027}
 
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-2)}
 .badge{
@@ -205,6 +207,16 @@ body.menu-open{overflow:hidden}
   .hero-badges .badge{background:transparent;border-color:color-mix(in srgb,var(--color-on-primary) 55%,transparent);color:var(--color-on-primary)}
   .hero-actions .btn{text-shadow:none}
 }
+
+/* ---------- Auszeichnungen: Lorbeer-Badges unter dem Hero ---------- */
+.awards{padding:var(--space-7) 0 0}
+.awards-grid{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4) var(--space-3)}
+@media(min-width:900px){.awards{padding-top:var(--space-8)}.awards-grid{grid-template-columns:repeat(4,1fr);gap:var(--space-5)}.award-text span{font-size:.66rem;letter-spacing:.12em}}
+.award{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:220px;width:100%;margin:0 auto;color:var(--color-on-surface)}
+.award .laurel{position:absolute;inset:0;width:100%;height:100%;color:var(--color-accent);fill:currentColor;opacity:.8}
+.award-text{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:58%;margin-top:-6%}
+.award-text strong{font-size:clamp(1.25rem,5vw,1.75rem);font-weight:500;letter-spacing:-.02em;line-height:1.1}
+.award-text span{margin-top:4px;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.35;color:var(--color-on-surface-muted)}
 
 /* ---------- Ergebnisse: horizontaler Streifen ---------- */
 .results{padding-bottom:var(--space-6)}
