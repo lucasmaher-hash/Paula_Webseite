@@ -290,43 +290,41 @@ body.menu-open{overflow:hidden}
 
 /* ---------- Schulungen: Kurs-Karten ---------- */
 .courses{display:grid;gap:var(--space-5)}
-.course{background:var(--color-surface);border-radius:var(--rounded-xl);overflow:hidden;display:flex;flex-direction:column}
-.course-heading{order:0;padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4)}
+/* Zwei Rahmen dicht nebeneinander: Bild und Text je eigene abgerundete Fläche (Referenz NovaFaces) */
+.course{display:flex;flex-direction:column}
+.course-heading{
+  order:0;padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);margin-top:8px;
+  background:var(--color-surface);border-radius:var(--rounded-xl) var(--rounded-xl) 0 0;
+}
 .course-title{display:flex;align-items:center;gap:var(--space-3)}
 .course-title h3{flex:1;min-width:0}
 .course-toggle[hidden]{display:none}
 .course-toggle svg{transition:transform .25s ease}
 .course-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
 .course-media{order:-1}
+.course-media{border-radius:var(--rounded-xl);overflow:hidden}
 .course-media img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.course-content{order:2;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5)}
+.course-content{order:2;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);background:var(--color-surface);border-radius:0 0 var(--rounded-xl) var(--rounded-xl)}
 @media(max-width:899px){
   .course.is-collapsed .course-content{display:none}
+  .course.is-collapsed .course-heading{border-radius:var(--rounded-xl)}
   .course-heading .badges{gap:6px}
   .course-heading .badge{font-size:.7rem;padding:6px 9px}
 }
 @media(min-width:900px){
   .courses{gap:var(--space-6)}
-  .course{display:grid;grid-template-columns:45% 55%;grid-template-rows:auto 1fr}
+  .course{display:grid;grid-template-columns:45fr 55fr;grid-template-rows:auto 1fr;column-gap:10px}
   .course-media{grid-column:1;grid-row:1 / 3;position:relative}
   .course-media img{position:absolute;inset:0;height:100%;aspect-ratio:auto}
-  .course-heading{grid-column:2;grid-row:1;padding:var(--space-6) var(--space-6) 0}
+  .course-heading{grid-column:2;grid-row:1;padding:var(--space-6) var(--space-6) 0;margin-top:0}
   .course-content{grid-column:2;grid-row:2;padding:var(--space-4) var(--space-6) var(--space-6)}
-  .course:nth-child(even){grid-template-columns:55% 45%}
+  .course:nth-child(even){grid-template-columns:55fr 45fr}
   .course:nth-child(even) .course-media{grid-column:2}
   .course:nth-child(even) .course-heading,.course:nth-child(even) .course-content{grid-column:1}
   .course-toggle{display:none}
 }
 .course h3{font-size:clamp(1.35rem,3.4vw,1.7rem);line-height:1.2;letter-spacing:-.02em}
 .course p{font-size:.97rem}
-.course-sub{font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--color-on-surface-muted);margin-top:var(--space-2)}
-.checklist{list-style:none;display:flex;flex-direction:column}
-.checklist li{position:relative;padding:9px 0 9px 26px;border-top:1px solid var(--color-border);font-size:.95rem}
-.checklist li:last-child{border-bottom:1px solid var(--color-border)}
-.checklist li::before{
-  content:"";position:absolute;left:2px;top:15px;width:12px;height:7px;
-  border-left:1.4px solid var(--color-accent);border-bottom:1.4px solid var(--color-accent);transform:rotate(-45deg);
-}
 .perks{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-2)}
 @media(min-width:560px){.perks{grid-template-columns:repeat(4,1fr)}}
 .perks li{
@@ -335,6 +333,8 @@ body.menu-open{overflow:hidden}
   font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted);line-height:1.3;
 }
 .perks svg{width:22px;height:22px;color:var(--color-accent)}
+.btn-brown{background:var(--color-accent);color:#fff}   /* bräunlich wie die Referenz, Pfeil ohne Kreis */
+.btn-brown:hover{background:#74594a}
 .course .btn{align-self:stretch;justify-content:space-between}
 @media(min-width:560px){.course .btn{align-self:flex-start;justify-content:center}}
 

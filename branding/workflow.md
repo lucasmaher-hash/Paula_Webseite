@@ -192,6 +192,11 @@
 - **Funktioniert:** Der Karteninhalt animiert Höhe, Innenabstand und Deckkraft per Web Animations API, mit derselben Dauer und Kurve wie die Kategorien (500 ms auf, 400 ms zu). Gemessen bei 375 px: Die Höhe wächst in etwa 500 ms von 0 auf 783 px und fällt in etwa 300 ms auf 0. Schnelles Doppeltippen endet sauber geschlossen. Am Desktop bleibt alles sichtbar. Keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Die Seite gleitet beim Öffnen einer Schulung nicht mit, wie sie es bei den Kategorien tut. Das war nicht verlangt.
 
+### 18.10.2026 · Schulungskarten als zwei Rahmen, brauner DM-Knopf
+- **Versucht:** Lucas wollte die Kurskarten wie auf der Referenz (NovaFaces, Korean Lashlift): Bild und Text als zwei eigene abgerundete Rahmen dicht nebeneinander statt einer Karte. Die Abschnitte „Das erwartet dich“ und „Was dich erwartet“ sollen weg. „Per DM anfragen“ soll bräunlich sein wie dort, aber ohne Kreis um den Pfeil. Bild links und rechts im Wechsel bleibt.
+- **Funktioniert:** Die Karte selbst hat keinen Hintergrund mehr. Das Bild ist ein eigener Rahmen, Überschrift und Inhalt bilden zusammen den zweiten (oben bzw. unten abgerundet, aufgeklappt mobil ohne Naht). Abstand am Desktop 10 px, am Handy 8 px. Die Checklisten sind samt CSS entfernt. Der neue `.btn-brown` nutzt die Akzentfarbe `#8A6D57` mit weißer Schrift, beim Hover `#74594a`. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
