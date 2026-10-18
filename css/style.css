@@ -103,7 +103,7 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
 .nav-group{display:flex;align-items:center;gap:var(--space-5);opacity:var(--nav-o,1)}
 .nav-left{grid-column:1;justify-self:start}
 .nav-right{grid-column:3;justify-self:end}
-.brand-slot{grid-column:2;grid-row:1;display:block;width:var(--brand-w);aspect-ratio:273.331/98}
+.brand-slot{grid-column:2;grid-row:1;display:block;width:var(--brand-w);aspect-ratio:273.33/77.488}
 .site-nav a:not(.btn){
   text-decoration:none;font-size:.95rem;color:var(--color-on-surface-muted);
   transition:color .2s ease;
@@ -134,7 +134,7 @@ h3{font-size:var(--type-h3);font-weight:600;letter-spacing:-.01em;line-height:1.
 /* Intro-Fläche: volle Höhe, sonst nichts. Ohne JS entfällt sie. */
 .intro{display:none}
 .js .intro{display:block;height:100vh;height:100svh}
-main{padding-top:calc(var(--brand-w) * 98 / 273.331 + 2 * var(--space-4))}
+main{padding-top:calc(var(--brand-w) * 77.488 / 273.33 + 2 * var(--space-4))}
 .js main{padding-top:0}
 
 /* Hover-Unterstrich wie der Fuß des Logo-E:
