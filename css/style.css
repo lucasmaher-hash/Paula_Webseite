@@ -229,9 +229,15 @@ body.menu-open{overflow:hidden}
 .strip figure{flex:0 0 62%;scroll-snap-align:start;scroll-margin-left:var(--gutter)}
 .strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--rounded-lg)}
 @media(min-width:600px){.strip figure{flex-basis:38%}}
+/* Desktop: Collage statt Streifen, 4 Spalten × 2 Reihen; erstes und letztes Bild hoch über beide Reihen */
 @media(min-width:900px){
-  .strip{padding-left:max(var(--gutter),calc((100vw - 1240px) / 2 + var(--gutter)))}
-  .strip figure{flex-basis:clamp(240px,22vw,320px)}
+  .strip{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(190px,17vw,280px);
+    overflow:visible;max-width:1240px;margin:0 auto;padding:var(--space-5) var(--gutter) 0;
+  }
+  .strip figure:first-child{grid-column:1;grid-row:1 / 3}
+  .strip figure:last-child{grid-column:4;grid-row:1 / 3}
+  .strip img{height:100%;aspect-ratio:auto}
 }
 
 /* ---------- Bereichs-Karten ---------- */

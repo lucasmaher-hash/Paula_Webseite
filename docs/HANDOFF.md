@@ -42,7 +42,8 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 4. **Workflow-Tagebuch ist Pflicht:** Nach jeder Arbeitssession einen Eintrag in `branding/workflow.md` (Logbuch: Versucht / Funktioniert / Nicht funktioniert), im selben Stil wie die bisherigen Einträge. Das ist Teil von Lucas' Kursabgabe.
 5. **Fakten nur aus `docs/prd.md` oder von Lucas/Paula.** Keine Behandlungen, Preise, Bewertungen, Zitate oder Kursdetails erfinden. Bei Unklarheiten fragen.
 6. **Keine Behandlungspreise auf der Website** (Paulas Wunsch). Preise sieht man erst über den Buchungslink. Gutschein-Beträge sind erlaubt.
-7. **Codex-Versionsregel für Logos** (aus `branding/assets/pm-beauty-logo/VERSIONING.md`): bestehende `versions/vN` nie überschreiben, neue Stände in den nächsten freien Ordner.
+7. **Platzhalterbilder aus kostenlosen Stockfotos** (Lucas, 18.10.2026): Solange echte Fotos fehlen, kostenlose Stockfotos mit freier Lizenz nehmen (z. B. Unsplash, Pexels). Quelle, Fotograf und Lizenz in `images/STOCK.md` festhalten und im HTML-Kommentar als Platzhalter markieren, damit sie später durch echte Fotos ersetzt werden. Stockfotos nie als Paulas Arbeit ausgeben (keine Alt-Texte wie „Ergebnis aus dem Studio"). In der Cloud-Umgebung sind Stockfoto-Hosts aktuell gesperrt (Netzwerk-Policy); dafür müssen z. B. `images.unsplash.com`, `unsplash.com`, `images.pexels.com`, `www.pexels.com` freigegeben werden.
+8. **Codex-Versionsregel für Logos** (aus `branding/assets/pm-beauty-logo/VERSIONING.md`): bestehende `versions/vN` nie überschreiben, neue Stände in den nächsten freien Ordner.
 
 ## 3. Bilder: Stand und Aufgaben für die Bildgenerierung
 

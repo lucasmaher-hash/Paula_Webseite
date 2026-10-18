@@ -177,6 +177,11 @@
 - **Funktioniert:** Der Instagram-Knopf ist dunkel mit hellem Symbol (`.icon-btn-primary`). Die Lorbeerkränze sind per Python als ein SVG-Symbol erzeugt (Blätter entlang eines Kreisbogens, gespiegelt, Stern unten) und in Akzentfarbe gesetzt. Es gibt vier Badges: 5.0 ★ auf Beautinda, 26 Bewertungen, Top Rated · Beautinda, 38 Behandlungen (nachgezählt in der Leistungsliste). Auf dem Handy stehen sie 2 × 2, auf dem Desktop in einer Reihe. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Lucas' Beispiele „10 Jahre Erfahrung“ und „Anzahl Zertifikate“ sind nicht eingebaut. Dafür gibt es keine belegten Zahlen. Wenn Paula sie nennt, können sie zwei der Badges ersetzen. Beim ersten Entwurf waren die Blätter schwarz, weil `fill` fehlte.
 
+### 18.10.2026 · „Arbeiten aus dem Studio“ als Collage, Regel für Stockfotos
+- **Versucht:** Lucas wollte „Arbeiten aus dem Studio“ auf dem Desktop als Collage in zwei Reihen statt als Scroll-Streifen, mit etwa acht Bildern. Fehlende Bilder sollen ab jetzt durch kostenlose Stockfotos als Platzhalter ersetzt werden.
+- **Funktioniert:** Ab 900 px ist die Fläche ein Raster mit 4 × 2 Feldern. Das erste und das letzte Foto gehen hoch über beide Reihen, die vier anderen füllen die Mitte. So füllen die 6 echten Fotos die Fläche ohne Lücke. Auf dem Handy bleibt der Wischstreifen. Die Stockfoto-Regel steht in `docs/HANDOFF.md`: Quelle und Lizenz festhalten, Stockfotos nie als Paulas Arbeit ausgeben. Geprüft bei 375, 430, 1024 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Die Netzwerk-Policy der Cloud-Umgebung sperrt Unsplash, Pexels und Pixabay, daher sind noch keine Stockfotos eingebaut. Sobald die Hosts freigegeben sind, kann die Collage auf 8 Bilder gehen.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
