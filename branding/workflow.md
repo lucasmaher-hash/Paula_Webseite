@@ -237,6 +237,11 @@
 - **Funktioniert:** Das Geschenk-Icon ist selbst gezeichnet, im Stil der anderen Linien-Icons (1,3 px, Accent), weil Icon-Seiten aus der Cloud nicht erreichbar sind. Das Bestseller-Badge ist eine Pille in Accent mit weißer Schrift. Am Desktop sind die Spalten im Verhältnis 1 : 1,3 : 1, Beträge 2,6 rem und 3,4 rem. Ein IntersectionObserver (40 % sichtbar) setzt `.spread`: Die äußeren Karten sinken 36 px, die mittlere steigt 14 px, in 1,4 s über die CSS-Eigenschaft `translate`. So kommt sich die Bewegung nicht mit dem Einblenden (`transform`) in die Quere. Am Handy sind die Karten 80 % breit, 100 € ist 90 % breit und steht rechts. Gemessen bei 1440 px: drin `36 / −14 / 36 px`, nach dem Wegscrollen wieder 0. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Lucas' Nachricht brach ab bei „dass der 100-Euro-Ding ein bisschen …“. Ich habe „etwas größer“ angenommen. Am Handy gibt es keinen Drift.
 
+### 18.10.2026 · Studio-Collage versetzt wie die Referenz, Zoom beim Hover
+- **Versucht:** Die Collage „Arbeiten aus dem Studio“ soll am Desktop versetzt angeordnet sein wie auf Lucas' Referenzbild (NovaFaces: vier Spalten, hohe und kurze Bilder im Wechsel, rechts unten Luft). Beim Hover mit der Maus soll das Bild im Rahmen leicht hineinzoomen, ohne dass sich der Rahmen bewegt.
+- **Funktioniert:** Das Raster hat 4 Spalten und 10 Zeilen-Einheiten mit 10 px Abstand. Spalte 1 ist ein hohes Bild über die volle Höhe, Spalte 2 hoch und darunter kurz, Spalte 3 kurz und darunter hoch, Spalte 4 hoch mit Luft darunter. Die Referenz hat 7 Bilder, es gibt aber nur 6 echte, deshalb ist Spalte 1 ein einziges Bild statt zwei. Der Radius sitzt jetzt am Rahmen (`figure`, `overflow:hidden`), das Bild skaliert beim Hover in 0,8 s auf 106 %. Gemessen bei 1024 und 1440 px: Rahmen unverändert, Bild `scale(1.06)`. Zoom nur bei Geräten mit Maus, bei „Bewegung reduzieren“ ohne Übergang. Am Handy bleibt der Wischstreifen. Keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Mit einem 7. Foto ließe sich die Referenz genau nachbauen (Spalte 1 kurz und hoch).
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
