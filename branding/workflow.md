@@ -247,6 +247,11 @@
 - **Funktioniert:** Ein fixierter Kreis (520 px, radialer Verlauf in Pink `#D9A8A4`, nach außen transparent) folgt der Maus. Er läuft per `requestAnimationFrame` mit 12 % des Restwegs pro Frame nach und wirkt dadurch weich. Er erscheint erst bei der ersten Mausbewegung und blendet aus, wenn die Maus das Fenster verlässt. Nur bei Geräten mit Maus (`hover: hover` und `pointer: fine`), nicht bei „Bewegung reduzieren“, nicht auf dem Handy. Gemessen: Nach der Bewegung hängt der Kreis etwa 67 px hinterher und sitzt nach rund 1 s genau unter der Maus.
 - **Nicht funktioniert / offen:** Hinter dem Inhalt (`z-index:-1`) war der Glow kaum zu sehen, weil fast die ganze Fläche aus Panels besteht. Jetzt liegt er als Tönung darüber (`mix-blend-mode:multiply`, unter dem Header): Helle Flächen werden zart pink, Text bleibt dunkel. Fotos werden dabei ebenfalls leicht getönt.
 
+### 18.10.2026 · Pinker Glow wieder entfernt
+- **Versucht:** Lucas hat den Glow live angesehen und will ihn nicht.
+- **Funktioniert:** Element, CSS, JavaScript und die Zeile im Styleguide sind entfernt. Der Eintrag oben bleibt als Dokumentation stehen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

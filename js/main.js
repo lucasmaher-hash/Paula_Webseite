@@ -204,24 +204,6 @@
   });
   if (location.hash) openFromHash(location.hash.slice(1));
 
-  // Pinker Glow folgt der Maus mit leichter Verzögerung (nicht auf Touch, nicht bei „Bewegung reduzieren“)
-  var glow = document.querySelector('.cursor-glow');
-  if (glow && !reduced && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    var gx = 0, gy = 0, tx = 0, ty = 0, glowRaf = 0;
-    var stepGlow = function () {
-      gx += (tx - gx) * 0.12; gy += (ty - gy) * 0.12;
-      glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
-      glowRaf = Math.abs(tx - gx) + Math.abs(ty - gy) > 0.5 ? requestAnimationFrame(stepGlow) : 0;
-    };
-    document.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      tx = e.clientX; ty = e.clientY;
-      if (!glow.classList.contains('on')) { gx = tx; gy = ty; glow.classList.add('on'); }
-      if (!glowRaf) glowRaf = requestAnimationFrame(stepGlow);
-    });
-    document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
-  }
-
   // Gutscheine (Desktop): im Abschnitt driften die Karten senkrecht auseinander, beim Verlassen wieder zusammen
   var vouchers = document.querySelector('.vouchers-grid');
   if (vouchers) {
