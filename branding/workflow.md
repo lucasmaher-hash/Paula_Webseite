@@ -142,6 +142,11 @@
 - **Funktioniert:** Den Fehler zuerst nachgestellt: War oben eine lange Kategorie offen, schloss sie sich beim Klick, und der angeklickte Titel sprang von 500 auf −972 px aus dem Bild. Jetzt wird der Titel nach dem Schließen an seiner Stelle gehalten, danach gleitet die Seite in einer eigenen Animation (etwa 0,9 s statt rund 0,4 s, easeInOutCubic, abbrechbar durch Scrollen). Messung: Titel bleibt bei 500 px und gleitet nach unten in die Mitte (163/162 px). Die Linie hing an einem auf Touch „klebenden" Hover; Hover gilt jetzt nur bei `hover:hover`, auf Touch hängt die Linie am Zustand „offen", mit doppelter Dauer. Kurskarten: Das Bild steht mobil oben und bleibt sichtbar, nur der Inhalt klappt.
 - **Nicht funktioniert / offen:** Wie sich 0,9 s auf dem echten Gerät anfühlen, ist nicht geprüft; das Vorschaufenster läuft mit wenigen Bildern pro Sekunde.
 
+### 18.10.2026 · Akkordeon-Gleiten ohne Ruckeln (FLIP statt JS-Scroll)
+- **Versucht:** Lucas: Das Gleiten zur geöffneten Kategorie funktioniert, ruckelt aber stark. Ursache war der eigene Ansatz: Scrollen per JavaScript in jedem Frame läuft auf dem Haupt-Thread und konkurriert in Safari mit dem Neuzeichnen der Nav-Leiste mit Weichzeichner.
+- **Funktioniert:** Umbau auf FLIP. Die Seite springt sofort an die Zielposition, `<main>` wird per `translate3d` an die alte Lage geschoben und gleitet per CSS-Transition (0,9 s) zurück. Das rechnet die GPU. Header und Menü liegen außerhalb von `<main>` und bleiben unberührt. Eine laufende Bewegung wird vor jeder neuen Messung beendet, damit Mehrfachklicks nicht falsch landen. Gemessen: Titel 500 → 466 → 281 → 236 px, Ende mittig (163/162 px), danach ist der Transform entfernt.
+- **Nicht funktioniert / offen:** Die Flüssigkeit lässt sich im Vorschaufenster nicht beurteilen, Lucas muss sie auf dem iPhone prüfen. Scrollt man während der Bewegung selbst, springt der Inhalt sofort ans Ziel.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

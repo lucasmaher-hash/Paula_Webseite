@@ -81,23 +81,30 @@
   // in die Mitte des sichtbaren Bereichs; ist die Kategorie höher, steht ihr Anfang oben unter der Leiste.
   var groups = document.querySelectorAll('.accordion details');
   var headerEl = document.querySelector('.site-header');
-  var scrollAnim = null;
-  function stopScrollAnim() { if (scrollAnim) { cancelAnimationFrame(scrollAnim); scrollAnim = null; } }
-  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, stopScrollAnim, { passive: true }); });
+  // Gleiten ohne Scroll-Animation per JS (die stottert, v. a. in Safari): sofort an die Zielposition
+  // springen und <main> per GPU-Transform von der alten Lage nachgleiten lassen (FLIP).
+  var mainEl = document.querySelector('main');
+  var glideTimer = null;
+  var GLIDE_MS = 900;
+  function endGlide() {
+    if (!mainEl) return;
+    clearTimeout(glideTimer); glideTimer = null;
+    mainEl.style.transition = ''; mainEl.style.transform = ''; mainEl.style.willChange = '';
+  }
+  ['wheel', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () { if (glideTimer) endGlide(); }, { passive: true });
+  });
   function glideTo(top) {
-    stopScrollAnim();
     var from = window.scrollY, dist = top - from;
-    if (reduced || Math.abs(dist) < 2) { window.scrollTo({ top: top, behavior: 'instant' }); return; }
-    var dur = Math.min(1300, 700 + Math.abs(dist) * 0.4);   // etwa halb so schnell wie der Browser-Standard
-    var t0 = null;
-    function step(now) {
-      if (t0 === null) t0 = now;
-      var t = Math.min(1, (now - t0) / dur);
-      var e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;   // easeInOutCubic
-      window.scrollTo({ top: from + dist * e, behavior: 'instant' });
-      scrollAnim = t < 1 ? requestAnimationFrame(step) : null;
-    }
-    scrollAnim = requestAnimationFrame(step);
+    if (reduced || !mainEl || Math.abs(dist) < 2) { window.scrollTo({ top: top, behavior: 'instant' }); return; }
+    endGlide();
+    mainEl.style.willChange = 'transform';
+    window.scrollTo({ top: top, behavior: 'instant' });
+    mainEl.style.transform = 'translate3d(0,' + dist + 'px,0)';   // sieht aus wie vorher
+    mainEl.getBoundingClientRect();                                 // Startlage festschreiben
+    mainEl.style.transition = 'transform ' + GLIDE_MS + 'ms cubic-bezier(.65,0,.35,1)';
+    mainEl.style.transform = 'translate3d(0,0,0)';
+    glideTimer = setTimeout(endGlide, GLIDE_MS + 50);
   }
   function targetFor(d) {
     var hh = headerEl ? headerEl.offsetHeight : 0;
@@ -109,16 +116,17 @@
   }
   groups.forEach(function (d) {
     var summary = d.querySelector('summary');
-    summary.addEventListener('click', function () { d._clickTop = summary.getBoundingClientRect().top; });
+    summary.addEventListener('click', function () { endGlide(); d._clickTop = summary.getBoundingClientRect().top; });
     d.addEventListener('toggle', function () {
       if (!d.open) { d._clickTop = null; return; }
       groups.forEach(function (other) { if (other !== d) other.open = false; });
       if (d._clickTop == null) return;
+      endGlide();                       // laufende Bewegung beenden, sonst misst getBoundingClientRect mit Transform
       var before = d._clickTop; d._clickTop = null;
       // Titel an seiner Stelle halten, falls sich darüber etwas geschlossen hat
       var shift = summary.getBoundingClientRect().top - before;
       if (Math.abs(shift) > 1) window.scrollTo({ top: window.scrollY + shift, behavior: 'instant' });
-      requestAnimationFrame(function () { glideTo(targetFor(d)); });
+      glideTo(targetFor(d));
     });
   });
   function openFromHash(id) {
