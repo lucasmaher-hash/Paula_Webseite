@@ -2,20 +2,39 @@
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Schulungen: mobil aufklappbar, am Desktop immer vollständig sichtbar.
+  // Schulungen: mobil aufklappbar (gleiche Animation wie die Kategorien), am Desktop immer vollständig sichtbar.
   var courseDesktop = window.matchMedia('(min-width: 900px)');
   document.querySelectorAll('.course').forEach(function (course) {
     var toggle = course.querySelector('.course-toggle');
-    var expanded = false;
+    var content = course.querySelector('.course-content');
+    var expanded = false, anim = null;
     function updateCourse() {
       var open = courseDesktop.matches || expanded;
       course.classList.toggle('is-collapsed', !open);
       toggle.hidden = courseDesktop.matches;
       toggle.setAttribute('aria-expanded', String(open));
     }
+    function stopAnim() {
+      if (anim) { anim.cancel(); anim = null; }
+      content.style.overflow = '';
+    }
     toggle.addEventListener('click', function () {
-      expanded = !expanded;
-      updateCourse();
+      var opening = toggle.getAttribute('aria-expanded') !== 'true';
+      stopAnim();
+      if (reduced || !content.animate) { expanded = opening; updateCourse(); return; }
+      var closed = { height: '0px', paddingTop: '0px', paddingBottom: '0px', opacity: 0 };
+      content.style.overflow = 'hidden';
+      if (opening) {
+        expanded = true; updateCourse();
+        anim = content.animate([closed, { height: content.offsetHeight + 'px', opacity: 1 }],
+          { duration: 500, easing: 'cubic-bezier(.4,0,.2,1)' });
+        anim.onfinish = stopAnim;
+      } else {
+        toggle.setAttribute('aria-expanded', 'false');
+        anim = content.animate([{ height: content.offsetHeight + 'px', opacity: 1 }, closed],
+          { duration: 400, easing: 'cubic-bezier(.4,0,.2,1)' });
+        anim.onfinish = function () { stopAnim(); expanded = false; updateCourse(); };
+      }
     });
     courseDesktop.addEventListener('change', updateCourse);
     updateCourse();

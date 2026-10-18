@@ -187,6 +187,11 @@
 - **Funktioniert:** Die drei Badges stehen auf allen Breiten in einer Reihe. Auf dem Handy sind die Unterzeilen normal geschrieben (nicht in Großbuchstaben) und kleiner, „Weiter-bildungen“ wird per weichem Trennstrich umbrochen, damit nichts in die Blätter läuft. Die Hero-Labels sind samt CSS entfernt (Handy-Text oben rechts im Bild, Desktop-Badges). Die Kopfzeile der Behandlungen lautet jetzt „Behandlungen · Mo–Fr 10–20 Uhr“. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Der erste Handy-Entwurf mit Großbuchstaben ragte in die Blätter. Außerdem stand die Desktop-Regel vor der Basisregel und wurde von ihr überschrieben. Beides ist behoben.
 
+### 18.10.2026 · Schulungen klappen mobil animiert auf
+- **Versucht:** Auf dem Handy sollen die zwei Schulungskarten nicht mehr sofort auf- und zuspringen, sondern dieselbe Animation haben wie die Behandlungskategorien. Lucas' Idee, die Gutscheine mobil zu versetzen, hat er wieder verworfen.
+- **Funktioniert:** Der Karteninhalt animiert Höhe, Innenabstand und Deckkraft per Web Animations API, mit derselben Dauer und Kurve wie die Kategorien (500 ms auf, 400 ms zu). Gemessen bei 375 px: Die Höhe wächst in etwa 500 ms von 0 auf 783 px und fällt in etwa 300 ms auf 0. Schnelles Doppeltippen endet sauber geschlossen. Am Desktop bleibt alles sichtbar. Keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Die Seite gleitet beim Öffnen einer Schulung nicht mit, wie sie es bei den Kategorien tut. Das war nicht verlangt.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
