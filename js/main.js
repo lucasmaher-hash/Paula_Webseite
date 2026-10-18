@@ -59,13 +59,21 @@
     window.matchMedia('(min-width: 1024px)').addEventListener('change', function (m) { if (m.matches && !menu.hidden) setMenu(false); });
   }
 
-  // Desktop-Dropdown „Behandlungen“: Hover per CSS, Klick/Tastatur per Klasse
+  // Desktop-Dropdown „Behandlungen“: Hover per CSS, Klick/Tastatur per Klasse.
+  // Klick bei schon sichtbarer Liste (Maus-Hover oder zweiter Klick) springt zum Abschnitt.
   document.querySelectorAll('.nav-dd').forEach(function (dd) {
     var btn = dd.querySelector('.nav-dd-btn');
+    var allLink = dd.querySelector('a[href="#behandlungen"]');
+    var mouse = window.matchMedia('(hover:hover)');
     btn.addEventListener('click', function () {
-      var open = !dd.classList.contains('open');
-      dd.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
+      var shown = dd.classList.contains('open') || (mouse.matches && dd.matches(':hover'));
+      if (shown && allLink) {
+        dd.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.blur();
+        allLink.click();
+        return;
+      }
+      dd.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
     });
     document.addEventListener('click', function (e) {
       if (!dd.contains(e.target)) { dd.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }

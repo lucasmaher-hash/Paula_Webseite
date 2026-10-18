@@ -167,6 +167,11 @@
 - **Funktioniert:** In der Cloud geprüft: Die Seite selbst hat bei 375, 430 und 1440 px keine Konsolenfehler und kein horizontales Scrollen. Lucas hat entschieden, ab jetzt in der Cloud-Sitzung zu arbeiten, direkt auf `main` zu pushen und Änderungen nach dem Pages-Deploy auf der Live-Seite zu prüfen.
 - **Nicht funktioniert / offen:** Der lokale Server ist nicht repariert. Nächste Schritte dafür: das Repo per `find` finden, den Server dort starten und `127.0.0.1` statt `localhost` öffnen.
 
+### 18.10.2026 · Hover-Linie nur unter dem Kategorienamen, „Behandlungen“ in der Nav klickbar
+- **Versucht:** Lucas fiel auf, dass die Hover-Linie unter einer Behandlungskategorie über die ganze Zeile lief statt nur unter dem Namen. Außerdem sollte ein Klick auf „Behandlungen“ in der Kopfzeile zum Behandlungsabschnitt springen. Die Unterkategorien im Dropdown sollen wie bisher auswählbar bleiben.
+- **Funktioniert:** Die Überschrift dehnt sich nicht mehr über die Zeile (`flex:0 1 auto`), deshalb ist die Linie so breit wie der Text. Gemessen sind es 356 px bei „Gesichts- & Körperbehandlungen“ statt der vollen Zeile, Zähler und Plus bleiben rechts. In der Nav öffnet Hover die Liste wie bisher, ein Klick springt zum Abschnitt. Per Tastatur öffnet der erste Klick die Liste, der zweite springt. Die Unterkategorien öffnen weiter ihre Kategorie. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
