@@ -28,6 +28,8 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 
 ### Gestaltung (Bausteine in `css/style.css`)
 
+- **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
+
 - **Farben bleiben** (Lucas, 18.10.2026): Tokens oben in `style.css` (`--color-background #F2EDE5`, `--color-primary #221C16`, `--color-accent #8A6D57` …). Hero-Wandton `--hero-wall #A39588`.
 - **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeilkreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.checklist` + `.perks` (Kurskarten mit vier Icon-Kacheln), Akkordeon mit runden +/–.
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").

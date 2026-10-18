@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F2EDE5">
+<meta name="robots" content="noindex">
+<title>PM Beauty Styleguide</title>
+<meta name="description" content="Styleguide der Marke PM Beauty: Logo, Farben, Schrift, Abstände, Komponenten, Bewegung und Bildsprache der Website.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css?v=36">
+<style>
+/* Nur für den Styleguide. Alle Marken-Werte kommen aus css/style.css (gleiche Datei wie die Website). */
+.sg-top{padding:var(--space-7) 0 var(--space-5)}
+.sg-top .brand-xl{display:block;width:min(320px,70vw);color:var(--color-primary)}
+.sg-top .brand-xl svg{display:block;width:100%;height:auto;overflow:visible}
+.sg-top h1{font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02;margin:var(--space-6) 0 var(--space-4)}
+.sg-top .lead{color:var(--color-on-surface-muted);max-width:56ch;font-size:1.05rem}
+.sg-toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--color-background) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border)}
+.sg-toc ul{list-style:none;display:flex;gap:var(--space-5);overflow-x:auto;padding:14px var(--gutter);max-width:1240px;margin:0 auto;scrollbar-width:none}
+.sg-toc ul::-webkit-scrollbar{display:none}
+.sg-toc a{font-size:.88rem;white-space:nowrap}
+.sg section{padding:var(--space-8) 0 0;scroll-margin-top:56px}
+.sg section:last-of-type{padding-bottom:var(--space-9)}
+.sg h2{margin-top:var(--space-3)}
+.sg .intro{color:var(--color-on-surface-muted);max-width:62ch;margin-bottom:var(--space-6)}
+.sg h3.sg-h{font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--color-on-surface-muted);margin:var(--space-6) 0 var(--space-3)}
+.sg-panels{display:grid;gap:8px}
+@media(min-width:900px){.sg-panels{grid-template-columns:repeat(2,1fr);gap:10px}.sg-panels.three{grid-template-columns:repeat(3,1fr)}}
+.sg-panel{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
+@media(min-width:900px){.sg-panel{padding:var(--space-6)}}
+.sg-panel.dark{background:var(--color-primary);color:var(--color-on-primary)}
+.sg-panel.raised{background:var(--color-surface-raised)}
+.sg-panel p+p{margin-top:var(--space-3)}
+.sg-note{font-size:.88rem;color:var(--color-on-surface-muted)}
+.sg-panel.dark .sg-note{color:color-mix(in srgb,var(--color-on-primary) 70%,transparent)}
+.sg-code{font-family:var(--font-mono);font-size:.78rem;background:color-mix(in srgb,var(--color-primary) 6%,transparent);padding:2px 6px;border-radius:6px;overflow-wrap:anywhere}
+.sg-list{list-style:none;display:flex;flex-direction:column}
+.sg-list li{padding:12px 0;border-top:1px solid var(--color-border);font-size:.95rem}
+.sg-list li:last-child{border-bottom:1px solid var(--color-border)}
+.sg-list strong{font-weight:500}
+
+/* Logo */
+.sg-logo{display:grid;place-items:center;min-height:220px}
+.sg-logo svg{width:min(300px,80%);height:auto;overflow:visible}
+.sg-logo-sizes{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-6)}
+.sg-logo-sizes figure{display:flex;flex-direction:column;gap:8px}
+.sg-logo-sizes svg{height:auto;overflow:visible;display:block}
+.sg-logo-sizes figcaption,.sg-swatch figcaption{font-size:.8rem;color:var(--color-on-surface-muted)}
+.sg-clear{position:relative;display:inline-block;padding:28px;border:1px dashed var(--color-accent);border-radius:var(--rounded-sm)}
+.sg-clear svg{width:220px;height:auto;display:block;overflow:visible}
+
+/* Farben */
+.sg-swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:700px){.sg-swatches{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1100px){.sg-swatches{grid-template-columns:repeat(4,1fr)}}
+.sg-swatch{border-radius:var(--rounded-lg);overflow:hidden;background:var(--color-surface-raised);border:1px solid var(--color-border)}
+.sg-swatch .chip{height:110px}
+.sg-swatch figcaption{padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.sg-swatch figcaption b{font-weight:500;color:var(--color-on-surface);font-size:.92rem}
+.sg-contrast{width:100%;border-collapse:collapse;font-size:.92rem}
+.sg-contrast td{padding:10px 0;border-top:1px solid var(--color-border);vertical-align:middle}
+.sg-contrast td:last-child{text-align:right;white-space:nowrap}
+.sg-pair{display:inline-grid;place-items:center;width:44px;height:30px;border-radius:8px;margin-right:10px;font-weight:500;font-size:.85rem;vertical-align:middle;border:1px solid var(--color-border)}
+
+/* Typo */
+.sg-type{display:flex;flex-direction:column}
+.sg-type > div{display:grid;gap:6px;padding:var(--space-5) 0;border-top:1px solid var(--color-border)}
+@media(min-width:900px){.sg-type > div{grid-template-columns:220px 1fr;align-items:baseline;gap:var(--space-5)}}
+.sg-type .meta{font-size:.8rem;color:var(--color-on-surface-muted);line-height:1.5}
+.sg-glyphs{font-size:clamp(1.6rem,5vw,2.6rem);letter-spacing:-.01em;line-height:1.3;overflow-wrap:anywhere}
+
+/* Abstände & Radien */
+.sg-space{display:flex;flex-direction:column;gap:10px}
+.sg-space div{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:var(--space-3);font-size:.85rem;color:var(--color-on-surface-muted)}
+.sg-space span{display:block;height:14px;border-radius:4px;background:var(--color-accent-pink)}
+.sg-radii{display:flex;flex-wrap:wrap;gap:var(--space-4)}
+.sg-radii figure{display:flex;flex-direction:column;gap:8px;align-items:center;font-size:.8rem;color:var(--color-on-surface-muted)}
+.sg-radii span{display:block;width:84px;height:84px;background:var(--color-surface);border:1px solid var(--color-border)}
+
+/* Komponenten */
+.sg-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3)}
+.sg-demo-panels{display:grid;gap:8px}
+@media(min-width:700px){.sg-demo-panels{grid-template-columns:.9fr 1.1fr;gap:10px}}
+.sg-demo-panels .img{border-radius:var(--rounded-xl);overflow:hidden;min-height:200px;position:relative}
+.sg-demo-panels .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sg .awards-grid{max-width:560px;margin:0}
+.sg .accordion{max-width:720px}
+
+/* Bewegung */
+.sg-motion{width:100%;border-collapse:collapse;font-size:.92rem}
+.sg-motion th{text-align:left;font-weight:500;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--color-on-surface-muted);padding:0 12px 10px 0}
+.sg-motion td{padding:12px 12px 12px 0;border-top:1px solid var(--color-border);vertical-align:top}
+.sg-motion-wrap{overflow-x:auto}
+.sg-curve{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-5)}
+.sg-curve .track{flex:1;height:2px;background:var(--color-border);position:relative;border-radius:2px}
+.sg-curve .dot{position:absolute;top:-7px;left:0;width:16px;height:16px;border-radius:50%;background:var(--color-accent)}
+@media(prefers-reduced-motion:no-preference){.sg-curve .dot{animation:sg-move 2.4s cubic-bezier(.4,0,.2,1) infinite alternate}}
+@keyframes sg-move{to{left:calc(100% - 16px)}}
+
+/* Bildsprache */
+.sg-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:900px){.sg-photos{grid-template-columns:repeat(6,1fr);gap:10px}}
+.sg-photos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--rounded-lg)}
+.sg-do{display:grid;gap:8px}
+@media(min-width:900px){.sg-do{grid-template-columns:1fr 1fr;gap:10px}}
+.sg-footer{padding:var(--space-6) 0 var(--space-7);border-top:1px solid var(--color-border);margin-top:var(--space-8);font-size:.88rem;color:var(--color-on-surface-muted)}
+</style>
+</head>
+<body class="sg">
+
+<header class="container sg-top">
+  <a class="brand-xl" href="index.html" aria-label="PM Beauty, zur Website"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></a>
+  <h1>Styleguide</h1>
+  <p class="lead">Wie PM Beauty aussieht, klingt und sich bewegt. Alle Farben, Schriften und Bausteine auf dieser Seite kommen aus derselben CSS-Datei wie die Website (<span class="sg-code">css/style.css</span>). Was hier steht, ist also genau das, was live ist.</p>
+  <div class="badges" style="margin-top:var(--space-5)">
+    <span class="badge">Stand 18.10.2026</span>
+    <span class="badge">Beauty &amp; PMU Studio · München</span>
+    <a class="badge ul" href="index.html" style="text-decoration:none">Zur Website ↗</a>
+  </div>
+</header>
+
+<nav class="sg-toc" aria-label="Inhalt">
+  <ul>
+    <li><a class="ul" href="#marke">Marke</a></li>
+    <li><a class="ul" href="#logo">Logo</a></li>
+    <li><a class="ul" href="#farben">Farben</a></li>
+    <li><a class="ul" href="#schrift">Schrift</a></li>
+    <li><a class="ul" href="#raster">Abstände &amp; Radien</a></li>
+    <li><a class="ul" href="#komponenten">Komponenten</a></li>
+    <li><a class="ul" href="#bewegung">Bewegung</a></li>
+    <li><a class="ul" href="#bilder">Bildsprache</a></li>
+    <li><a class="ul" href="#sprache">Sprache</a></li>
+    <li><a class="ul" href="#verfahren">Verfahren</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- Marke -->
+  <section id="marke" aria-labelledby="marke-h">
+    <div class="container">
+      <span class="eyebrow">01 · Marke</span>
+      <h2 id="marke-h">Präzision. Ästhetik. Qualität.</h2>
+      <p class="intro">PM Beauty ist das Studio von Paula Maher in der Fürstenrieder Straße 11 in München: Permanent Make-up, Russische Maniküre &amp; Gel, Gesichtsbehandlungen, Korean Lash- &amp; Browlift und Schulungen. Die drei Worte aus Paulas Leitsatz sind das Gestaltungsprinzip.</p>
+      <div class="sg-panels three">
+        <div class="sg-panel"><h3>Präzision</h3><p class="sg-note" style="margin-top:8px">Exakte Kanten, mittig gesetztes E, ein Raster aus festen Abständen. Nichts sitzt „ungefähr“.</p></div>
+        <div class="sg-panel"><h3>Ästhetik</h3><p class="sg-note" style="margin-top:8px">Warme Beige- und Brauntöne, große Radien, viel Leerraum. Ruhig wie ein sauber gedecktes Behandlungs-Setup.</p></div>
+        <div class="sg-panel dark"><h3>Qualität</h3><p class="sg-note" style="margin-top:8px">Echte Fotos aus dem Studio, echte Bewertungen, klare Standards. Keine erfundenen Versprechen.</p></div>
+      </div>
+      <h3 class="sg-h">Zielgruppe</h3>
+      <ul class="sg-list">
+        <li><strong>Kundinnen aus München</strong>, die meist über Instagram kommen. Deshalb ist das Handy der wichtigste Kanal: Alles wird zuerst mobil gestaltet und getestet.</li>
+        <li><strong>Einsteigerinnen und Profis</strong>, die sich bei Paula weiterbilden wollen (PM Beauty Academy).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Logo -->
+  <section id="logo" aria-labelledby="logo-h">
+    <div class="container">
+      <span class="eyebrow">02 · Logo</span>
+      <h2 id="logo-h">Die Wortmarke.</h2>
+      <p class="intro">„PM BEAUTY“ in Italiana, in Pfade umgewandelt. Das E in der Mitte ist eigens gezeichnet: um 90° gedreht und nach oben offen. Die Außenstriche ragen über die Versalien hinaus, der Fuß schwingt wie ein Kelch. Das E sitzt exakt in der Mitte der Wortmarke.</p>
+      <div class="sg-panels">
+        <div class="sg-panel raised sg-logo" style="color:var(--color-primary)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div>
+        <div class="sg-panel dark sg-logo" style="color:var(--color-on-primary)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div>
+      </div>
+      <h3 class="sg-h">Größen</h3>
+      <div class="sg-logo-sizes" style="color:var(--color-primary)">
+        <figure><div style="width:96px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div><figcaption>96 px · Header Handy (Minimum)</figcaption></figure>
+        <figure><div style="width:112px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div><figcaption>112 px · Header Desktop</figcaption></figure>
+        <figure><div style="width:220px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div><figcaption>220 px · Print, Social</figcaption></figure>
+      </div>
+      <h3 class="sg-h">Schutzzone</h3>
+      <div class="sg-row" style="align-items:flex-start;gap:var(--space-5)">
+        <div class="sg-clear" style="color:var(--color-primary)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></div>
+        <p class="sg-note" style="max-width:40ch">Rund um die Wortmarke bleibt mindestens die Höhe der Versalien frei. Kein Text, kein Bildrand und keine Linie ragt in diesen Bereich.</p>
+      </div>
+      <h3 class="sg-h">Regeln</h3>
+      <div class="sg-do">
+        <div class="sg-panel"><span class="eyebrow">Richtig</span><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Inline als SVG, Farbe über <span class="sg-code">currentColor</span></li>
+          <li>Fast-Schwarz <span class="sg-code">#221C16</span> auf hellem Grund, <span class="sg-code">#F5F1EA</span> auf dunklem Grund</li>
+          <li>Datei: <span class="sg-code">branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg</span></li>
+        </ul></div>
+        <div class="sg-panel"><span class="eyebrow">Falsch</span><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Verzerren, drehen oder die Buchstaben neu setzen</li>
+          <li>Farbverläufe, Schatten, Konturen oder Pink als Logofarbe</li>
+          <li>Das E einzeln ändern: Es gehört zur Wortmarke</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farben -->
+  <section id="farben" aria-labelledby="farben-h">
+    <div class="container">
+      <span class="eyebrow">03 · Farben</span>
+      <h2 id="farben-h">Warmes Papier, Braun, Fast-Schwarz.</h2>
+      <p class="intro">Kein reines Weiß, kein kaltes Grau. Tiefe entsteht durch Flächen in Abstufungen statt durch Schatten. Pink ist ein Flüstern: eine Fläche pro Seite (Behandlungen), sonst nur Details.</p>
+      <div class="sg-swatches">
+        <figure class="sg-swatch"><div class="chip" style="background:#F2EDE5"></div><figcaption><b>Background</b><span class="sg-code">#F2EDE5</span>Seitenhintergrund</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#EAE3D8"></div><figcaption><b>Surface</b><span class="sg-code">#EAE3D8</span>Panels, Karten</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#F7F3EC"></div><figcaption><b>Surface raised</b><span class="sg-code">#F7F3EC</span>Kacheln auf Panels</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#DED5C8"></div><figcaption><b>Surface dark</b><span class="sg-code">#DED5C8</span>Zweites Panel (Öffnungszeiten)</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#221C16"></div><figcaption><b>Primary</b><span class="sg-code">#221C16</span>Text, Haupt-Buttons, Logo</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#75695C"></div><figcaption><b>Muted</b><span class="sg-code">#75695C</span>Nebentext, Labels</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#8A6D57"></div><figcaption><b>Accent</b><span class="sg-code">#8A6D57</span>DM-Button, Lorbeer, Icons</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#D9CFC1"></div><figcaption><b>Border</b><span class="sg-code">#D9CFC1</span>Trennlinien</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#EFD9D6"></div><figcaption><b>Pink soft</b><span class="sg-code">#EFD9D6</span>Fläche Behandlungen</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#D9A8A4"></div><figcaption><b>Pink</b><span class="sg-code">#D9A8A4</span>Kleine Details</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#A39588"></div><figcaption><b>Hero wall</b><span class="sg-code">#A39588</span>Wandton des Hero-Fotos</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:#F5F1EA"></div><figcaption><b>On primary</b><span class="sg-code">#F5F1EA</span>Text auf dunklem Grund</figcaption></figure>
+      </div>
+      <h3 class="sg-h">Kontrast (WCAG)</h3>
+      <div class="sg-panel raised">
+        <table class="sg-contrast">
+          <tr><td><span class="sg-pair" style="background:#F2EDE5;color:#221C16">Aa</span>Primary auf Background</td><td>14,5 : 1 · AAA</td></tr>
+          <tr><td><span class="sg-pair" style="background:#221C16;color:#F5F1EA">Aa</span>On primary auf Primary (Buttons)</td><td>15,0 : 1 · AAA</td></tr>
+          <tr><td><span class="sg-pair" style="background:#8A6D57;color:#fff">Aa</span>Weiß auf Accent (DM-Button)</td><td>4,8 : 1 · AA</td></tr>
+          <tr><td><span class="sg-pair" style="background:#F2EDE5;color:#75695C">Aa</span>Muted auf Background</td><td>4,6 : 1 · AA</td></tr>
+          <tr><td><span class="sg-pair" style="background:#EAE3D8;color:#75695C">Aa</span>Muted auf Surface</td><td>4,2 : 1 · nur große Schrift</td></tr>
+          <tr><td><span class="sg-pair" style="background:#EFD9D6;color:#221C16">Aa</span>Primary auf Pink soft</td><td>12,5 : 1 · AAA</td></tr>
+        </table>
+        <p class="sg-note" style="margin-top:var(--space-4)">Muted auf Surface liegt knapp unter AA für kleinen Text. Lange Nebentexte in Panels deshalb nicht kleiner als 0,95 rem setzen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schrift -->
+  <section id="schrift" aria-labelledby="schrift-h">
+    <div class="container">
+      <span class="eyebrow">04 · Schrift</span>
+      <h2 id="schrift-h">Instrument Sans.</h2>
+      <p class="intro">Eine leicht warme Grotesk für alles: Überschriften, Fließtext, Buttons, Labels. Gewichte 400 und 500, keine fetten Schnitte. Die Schrift ist lokal eingebunden (<span class="sg-code">fonts/</span>), es werden keine Daten an Google übertragen. Die Logo-Schrift Italiana steckt nur als Pfad im Logo und wird nicht als Text gesetzt.</p>
+      <div class="sg-panel raised"><p class="sg-glyphs">Aa Bb Cc Ää Öö Üü ß<br>0123456789 · ★ ↗ – „“</p></div>
+      <div class="sg-type" style="margin-top:var(--space-5)">
+        <div><span class="meta">Display · 500<br>clamp(2.4 – 4.4 rem) · −0,035 em · Zeile 1,02</span><span style="font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02">Präzision. Ästhetik.</span></div>
+        <div><span class="meta">H2 · 500<br>clamp(1.7 – 2.6 rem) · −0,025 em · Zeile 1,1</span><span style="font-size:var(--type-h2);font-weight:500;letter-spacing:-.025em;line-height:1.1">Alles auf einen Blick.</span></div>
+        <div><span class="meta">H3 · 500<br>1,15 – 1,7 rem · −0,01 bis −0,02 em</span><span style="font-size:1.45rem;font-weight:500;letter-spacing:-.02em;line-height:1.2">Korean Lash &amp; Browlifting</span></div>
+        <div><span class="meta">Fließtext · 400<br>1 rem · Zeile 1,6</span><span>Preise und freie Termine siehst du direkt bei der Buchung.</span></div>
+        <div><span class="meta">Nebentext · 400 · Muted<br>0,92 – 0,97 rem</span><span class="muted">Langanhaltender Farblack auf dem Naturnagel, inklusive gründlicher Nagelhautentfernung.</span></div>
+        <div><span class="meta">Label (Eyebrow) · 500<br>0,74 rem · Versalien · +0,14 em · Punkt davor</span><span><span class="eyebrow">Behandlungen · Mo–Fr 10–20 Uhr</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Raster -->
+  <section id="raster" aria-labelledby="raster-h">
+    <div class="container">
+      <span class="eyebrow">05 · Abstände &amp; Radien</span>
+      <h2 id="raster-h">Ein Raster, große Radien.</h2>
+      <p class="intro">Alle Abstände kommen aus einer Skala von 4 bis 112 px. Inhalt ist maximal 1240 px breit, mit 20 px Rand am Handy und 32 px ab 900 px. Abschnitte atmen mit 104 px (Handy) bzw. 112 px (Desktop). Panels nebeneinander stehen dicht: 8 px am Handy, 10 px am Desktop.</p>
+      <div class="sg-panels">
+        <div class="sg-panel raised">
+          <div class="sg-space">
+            <div><b>4 px</b><span style="width:4px"></span></div>
+            <div><b>8 px</b><span style="width:8px"></span></div>
+            <div><b>12 px</b><span style="width:12px"></span></div>
+            <div><b>16 px</b><span style="width:16px"></span></div>
+            <div><b>24 px</b><span style="width:24px"></span></div>
+            <div><b>32 px</b><span style="width:32px"></span></div>
+            <div><b>48 px</b><span style="width:48px"></span></div>
+            <div><b>72 px</b><span style="width:72px"></span></div>
+            <div><b>112 px</b><span style="width:112px"></span></div>
+          </div>
+        </div>
+        <div class="sg-panel raised">
+          <div class="sg-radii">
+            <figure><span style="border-radius:8px"></span>8 px · klein</figure>
+            <figure><span style="border-radius:16px"></span>16 px · Kacheln</figure>
+            <figure><span style="border-radius:24px"></span>24 px · Fotos (Handy 17)</figure>
+            <figure><span style="border-radius:32px"></span>32 px · Panels (Handy 22)</figure>
+            <figure><span style="border-radius:999px"></span>Pille · Buttons</figure>
+          </div>
+          <p class="sg-note" style="margin-top:var(--space-5)">Nichts ist scharfkantig. Am Handy sind Panels und Fotos etwa 30 % weniger rund. Breakpoints: 560, 900 und 1024 px (Navigation).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Komponenten -->
+  <section id="komponenten" aria-labelledby="komp-h">
+    <div class="container">
+      <span class="eyebrow">06 · Komponenten</span>
+      <h2 id="komp-h">Bausteine der Website.</h2>
+      <p class="intro">Alle Beispiele hier sind echte Bausteine aus <span class="sg-code">css/style.css</span>, keine Nachbauten.</p>
+
+      <h3 class="sg-h">Buttons</h3>
+      <div class="sg-row">
+        <a class="btn btn-primary" href="#komponenten">Termin buchen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-brown" href="#komponenten">Per DM anfragen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-soft" href="#komponenten">Alle Bewertungen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-primary btn-sm" href="#komponenten">Klein <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 2.5v7M2.8 6.3 6 9.5l3.2-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="icon-btn icon-btn-primary" href="#komponenten" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.9" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
+        <span class="icon-btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <ul class="sg-list" style="margin-top:var(--space-5)">
+        <li><strong>Primary</strong> (Fast-Schwarz): die Hauptaktion, vor allem „Termin buchen“. Hover <span class="sg-code">#3a3027</span>.</li>
+        <li><strong>Brown</strong> (Accent): Anfragen bei den Schulungen. Pfeil ohne Kreis, Hover <span class="sg-code">#74594a</span>.</li>
+        <li><strong>Soft</strong>: halbtransparent mit Rand, für Zweitaktionen.</li>
+        <li>Alle Buttons sind Pillen, mindestens 44 px hoch (Touch-Ziel). Der Pfeil ↗ führt nach außen, ↓ springt auf der Seite nach unten. Beim Hover rückt er 2 px in seine Richtung.</li>
+      </ul>
+
+      <h3 class="sg-h">Labels &amp; Badges</h3>
+      <div class="sg-row">
+        <span class="eyebrow">Schulungen · PM Beauty Academy</span>
+      </div>
+      <div class="badges" style="margin-top:var(--space-4)">
+        <span class="badge">1 Schulungstag</span><span class="badge">Theorie &amp; Praxis</span><span class="badge">München</span>
+      </div>
+
+      <h3 class="sg-h">Hover-Linie</h3>
+      <div class="sg-row" style="gap:var(--space-6)">
+        <a class="ul" href="#komponenten">Studio</a><a class="ul" href="#komponenten">Schulungen</a><a class="ul" href="#komponenten">Kontakt</a>
+      </div>
+      <p class="sg-note" style="margin-top:var(--space-3)">1 px, wächst von der Mitte nach außen, genau so breit wie der Text. Nur auf Geräten mit Maus; auf dem Handy zeigt sie bei Kategorien den Zustand „offen“.</p>
+
+      <h3 class="sg-h">Panels nebeneinander</h3>
+      <div class="sg-demo-panels">
+        <div class="img"><img src="images/paula-studio.jpg" alt="Paula Maher im Studio" loading="lazy"></div>
+        <div class="sg-panel"><span class="eyebrow">Über mich &amp; Studio</span><h3 style="margin-top:var(--space-3);font-size:1.6rem;letter-spacing:-.02em">Zwei Rahmen, ein Abstand.</h3><p class="sg-note" style="margin-top:var(--space-3)">Bild und Text sind je eine eigene Fläche mit 32 px Radius (Handy 22 px), dicht nebeneinander (Referenz: NovaFaces). Ein zweites Panel daneben wird eine Stufe dunkler, damit beide nicht gleich wirken. So aufgebaut: Über mich, Kontakt und am Desktop die Schulungen. Am Handy bleibt jede Schulung eine einzige Karte mit Bild oben.</p></div>
+      </div>
+
+      <h3 class="sg-h">Kacheln (Leistungen inklusive)</h3>
+      <ul class="perks" style="max-width:640px">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17" stroke="currentColor" stroke-width="1.3"/></svg>Ratenzahlung möglich</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.5" width="12" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M9 8h6M9 11h6M9 14h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Zertifikat</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5h12l-1 11.5H7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Starterpaket</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 4.9-7 9.2-7 9.2z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Lebenslange Betreuung</li>
+      </ul>
+      <p class="sg-note" style="margin-top:var(--space-3)">Icons: eigene Linien-Icons, 1,3 px Strich, abgerundete Enden, in Accent. Keine Icon-Bibliothek.</p>
+
+      <h3 class="sg-h">Auszeichnungen</h3>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="laurel" viewBox="0 0 200 200"><g><path d="M73.3 167.1Q62.5 164.5 55.1 172.8Q65.9 175.4 73.3 167.1ZM73.3 167.1Q73.2 156.1 63.4 150.9Q63.4 162 73.3 167.1ZM57.7 159.2Q48.2 154.4 39.5 160.5Q49 165.3 57.7 159.2ZM57.7 159.2Q60.1 148.8 52 141.8Q49.7 152.2 57.7 159.2ZM44.4 147.8Q36.6 141.3 27.2 145.1Q35 151.6 44.4 147.8ZM44.4 147.8Q48.9 138.7 42.9 130.5Q38.4 139.6 44.4 147.8ZM34 133.8Q28.2 126 18.6 127.5Q24.4 135.3 34 133.8ZM34 133.8Q40.2 126.2 36.4 117.3Q30.3 124.8 34 133.8ZM27.2 117.7Q23.5 109.2 14.2 108.5Q17.9 117 27.2 117.7ZM27.2 117.7Q34.5 112.1 33 102.9Q25.6 108.6 27.2 117.7ZM24.1 100.5Q22.5 91.8 14.1 89.2Q15.7 97.8 24.1 100.5ZM24.1 100.5Q32.2 96.9 32.7 88.1Q24.7 91.7 24.1 100.5ZM25.1 83.1Q25.5 74.7 18.3 70.4Q17.9 78.8 25.1 83.1ZM25.1 83.1Q33.3 81.4 35.7 73.4Q27.5 75.1 25.1 83.1ZM30 66.3Q32.2 58.7 26.5 53.2Q24.4 60.8 30 66.3ZM30 66.3Q37.9 66.6 41.9 59.7Q34 59.5 30 66.3ZM38.7 51.1Q42.3 44.6 38.3 38.3Q34.6 44.8 38.7 51.1ZM38.7 51.1Q45.9 53.1 51 47.6Q43.8 45.7 38.7 51.1ZM50.5 38.3Q55.3 33.1 52.9 26.5Q48.2 31.7 50.5 38.3ZM50.5 38.3Q56.7 41.6 62.5 37.8Q56.4 34.4 50.5 38.3ZM57.5 33Q64.4 32.5 67.4 26.3Q60.6 26.8 57.5 33Z"/><path d="M92.1 171.6A76 76 0 0 1 57.5 33" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><g transform="matrix(-1 0 0 1 200 0)"><path d="M73.3 167.1Q62.5 164.5 55.1 172.8Q65.9 175.4 73.3 167.1ZM73.3 167.1Q73.2 156.1 63.4 150.9Q63.4 162 73.3 167.1ZM57.7 159.2Q48.2 154.4 39.5 160.5Q49 165.3 57.7 159.2ZM57.7 159.2Q60.1 148.8 52 141.8Q49.7 152.2 57.7 159.2ZM44.4 147.8Q36.6 141.3 27.2 145.1Q35 151.6 44.4 147.8ZM44.4 147.8Q48.9 138.7 42.9 130.5Q38.4 139.6 44.4 147.8ZM34 133.8Q28.2 126 18.6 127.5Q24.4 135.3 34 133.8ZM34 133.8Q40.2 126.2 36.4 117.3Q30.3 124.8 34 133.8ZM27.2 117.7Q23.5 109.2 14.2 108.5Q17.9 117 27.2 117.7ZM27.2 117.7Q34.5 112.1 33 102.9Q25.6 108.6 27.2 117.7ZM24.1 100.5Q22.5 91.8 14.1 89.2Q15.7 97.8 24.1 100.5ZM24.1 100.5Q32.2 96.9 32.7 88.1Q24.7 91.7 24.1 100.5ZM25.1 83.1Q25.5 74.7 18.3 70.4Q17.9 78.8 25.1 83.1ZM25.1 83.1Q33.3 81.4 35.7 73.4Q27.5 75.1 25.1 83.1ZM30 66.3Q32.2 58.7 26.5 53.2Q24.4 60.8 30 66.3ZM30 66.3Q37.9 66.6 41.9 59.7Q34 59.5 30 66.3ZM38.7 51.1Q42.3 44.6 38.3 38.3Q34.6 44.8 38.7 51.1ZM38.7 51.1Q45.9 53.1 51 47.6Q43.8 45.7 38.7 51.1ZM50.5 38.3Q55.3 33.1 52.9 26.5Q48.2 31.7 50.5 38.3ZM50.5 38.3Q56.7 41.6 62.5 37.8Q56.4 34.4 50.5 38.3ZM57.5 33Q64.4 32.5 67.4 26.3Q60.6 26.8 57.5 33Z"/><path d="M92.1 171.6A76 76 0 0 1 57.5 33" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path d="M100.0 164.0L101.7 168.7L106.7 168.8L102.8 171.9L104.1 176.7L100.0 173.9L95.9 176.7L97.2 171.9L93.3 168.8L98.3 168.7Z"/></symbol></svg>
+      <ul class="awards-grid">
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>5</strong><span>Jahre Erfahrung</span></span></li>
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>5 ★</strong><span>Bewertungen</span></span></li>
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>4</strong><span>Weiter&shy;bildungen</span></span></li>
+      </ul>
+      <p class="sg-note" style="margin-top:var(--space-3)">Lorbeerkranz als selbst erzeugtes SVG-Symbol in Accent. Nur belegte Zahlen.</p>
+
+      <h3 class="sg-h">Akkordeon</h3>
+      <div class="accordion">
+        <details>
+          <summary><h3>Wimpernbehandlungen</h3><span class="summary-meta"><span class="count">7 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+            <ul class="service-list">
+              <li><span class="name">Name der Leistung</span><span class="desc">Ein Satz Beschreibung, ohne Preis. Preise stehen nur bei der Buchung.</span></li>
+              <li><span class="name">Zweite Leistung</span><span class="desc">18 px Luft oben und unten pro Eintrag.</span></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      <p class="sg-note" style="margin-top:var(--space-3)">Rundes Plus wird zum Minus. Auf der Website ist immer nur eine Kategorie offen, und die Seite gleitet zur geöffneten Kategorie.</p>
+    </div>
+  </section>
+
+  <!-- Bewegung -->
+  <section id="bewegung" aria-labelledby="bewegung-h">
+    <div class="container">
+      <span class="eyebrow">07 · Bewegung</span>
+      <h2 id="bewegung-h">Ruhig, nie verspielt.</h2>
+      <p class="intro">Eine Kurve für fast alles: <span class="sg-code">cubic-bezier(.4, 0, .2, 1)</span>, schnell los und weich aus. Öffnen dauert etwas länger als Schließen. Wer im System „Bewegung reduzieren“ eingestellt hat, bekommt keine Animationen.</p>
+      <div class="sg-panel raised">
+        <div class="sg-motion-wrap">
+          <table class="sg-motion">
+            <tr><th>Element</th><th>Dauer</th><th>Was passiert</th></tr>
+            <tr><td>Kategorie / Schulung öffnen</td><td>500 ms</td><td>Höhe und Deckkraft wachsen</td></tr>
+            <tr><td>Kategorie / Schulung schließen</td><td>400 ms</td><td>Höhe und Deckkraft fallen</td></tr>
+            <tr><td>Seite gleitet zur Kategorie</td><td>900 ms</td><td>Kategorie rückt in die Bildschirmmitte</td></tr>
+            <tr><td>Hover-Linie</td><td>350 ms aus / 450 ms ein</td><td>Linie wächst von der Mitte</td></tr>
+            <tr><td>Einblenden beim Scrollen</td><td>600 ms</td><td>14 px nach oben und von 0 auf 1 Deckkraft</td></tr>
+            <tr><td>Button-Pfeil</td><td>300 ms</td><td>2 px in Pfeilrichtung</td></tr>
+          </table>
+        </div>
+        <div class="sg-curve" aria-hidden="true"><span class="sg-note">Kurve</span><div class="track"><span class="dot"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bildsprache -->
+  <section id="bilder" aria-labelledby="bilder-h">
+    <div class="container">
+      <span class="eyebrow">08 · Bildsprache</span>
+      <h2 id="bilder-h">Echte Arbeit, nah dran.</h2>
+      <p class="intro">Nahaufnahmen echter Ergebnisse aus dem Studio, warmes Licht, Hochformat. Fotos stehen immer in abgerundeten Rahmen. Die Kundinnen haben der Veröffentlichung zugestimmt.</p>
+      <div class="sg-photos">
+        <img src="images/lips-1.jpg" alt="Lippenpigmentierung" loading="lazy">
+        <img src="images/lashlift.jpg" alt="Lashlift" loading="lazy">
+        <img src="images/nails.jpg" alt="Gelnagel" loading="lazy">
+        <img src="images/lips-2.jpg" alt="Lippenpigmentierung" loading="lazy">
+        <img src="images/lashes.jpg" alt="Wimpernverlängerung" loading="lazy">
+        <img src="images/lips-3.jpg" alt="Lippenpigmentierung" loading="lazy">
+      </div>
+      <ul class="sg-list" style="margin-top:var(--space-5)">
+        <li><strong>Platzhalter</strong> nur aus kostenlosen Stockfotos mit freier Lizenz. Quelle und Lizenz werden festgehalten.</li>
+        <li><strong>Nie</strong> fremde Behandlungsergebnisse als Paulas Arbeit zeigen.</li>
+        <li>Alt-Texte beschreiben, was zu sehen ist (z. B. „Lippenpigmentierung, Ergebnis“).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sprache -->
+  <section id="sprache" aria-labelledby="sprache-h">
+    <div class="container">
+      <span class="eyebrow">09 · Sprache</span>
+      <h2 id="sprache-h">Persönlich, klar, auf Deutsch.</h2>
+      <div class="sg-do">
+        <div class="sg-panel"><span class="eyebrow">So klingt PM Beauty</span><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Du-Ansprache, Paula spricht in der Ich-Form („Hey, ich bin Paula.“)</li>
+          <li>Kurze Sätze, Überschriften mit Punkt am Ende („Alles auf einen Blick.“)</li>
+          <li>Fachbegriffe wie im Studio: Korean Lashlift, Russische Maniküre</li>
+        </ul></div>
+        <div class="sg-panel"><span class="eyebrow">Nicht</span><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Keine Behandlungspreise auf der Website (Paulas Wunsch). Gutscheinbeträge sind erlaubt.</li>
+          <li>Keine erfundenen Bewertungen, Zitate, Zahlen oder Leistungen</li>
+          <li>Keine Werbefloskeln und keine Anglizismen-Flut</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verfahren -->
+  <section id="verfahren" aria-labelledby="verfahren-h">
+    <div class="container">
+      <span class="eyebrow">10 · Verfahren</span>
+      <h2 id="verfahren-h">Wie die Website gebaut wird.</h2>
+      <div class="sg-panels">
+        <div class="sg-panel"><h3>Technik</h3><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Statisches HTML, CSS und JavaScript ohne Framework und ohne Build-Schritt</li>
+          <li>Alle Werte als CSS-Variablen in <span class="sg-code">css/style.css</span></li>
+          <li>Schriften lokal, keine Cookies, kein Tracking</li>
+          <li>Gehostet auf GitHub Pages, jede Änderung geht über einen Commit live</li>
+        </ul></div>
+        <div class="sg-panel"><h3>Ablauf</h3><ul class="sg-list" style="margin-top:var(--space-4)">
+          <li>Logo in Figma entworfen, als SVG exportiert und nachgemessen</li>
+          <li>Mobile first: erst 375 und 430 px, dann 1440 px testen</li>
+          <li>Prüfen: kein horizontales Scrollen, keine Konsolenfehler</li>
+          <li>Jeder Arbeitsschritt im Logbuch (<span class="sg-code">branding/workflow.md</span>)</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="container sg-footer">
+  PM Beauty Styleguide · Fürstenrieder Str. 11, München · <a class="ul" href="index.html">Zur Website</a>
+</footer>
+
+</body>
+</html>
