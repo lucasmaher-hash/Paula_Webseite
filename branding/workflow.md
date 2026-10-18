@@ -77,6 +77,11 @@
 - **Funktioniert:** Die Variablen stehen jetzt am Header und werden nur bei Änderung geschrieben. Gemessen sinkt die Stil-Neuberechnung von 0,65 ms auf 0,03 ms pro Frame. Die Intro-Position hängt an der stabilen Intro-Höhe (100svh), reine Höhen-Resizes werden ignoriert. Commit siehe Git-Log.
 - **Nicht funktioniert / offen:** Das Ruckeln selbst lässt sich im Vorschaufenster (rund 6 fps) nicht nachstellen. Lucas hat bestätigt, dass es jetzt flüssig läuft (18.10.2026).
 
+### 18.10.2026 · Intro entfernt
+- **Versucht:** Lucas hat entschieden, dass das Logo-Intro wegfällt. Das Logo steht von Anfang an oben links in der Nav.
+- **Funktioniert:** Intro-Fläche, fixiertes Logo und Scroll-JS sind entfernt. Der Header ist wieder eine einfache Sticky-Leiste: Logo links, Links mittig, Button rechts. Transparenter Hintergrund und Hover-Unterstrich bleiben. Geprüft in 1280 px und 375 px, ohne Konsolenfehler. Commit `78d4f92`.
+- **Nicht funktioniert / offen:** Nichts technisch offen. Die Arbeit an Intro, Easing und Ruckel-Fix (vier Commits) steckt in der Git-Historie, falls das Intro später doch zurückkommen soll.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
