@@ -92,6 +92,11 @@
 - **Funktioniert:** Kurskarten mit Checkliste und vier Icon-Kacheln wie in Paulas Instagram-Grafiken, mobil und auf dem Desktop geprüft. Instagram-Links auf das aktive Konto `@pm_beauty___` umgestellt. Für die Übergabe: `docs/HANDOFF.md` (Stand, Aufbau, Regeln, Bildaufgaben), `AGENTS.md` als Codex-Einstieg, Originalfotos ohne Metadaten in `branding/assets/photos/originals/` und das Bildskript `make_images.py` reproduzierbar im Repo.
 - **Nicht funktioniert / offen:** Zeitweise arbeiteten zwei Claude-Sessions parallel im selben Ordner (Restsession nach Neustart). Das ging ohne Konflikt, ist aber riskant, sobald Codex dazukommt. Ab jetzt sollte nur ein Agent schreiben. Offen bleiben Hero-Outpainting, Kursgrafiken, Studiofoto, Stripe-Links und die Felder in Impressum/Datenschutz.
 
+### 18.10.2026 · Codex: Hero-Outpainting für Desktop und Handy
+- **Versucht:** Paulas Originalfoto mit dem eingebauten Imagegen nach links und seitlich erweitern, damit die Schulter natürlich ausläuft; für das Handy zusätzlich Wand über dem Kopf ergänzen. Nach Lucas' Feedback die Schultern etwas schmaler und die linke Desktop-Bildhälfte dunkler machen.
+- **Funktioniert:** Lucas hat die zweite Fassung zur Umsetzung freigegeben. Zwei neue JPEGs eingebunden, Originalbilder erhalten. Im Browser bei 375 px und 1440 px geprüft: passende Bildquelle geladen, kein horizontales Scrollen, keine JavaScript-Fehler; mobiles Menü und Behandlungs-Akkordeon funktionieren. Bildgenerierung ist keine pixelgenaue Erhaltung des Originalporträts.
+- **Nicht funktioniert / offen:** Playwrights Standard-Browser fehlte; Prüfung mit installiertem Chrome erfolgreich. Die alten Hero-Dateien und das bisherige Bildskript bleiben erhalten; letzteres erzeugt weiterhin nur die frühere Notlösung. Prompts und neue Dateinamen stehen unter `branding/assets/photos/HERO-OUTPAINT.md`.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
