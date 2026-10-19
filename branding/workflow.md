@@ -317,6 +317,11 @@
 - **Funktioniert:** Die Zeile lautet jetzt „Erfahrung · 5 Jahre & 4 Weiterbildungen“. Die Zahlen stammen von Lucas, wie bei den Auszeichnungen. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Lorbeerkränze wachsen beim Scrollen
+- **Versucht:** Die drei Lorbeer-Auszeichnungen sollen sich öffnen, wenn man den Abschnitt erreicht: Sie wachsen in etwa einer Sekunde aus der Mitte, ausgelöst durch das Erreichen und nicht an den Scrollweg gekoppelt.
+- **Funktioniert:** Ein IntersectionObserver (35 % sichtbar) setzt einmalig `.grown`. Die Kränze wachsen dann in 1 s von 45 % auf 100 % und blenden ein. Die drei sind um je 0,15 s versetzt, Zahl und Text erscheinen danach. Gemessen nach 0,4 s: 0,93 / 0,82 / 0,56, nach 1,6 s alle fertig. Den Startzustand setzt ein kleines Skript im `<head>` (`html.js`), damit die Kränze nicht erst groß erscheinen und dann schrumpfen. Ohne JavaScript oder mit „Bewegung reduzieren“ stehen sie sofort fertig da. Bei 375 und 1440 px keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Die erste Fassung setzte die Startklasse erst per JavaScript. Dadurch schrumpften die Kränze nach dem Laden sichtbar, bevor sie wuchsen. Behoben.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

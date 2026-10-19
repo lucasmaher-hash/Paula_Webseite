@@ -229,6 +229,18 @@ body.menu-open{overflow:hidden}
 .award-text strong{font-size:clamp(1.3rem,6.4vw,2.1rem);font-weight:500;letter-spacing:-.02em;line-height:1.1}
 .award-text span{margin-top:2px;font-size:.6rem;letter-spacing:0;line-height:1.35;color:var(--color-on-surface-muted)}
 @media(min-width:900px){.awards{padding-top:var(--space-8)}.awards-grid{gap:var(--space-6)}.award-text span{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}}
+/* Erreicht man den Abschnitt, wachsen die Kränze in ca. 1 s aus der Mitte (js/main.js setzt .grown), leicht versetzt.
+   Startzustand nur mit JS (html.js) und ohne „Bewegung reduzieren“ */
+@media(prefers-reduced-motion:no-preference){
+  .js .award .laurel{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s ease}
+  .js .award-text{transition:opacity .7s ease .35s,transform .7s ease .35s}
+  .js .awards-grid:not(.grown) .award .laurel{transform:scale(.45);opacity:0}
+  .js .awards-grid:not(.grown) .award-text{opacity:0;transform:translateY(6px)}
+  .js .award:nth-child(2) .laurel{transition-delay:.15s}
+  .js .award:nth-child(2) .award-text{transition-delay:.5s}
+  .js .award:nth-child(3) .laurel{transition-delay:.3s}
+  .js .award:nth-child(3) .award-text{transition-delay:.65s}
+}
 
 /* ---------- Ergebnisse: horizontaler Streifen ---------- */
 .results{padding-bottom:var(--space-6)}

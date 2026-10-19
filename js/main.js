@@ -204,6 +204,20 @@
   });
   if (location.hash) openFromHash(location.hash.slice(1));
 
+  // Auszeichnungen: Lorbeerkränze wachsen aus der Mitte, sobald der Abschnitt im Blick ist (einmalig)
+  var awards = document.querySelector('.awards-grid');
+  if (awards) {
+    if (reduced || !('IntersectionObserver' in window)) awards.classList.add('grown');
+    else {
+      var awardsIO = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        awards.classList.add('grown');
+        awardsIO.disconnect();
+      }, { threshold: 0.35 });
+      awardsIO.observe(awards);
+    }
+  }
+
   // Gutscheine (Desktop): im Abschnitt driften die Karten senkrecht auseinander, beim Verlassen wieder zusammen
   var vouchers = document.querySelector('.vouchers-grid');
   if (vouchers) {
