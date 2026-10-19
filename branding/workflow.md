@@ -297,6 +297,11 @@
 - **Funktioniert:** Aus dem Bild mit Wimpern und Brauen ist die untere Hälfte mit der Braue als `images/brow.jpg` zugeschnitten (978 × 578), das Original liegt in `branding/assets/photos/originals/lashes-brows.jpg`. Es ersetzt oben links ein Lippenbild. Das Lippenbild unten rechts ist entfernt. Spalte 4 hat jetzt ein hohes Bild mit Luft darunter, wie in der ursprünglichen Referenz. Die Collage hat 7 Bilder, am Handy auch. Bei 375, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Wie bei den anderen Chat-Bildern ist noch nicht bestätigt, dass die Braue Paulas Arbeit ist.
 
+### 19.10.2026 · Bewertungen: Panel-Abstände wie im Kontakt, „Alle Bewertungen“-Panel
+- **Versucht:** Lucas wollte zwischen den Bewertungs-Panels denselben Abstand wie im Kontakt-Raster, dazu eine weitere Bewertung und ein etwas dunkleres Panel „Alle ansehen“.
+- **Funktioniert:** Der Abstand ist jetzt 8 px am Handy und 10 px am Desktop. Am Desktop stehen die Panels in 3 Spalten. Das neue Panel „Alle Bewertungen“ (5.0 ★, „Alle 26 Bewertungen auf Beautinda ansehen ↗“) ist als Ganzes ein Link und ersetzt den bisherigen Button darunter. Es nutzt `--color-surface-deep` (wie die Öffnungszeiten) und füllt am Desktop die letzten zwei Spalten. Die erste Fassung war nicht dunkler, weil die allgemeine `.review`-Regel weiter unten stand. Behoben mit `.review.review-all`. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Die zusätzliche Bewertung fehlt. Auf der Seite stehen schon alle vier echten Zitate aus `docs/prd.md`, Beautinda ist aus der Cloud gesperrt, und Bewertungen werden nicht erfunden. Kommt ein fünfter echter Text, wird er vor dem Panel eingefügt und `.review-all` verliert die Doppelspalte (3 + 3).
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

@@ -420,12 +420,19 @@ body.menu-open{overflow:hidden}
 .rating-badge{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4);margin:var(--space-4) 0}
 .rating-badge .score{font-size:clamp(3.2rem,9vw,4.6rem);font-weight:500;letter-spacing:-.04em;line-height:1}
 .rating-badge .stars{color:var(--color-accent);font-size:1.3rem;letter-spacing:.15em}
-.reviews-grid{display:grid;gap:var(--space-3);margin-top:var(--space-6)}
-@media(min-width:900px){.reviews-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-4)}}
+/* Abstand wie im Kontakt: 8 px Handy, 10 px Desktop. Desktop 3 Spalten; „Alle Bewertungen“ füllt den Rest der letzten Reihe */
+.reviews-grid{display:grid;gap:8px;margin-top:var(--space-6)}
+@media(min-width:900px){.reviews-grid{grid-template-columns:repeat(3,1fr);gap:10px}.review-all{grid-column:span 2}}
+.review.review-all{background:var(--color-surface-deep);text-decoration:none;color:inherit;justify-content:space-between;min-height:180px;transition:filter .25s ease}
+.review-all:hover{filter:brightness(.97)}
+.review-all:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
+.review-all-score{font-family:var(--font-display);font-size:clamp(2.4rem,6vw,3.4rem);line-height:1}
+.review-all-score span{color:var(--color-accent);font-size:.6em;vertical-align:.25em}
+.review-all-cta{display:inline-flex;align-items:center;gap:10px;font-weight:500}
+.review-all:hover .btn-ic{transform:translate(2px,-2px)}
 .review{background:var(--color-surface-raised);border-radius:var(--rounded-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4)}
 .review p{font-size:1.02rem;line-height:1.55}
 .review footer{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;font-size:.82rem;color:var(--color-on-surface-muted)}
-.reviews-link{margin-top:var(--space-6)}
 
 /* ---------- Kontakt / Footer ---------- */
 /* Handy: Text, Kontaktdaten, zwei Bilder nebeneinander, Öffnungszeiten.
