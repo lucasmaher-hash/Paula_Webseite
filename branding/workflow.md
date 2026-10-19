@@ -437,6 +437,11 @@
 - **Funktioniert:** Neue Seite `markenprofil.html` im Look des Styleguides: Markenkern als dunkle Fläche („Präzise Schönheit, die bleibt.“ mit Paulas Leitsatz), die drei Werte groß als Karten, jeweils mit „Sichtbar in der Gestaltung“, dazu Charakter mit Tonalität und Abgrenzung mit der Begründung aus dem KI-Marktcheck. Alle Aussagen kommen aus `branding/markenprofil.md`, ohne neue Fakten. Der Pink-Widerspruch des Profils („höchstens eine pinke Fläche pro Ansicht“) ist in der Kurzfassung durch die heutige Regel ersetzt (Pink nur für Behandlungen und Bewertungen). Im Styleguide steht oben rechts ein dunkelbrauner Knopf „Markenprofil ↗“. Geprüft bei 1440 px: kein horizontales Scrollen, keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Die Langfassung `branding/markenprofil.md` sagt beim Pink noch das Alte und sollte angeglichen werden. Die Werte-Karten habe ich nur über das DOM geprüft, nicht optisch.
 
+### 19.10.2026 · Styleguide präziser, Kategorien als Seitenleiste (Claude lokal)
+- **Versucht:** Lucas fand den Styleguide zu lang und wollte die Kategorien links als Seitenleiste.
+- **Funktioniert:** Gemessen 18,2 Bildschirmhöhen bei 1440 px. Gekürzt: Abschnitt „Verfahren“ raus (gehört ins Logbuch), Zielgruppe raus (steht im Markenprofil), Moodboard-Ja/Nein-Liste raus, „Abstimmung“ mit den Reglerwerten raus, Farbmuster als kompakte Reihe, Kleinfassungs-Vergleich ohne Pixelbild und Großansicht, „Panels nebeneinander“ und „Kacheln“ raus, Zeichenprobe und eine Typo-Zeile raus, Bewegungstabelle von 9 auf 6 Zeilen, alle Einleitungen auf ein bis zwei Sätze, Anwendungs-Mockups kleiner. Ergebnis: 14,0 Bildschirmhöhen (−23 %). Ab 1100 px stehen die Kategorien als feste Leiste links (220 px), die sichtbare Kategorie bekommt die Hover-Linie (IntersectionObserver). Darunter bleibt die alte Leiste oben (Styleguide nur Desktop). Nebenbei: Der Kopfbereich hatte keinen seitlichen Rand, das fiel erst mit der Leiste auf und ist behoben. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Die größten Abschnitte sind weiter Logo (inklusive Kleinfassungs-Vergleich und dynamischem Logo) und Anwendung. Weiter kürzen ginge nur durch das Streichen von Inhalten, die Lucas ausdrücklich im Styleguide haben wollte.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
