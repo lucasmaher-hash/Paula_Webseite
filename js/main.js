@@ -213,6 +213,44 @@
     }, { threshold: 0.4 }).observe(vouchers);
   }
 
+  // Glow is painted in the panel background, never in an overlay above content.
+  var glowMedia = window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  var glowSelector = '.about-panel, .services, .accordion details, .course-heading, .course-content, .voucher, .reviews, .review, .contact-panel, .hours, .tile';
+  var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0;
+  function clearGlow() {
+    cancelAnimationFrame(glowFrame); glowFrame = 0;
+    glowPanels.forEach(function (panel) {
+      panel.classList.remove('panel-glow-active');
+      panel.style.removeProperty('--panel-glow-x');
+      panel.style.removeProperty('--panel-glow-y');
+    });
+    glowPanels = [];
+  }
+  function paintGlow() {
+    glowFrame = 0;
+    glowPanels.forEach(function (panel) {
+      var rect = panel.getBoundingClientRect();
+      panel.style.setProperty('--panel-glow-x', (glowX - rect.left) + 'px');
+      panel.style.setProperty('--panel-glow-y', (glowY - rect.top) + 'px');
+      panel.classList.add('panel-glow-active');
+    });
+  }
+  document.addEventListener('pointermove', function (event) {
+    if (!glowMedia.matches || event.pointerType !== 'mouse') { clearGlow(); return; }
+    var target = event.target.closest(glowSelector);
+    if (!target || event.target.closest('img, picture, .course-media, .about-figure, .color-tuner')) { clearGlow(); return; }
+    // Desktop course title and body form one visual frame: share the same cursor.
+    var panels = target.matches('.course-heading, .course-content')
+      ? Array.from(target.closest('.course').querySelectorAll('.course-heading, .course-content')) : [target];
+    if (panels[0] !== glowPanels[0]) { clearGlow(); glowPanels = panels; }
+    glowX = event.clientX; glowY = event.clientY;
+    if (!glowFrame) glowFrame = requestAnimationFrame(paintGlow);
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', clearGlow);
+  window.addEventListener('blur', clearGlow);
+  window.addEventListener('scroll', clearGlow, { passive: true, capture: true });
+  glowMedia.addEventListener('change', clearGlow);
+
   // Einblenden beim Scrollen
   var items = document.querySelectorAll('.reveal');
   if (reduced || !('IntersectionObserver' in window)) {

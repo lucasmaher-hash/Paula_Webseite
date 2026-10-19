@@ -257,6 +257,11 @@
 - **Funktioniert:** Italiana lokal eingebunden, Instrument Sans für Fließtext und Bedienelemente erhalten. Vollständige Farbrollen je Palette ersetzen verstreute Einzelwerte, einschließlich Header, Buttons und Hover. Panels und Bildrahmen erhalten 1-px-Konturen. Unter `?tune=1` gibt es je sieben Regler mit lokaler Speicherung, Reset und CSS-Export; der Styleguide verlinkt darauf. Bei 375 und 1440 px kein horizontales Scrollen. Mobiles Menü, Behandlungs-Akkordeon, Kurs-Toggle, getrennte Farbänderung, Speicherung nach Neuladen, Export und Reset im Browser geprüft. Standard-Buttonkontraste rechnerisch 4,67:1 (Braun) und 5,23:1 (Pink). Keine Browserfehler beim Desktop-Test.
 - **Nicht funktioniert / offen:** Reglerwerte sind eine persönliche Vorschau; Änderungen werden erst durch Übernahme des Exports und ein Deployment öffentlich. Stark aufgehellte individuelle Einstellungen können den Textkontrast verringern. Die eigene Vorschau ist kein Ersatz für Paulas gestalterische Freigabe.
 
+### 19.10.2026 · Codex · Dezenter Maus-Glow im Panel-Hintergrund
+- **Versucht:** Lucas wollte auf Desktop eine kleine, etwas dunklere Farbabweichung hinter der Maus, innerhalb der Inhalts-Panels und auf derselben Ebene wie deren Hintergrundfarbe. Bilder und Schrift sollen nicht überlagert werden.
+- **Funktioniert:** Radialer CSS-Hintergrund mit 190 px Radius, maximal 10 % Deckkraft und dem jeweiligen Braun-/Pink-Farbton. Die Hintergrundebene liegt von selbst unter allen Inhalten und wird an den abgerundeten Panelrändern begrenzt. Nur das innerste Panel reagiert; Kurskopf und Kursinhalt erhalten gemeinsame Mauskoordinaten. Positionsupdates werden pro Animationsframe gebündelt. Im Desktop-Browser beide Farbwelten und unveränderte Schriftfarbe geprüft; beim Verlassen verschwindet der Effekt. Bei 375 px kein Glow und kein horizontales Scrollen, keine Browserfehler. Styleguide und Cache-Versionen aktualisiert.
+- **Nicht funktioniert / offen:** Keine technischen Blocker. Die dezente Stärke ist eine gestalterische Ausgangseinstellung für Lucas' Beurteilung. Auf Touch-Geräten und bei reduzierter Bewegung bleibt der Effekt aus.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

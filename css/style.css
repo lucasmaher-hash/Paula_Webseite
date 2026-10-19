@@ -505,3 +505,15 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
   .course-heading{border:1px solid var(--color-border);border-bottom:0}
   .course-content{border:1px solid var(--color-border);border-top:0}
 }
+
+/* Desktop cursor tint: a background image, below all text, controls and photos.
+   Each panel clips its own background naturally to its rounded border. */
+@media(min-width:900px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .panel-glow-active{
+    background-image:radial-gradient(circle 190px at var(--panel-glow-x) var(--panel-glow-y),
+      hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .10) 0%,
+      hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .04) 45%,
+      transparent 100%);
+    background-origin:border-box;
+  }
+}

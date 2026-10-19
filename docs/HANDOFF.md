@@ -9,7 +9,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - Italiana Regular lokal in `fonts/` für H1–H3 und hervorgehobene Zahlen. Instrument Sans für Fließtext, Navigation, Buttons und Labels bleibt. Das Vektorlogo ist unverändert.
 - Feine 1-px-Rahmen um Karten, Panels und Bildrahmen; Kurs-Textflächen haben am Desktop eine gemeinsame Außenkontur ohne Trennlinie zwischen Kopf und Inhalt.
 - Farbregler: `/?tune=1` (auch über den Styleguide verlinkt). Pro Palette Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Flächendeckkraft und Rahmenkontrast. Einstellungen gelten nur in dieser Vorschau, werden lokal gespeichert und können zurückgesetzt oder als CSS exportiert werden. Kein automatisches Veröffentlichen durch die Regler.
-- Aktuell `style.css?v=44`, `fonts.css?v=2`, `color-tuner.css?v=1`, `color-tuner.js?v=1`; `main.js?v=24` unverändert.
+- Aktuell `style.css?v=45`, `fonts.css?v=2`, `color-tuner.css?v=1`, `color-tuner.js?v=1`; `main.js?v=25`.
 - Standardkontraste: Braun-Button 4,67:1, Pink-Button 5,23:1; Nebentext auf Standard-Panels jeweils über 4,5:1. Freie Reglerwerte können diese Kontraste verändern.
 - Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren. Farbregler ändern Braun/Pink getrennt; Wiederherstellung nach Neuladen, Export und Reset geprüft.
 
@@ -18,7 +18,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Live:** https://lucasmaher-hash.github.io/Paula_Webseite/ (GitHub Pages, Branch `main`, Repo öffentlich).
 - **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana, Instrument Sans, Space Mono).
 - **Dateien:** `index.html` (One-Pager), `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** CSS und JS werden mit `?v=N` eingebunden (aktuell `style.css?v=44`, `main.js?v=24`). Bei jeder Änderung an einer der Dateien die Nummer in `index.html` erhöhen, sonst sehen Handy und GitHub Pages die alte Version (HTML wird 10 min gecacht).
+- **Cache-Busting:** CSS und JS werden mit `?v=N` eingebunden (aktuell `style.css?v=45`, `main.js?v=25`). Bei jeder Änderung an einer der Dateien die Nummer in `index.html` erhöhen, sonst sehen Handy und GitHub Pages die alte Version (HTML wird 10 min gecacht).
 
 ### Aufbau von `index.html` (von oben nach unten)
 
@@ -41,6 +41,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 
 - **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
 
+- **Panel-Glow** (Lucas, 19.10.2026): Nur Desktop ab 900 px, echte Maus und keine reduzierte Bewegung. Radialer Verlauf als CSS-Hintergrund im jeweiligen Braun/Pink, 190 px Radius und maximal 10 % Deckkraft. Kein Overlay; Schrift, Buttons und Bilder bleiben darüber. Nur das innerste Inhalts-Panel reagiert, Kurskopf und -inhalt bilden gemeinsam eine Fläche. Bei Verlassen, Scrollen und Fensterwechsel wird der Effekt entfernt.
 - **Zwei Farbwelten** (Lucas, 19.10.2026): Braun als Basis, Pink für Behandlungen und Bewertungen. Einstellbare Quellwerte `--brown-*` und `--pink-*` oben in `style.css`; daraus entstehen alle Farbrollen. Hero-Wandton `--hero-wall #A39588` bleibt die Foto-Grundfarbe. Italiana für Überschriften, Instrument Sans für Fließtext und Bedienelemente.
 - **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeilkreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.checklist` + `.perks` (Kurskarten mit vier Icon-Kacheln), Akkordeon mit runden +/–.
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
