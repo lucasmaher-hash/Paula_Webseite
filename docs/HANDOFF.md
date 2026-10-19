@@ -10,7 +10,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Domain:** paula-maher.de liegt bei Strato (Paulas Paket mit 1 Inklusiv-Domain und 1 Mailpostfach). Strato-DNS: A-Record `185.199.108.153` (GitHub, Strato erlaubt nur eine IPv4), CNAME `www` → `lucasmaher-hash.github.io`. Stand 19.10.2026: Zertifikat deckt erst `paula-maher.de` ab, `https://www.…` zeigt noch Zertifikatsfehler (GitHub stellt www verzögert aus). MX und NS nicht anfassen, sonst bricht Paulas Mail. Die Datei `CNAME` im Repo nicht löschen. HTTPS erzwungen, Zertifikat von GitHub (Let's Encrypt).
 - **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana für Überschriften und große Zahlen, Instrument Sans für alles andere).
 - **Dateien:** `index.html` (One-Pager), `styleguide.html`, `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** aktuell `style.css?v=63`, `main.js?v=38`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
+- **Cache-Busting:** aktuell `style.css?v=64`, `main.js?v=38`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
 
 ### Aufbau von `index.html` (von oben nach unten)
 

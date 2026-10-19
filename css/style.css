@@ -527,6 +527,8 @@ body.menu-open{overflow:hidden}
   .nav-dd:hover .nav-dd-btn::after{transform:scaleX(1);transition-duration:.45s}
 }
 /* Touch: Linie unter der Kategorie gehört zum Zustand „offen", halb so schnell */
+/* Geöffnete Kategorie: Linie bleibt stehen, auch wenn die Maus weggeht */
+.accordion details[open] summary h3::after{transform:scaleX(1)}
 @media(hover:none){
   .accordion summary h3::after{transition-duration:.7s}
   .accordion details[open] summary h3::after{transform:scaleX(1);transition-duration:.9s}

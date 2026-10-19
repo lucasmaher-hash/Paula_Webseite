@@ -417,6 +417,11 @@
 - **Funktioniert:** Der Rahmen war der Fokusrahmen des Bilderstreifens: `tabindex="0"` (für das seitliche Scrollen per Tastatur am Handy) plus `.strip:focus-visible`. Nach einem Klick oder Tab bekam der Streifen den Fokus. Jetzt setzt `main.js` den tabindex nur, solange der Streifen scrollbar ist. Gemessen: Handy tabindex 0 (1566 > 375 px), Desktop kein tabindex, Fokus nicht möglich. Die Feder (Kippen bei Maus und Scrollen) ist aus `main.js` und dem Styleguide entfernt. Der Mittelstrich wächst nur noch beim Hover auf seiner Achse (Header 9,28 → 18,57 px, Mitte unverändert). CSS v63, JS v38. Keine Konsolenfehler.
 - **Nicht funktioniert / offen:** In Safari am echten Gerät ist der Rahmen-Fix nicht nachgestellt, der Screenshot kam aus Safari. Das Logo reagiert jetzt nur noch auf Hover, auf Touch-Geräten bewegt es sich gar nicht.
 
+### 19.10.2026 · Linie unter geöffneter Kategorie bleibt (Claude lokal)
+- **Versucht:** Lucas: „wenn eine Dienstleistungskategorie geöffnet ist, lass die Linie drunter, auch wenn die Maus weg geht.“
+- **Funktioniert:** Am Handy gab es das schon (`@media(hover:none)`). Neu gilt `.accordion details[open] summary h3::after{transform:scaleX(1)}` für alle Geräte. Die Regeln fürs Zuklappen am Handy stehen danach und gewinnen dort weiter. Gemessen bei 1440 px: geöffnete Kategorie `scaleX(1)` ohne Hover, geschlossene `scaleX(0)`. Bei 375 px unverändert. CSS v64, Styleguide-Text angepasst.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
