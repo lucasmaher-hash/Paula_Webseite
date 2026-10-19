@@ -154,10 +154,12 @@
 @media(min-width:1100px){.sg-mood{grid-template-columns:repeat(6,1fr);grid-auto-rows:160px;gap:10px}}
 .sg-mood > figure{position:relative;border-radius:var(--rounded-lg);overflow:hidden;background:var(--color-surface);margin:0}
 .sg-mood img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sg-mood figure:not(.plain) figcaption{left:0;right:0;bottom:0;padding:22px 10px 9px;background:linear-gradient(transparent,rgba(40,25,20,.42))}
 .sg-mood figcaption{position:absolute;left:10px;bottom:10px;right:10px;font-size:.72rem;letter-spacing:.04em;line-height:1.35;color:var(--color-on-primary);text-shadow:0 1px 8px rgba(0,0,0,.35)}
 .sg-mood .plain figcaption{color:var(--color-on-surface-muted);text-shadow:none}
 .sg-mood .tall{grid-row:span 2}
 .sg-mood .wide{grid-column:span 2}
+.sg-mood .big{grid-column:span 2;grid-row:span 2}
 .sg-mood .word{display:grid;place-items:center;font-family:var(--font-display);font-size:clamp(1.5rem,3.4vw,2.2rem);color:var(--color-primary);text-align:center;padding:12px}
 .sg-mood .glyph{display:grid;place-items:center;font-family:var(--font-display);font-size:clamp(4rem,10vw,6.5rem);line-height:1;color:var(--color-primary)}
 .sg-mood .glow{background:radial-gradient(120% 90% at 30% 0%,hsl(var(--pink-hue) 60% 86%) 0%,hsl(var(--brown-hue) 40% 74%) 45%,hsl(var(--brown-hue) 30% 52%) 100%)}
@@ -322,22 +324,27 @@
     <div class="container">
       <span class="eyebrow">03 · Moodboard</span>
       <h2 id="mood-h">Warm, ruhig, nah dran.</h2>
-      <p class="intro">Warmes Licht statt harter Schatten, Haut- und Holztöne, Rosé als leiser Akzent. Ergebnisfotos und Porträt sind aus Paulas Studio, die Raumfotos nur Referenzen.</p>
+      <p class="intro">Die Richtung gibt das Studio-Interieur vor: dunkles Nussholz, Bouclé, Stein und warmes Licht, dazu Creme-, Haut- und Rosétöne. Ergebnisfotos und Porträt sind aus Paulas Studio, alles mit „Referenz“ ist Stimmung.</p>
       <div class="sg-mood" style="grid-auto-flow:dense">
-        <figure class="tall"><img src="images/studio-light.jpg" alt="Indirektes warmes Licht hinter einer abgerundeten Wand" loading="lazy"><figcaption>Licht statt Schatten · Referenz</figcaption></figure>
-        <figure class="plain glyph" style="background:var(--color-surface-raised)"><span aria-hidden="true">Aa</span><figcaption>Italiana</figcaption></figure>
+        <figure class="big"><img src="images/mood-studio-direction.jpg" alt="Studio-Interieur: Pilzlampe aus Stein auf einem geriffelten Sideboard aus Nussholz, davor ein Bouclé-Sessel" loading="lazy"><figcaption>Richtung · Nussholz, Bouclé, Stein, warmes Licht</figcaption></figure>
         <figure class="tall"><img src="images/paula-studio.jpg" alt="Paula Maher im Studio" loading="lazy"><figcaption>Paula · klar und ruhig</figcaption></figure>
-        <figure class="plain word" style="background:var(--color-surface)"><span>nah dran.</span></figure>
+        <figure class="tall"><img src="images/mood-wicker-chair.jpg" alt="Korbsessel vor heller Wand" loading="lazy"><figcaption>Geflecht und Creme · Referenz</figcaption></figure>
+        <figure class="plain glyph" style="background:var(--color-surface-raised)"><span aria-hidden="true">Aa</span><figcaption>Italiana</figcaption></figure>
+        <figure class="chips plain"><span style="background:hsl(var(--brown-hue) 38% 90%)"></span><span style="background:rgb(110,80,60)"></span><span style="background:hsl(var(--pink-hue) 35% 86%)"></span><figcaption>Creme · Nussholz · Rosé</figcaption></figure>
+        <figure class="tall"><img src="images/mood-nails-pink.jpg" alt="Rosa lackierte Nägel auf weißem Tuch" loading="lazy"><figcaption>Rosé Nägel · Referenz</figcaption></figure>
+        <figure class="tall"><img src="images/studio-light.jpg" alt="Indirektes warmes Licht hinter einer abgerundeten Wand" loading="lazy"><figcaption>Warmes Licht · Referenz</figcaption></figure>
+        <figure><img src="images/mood-cream-fabric.jpg" alt="Cremefarbener Stoff mit weichen Falten" loading="lazy"><figcaption>Stoff · Referenz</figcaption></figure>
+        <figure><img src="images/mood-nails-rose.jpg" alt="Hand mit hellen Nägeln vor rosé Hintergrund" loading="lazy"><figcaption>Nude · Referenz</figcaption></figure>
         <figure class="tall"><img src="images/lips-1.jpg" alt="Lippenpigmentierung, Ergebnis" loading="lazy"><figcaption>Lippen · das Pink der Marke</figcaption></figure>
-        <figure class="glow"><figcaption>Warmer Schein</figcaption></figure>
-        <figure class="chips plain"><span style="background:hsl(var(--brown-hue) 38% 90%)"></span><span style="background:var(--hero-wall)"></span><span style="background:hsl(var(--pink-hue) 35% 86%)"></span><figcaption>Beige · Taupe · Rosé</figcaption></figure>
-        <figure class="wide"><img src="images/studio-glass.jpg" alt="Rosé getöntes Glas mit hellem Holzrahmen" loading="lazy"><figcaption>Rosé hinter Glas, helles Holz · Referenz</figcaption></figure>
+        <figure class="tall"><img src="images/mood-brows-skin.jpg" alt="Porträt mit natürlichen Brauen und Sommersprossen" loading="lazy"><figcaption>Brauen, Haut · Referenz</figcaption></figure>
+        <figure class="plain word" style="background:var(--color-surface)"><span>nah dran.</span></figure>
         <figure><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"><figcaption>Präzision im Detail</figcaption></figure>
-        <figure class="plain line" style="background:var(--color-surface-raised)"><figcaption>Linie aus der Mitte</figcaption></figure>
+        <figure class="wide"><img src="images/mood-lashes.jpg" alt="Wimpernverlängerung mit Pinzette, Nahaufnahme" loading="lazy"><figcaption>Wimpern-Arbeit · Referenz</figcaption></figure>
+        <figure><img src="images/mood-rose.jpg" alt="Zweig mit blassrosa Rosenblüten" loading="lazy"><figcaption>Rose · Referenz</figcaption></figure>
         <figure><img src="images/nails.jpg" alt="Gelnagel in Schokobraun" loading="lazy"><figcaption>Schokobraun</figcaption></figure>
-        <figure class="plain word" style="background:var(--color-surface-deep)"><span>ruhig.</span></figure>
+        <figure><img src="images/mood-nail-polish.jpg" alt="Rosé Nagellack auf hellem Grund" loading="lazy"><figcaption>Lack · Referenz</figcaption></figure>
+        <figure class="plain word wide" style="background:var(--color-surface-deep)"><span>ruhig.</span></figure>
         <figure><img src="images/lashes.jpg" alt="Wimpernverlängerung, Nahaufnahme" loading="lazy"><figcaption>Wimpern · feine Linie</figcaption></figure>
-        <figure class="plain word" style="background:var(--color-surface)"><span>präzise.</span></figure>
       </div>
     </div>
   </section>
