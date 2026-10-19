@@ -277,7 +277,7 @@
 /* Variante B: die Fläche wird mitgeschrieben. Jeder Buchstabe ist gefüllt und maskiert; die Maske ist ein
    breiter Strich entlang seiner Kontur, der genauso gezogen wird wie in Variante A, am Ende ganz geschlossen. */
 .sg-write-fill > path{fill:currentColor;stroke:none}
-.sg-write-fill .mk{fill:none;stroke:#fff;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 1 0 0}
+.sg-write-fill .mk{fill:none;stroke:#fff;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:0 1 0 0}
 .sg-write.is-on .sg-write-fill .mk{animation:sgw-out var(--t) cubic-bezier(.4,0,.2,1) var(--d) forwards,sgw-close .2s linear calc(var(--d) + var(--t)) forwards}
 /* Jede Kontur startet an ihrem dem E nächsten Punkt und wächst von dort in beide Richtungen nach außen */
 @keyframes sgw-out{to{stroke-dasharray:.5 0 .5 0}}
