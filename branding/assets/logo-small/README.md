@@ -2,7 +2,7 @@
 
 Anlass: Bewertung in `branding/logo-prompt.md`. In der dünnen Website-Fassung ist der Mittelstrich des E bei 96 px Logobreite nur 0,2 px breit, der Wortabstand PM|B beträgt 0,79 × Versalhöhe.
 
-Vergleichsseite: `vergleich.html` (lokal über den Dev-Server öffnen, z. B. `http://127.0.0.1:8080/branding/assets/logo-small/vergleich.html`).
+Vergleich: im Styleguide, Abschnitt Logo › „Kleinfassung: Vergleich“ (`styleguide.html#kleinfassung`).
 
 Alle drei Fassungen bauen auf `logo-final/pm-beauty-logo-korrigiert.svg` auf, also auf der normalen statt der dünnen Strichstärke. Der E-Überstand ist kurz wie auf der Website. Der Mittelstrich ist 1,75 statt 0,56 breit. Erzeugt per Python aus den Originalpfaden. Die Buchstaben sind nur verschoben, nicht verändert.
 
@@ -15,4 +15,4 @@ Alle drei Fassungen bauen auf `logo-final/pm-beauty-logo-korrigiert.svg` auf, al
 
 \* Farbabstand des Mittelstrichs zum Hintergrund, gemessen im auf 96 px × 2 gerasterten Bild, bezogen auf eine voll gedeckte Fläche. Die E-Stämme kommen im Original auf 55 %, in allen Kleinfassungen auf 100 %.
 
-Empfehlung von Claude: **C**. Es behält die exakte Mitte, auf die sich Styleguide und Markenprofil berufen, und verkürzt den Wortabstand trotzdem spürbar. B schließt die Lücke am stärksten, aber dann stimmt die Aussage „das E sitzt exakt mittig“ nicht mehr. Der Preis von C: T|Y wird mit 1,99 Einheiten eng (bei 96 px etwa 0,7 px). Die Entscheidung liegt bei Lucas. Die Website ist unverändert.
+**Gewählt: C** (Lucas, 19.10.2026), steht im Header, im mobilen Menü und im Footer. Empfehlung von Claude war ebenfalls C. Es behält die exakte Mitte, auf die sich Styleguide und Markenprofil berufen, und verkürzt den Wortabstand trotzdem spürbar. B schließt die Lücke am stärksten, aber dann stimmt die Aussage „das E sitzt exakt mittig“ nicht mehr. Der Preis von C: T|Y wird mit 1,99 Einheiten eng (bei 96 px etwa 0,7 px).

@@ -402,6 +402,11 @@
 - **Funktioniert:** Der Styleguide-Abschnitt „Dynamisches Logo“ hat jetzt alles, was die Seite konnte, außer der Handy-Neigung: große Live-Fläche (volle Fassung, 14°, Pink bei Öffnung), Uhrzeit-Simulation und neu zwei Header-Vorschauen mit Kleinfassung C bei 112 und 96 px, die wie auf der Website nur die Höhe ändern und mit 8° mitkippen. Die Prototyp-Seite ist gelöscht (`git rm`, bleibt in der Historie). Gemessen: geschlossen 13,24/2,97/2,55 px, offen 41,38/9,28/7,96 px Strichhöhe (Fläche/112/96 px), bei Mausbewegung 9,5° groß und 5,4° in den Headern. Desktop 1440 px ohne horizontales Scrollen und ohne Konsolenfehler.
 - **Nicht funktioniert / offen:** Den Neigungs-Knopf gibt es nicht mehr, weil der Styleguide nur für den Desktop gilt. Die Vergleichsseite der Kleinfassungen (`branding/assets/logo-small/vergleich.html`) ist weiterhin eine eigene Seite.
 
+### 19.10.2026 · Kleinfassungs-Vergleich im Styleguide (Claude lokal)
+- **Versucht:** Lucas: „Integriere die Vergleichsseite der Kleinfassungen auch in den Styleguide und lösche die separate Seite.“
+- **Funktioniert:** Neuer Unterabschnitt „Kleinfassung: Vergleich“ im Logo-Abschnitt (`styleguide.html#kleinfassung`), vor der Schutzzone: vier Karten (Original, A, B, C) mit 96 und 112 px, gerastertem Pixelbild, großer Ansicht mit Mittelachse und Messwerten. C ist als „Auf der Website“ markiert. Der Hinweis unter „Größen“ verlinkt jetzt auf diesen Anker. `vergleich.html` ist gelöscht (bleibt in der Git-Historie), das README in `logo-small/` ist angepasst. Bei 1440 px kein horizontales Scrollen, keine Konsolenfehler, alle vier Pixelbilder gerendert.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
