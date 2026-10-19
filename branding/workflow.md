@@ -337,6 +337,11 @@
 - **Funktioniert:** Dieser Link ist jetzt `inline` statt `inline-block`, und die Linie ist ein Hintergrundverlauf mit `box-decoration-break: clone`. So bekommt jede Zeile ihre eigene Linie, die wie die anderen Hover-Linien von der Mitte wächst (0,35/0,45 s). Gemessen: zwei Zeilenrechtecke mit 138 und 81 px, jede mit eigener Linie. Die erste Fassung griff nicht, weil die allgemeine Hover-Linien-Regel weiter unten steht. Behoben mit `.fact.fact-address a`.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Pinker Header deutlicher
+- **Versucht:** Lucas meldete, der pinke Header funktioniere nicht.
+- **Funktioniert:** Technisch lief der Wechsel, er war aber kaum zu sehen. Gemessen: RGB 245/234/233 ohne und 242/227/228 mit Tönung. Der Header ist zu 68 % deckend und lag ohnehin über einer pinken Fläche. Die Tönung nutzt jetzt die pinke Flächenfarbe `--color-surface` mit 90 % Deckkraft, auch im mobilen Verlauf. Gemessen danach: 233/210/213 gegenüber 245/234/233, im Screenshot klar als Pink erkennbar. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Safari konnte hier nicht getestet werden (nur Chromium in der Cloud).
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

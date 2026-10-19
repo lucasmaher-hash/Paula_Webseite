@@ -141,14 +141,14 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
    (Behandlungen, Bewertungen; Klasse .over-pink aus js/main.js), blendet sie in 1 s ein und wieder aus */
 .header-tint{
   position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:color-mix(in srgb,var(--color-background) 68%,transparent);
+  background:color-mix(in srgb,var(--color-surface) 90%,transparent);   /* deutlich pink, nicht nur der durchscheinende Abschnitt */
   border-bottom:1px solid color-mix(in srgb,var(--color-border) 70%,transparent);
   opacity:0;transition:opacity 1s ease;
 }
 .site-header.over-pink .header-tint{opacity:1}
 @media(max-width:899px){
   .site-header:not(.over-hero) .header-tint{
-    background:linear-gradient(to bottom,var(--color-background) 0%,color-mix(in srgb,var(--color-background) 68%,transparent) 33%,color-mix(in srgb,var(--color-background) 68%,transparent) 100%);
+    background:linear-gradient(to bottom,var(--color-surface) 0%,color-mix(in srgb,var(--color-surface) 90%,transparent) 33%,color-mix(in srgb,var(--color-surface) 90%,transparent) 100%);
   }
 }
 @media(prefers-reduced-motion:reduce){.header-tint{transition:none}}
