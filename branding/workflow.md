@@ -377,6 +377,11 @@
 - **Funktioniert:** Claude hat das ganze Logbuch ausgewertet und die vier Abschnitte nach Ammers Vorlage neu geschrieben, Titel jetzt „Kurzprojekt 1 (Identität) und 2 (Website)“. Neu ist `branding/logo-prompt.md`: ein nachträglich formulierter Prompt, neun Kriterien mit Prüfmethode und eine gemessene Bewertung des finalen Logos. Ergebnis: Mitte, Gleichmaß und Technik sind erfüllt. Nicht erfüllt sind die Lesbarkeit klein (Mittelstrich des E im Header nur 0,2 px breit) und das Wortbild (Wortabstand 0,79 × Versalhöhe).
 - **Nicht funktioniert / offen:** Der Prompt ist rückwirkend formuliert, das Logo ist nicht aus ihm entstanden. So steht es auch in der Datei. Der Charakter-Test mit fremden Personen (K6) ist nicht gemacht. Ob es eine Kleinfassung für den Header gibt, entscheidet Lucas.
 
+### 19.10.2026 · Kleinfassung des Logos für den Header (Claude lokal)
+- **Versucht:** Die Bewertung im Logo-Prompt zeigte: Im Header ist der Mittelstrich des E nur 0,2 px breit, der Wortabstand zu groß. Lucas: „Entwirf eine Kleinfassung für den Header: Mittelstrich breiter, Wortabstand enger, zum Vergleich neben dem Original.“
+- **Funktioniert:** Drei Fassungen in `branding/assets/logo-small/`, alle auf der normalen statt der dünnen Strichstärke, Mittelstrich 1,75 statt 0,56: A nur kräftiger, B mit Wortabstand 0,5 × Versalhöhe (E dafür 1,5 % neben der Mitte), C mit Wortabstand −4 und A/U/T/Y je 1 enger (E bleibt exakt mittig). Die Vergleichsseite `vergleich.html` zeigt alle vier in Echtgröße im Header, über Pink und als gerastertes Pixelbild. Gemessen in diesem Pixelbild: Der Mittelstrich erreicht im Original 20 % des vollen Kontrasts, in den Kleinfassungen 61 bis 70 %. Bei 375 und 1440 px kein horizontales Scrollen, keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Auf einem echten Handy-Display ist es nicht angesehen. Claude empfiehlt C, die Wahl trifft Lucas. Die Website ist unverändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
