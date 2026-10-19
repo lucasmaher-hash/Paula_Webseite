@@ -3,9 +3,9 @@
 :root{
   /* Two palettes. The tuning panel edits only these source values. */
   --brown-hue:16; --brown-saturation:38; --brown-brightness:-1;
-  --brown-text:37; --brown-button:51; --brown-opacity:100; --brown-border:24;
+  --brown-text:37; --brown-button:51; --brown-opacity:100; --brown-border:19.2;
   --pink-hue:351; --pink-saturation:35; --pink-brightness:-4;
-  --pink-text:32; --pink-button:47; --pink-opacity:100; --pink-border:22;
+  --pink-text:32; --pink-button:47; --pink-opacity:100; --pink-border:17.6;
   --hero-wall:#A39588;              /* Wandton des Hero-Fotos */
 
   --font-display:"Italiana",Georgia,serif;
@@ -487,7 +487,7 @@ body.menu-open{overflow:hidden}
 
 /* Italiana is reserved for display hierarchy; body and functional labels stay sans. */
 h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .score{
-  font-family:var(--font-display);font-weight:400;font-synthesis:none;letter-spacing:-.015em;
+  font-family:var(--font-display);font-weight:400;font-synthesis:none;letter-spacing:0;   /* wie in Figma */
 }
 .hero h1{line-height:1.08}
 .tile h3{font-size:1.6rem}
