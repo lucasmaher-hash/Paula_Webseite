@@ -43,7 +43,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 ## 2. Arbeitsweise (von Lucas festgelegt)
 
 1. **Vor Arbeitsbeginn (lokal) Lucas die Links nennen:** Desktop `http://localhost:8080`, Handy `http://<LAN-IP>:8080` (LAN-IP per `ipconfig getifaddr en0`). Server: `python3 -m http.server 8080 --bind 0.0.0.0` **im Repo-Ordner** starten (nicht in `~`), am Mac `http://127.0.0.1:8080` statt `localhost` öffnen (Safari löst `localhost` sonst über IPv6 auf).
-2. **Handy zuerst testen** (375 px), danach Desktop (1280/1440 px). Prüfen: kein horizontales Scrollen, Menü, Akkordeon, keine Konsolenfehler.
+2. **Handy zuerst testen** (375 px), danach Desktop (1280/1440 px). Prüfen: kein horizontales Scrollen, Menü, Akkordeon, keine Konsolenfehler. **Ausnahme Styleguide** (Lucas, 19.10.2026): `styleguide.html` wird nicht mehr fürs Handy optimiert oder dort getestet, nur Desktop. Bestehende mobile Regeln bleiben, wie sie sind.
 3. **Automatisch committen und pushen**, ohne nachzufragen (`main`). Nach dem Push warten, bis das Pages-Deployment fertig ist (`gh run list`), erst dann „live" melden. Zwei schnelle Pushes hintereinander brechen das erste Deployment ab; das ist harmlos, solange das letzte durchläuft.
 4. **Workflow-Tagebuch ist Pflicht:** Nach jeder Arbeitssession einen Eintrag in `branding/workflow.md` (Logbuch: Versucht / Funktioniert / Nicht funktioniert), im selben Stil wie die bisherigen Einträge. Das ist Teil von Lucas' Kursabgabe.
 5. **Fakten nur aus `docs/prd.md` oder von Lucas/Paula.** Keine Behandlungen, Preise, Bewertungen, Zitate oder Kursdetails erfinden. Bei Unklarheiten fragen.
