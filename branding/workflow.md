@@ -312,6 +312,11 @@
 - **Funktioniert:** Der Button sitzt am Desktop unten im Öffnungszeiten-Panel, am Handy direkt unter der Tabelle. Die Spalten sind jetzt 1,2 : 1,2 : 0,85 statt 1 : 1 : 0,9, die Mindesthöhe der Bilder ist 220 statt 280 px. Weil der Button aus dem Textpanel raus ist, ist die obere Reihe niedriger. Die erste Fassung hatte den Button nicht unten, weil die allgemeine Regel nach der Desktop-Regel stand. Behoben mit `.hours .hours-actions`. Die Bewertungs-Panels sind aus der Glow-Auswahl entfernt. Gemessen: Über einem Panel leuchtet nur `.reviews`. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · „Erfahrung“ um die Weiterbildungen ergänzt
+- **Versucht:** Lucas wollte in „Über mich“ bei „Erfahrung · 5 Jahre“ die 4 Weiterbildungen ergänzen.
+- **Funktioniert:** Die Zeile lautet jetzt „Erfahrung · 5 Jahre & 4 Weiterbildungen“. Die Zahlen stammen von Lucas, wie bei den Auszeichnungen. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
