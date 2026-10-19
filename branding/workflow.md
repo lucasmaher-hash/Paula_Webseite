@@ -357,6 +357,16 @@
 - **Funktioniert:** Die pinke Schicht `.header-tint` ist entfernt. `.site-header.over-pink` setzt jetzt nur die Text-, Akzent- und Button-Farben auf die Pink-Palette (gleiche Formeln wie die Farbrollen, mit den Pink-Werten). Der Hintergrund `--color-background` bleibt unverändert. Logo, Nav-Links, Instagram-Knopf und „Termin buchen“ blenden Farbe, Hintergrund und Rahmen in 1 s über. Gemessen bei 1440 px: Logo von RGB 116/84/73 zu 99/64/70, Button von 161/116/99 zu 147/93/101, Leiste unverändert. Der IntersectionObserver von vorher bleibt. Bei „Bewegung reduzieren“ ohne Übergang. Keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Die 1-s-Übergänge im Header gelten auch für den Hover der Buttons dort. Der Hover wirkt dadurch etwas träger als im Rest der Seite.
 
+### 19.10.2026 · Handy: Kalender- und Menüknopf in Braun bzw. Pink
+- **Versucht:** Die beiden Knöpfe im mobilen Header (Termin und Menü) waren hell. Sie sollen wie die anderen Header-Knöpfe braun sein und über pinken Abschnitten pink.
+- **Funktioniert:** Beide haben jetzt `.icon-btn-primary`, also die Button-Farbe mit hellem Symbol. Über Behandlungen und Bewertungen wechseln sie mit dem übrigen Header in 1 s zu Pink. Geprüft bei 375 und 430 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
+### 19.10.2026 · Übergabe aus der Cloud-Sitzung
+- **Versucht:** Lucas möchte nicht mehr in der Cloud weiterarbeiten, sondern in einem normalen Chat auf seinem Mac.
+- **Funktioniert:** `docs/HANDOFF.md` ist auf den aktuellen Stand gebracht: Aufbau aller Abschnitte, Cache-Versionen, Glow, pinker Header, Bildquellen mit offenen Rechtefragen, offene Punkte (5. Bewertung, Freigabe der gekürzten Schulungstexte, echte Studiofotos, veraltetes Logbuch-Ende, Abgleich mit `kurs/KURS.md`). Ein neuer Chat startet mit `git pull` und dieser Datei. Beim Umbau war der Abschnitt „Gestaltung“ kurz verloren gegangen. Er ist aus Git wiederhergestellt und aktualisiert.
+- **Nicht funktioniert / offen:** Ein Chatverlauf lässt sich nicht als lokaler Chat weiterführen, nur die Arbeit über das Repo.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

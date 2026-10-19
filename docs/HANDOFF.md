@@ -1,57 +1,48 @@
-# Übergabe: PM Beauty Website (Stand 19.10.2026)
+# Übergabe: PM Beauty Website (Stand 19.10.2026, Ende der Cloud-Sitzung)
 
-Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (ab 18.10.2026: Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo).
+Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (Claude lokal, Claude in der Cloud, Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo). Der vollständige Verlauf steht in `branding/workflow.md`.
 
-
-## Aktualisierung 19.10.2026 · Codex
-
-- Lucas hat die bisherige Farbregel ausdrücklich ersetzt: zwei vollständige Farbwelten, Braun (Basis, Header, Studio, Kurse, Gutscheine, Kontakt) und Pink (Behandlungen, Bewertungen). Kein reines Schwarz/Weiß; Texte, Buttons, Akzente, Hover und Rahmen kommen aus den jeweiligen Farbrollen in `css/style.css`.
-- Italiana Regular lokal in `fonts/` für H1–H3 und hervorgehobene Zahlen. Instrument Sans für Fließtext, Navigation, Buttons und Labels bleibt. Das Vektorlogo ist unverändert.
-- Feine 1-px-Rahmen um Karten, Panels und Bildrahmen; Kurs-Textflächen haben am Desktop eine gemeinsame Außenkontur ohne Trennlinie zwischen Kopf und Inhalt.
-- Aktuell `style.css?v=46`, `fonts.css?v=2`, `main.js?v=26`.
-- Standardfarben: Lucas’ exportierte Reglerwerte vom 19.10.2026 übernommen (Braun: 16/38/−1/37/51/100/24; Pink: 351/35/−4/32/47/100/22; Rahmen am 19.10. um 20 % schwächer: 19,2 und 17,6; Reihenfolge: Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Deckkraft, Rahmenkontrast). Frühere Kontrastmessungen gelten für die vorherige Palette.
-- Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren.
-
-- Kontakt (19.10.2026): 3×2-Raster nach Lucas’ Skizze. `images/studio-glass.jpg` und `images/studio-light.jpg` sind vorläufige Stimmungsbilder, nicht Paulas Studio. Ersetzen, sobald echte Studiofotos da sind.
+**Neuer Chat? Zuerst:** `git pull` im Repo, dann diese Datei und die letzten Einträge in `branding/workflow.md` lesen, dann `git status` / `git log -5` prüfen (Codex arbeitet im selben Repo).
 
 ## 1. Was live ist
 
-- **Live:** https://lucasmaher-hash.github.io/Paula_Webseite/ (GitHub Pages, Branch `main`, Repo öffentlich).
-- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana, Instrument Sans, Space Mono).
-- **Dateien:** `index.html` (One-Pager), `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** CSS und JS werden mit `?v=N` eingebunden (aktuell `style.css?v=46`, `main.js?v=25`). Bei jeder Änderung an einer der Dateien die Nummer in `index.html` erhöhen, sonst sehen Handy und GitHub Pages die alte Version (HTML wird 10 min gecacht).
+- **Live:** https://lucasmaher-hash.github.io/Paula_Webseite/ (GitHub Pages, Branch `main`). Styleguide: `/styleguide.html`.
+- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana für Überschriften und große Zahlen, Instrument Sans für alles andere).
+- **Dateien:** `index.html` (One-Pager), `styleguide.html`, `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
+- **Cache-Busting:** aktuell `style.css?v=60`, `main.js?v=33`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
 
 ### Aufbau von `index.html` (von oben nach unten)
 
 | Bereich | Anker | Inhalt |
 |---|---|---|
-| Header | – | Transparent, volle Breite, sticky. Logo links. Desktop (ab 1024 px): Links Studio, Behandlungen (Dropdown mit 5 Kategorien), Schulungen, Gutscheine, Bewertungen, Kontakt; rechts Instagram-Kreis und „Termin buchen". Handy: Kalender-Kreis (Buchung) und Menü-Kreis. Auf dem Handy läuft das obere Drittel der Leiste deckend in die Seitenfarbe (Statusleiste). |
-| Mobiles Menü | `#mobile-menu` | Vollbild, Zeilen mit Trennlinie und ↗, „Behandlungen" klappt mit + auf. |
-| Hero | – | Desktop: Paula rechts, links verlängerte Wand (`images/hero-paula-wide.jpg`), Text links. Handy: Bild oben (`images/hero-paula.jpg`, 4:5), Text darunter. |
-| Ergebnisse | – | Horizontal scrollbarer Bilderstreifen (6 Fotos). |
-| Bereichs-Karten | – | Drei Karten: Behandlungen, Schulungen, Gutscheine. |
-| Über Paula | `#studio` | Zitat, Fakten (Standort, Zeiten, Instagram). |
-| Behandlungen | `#behandlungen` | 5 Akkordeons (`#manikuere`, `#pmu`, `#gesicht`, `#wimpern`, `#brauen`), **ohne Preise und Dauer**; „Preise & Termin ↗" führt zu Beautinda. |
-| Schulungen | `#schulungen` | Zwei Kurse mit Paulas Texten: Korean Lash & Browlifting (`#schulung-lashlift`), Masterclass Russian Manicure & Gel (`#schulung-manikuere`). Anfrage per Instagram-DM. |
-| Gutscheine | `#gutscheine` | 50/100/150 € (Beträge bleiben, siehe Regeln). Stripe-Links sind Platzhalter. |
-| Bewertungen | `#bewertungen` | 5.0 ★, 4 echte Zitate von Beautinda. |
-| Kontakt | `#kontakt` | Adresse, Instagram, Buchung, Öffnungszeiten. |
+| Header | – | Sticky, durchscheinend. Logo links; Desktop (ab 1024 px) Nav mit Dropdown „Behandlungen“ (Hover öffnet, Klick springt zum Abschnitt), rechts Instagram-Kreis und „Termin buchen“. Handy: Kalender- und Menü-Kreis, gefüllt in Button-Farbe. Über pinken Abschnitten (Behandlungen, Bewertungen) wechseln Logo, Schrift und Buttons in 1 s zu Pink (`.over-pink`, IntersectionObserver auf Header-Mitte); die Leiste selbst bleibt. |
+| Mobiles Menü | `#mobile-menu` | Vollbild, Zeilen mit Trennlinie und ↗, „Behandlungen“ klappt mit + auf. |
+| Hero | – | Desktop: Paula rechts, Text links weiß. Handy: Bild oben (5 % Beschnitt pro Seite), Text darunter. Keine Labels mehr im Hero. |
+| Auszeichnungen | – | Drei Lorbeer-Badges: 5 Jahre Erfahrung, 5 ★ Bewertungen, 4 Weiterbildungen (Zahlen von Lucas). Kränze wachsen beim Erreichen in ~1 s aus der Mitte (`html.js` + `.grown`). |
+| Ergebnisse | – | „Arbeiten aus dem Studio“: Desktop versetzte Collage 4 Spalten × 10 Zeilen-Einheiten, 7 Fotos, Spalte 4 mit Luft unten; Zoom im festen Rahmen beim Hover. Handy: Wischstreifen. |
+| Über Paula | `#studio` | Foto + Textpanel; Fakten: Standort, Termine, Erfahrung „5 Jahre & 4 Weiterbildungen“, Instagram. Handy: ein Rahmen von Rand zu Rand, Foto 10 px eingerückt. |
+| Behandlungen | `#behandlungen` | Pink. Kopfzeile „Behandlungen · Mo–Fr 10–20 Uhr“. 5 Akkordeons (`#manikuere`, `#pmu`, `#gesicht`, `#wimpern`, `#brauen`), ohne Preise; animiertes Öffnen, Seite gleitet zur Kategorie. |
+| Schulungen | `#schulungen` | Zwei Kurse (gekürzte Texte, Freigabe durch Paula offen). Desktop: Bild und Text als zwei Rahmen, Seiten im Wechsel. Handy: eine Karte, Foto eingerückt, Tipp auf Titel klappt auf (animiert). Kacheln nur mit Kontur. „Per DM anfragen“ braun. |
+| Gutscheine | `#gutscheine` | 50/100/150 €, 100 € als „Bestseller“ ~30 % größer, Geschenk-Icon. Desktop: Karten driften beim Erreichen senkrecht auseinander. Handy: versetzt links/rechts. Stripe-Links sind Platzhalter. |
+| Bewertungen | `#bewertungen` | Pink. 5.0 ★ · 26 Bewertungen, 4 echte Zitate, dunkleres Link-Panel „Alle Bewertungen“ (Desktop 3 Spalten, das Panel über 2 Spalten bis ein 5. echtes Zitat kommt). |
+| Kontakt | `#kontakt` | Desktop 3×2-Raster: Text | Raumfoto | Öffnungszeiten (hoch, „Termin buchen“ unten) / Raumfoto | Adresse·Instagram·Buchung. Adresse zweizeilig rechts, Hover-Linie pro Zeile. Die Raumfotos sind Stimmungsbilder, nicht Paulas Studio. |
 | Footer | – | Logo, Impressum, Datenschutz, Instagram. |
 
 ### Gestaltung (Bausteine in `css/style.css`)
 
 - **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
 
-- **Panel-Glow** (Lucas, 19.10.2026): Nur Desktop ab 900 px, echte Maus und keine reduzierte Bewegung. Radialer Verlauf als CSS-Hintergrund im jeweiligen Braun/Pink, 190 px Radius und maximal 10 % Deckkraft. Kein Overlay; Schrift, Buttons und Bilder bleiben darüber. Nur das innerste Inhalts-Panel reagiert, Kurskopf und -inhalt bilden gemeinsam eine Fläche. Bei Verlassen, Scrollen und Fensterwechsel wird der Effekt entfernt.
+- **Panel-Glow** (Lucas/Codex, 19.10.2026): Nur Desktop ab 900 px, echte Maus, keine reduzierte Bewegung. Radialer Verlauf als CSS-Hintergrund der Panels (240 px Radius, max. 12 % Deckkraft), kein Overlay. Jede Glow-Fläche im Umkreis von 240 px um die Glow-Mitte wird an dieser Stelle getönt, also auch Flächen hinter einem Panel und Flächen, denen man sich nähert. Die Mitte läuft dem Cursor mit 14 % pro Frame nach. Bewertungs-Karten selbst sind ausgenommen (nur der pinke Hintergrund leuchtet).
 - **Zwei Farbwelten** (Lucas, 19.10.2026): Braun als Basis, Pink für Behandlungen und Bewertungen. Einstellbare Quellwerte `--brown-*` und `--pink-*` oben in `style.css`; daraus entstehen alle Farbrollen. Hero-Wandton `--hero-wall #A39588` bleibt die Foto-Grundfarbe. Italiana für Überschriften, Instrument Sans für Fließtext und Bedienelemente.
-- **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeilkreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.checklist` + `.perks` (Kurskarten mit vier Icon-Kacheln), Akkordeon mit runden +/–.
+- **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeil, ohne Kreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.perks` (Kurskarten mit vier Kontur-Kacheln), Akkordeon mit runden +/–.
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
+- **Panels:** Flächen dicht nebeneinander (8 px Handy, 10 px Desktop), 1-px-Kontur; am Handy sind die Radien ca. 30 % kleiner (22/17 px statt 32/24 px).
 - **Mobile first:** Basisregeln gelten fürs Handy, größere Bildschirme per `min-width`. Das Handy ist der wichtigste Kanal für Paulas Kundinnen.
 - **Logo:** `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg`. Es steht inline an drei Stellen in `index.html` (Header, mobiles Menü, Footer), Farbe über `currentColor`. Bei einer Logo-Änderung alle drei ersetzen. Maße und Varianten: `branding/assets/logo-final/README.md`.
 
 ## 2. Arbeitsweise (von Lucas festgelegt)
 
-1. **Vor Arbeitsbeginn Lucas die Links nennen:** Desktop `http://localhost:8080`, Handy `http://<LAN-IP>:8080` (LAN-IP per `ipconfig getifaddr en0`). Server: `python3 -m http.server 8080 --bind 0.0.0.0` im Repo-Root.
+1. **Vor Arbeitsbeginn (lokal) Lucas die Links nennen:** Desktop `http://localhost:8080`, Handy `http://<LAN-IP>:8080` (LAN-IP per `ipconfig getifaddr en0`). Server: `python3 -m http.server 8080 --bind 0.0.0.0` **im Repo-Ordner** starten (nicht in `~`), am Mac `http://127.0.0.1:8080` statt `localhost` öffnen (Safari löst `localhost` sonst über IPv6 auf).
 2. **Handy zuerst testen** (375 px), danach Desktop (1280/1440 px). Prüfen: kein horizontales Scrollen, Menü, Akkordeon, keine Konsolenfehler.
 3. **Automatisch committen und pushen**, ohne nachzufragen (`main`). Nach dem Push warten, bis das Pages-Deployment fertig ist (`gh run list`), erst dann „live" melden. Zwei schnelle Pushes hintereinander brechen das erste Deployment ab; das ist harmlos, solange das letzte durchläuft.
 4. **Workflow-Tagebuch ist Pflicht:** Nach jeder Arbeitssession einen Eintrag in `branding/workflow.md` (Logbuch: Versucht / Funktioniert / Nicht funktioniert), im selben Stil wie die bisherigen Einträge. Das ist Teil von Lucas' Kursabgabe.
@@ -71,6 +62,9 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 | `nails.jpg` | Gelnagel schokobraun | 1162 × 2048 |
 | `lips-1.jpg`, `lips-2.jpg`, `lips-3.jpg` | Lippenpigmentierung | 1125 × 2000 |
 | `lashes-extensions.jpg` | Wimpernverlängerung | 1148 × 2000 |
+| `paula-studio.jpg` | Paula im Studio (Über mich) | 675 × 925 |
+| `nails-art.jpg`, `facial-mask.jpg`, `lashes-brows.jpg` | Von Lucas im Chat geschickt (19.10.), komprimiert ~1000 px; `images/brow.jpg` ist der Brauen-Ausschnitt. Ob es Paulas Arbeiten sind, ist **nicht bestätigt**. | ~980 × 1300 |
+| `studio-glass.jpg`, `studio-light.jpg` | Von Lucas geschickte Raumfotos, **nicht Paulas Studio**, nur Stimmung im Kontakt (Lichtfoto ohne „LABOR“-Tür zugeschnitten) | 640² / 1200 × 1800 |
 
 Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (Pillow): `python branding/assets/photos/make_images.py branding/assets/photos/originals images`. Die Kundinnen haben der Veröffentlichung zugestimmt (Lucas, 18.10.2026).
 
@@ -88,10 +82,17 @@ Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (
 
 ## 4. Offene Punkte
 
+- **5. Bewertung:** Lucas wünscht ein weiteres Bewertungs-Panel. Es braucht einen echten Text (Vorname, Behandlung, Monat) von Beautinda; danach `.review-all` ohne Doppelspalte.
+- **Bildrechte bestätigen:** Sind Nageldesign, Gesichtsmaske und Braue Paulas eigene Arbeiten? Sonst aus „Arbeiten aus dem Studio“ entfernen. Ein Vorher/Nachher mit Wasserzeichen „@skincitylabnyc“ wurde bewusst nicht verwendet.
+- **Gekürzte Schulungstexte** von Paula freigeben lassen (Originale in der Git-Historie, Commit vor `ef5aafc`).
+- **Echte Studiofotos** für den Kontakt (ersetzen `studio-glass.jpg`/`studio-light.jpg`).
+- **Logbuch-Ende** (`branding/workflow.md`, Abschnitte Werkzeuge/Prompts/Wendepunkte/Fazit) beschreibt noch den ersten Logo-Entwurf (Cormorant Unicase) und sagt „keine Freigabe“; vor der Kursabgabe aktualisieren. Titel heißt noch „Kurzprojekt 1“.
+
 - **Instagram:** Seit 18.10.2026 verlinkt die Website Paulas aktives Konto `@pm_beauty___` (vorher `@pm_paulabeauty`). Commit `fc48d45`.
 - **Stripe-Links** für Gutscheine sind Platzhalter (`https://buy.stripe.com/PLATZHALTER_50/100/150`). Paula liefert echte Payment Links.
 - **Impressum/Datenschutz:** Felder `[AUSFÜLLEN]` sind noch leer.
 - **Schulungen:** Termine und Anmeldung laufen per DM. Gibt es später Termine oder einen Buchungslink, kommen sie in die Kurskarten.
+- **Kursabgabe:** Die Aufgabenstellung steht in `kurs/KURS.md` (nur lokal). In der Cloud-Sitzung war sie nicht lesbar; gegen die Abgabe abgleichen.
 - **`docs/prd.md` ist teilweise veraltet:** Preise werden nicht mehr gezeigt, die Bilder sind echt. Die Fakten (Leistungen, Zitate, Links) gelten weiter.
 
 ## 5. Weitere Quellen
