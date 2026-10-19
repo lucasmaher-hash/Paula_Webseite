@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#F6EDEA">
 <meta name="robots" content="noindex">
 <title>PM Beauty Styleguide</title>
-<meta name="description" content="Styleguide der Marke PM Beauty: Logo, Farben, Schrift, Abstände, Komponenten, Bewegung und Bildsprache der Website.">
+<meta name="description" content="Styleguide der Marke PM Beauty: Gestaltungsprinzip, Moodboard, Logo, Farben mit Bedeutung, Schrift, Komponenten, Bewegung, Bildsprache und Anwendungen.">
 <link rel="stylesheet" href="fonts/fonts.css?v=2">
 <link rel="stylesheet" href="css/style.css?v=60">
 <style>
@@ -105,6 +105,109 @@
 .sg-do{display:grid;gap:8px}
 @media(min-width:900px){.sg-do{grid-template-columns:1fr 1fr;gap:10px}}
 .sg-footer{padding:var(--space-6) 0 var(--space-7);border-top:1px solid var(--color-border);margin-top:var(--space-8);font-size:.88rem;color:var(--color-on-surface-muted)}
+
+/* Gestaltungsprinzip: Die Mitte */
+.sg-principle{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:900px){.sg-principle{grid-template-columns:repeat(4,1fr);gap:10px}}
+.sg-principle .sg-panel{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5) var(--space-4)}
+@media(min-width:900px){.sg-principle .sg-panel{padding:var(--space-6) var(--space-5)}}
+.sg-stage{position:relative;height:150px;display:grid;place-items:center;color:var(--color-primary)}
+.sg-stage::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed var(--color-accent-pink)}
+.sg-stage svg{position:relative;overflow:visible}
+.sg-stage .e{height:120px;width:auto}
+.sg-stage .grow-line{position:absolute;left:0;right:0;bottom:-.2em;height:1px;background:var(--color-primary);transform-origin:50% 50%}
+.sg-stage .grow-word{position:relative;font-family:var(--font-display);font-size:1.15rem;white-space:nowrap}
+@media(min-width:900px){.sg-stage .grow-word{font-size:1.5rem}}
+.sg-stage .grow-wreath{width:120px;height:120px;color:var(--color-accent);fill:currentColor;opacity:.85;transform-origin:50% 50%}
+.sg-stage .screen{position:relative;width:86px;height:130px;border:1px solid var(--color-border);border-radius:14px;overflow:hidden;background:var(--color-surface-raised)}
+.sg-stage .screen span{position:absolute;left:10px;right:10px;height:26px;top:8px;border-radius:7px;background:var(--color-accent-pink-soft);border:1px solid var(--color-border)}
+.sg-principle h3{font-size:1rem}
+@media(prefers-reduced-motion:no-preference){
+  .sg-stage .grow-line{animation:sg-line 3.2s cubic-bezier(.4,0,.2,1) infinite}
+  .sg-stage .grow-wreath{animation:sg-wreath 3.2s cubic-bezier(.2,.8,.2,1) infinite}
+  .sg-stage .screen span{animation:sg-glide 3.2s cubic-bezier(.4,0,.2,1) infinite}
+}
+@keyframes sg-line{0%,12%{transform:scaleX(0)}45%,80%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes sg-wreath{0%,10%{transform:scale(.45);opacity:0}45%,82%{transform:scale(1);opacity:.85}100%{transform:scale(.45);opacity:0}}
+@keyframes sg-glide{0%,15%{top:8px}50%,85%{top:calc(50% - 13px)}100%{top:8px}}
+
+/* Moodboard */
+.sg-mood{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:120px;gap:8px}
+@media(min-width:700px){.sg-mood{grid-template-columns:repeat(4,1fr);grid-auto-rows:150px}}
+@media(min-width:1100px){.sg-mood{grid-template-columns:repeat(6,1fr);grid-auto-rows:160px;gap:10px}}
+.sg-mood > figure{position:relative;border-radius:var(--rounded-lg);overflow:hidden;background:var(--color-surface);margin:0}
+.sg-mood img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sg-mood figcaption{position:absolute;left:10px;bottom:10px;right:10px;font-size:.72rem;letter-spacing:.04em;line-height:1.35;color:var(--color-on-primary);text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.sg-mood .plain figcaption{color:var(--color-on-surface-muted);text-shadow:none}
+.sg-mood .tall{grid-row:span 2}
+.sg-mood .wide{grid-column:span 2}
+.sg-mood .word{display:grid;place-items:center;font-family:var(--font-display);font-size:clamp(1.5rem,3.4vw,2.2rem);color:var(--color-primary);text-align:center;padding:12px}
+.sg-mood .glyph{display:grid;place-items:center;font-family:var(--font-display);font-size:clamp(4rem,10vw,6.5rem);line-height:1;color:var(--color-primary)}
+.sg-mood .glow{background:radial-gradient(120% 90% at 30% 0%,hsl(var(--pink-hue) 60% 86%) 0%,hsl(var(--brown-hue) 40% 74%) 45%,hsl(var(--brown-hue) 30% 52%) 100%)}
+.sg-mood .chips{display:grid;grid-template-rows:repeat(3,1fr)}
+.sg-mood .chips span{display:block}
+.sg-mood .line{display:grid;place-items:center}
+.sg-mood .line::before{content:"";width:60%;height:1px;background:var(--color-primary)}
+.sg-mood .line::after{content:"";position:absolute;left:50%;top:22%;bottom:22%;border-left:1px dashed var(--color-accent-pink)}
+
+/* Farbbedeutung */
+.sg-meaning{display:grid;gap:8px}
+@media(min-width:900px){.sg-meaning{grid-template-columns:1fr 1fr;gap:10px}}
+.sg-meaning .sg-panel{display:flex;flex-direction:column;gap:var(--space-4)}
+.sg-meaning .bar{display:flex;height:44px;border-radius:var(--rounded-md);overflow:hidden;border:1px solid var(--color-border)}
+.sg-meaning .bar span{flex:1}
+.sg-meaning dl{display:grid;gap:0}
+.sg-meaning dt{font-weight:500;font-size:.95rem;padding-top:12px;border-top:1px solid var(--color-border)}
+.sg-meaning dd{font-size:.9rem;color:var(--color-on-surface-muted);padding:2px 0 12px}
+.sg-wheel{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-5)}
+.sg-hue{position:relative;width:150px;height:150px;flex:none}
+.sg-hue .ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(hsl(0 38% 72%),hsl(60 38% 72%),hsl(120 38% 72%),hsl(180 38% 72%),hsl(240 38% 72%),hsl(300 38% 72%),hsl(360 38% 72%));-webkit-mask:radial-gradient(circle,transparent 55%,#000 56%);mask:radial-gradient(circle,transparent 55%,#000 56%);opacity:.75}
+.sg-hue .mark{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--a))}
+.sg-hue .mark::before{content:"";position:absolute;left:-9px;top:-84px;width:18px;height:18px;border-radius:50%;background:var(--c);border:2px solid var(--color-surface-raised);box-shadow:0 0 0 1px var(--color-border)}
+.sg-hue .mid{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:.72rem;line-height:1.3;color:var(--color-on-surface-muted)}
+.sg-wheel p{flex:1 1 260px}
+
+/* Anwendung */
+.sg-apps{display:grid;gap:8px}
+@media(min-width:900px){.sg-apps{grid-template-columns:repeat(2,1fr);gap:10px}}
+.sg-app{border-radius:var(--rounded-xl);overflow:hidden;background:var(--color-surface-deep);display:flex;flex-direction:column}
+.sg-app .scene{flex:1;position:relative;min-height:360px;display:grid;place-items:center;padding:var(--space-6) var(--space-4);overflow:hidden}
+.sg-app .scene.linen{background:radial-gradient(90% 70% at 20% 10%,hsl(var(--brown-hue) 30% 92%),hsl(var(--brown-hue) 26% 80%))}
+.sg-app .scene.blush{background:radial-gradient(90% 70% at 80% 0%,hsl(var(--pink-hue) 40% 92%),hsl(var(--pink-hue) 24% 78%))}
+.sg-app .cap{padding:var(--space-4) var(--space-5) var(--space-5);background:var(--color-surface)}
+.sg-app .cap h3{font-size:1rem}
+.sg-app .cap p{font-size:.88rem;color:var(--color-on-surface-muted);margin-top:4px}
+/* Handy mit echter Website */
+.sg-phone{width:250px;height:510px;border-radius:40px;background:#1d1714;padding:9px;box-shadow:0 30px 60px -20px rgba(60,35,25,.45)}
+.sg-phone .screen{width:100%;height:100%;border-radius:32px;overflow:hidden;position:relative;background:var(--color-background)}
+.sg-phone iframe{position:absolute;top:0;left:0;width:375px;height:795px;border:0;transform:scale(.6187);transform-origin:0 0}
+/* Karten */
+.sg-card{position:relative;width:min(270px,64vw);aspect-ratio:85/55;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 40px -16px rgba(60,35,25,.45),0 2px 4px rgba(60,35,25,.12)}
+.sg-card svg{display:block;overflow:visible}
+.sg-card .small-print{font-size:.62rem;letter-spacing:.06em;line-height:1.5}
+.sg-card.front{background:var(--color-button);color:var(--color-on-primary);align-items:center;justify-content:center;transform:rotate(-6deg) translate(-20%,-34%)}
+.sg-card.front svg{width:62%}
+.sg-card.back{background:hsl(var(--brown-hue) 38% 96%);color:var(--color-primary);position:absolute;transform:rotate(4deg) translate(20%,34%)}
+.sg-card.back .rows{display:grid;gap:9px}
+.sg-card.back .rows div{display:flex;align-items:flex-end;gap:8px;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted)}
+.sg-card.back .rows div::after{content:"";flex:1;border-bottom:1px solid var(--color-border)}
+.sg-card.back .title{font-family:var(--font-display);font-size:1.15rem}
+.sg-voucher{width:min(330px,82vw);aspect-ratio:3/2;border-radius:14px;background:hsl(var(--pink-hue) 38% 93%);color:hsl(var(--pink-hue) 21% 32%);padding:20px 22px;display:grid;grid-template-rows:auto 1fr auto;box-shadow:0 22px 44px -18px rgba(70,35,40,.45);transform:rotate(-3deg);position:relative}
+.sg-voucher::after{content:"";position:absolute;left:50%;top:14px;bottom:14px;border-left:1px dashed hsl(var(--pink-hue) 30% 60% / .5)}
+.sg-voucher svg{width:110px;display:block;overflow:visible}
+.sg-voucher .amount{font-family:var(--font-display);font-size:3.4rem;line-height:1;align-self:center;justify-self:center;position:relative;z-index:1;background:hsl(var(--pink-hue) 38% 93%);padding:0 10px}
+.sg-voucher .foot{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+/* Instagram */
+.sg-insta{width:min(280px,76vw);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 22px 44px -18px rgba(60,35,25,.4);color:#1d1714}
+.sg-insta .bar{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:.72rem;font-weight:500}
+.sg-insta .avatar{width:26px;height:26px;border-radius:50%;background:var(--color-button);display:grid;place-items:center;color:var(--color-on-primary)}
+.sg-insta .avatar svg{width:20px;overflow:visible}
+.sg-insta .post{position:relative;aspect-ratio:4/5;overflow:hidden}
+.sg-insta .post img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sg-insta .post .label{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 18px;text-align:center;color:#fff;background:linear-gradient(transparent,rgba(40,25,20,.55))}
+.sg-insta .post .label b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.7rem;line-height:1.1}
+.sg-insta .post .label i{display:block;width:44px;height:1px;background:#fff;margin:10px auto 0}
+.sg-insta .meta{padding:10px 12px 14px;font-size:.7rem;line-height:1.5}
 </style>
 </head>
 <body class="sg">
@@ -114,7 +217,7 @@
   <h1>Styleguide</h1>
   <p class="lead">Wie PM Beauty aussieht, klingt und sich bewegt. Alle Farben, Schriften und Bausteine auf dieser Seite kommen aus derselben CSS-Datei wie die Website (<span class="sg-code">css/style.css</span>). Was hier steht, ist also genau das, was live ist.</p>
   <div class="badges" style="margin-top:var(--space-5)">
-    <span class="badge">Stand 18.10.2026</span>
+    <span class="badge">Stand 19.10.2026</span>
     <span class="badge">Beauty &amp; PMU Studio · München</span>
     <a class="badge ul" href="index.html" style="text-decoration:none">Zur Website ↗</a>
   </div>
@@ -123,6 +226,8 @@
 <nav class="sg-toc" aria-label="Inhalt">
   <ul>
     <li><a class="ul" href="#marke">Marke</a></li>
+    <li><a class="ul" href="#prinzip">Prinzip</a></li>
+    <li><a class="ul" href="#moodboard">Moodboard</a></li>
     <li><a class="ul" href="#logo">Logo</a></li>
     <li><a class="ul" href="#farben">Farben</a></li>
     <li><a class="ul" href="#schrift">Schrift</a></li>
@@ -130,6 +235,7 @@
     <li><a class="ul" href="#komponenten">Komponenten</a></li>
     <li><a class="ul" href="#bewegung">Bewegung</a></li>
     <li><a class="ul" href="#bilder">Bildsprache</a></li>
+    <li><a class="ul" href="#anwendung">Anwendung</a></li>
     <li><a class="ul" href="#sprache">Sprache</a></li>
     <li><a class="ul" href="#verfahren">Verfahren</a></li>
   </ul>
@@ -142,7 +248,7 @@
     <div class="container">
       <span class="eyebrow">01 · Marke</span>
       <h2 id="marke-h">Präzision. Ästhetik. Qualität.</h2>
-      <p class="intro">PM Beauty ist das Studio von Paula Maher in der Fürstenrieder Straße 11 in München: Permanent Make-up, Russische Maniküre &amp; Gel, Gesichtsbehandlungen, Korean Lash- &amp; Browlift und Schulungen. Die drei Worte aus Paulas Leitsatz sind das Gestaltungsprinzip.</p>
+      <p class="intro">PM Beauty ist das Studio von Paula Maher in der Fürstenrieder Straße 11 in München: Permanent Make-up, Russische Maniküre &amp; Gel, Gesichtsbehandlungen, Korean Lash- &amp; Browlift und Schulungen. Die drei Worte aus Paulas Leitsatz sind die Werte der Marke. Sichtbar werden sie durch ein einziges Gestaltungsprinzip: die Mitte (02).</p>
       <div class="sg-panels three">
         <div class="sg-panel"><h3>Präzision</h3><p class="sg-note" style="margin-top:8px">Exakte Kanten, mittig gesetztes E, ein Raster aus festen Abständen. Nichts sitzt „ungefähr“.</p></div>
         <div class="sg-panel"><h3>Ästhetik</h3><p class="sg-note" style="margin-top:8px">Warme Beige- und Brauntöne, große Radien, viel Leerraum. Ruhig wie ein sauber gedecktes Behandlungs-Setup.</p></div>
@@ -156,10 +262,62 @@
     </div>
   </section>
 
+  <!-- Gestaltungsprinzip -->
+  <section id="prinzip" aria-labelledby="prinzip-h">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pm-logo" viewBox="0 20.512 273.33 77.488"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></symbol><symbol id="pm-e" viewBox="106.665 16 60 74"><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></symbol></svg>
+    <div class="container">
+      <span class="eyebrow">02 · Gestaltungsprinzip</span>
+      <h2 id="prinzip-h">Alles beginnt in der Mitte.</h2>
+      <p class="intro">Das prägende Prinzip von PM Beauty ist <strong>die Mitte</strong>. Im Logo steht der feine Mittelstrich des gedrehten E exakt zwischen den beiden Stämmen. Diese Achse kehrt überall wieder: Linien, Formen und Bewegungen gehen von einer Mitte aus und entfalten sich gleichmäßig nach beiden Seiten. Daran erkennt man die Marke auch ohne Logo. Das Prinzip kommt aus Paulas Handwerk: Beim Vorzeichnen von Brauen und Lippen ist die Mittelachse des Gesichts der Bezugspunkt für Symmetrie.</p>
+      <div class="sg-principle">
+        <div class="sg-panel"><div class="sg-stage"><svg class="e" viewBox="0 0 60 74" fill="currentColor" aria-hidden="true"><use href="#pm-e"/></svg></div><div><h3>Im Logo</h3><p class="sg-note">Mittelstrich auf der Achse zwischen den Stämmen, auf den Zehntelpunkt gemessen.</p></div></div>
+        <div class="sg-panel"><div class="sg-stage"><span class="grow-word">Termin buchen<span class="grow-line"></span></span></div><div><h3>Linien</h3><p class="sg-note">Jede Hover-Linie wächst aus der Mitte des Wortes nach außen, nie von links.</p></div></div>
+        <div class="sg-panel"><div class="sg-stage"><svg class="grow-wreath" aria-hidden="true"><use href="#laurel"/></svg></div><div><h3>Formen</h3><p class="sg-note">Lorbeerkränze und aufklappende Inhalte öffnen sich aus ihrem Zentrum.</p></div></div>
+        <div class="sg-panel"><div class="sg-stage"><div class="screen"><span></span></div></div><div><h3>Bewegung</h3><p class="sg-note">Eine geöffnete Behandlungs-Kategorie gleitet in die Mitte des Bildschirms.</p></div></div>
+      </div>
+      <h3 class="sg-h">So wird es angewendet</h3>
+      <ul class="sg-list">
+        <li><strong>Erscheinen:</strong> Neue Elemente wachsen aus ihrer Mitte (Skalierung, Linie). Nichts fliegt seitlich herein.</li>
+        <li><strong>Achse:</strong> Pro Element gibt es eine klare Achse. Was mittig steht, steht exakt mittig, sonst bewusst bündig.</li>
+        <li><strong>Gleichmaß:</strong> Abstände sind auf beiden Seiten gleich. Die Panels liegen dicht nebeneinander, mit überall derselben Fuge (8 px Handy, 10 px Desktop).</li>
+        <li><strong>Test ohne Logo:</strong> Deckt man das Logo ab, muss die Marke an mittig wachsenden Linien und ruhig sich öffnenden Formen erkennbar bleiben.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Moodboard -->
+  <section id="moodboard" aria-labelledby="mood-h">
+    <div class="container">
+      <span class="eyebrow">03 · Moodboard</span>
+      <h2 id="mood-h">Warm, ruhig, nah dran.</h2>
+      <p class="intro">Die Stimmung der Marke: warmes Licht statt harter Schatten, Haut- und Holztöne, Rosé als leiser Akzent, klare Linien. Die Ergebnisfotos und das Porträt stammen aus Paulas Studio. Die beiden Raumfotos sind Referenzen für Licht und Material, nicht Paulas Studio.</p>
+      <div class="sg-mood" style="grid-auto-flow:dense">
+        <figure class="tall"><img src="images/studio-light.jpg" alt="Indirektes warmes Licht hinter einer abgerundeten Wand" loading="lazy"><figcaption>Licht statt Schatten · Referenz</figcaption></figure>
+        <figure class="plain glyph" style="background:var(--color-surface-raised)"><span aria-hidden="true">Aa</span><figcaption>Italiana</figcaption></figure>
+        <figure class="tall"><img src="images/paula-studio.jpg" alt="Paula Maher im Studio" loading="lazy"><figcaption>Paula · klar und ruhig</figcaption></figure>
+        <figure class="plain word" style="background:var(--color-surface)"><span>nah dran.</span></figure>
+        <figure class="tall"><img src="images/lips-1.jpg" alt="Lippenpigmentierung, Ergebnis" loading="lazy"><figcaption>Lippen · das Pink der Marke</figcaption></figure>
+        <figure class="glow"><figcaption>Warmer Schein</figcaption></figure>
+        <figure class="chips plain"><span style="background:hsl(var(--brown-hue) 38% 90%)"></span><span style="background:var(--hero-wall)"></span><span style="background:hsl(var(--pink-hue) 35% 86%)"></span><figcaption>Beige · Taupe · Rosé</figcaption></figure>
+        <figure class="wide"><img src="images/studio-glass.jpg" alt="Rosé getöntes Glas mit hellem Holzrahmen" loading="lazy"><figcaption>Rosé hinter Glas, helles Holz · Referenz</figcaption></figure>
+        <figure><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"><figcaption>Präzision im Detail</figcaption></figure>
+        <figure class="plain line" style="background:var(--color-surface-raised)"><figcaption>Linie aus der Mitte</figcaption></figure>
+        <figure><img src="images/nails.jpg" alt="Gelnagel in Schokobraun" loading="lazy"><figcaption>Schokobraun</figcaption></figure>
+        <figure class="plain word" style="background:var(--color-surface-deep)"><span>ruhig.</span></figure>
+        <figure><img src="images/lashes.jpg" alt="Wimpernverlängerung, Nahaufnahme" loading="lazy"><figcaption>Wimpern · feine Linie</figcaption></figure>
+        <figure class="plain word" style="background:var(--color-surface)"><span>präzise.</span></figure>
+      </div>
+      <ul class="sg-list" style="margin-top:var(--space-5)">
+        <li><strong>Ja:</strong> indirektes Licht, matte Oberflächen, helles Holz, Glas, Haut in Nahaufnahme, viel Luft.</li>
+        <li><strong>Nein:</strong> Glitzer, Rosé-Gold-Folie, Script-Schriften, Marmor-Klischee, harte Blitzschatten.</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Logo -->
   <section id="logo" aria-labelledby="logo-h">
     <div class="container">
-      <span class="eyebrow">02 · Logo</span>
+      <span class="eyebrow">04 · Logo</span>
       <h2 id="logo-h">Die Wortmarke.</h2>
       <p class="intro">„PM BEAUTY“ in Italiana, in Pfade umgewandelt. Das E in der Mitte ist eigens gezeichnet: um 90° gedreht und nach oben offen. Die Außenstriche ragen über die Versalien hinaus, der Fuß schwingt wie ein Kelch. Das E sitzt exakt in der Mitte der Wortmarke.</p>
       <div class="sg-panels">
@@ -196,7 +354,7 @@
   <!-- Farben -->
   <section id="farben" aria-labelledby="farben-h">
     <div class="container">
-      <span class="eyebrow">03 · Farben</span>
+      <span class="eyebrow">05 · Farben</span>
       <h2 id="farben-h">Zwei Farbwelten. Eine ruhige Sprache.</h2>
       <p class="intro">Warmes Braun für Header, Studio, Schulungen, Gutscheine und Kontakt. Gedämpftes Pink für Behandlungen und Bewertungen. Jede Farbwelt hat eigene Flächen, Texte, Akzente, Buttons und feine Rahmen. Kein reines Schwarz oder Weiß.</p>
       <div class="theme-brown"><h3 class="sg-h">Braun</h3><div class="sg-swatches">
@@ -219,6 +377,33 @@
         <figure class="sg-swatch"><div class="chip" style="background:var(--color-button)"></div><figcaption><b>Button</b><span class="sg-code">--color-button</span>Hauptaktionen</figcaption></figure>
         <figure class="sg-swatch"><div class="chip" style="background:var(--color-border)"></div><figcaption><b>Border</b><span class="sg-code">--color-border</span>Feine Rahmen</figcaption></figure>
       </div></div>
+      <h3 class="sg-h">Bedeutung</h3>
+      <div class="sg-meaning">
+        <div class="sg-panel raised theme-brown">
+          <div class="bar"><span style="background:var(--color-background)"></span><span style="background:var(--color-surface)"></span><span style="background:var(--hero-wall)"></span><span style="background:var(--color-accent)"></span><span style="background:var(--color-button)"></span><span style="background:var(--color-primary)"></span></div>
+          <h3>Braun: das Studio und Paula</h3>
+          <dl>
+            <dt>Was es meint</dt><dd>Haut, Kaffee, helles Holz, Leder. Warm, geerdet, verlässlich. Braun ist der Grundton für alles, was Paula über sich und ihr Studio sagt: Über mich, Schulungen, Gutscheine, Kontakt.</dd>
+            <dt>Dunkles Braun als Kontur</dt><dd>Text und Logo stehen in einem tiefen Braun statt in Schwarz. Es zieht Kanten wie ein Brauenstift: deutlich, aber nie hart.</dd>
+            <dt>Taupe <span class="sg-code">#A39588</span></dt><dd>Der Wandton aus Paulas Porträt im Hero. Er verbindet Foto und Fläche, sodass das Bild in die Seite übergeht.</dd>
+          </dl>
+        </div>
+        <div class="sg-panel raised theme-pink">
+          <div class="bar"><span style="background:var(--color-background)"></span><span style="background:var(--color-surface)"></span><span style="background:var(--color-accent-pink)"></span><span style="background:var(--color-accent)"></span><span style="background:var(--color-button)"></span><span style="background:var(--color-primary)"></span></div>
+          <h3>Pink: die Behandlung und das Ergebnis</h3>
+          <dl>
+            <dt>Was es meint</dt><dd>Lippen, Rouge, frisch durchblutete Haut nach einer Behandlung. Pink steht für das, was am Körper passiert.</dd>
+            <dt>Wo es erscheint</dt><dd>Nur in zwei Abschnitten: bei den Behandlungen (was Paula macht) und bei den Bewertungen (was Kundinnen danach sagen). Dazwischen bleibt die Seite braun. So bleibt Pink ein Akzent und wird nie zur Dekoration.</dd>
+            <dt>Gedämpft, nicht grell</dt><dd>Sättigung 35 statt Bonbon-Pink. Das hält Abstand zur lauten „Glitzer“-Ästhetik, die die Marke nicht sein will.</dd>
+          </dl>
+        </div>
+      </div>
+      <h3 class="sg-h">Harmonie</h3>
+      <div class="sg-panel raised sg-wheel">
+        <div class="sg-hue" role="img" aria-label="Farbkreis: Braun bei 16 Grad und Pink bei 351 Grad liegen 25 Grad auseinander"><span class="ring"></span><span class="mark theme-brown" style="--a:16deg;--c:var(--color-button)"></span><span class="mark theme-pink" style="--a:351deg;--c:var(--color-button)"></span><span class="mid">25°<br>Abstand</span></div>
+        <p>Braun (Farbton 16°) und Pink (351°) liegen auf dem Farbkreis nur 25° auseinander: eine <strong>analoge Harmonie</strong> im warmen Rotbereich. Beide haben fast dieselbe Sättigung (38 und 35) und werden mit denselben Formeln in Helligkeitsstufen zerlegt. Deshalb wirken sie wie eine Familie: Der Wechsel zwischen Braun und Pink ist ein Temperaturwechsel, kein Bruch. Kontraste entstehen über Helligkeit, nicht über bunte Gegenfarben.</p>
+      </div>
+
       <h3 class="sg-h">Abstimmung</h3>
       <div class="sg-panel raised"><p>Beide Farbwelten werden aus sieben Werten berechnet (<span class="sg-code">css/style.css</span>, ganz oben). Festgelegt von Lucas am 19.10.2026:</p><table class="sg-contrast" style="margin-top:var(--space-4)"><tr><td>Braun</td><td style="white-space:normal;text-align:right">Farbton 16 · Sättigung 38 · Fläche −1 · Text 37 · Button 51 · Deckkraft 100 · Rahmen 19,2</td></tr><tr><td>Pink</td><td style="white-space:normal;text-align:right">Farbton 351 · Sättigung 35 · Fläche −4 · Text 32 · Button 47 · Deckkraft 100 · Rahmen 17,6</td></tr></table><p class="sg-note" style="margin-top:var(--space-4)">Rahmen bleiben immer 1 px dünn.</p></div>
     </div>
@@ -227,7 +412,7 @@
   <!-- Schrift -->
   <section id="schrift" aria-labelledby="schrift-h">
     <div class="container">
-      <span class="eyebrow">04 · Schrift</span>
+      <span class="eyebrow">06 · Schrift</span>
       <h2 id="schrift-h">Italiana &amp; Instrument Sans.</h2>
       <p class="intro">Italiana Regular für Überschriften, Gutscheinbeträge, Bewertungszahl und Auszeichnungen. Instrument Sans bleibt für Fließtext, Navigation, Buttons und Labels; Space Mono für technische Angaben. Alle Schriften liegen lokal in <span class="sg-code">fonts/</span>. Das bestehende Vektorlogo bleibt unverändert.</p>
       <div class="sg-panel raised"><p class="sg-glyphs" style="font-family:var(--font-display)">Aa Bb Cc Ää Öö Üü ß<br>0123456789 · ★ ↗ – „“</p></div>
@@ -245,7 +430,7 @@
   <!-- Raster -->
   <section id="raster" aria-labelledby="raster-h">
     <div class="container">
-      <span class="eyebrow">05 · Abstände &amp; Radien</span>
+      <span class="eyebrow">07 · Abstände &amp; Radien</span>
       <h2 id="raster-h">Ein Raster, große Radien.</h2>
       <p class="intro">Alle Abstände kommen aus einer Skala von 4 bis 112 px. Inhalt ist maximal 1240 px breit, mit 20 px Rand am Handy und 32 px ab 900 px. Abschnitte atmen mit 104 px (Handy) bzw. 112 px (Desktop). Panels nebeneinander stehen dicht: 8 px am Handy, 10 px am Desktop.</p>
       <div class="sg-panels">
@@ -279,7 +464,7 @@
   <!-- Komponenten -->
   <section id="komponenten" aria-labelledby="komp-h">
     <div class="container">
-      <span class="eyebrow">06 · Komponenten</span>
+      <span class="eyebrow">08 · Komponenten</span>
       <h2 id="komp-h">Bausteine der Website.</h2>
       <p class="intro">Alle Beispiele hier sind echte Bausteine aus <span class="sg-code">css/style.css</span>, keine Nachbauten.</p>
 
@@ -356,7 +541,7 @@
   <!-- Bewegung -->
   <section id="bewegung" aria-labelledby="bewegung-h">
     <div class="container">
-      <span class="eyebrow">07 · Bewegung</span>
+      <span class="eyebrow">09 · Bewegung</span>
       <h2 id="bewegung-h">Ruhig, nie verspielt.</h2>
       <p class="intro">Eine Kurve für fast alles: <span class="sg-code">cubic-bezier(.4, 0, .2, 1)</span>, schnell los und weich aus. Öffnen dauert etwas länger als Schließen. Wer im System „Bewegung reduzieren“ eingestellt hat, bekommt keine Animationen.</p>
       <div class="sg-panel raised">
@@ -382,7 +567,7 @@
   <!-- Bildsprache -->
   <section id="bilder" aria-labelledby="bilder-h">
     <div class="container">
-      <span class="eyebrow">08 · Bildsprache</span>
+      <span class="eyebrow">10 · Bildsprache</span>
       <h2 id="bilder-h">Echte Arbeit, nah dran.</h2>
       <p class="intro">Nahaufnahmen echter Ergebnisse aus dem Studio, warmes Licht, Hochformat. Fotos stehen immer in abgerundeten Rahmen. Die Kundinnen haben der Veröffentlichung zugestimmt.</p>
       <div class="sg-photos">
@@ -401,10 +586,41 @@
     </div>
   </section>
 
+  <!-- Anwendung -->
+  <section id="anwendung" aria-labelledby="anwendung-h">
+    <div class="container">
+      <span class="eyebrow">11 · Anwendung</span>
+      <h2 id="anwendung-h">Die Marke im Alltag.</h2>
+      <p class="intro">Vier Stellen, an denen Kundinnen PM Beauty begegnen: auf dem Handy, im Studio, als Geschenk und auf Instagram. Überall dieselbe Mitte, dieselben zwei Farbwelten, dieselbe Schrift. Die Mockups sind direkt aus den Werten von <span class="sg-code">css/style.css</span> gebaut, das Handy zeigt die echte Website.</p>
+      <div class="sg-apps">
+        <figure class="sg-app">
+          <div class="scene linen"><div class="sg-phone"><div class="screen"><iframe src="index.html" title="PM Beauty Website auf dem Handy" loading="lazy" tabindex="-1"></iframe></div></div></div>
+          <figcaption class="cap"><h3>Website auf dem Handy</h3><p>Der wichtigste Kanal, weil die meisten Kundinnen über Instagram kommen. Die Vorschau ist die Live-Seite und lässt sich scrollen.</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="scene linen"><div style="position:relative;display:grid;place-items:center">
+            <div class="sg-card front"><svg viewBox="0 0 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm-logo"/></svg></div>
+            <div class="sg-card back"><span class="title">Dein nächster Termin.</span><div class="rows"><div>Datum</div><div>Uhrzeit</div><div>Behandlung</div></div><span class="small-print">Fürstenrieder Str. 11 · München · @pm_beauty___</span></div>
+          </div></div>
+          <figcaption class="cap"><h3>Visitenkarte und Terminkarte</h3><p>Vorderseite braun mit mittiger Wortmarke, Rückseite hell zum Ausfüllen. Format 85 × 55 mm.</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="scene blush"><div class="sg-voucher"><svg style="justify-self:center" viewBox="0 0 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm-logo"/></svg><span class="amount">100 €</span><div class="foot"><span>Gutschein</span><span>München</span></div></div></div>
+          <figcaption class="cap"><h3>Gutschein</h3><p>Der Betrag sitzt auf der Mittelachse, die gestrichelte Linie zeigt sie. Pink, weil ein Gutschein eine Behandlung verschenkt.</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="scene blush"><div class="sg-insta"><div class="bar"><span class="avatar"><svg viewBox="0 0 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm-logo"/></svg></span>pm_beauty___</div><div class="post"><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"><div class="label"><b>Korean Lashlift.</b><i></i></div></div><div class="meta"><b>pm_beauty___</b> Korean Lashlift. Termin über den Link in der Bio.</div></div></div>
+          <figcaption class="cap"><h3>Instagram-Beitrag</h3><p>Echtes Ergebnisfoto, darunter der Behandlungsname in Italiana mit Punkt und eine kurze Linie aus der Mitte. Kein Text im oberen Bilddrittel.</p></figcaption>
+        </figure>
+      </div>
+      <p class="sg-note" style="margin-top:var(--space-4)">Mockups in HTML und CSS, keine Fotografien.</p>
+    </div>
+  </section>
+
   <!-- Sprache -->
   <section id="sprache" aria-labelledby="sprache-h">
     <div class="container">
-      <span class="eyebrow">09 · Sprache</span>
+      <span class="eyebrow">12 · Sprache</span>
       <h2 id="sprache-h">Persönlich, klar, auf Deutsch.</h2>
       <div class="sg-do">
         <div class="sg-panel"><span class="eyebrow">So klingt PM Beauty</span><ul class="sg-list" style="margin-top:var(--space-4)">
@@ -424,7 +640,7 @@
   <!-- Verfahren -->
   <section id="verfahren" aria-labelledby="verfahren-h">
     <div class="container">
-      <span class="eyebrow">10 · Verfahren</span>
+      <span class="eyebrow">13 · Verfahren</span>
       <h2 id="verfahren-h">Wie die Website gebaut wird.</h2>
       <div class="sg-panels">
         <div class="sg-panel"><h3>Technik</h3><ul class="sg-list" style="margin-top:var(--space-4)">
