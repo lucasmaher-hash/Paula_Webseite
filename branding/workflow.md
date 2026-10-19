@@ -277,6 +277,11 @@
 - **Funktioniert:** Der Radius ist von 190 auf 240 px gewachsen. Die Fläche wächst mit dem Quadrat des Radius, also +60 %. Die Deckkraft ist von 0,10/0,04 auf 0,12/0,048 gestiegen (+20 %). Die gemalte Mitte läuft dem Cursor jetzt per `requestAnimationFrame` nach und holt pro Frame 14 % des Abstands auf. Wechselt der Glow in ein anderes Panel, startet er direkt unter dem Cursor. Gemessen nach einem Sprung um 300 px: kurz danach steht er bei 271/190 statt 450/250, nach 0,8 s genau unter dem Cursor. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Der erste Test schien zu zeigen, dass der Glow nicht anspringt. Ursache war das weiche Scrollen im Test: Jedes Scroll-Event blendet den Glow aus, und das ist Absicht. Falls „60 %“ den Durchmesser meinte, wäre der Radius 304 px.
 
+### 19.10.2026 · Rahmen 20 % schwächer, Italiana ohne engere Laufweite
+- **Versucht:** Lucas wollte die feinen Rahmen in Braun und Pink 20 % schwächer. Außerdem fragte er, warum die Italiana auf der Website anders aussieht als in Figma.
+- **Funktioniert:** Der Rahmenwert bestimmt die Deckkraft der Rahmenfarbe. Er ist von 24 auf 19,2 (Braun) und von 22 auf 17,6 (Pink) gesunken, also beide −20 %. Das gilt für alle 1-px-Linien, die `--color-border` nutzen, auch die Trennlinien in Listen. Ursache für den anderen Eindruck der Italiana: Auf der Website war sie um −0,015 em enger gesetzt, in Figma läuft sie mit 0 %. Jetzt steht sie auch auf der Website auf 0. Ein künstlicher Fettschnitt ist ausgeschlossen (`font-weight:400`, `font-synthesis:none`). Styleguide und HANDOFF sind nachgezogen. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Die Wortmarke selbst ist keine gesetzte Italiana, sondern bearbeitete Pfade (dünnere Striche, eigenes E). Sie sieht deshalb immer etwas anders aus als Italiana-Text. Ein Skriptfehler hat diesen Logbuch-Eintrag zunächst verhindert, der Commit mit den CSS-Änderungen lief trotzdem. Die Dokumentation ist im Folge-Commit nachgeholt.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

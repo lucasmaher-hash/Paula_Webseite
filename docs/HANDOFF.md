@@ -9,7 +9,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - Italiana Regular lokal in `fonts/` für H1–H3 und hervorgehobene Zahlen. Instrument Sans für Fließtext, Navigation, Buttons und Labels bleibt. Das Vektorlogo ist unverändert.
 - Feine 1-px-Rahmen um Karten, Panels und Bildrahmen; Kurs-Textflächen haben am Desktop eine gemeinsame Außenkontur ohne Trennlinie zwischen Kopf und Inhalt.
 - Aktuell `style.css?v=46`, `fonts.css?v=2`, `main.js?v=26`.
-- Standardfarben: Lucas’ exportierte Reglerwerte vom 19.10.2026 übernommen (Braun: 16/38/−1/37/51/100/24; Pink: 351/35/−4/32/47/100/22; Reihenfolge: Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Deckkraft, Rahmenkontrast). Frühere Kontrastmessungen gelten für die vorherige Palette.
+- Standardfarben: Lucas’ exportierte Reglerwerte vom 19.10.2026 übernommen (Braun: 16/38/−1/37/51/100/24; Pink: 351/35/−4/32/47/100/22; Rahmen am 19.10. um 20 % schwächer: 19,2 und 17,6; Reihenfolge: Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Deckkraft, Rahmenkontrast). Frühere Kontrastmessungen gelten für die vorherige Palette.
 - Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren.
 
 ## 1. Was live ist
