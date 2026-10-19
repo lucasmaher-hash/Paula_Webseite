@@ -435,7 +435,7 @@ body.menu-open{overflow:hidden}
 .review footer{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;font-size:.82rem;color:var(--color-on-surface-muted)}
 
 /* ---------- Kontakt / Footer ---------- */
-/* Handy: Text, Kontaktdaten, zwei Bilder nebeneinander, Öffnungszeiten.
+/* Handy: Text, Kontaktdaten, zwei Bilder nebeneinander, Öffnungszeiten mit „Termin buchen“.
    Desktop: 3 Spalten × 2 Reihen, Öffnungszeiten rechts über beide Reihen (Lucas' Skizze) */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .contact-intro,.contact-facts,.hours{grid-column:1 / -1}
@@ -444,18 +444,19 @@ body.menu-open{overflow:hidden}
 .contact-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .contact-figure-b img{object-position:50% 40%}   /* Bild ist auf den Lichtschrank zugeschnitten, ohne die Tür mit Schrift */
 @media(min-width:900px){
-  .contact-grid{grid-template-columns:1fr 1fr .9fr;grid-template-rows:auto auto;gap:10px}
+  .contact-grid{grid-template-columns:1.2fr 1.2fr .85fr;grid-template-rows:auto auto;gap:10px}
   .contact-intro,.contact-facts,.contact-figure,.hours{order:0}
   .contact-intro{grid-column:1;grid-row:1}
-  .contact-figure-a{grid-column:2;grid-row:1;aspect-ratio:auto;min-height:280px}
-  .contact-figure-b{grid-column:1;grid-row:2;aspect-ratio:auto;min-height:280px}
+  .contact-figure-a{grid-column:2;grid-row:1;aspect-ratio:auto;min-height:220px}
+  .contact-figure-b{grid-column:1;grid-row:2;aspect-ratio:auto;min-height:220px}
   .contact-facts{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:center}
-  .hours{grid-column:3;grid-row:1 / 3}
+  .hours{grid-column:3;grid-row:1 / 3;display:flex;flex-direction:column}
+  .hours .hours-actions{margin-top:auto;padding-top:var(--space-6)}
 }
 .contact-panel{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
 @media(min-width:900px){.contact-panel,.hours{padding:var(--space-7)}}
 .contact .muted{max-width:46ch}
-.contact-intro .hero-actions{margin-top:var(--space-5)}
+.hours-actions{margin-top:var(--space-6)}
 .fact-address{flex-wrap:nowrap;align-items:flex-start}   /* Label links, Adresse rechts; „München“ in der Zeile darunter */
 .fact-address a{line-height:1.45}
 .hours{background:var(--color-surface-deep);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */

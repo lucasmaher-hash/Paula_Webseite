@@ -307,6 +307,11 @@
 - **Funktioniert:** Die Adresszeile bricht nicht mehr um (`.fact-address`). Rechts steht „Fürstenrieder Str. 11,“ und darunter „München ↗“, beides als ein Link. In „Über mich“ steht jetzt „Erfahrung · 5 Jahre“, die Zahl hatte Lucas schon für die Auszeichnungen genannt. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Lucas' Nachricht endete mit „Structure the …“. Der Rest fehlt noch.
 
+### 19.10.2026 · Kontakt flacher, „Termin buchen“ bei den Öffnungszeiten; Glow nur hinter den Bewertungen
+- **Versucht:** Lucas wollte im Kontakt „Termin buchen“ unter den Öffnungszeiten und die beiden Bilder breiter und flacher, damit die ganze Fläche niedriger wird. Bei den Bewertungen soll nur die Fläche dahinter leuchten, nicht die einzelnen Bewertungs-Panels.
+- **Funktioniert:** Der Button sitzt am Desktop unten im Öffnungszeiten-Panel, am Handy direkt unter der Tabelle. Die Spalten sind jetzt 1,2 : 1,2 : 0,85 statt 1 : 1 : 0,9, die Mindesthöhe der Bilder ist 220 statt 280 px. Weil der Button aus dem Textpanel raus ist, ist die obere Reihe niedriger. Die erste Fassung hatte den Button nicht unten, weil die allgemeine Regel nach der Desktop-Regel stand. Behoben mit `.hours .hours-actions`. Die Bewertungs-Panels sind aus der Glow-Auswahl entfernt. Gemessen: Über einem Panel leuchtet nur `.reviews`. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

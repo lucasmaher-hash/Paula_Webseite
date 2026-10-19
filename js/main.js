@@ -215,7 +215,8 @@
 
   // Glow is painted in the panel background, never in an overlay above content.
   var glowMedia = window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-  var glowSelector = '.about-panel, .services, .accordion details, .course-heading, .course-content, .voucher, .reviews, .review, .contact-panel, .hours, .tile';
+  // Review cards themselves stay flat; only the pink section behind them glows (Lucas, 19.10.2026).
+  var glowSelector = '.about-panel, .services, .accordion details, .course-heading, .course-content, .voucher, .reviews, .contact-panel, .hours, .tile';
   // glowX/Y = cursor, curX/Y = painted centre, which eases after the cursor (GLOW_EASE of the gap per frame).
   var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0, curX = 0, curY = 0, GLOW_EASE = 0.14;
   function clearGlow() {
