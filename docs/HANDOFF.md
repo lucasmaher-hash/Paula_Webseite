@@ -86,7 +86,7 @@ Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (
 - **Bildrechte bestätigen:** Sind Nageldesign, Gesichtsmaske und Braue Paulas eigene Arbeiten? Sonst aus „Arbeiten aus dem Studio“ entfernen. Ein Vorher/Nachher mit Wasserzeichen „@skincitylabnyc“ wurde bewusst nicht verwendet.
 - **Gekürzte Schulungstexte** von Paula freigeben lassen (Originale in der Git-Historie, Commit vor `ef5aafc`).
 - **Echte Studiofotos** für den Kontakt (ersetzen `studio-glass.jpg`/`studio-light.jpg`).
-- **Logbuch-Ende** (`branding/workflow.md`, Abschnitte Werkzeuge/Prompts/Wendepunkte/Fazit) beschreibt noch den ersten Logo-Entwurf (Cormorant Unicase) und sagt „keine Freigabe“; vor der Kursabgabe aktualisieren. Titel heißt noch „Kurzprojekt 1“.
+- **Logo-Kleinfassung:** Bewertung in `branding/logo-prompt.md`: Im Header ist der E-Mittelstrich nur 0,2 px breit, der Wortabstand PM|B beträgt 0,79 × Versalhöhe. Ob eine eigene Header-Fassung kommt, entscheidet Lucas.
 
 - **Instagram:** Seit 18.10.2026 verlinkt die Website Paulas aktives Konto `@pm_beauty___` (vorher `@pm_paulabeauty`). Commit `fc48d45`.
 - **Stripe-Links** für Gutscheine sind Platzhalter (`https://buy.stripe.com/PLATZHALTER_50/100/150`). Paula liefert echte Payment Links.

@@ -1,4 +1,4 @@
-# Workflow: PM Beauty · Kurzprojekt 1
+# Workflow: PM Beauty · Kurzprojekt 1 (Identität) und 2 (Website)
 
 ## Logbuch
 
@@ -372,20 +372,59 @@
 - **Funktioniert:** Vier neue Abschnitte in `styleguide.html`. **02 Gestaltungsprinzip „Die Mitte“** (aus dem Markenprofil übernommen): Das E im Logo mit Mittelachse, dazu drei laufende Beispiele aus der Website (Hover-Linie wächst aus der Mitte, Lorbeerkranz öffnet sich aus dem Zentrum, Kategorie gleitet in die Bildschirmmitte) und vier Regeln samt „Test ohne Logo“. **03 Moodboard** aus Paulas Fotos, den zwei Raum-Referenzen (als Referenz beschriftet), Schrift-, Farb- und Wortkacheln. Das Brauenfoto ist bewusst nicht dabei, weil die Rechte offen sind. **Farben:** Bedeutung je Farbwelt (Braun = Studio und Paula, Pink = Behandlung und Ergebnis, Taupe = Wand aus dem Porträt) und Harmonie mit Farbkreis: 16° und 351° liegen 25° auseinander, die Sättigung ist fast gleich, also eine analoge Harmonie. **11 Anwendung:** Handy mit der echten Website als iframe, Visitenkarte und Terminkarte, Gutschein 100 €, Instagram-Beitrag, alles direkt aus den CSS-Variablen gebaut. Geprüft bei 375 und 1440 px: kein horizontales Scrollen, keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Das E und die Logos blieben zuerst unsichtbar. Ursache: Das äußere SVG hatte dieselbe verschobene viewBox wie das Symbol, dadurch lag die Grafik außerhalb des Bildes. Behoben mit `viewBox="0 0 …"`. Die Mockups sind gerenderte HTML-Szenen, keine Fotos. Für „Foto und/oder Video“ fehlt noch ein echtes Foto- oder Video-Mockup (z. B. per KI-Bildgenerierung oder Bildschirmaufnahme).
 
+### 19.10.2026 · Workflow-Ende neu, Logo-Prompt mit Bewertungskriterien (Claude lokal)
+- **Versucht:** Die Abschnitte Werkzeuge, Wichtige Prompts, Wendepunkte und Fazit beschrieben noch den ersten Cormorant-Entwurf. Außerdem fehlte aus der Aufgabe vom 12.10. der Logo-Prompt mit Bewertungskriterien.
+- **Funktioniert:** Claude hat das ganze Logbuch ausgewertet und die vier Abschnitte nach Ammers Vorlage neu geschrieben, Titel jetzt „Kurzprojekt 1 (Identität) und 2 (Website)“. Neu ist `branding/logo-prompt.md`: ein nachträglich formulierter Prompt, neun Kriterien mit Prüfmethode und eine gemessene Bewertung des finalen Logos. Ergebnis: Mitte, Gleichmaß und Technik sind erfüllt. Nicht erfüllt sind die Lesbarkeit klein (Mittelstrich des E im Header nur 0,2 px breit) und das Wortbild (Wortabstand 0,79 × Versalhöhe).
+- **Nicht funktioniert / offen:** Der Prompt ist rückwirkend formuliert, das Logo ist nicht aus ihm entstanden. So steht es auch in der Datei. Der Charakter-Test mit fremden Personen (K6) ist nicht gemacht. Ob es eine Kleinfassung für den Header gibt, entscheidet Lucas.
+
 ## Werkzeuge
 
-Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
+Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
+
+1. **Lucas' Handskizze** → Form des gedrehten E.
+2. **Codex und Claude Code parallel** → Wortmarke als Vektor: Python mit fontTools für die Schriftkonturen (erst Cormorant Unicase, dann Italiana), das E als eigener Pfad, Sharp für Vorschaubilder. Pillow erzeugt später die Web-Bilder (`make_images.py`). Zwei Agenten bekamen dieselbe Aufgabe, um Varianten zu vergleichen.
+3. **Figma** (über die Plugin-API aus Claude Code befüllt) → alle Entwürfe nebeneinander auf einer Karte. Das finale E hat Lucas dort von Hand gebaut (`1:32`). Claude Code hat es exportiert, nachgemessen und eine zentrierte und eine dünne Fassung abgeleitet.
+4. **Claude Code** → Website (statisches HTML/CSS/JS), gemessen im eingebauten Browser statt nach Augenmaß, live über GitHub Pages.
+5. **Codex mit Bildgenerierung** → Hero-Outpainting von Paulas Porträt (Prompts in `branding/assets/photos/HERO-OUTPAINT.md`).
+6. **Codex** → temporärer Farbregler auf der Website (`?tune=1`). Lucas hat die Farben selbst eingestellt, die Werte exportiert, dann wurde der Regler wieder entfernt.
+7. **Claude mit Websuche** → KI-Marktcheck für das Markenprofil (Branchenbuch muenchen.de, Fresha, Treatwell).
+8. **Claude Code** → Markenprofil, Styleguide, Logo-Prompt mit Bewertung, dieses Logbuch.
+
+Kurz: Skizze → Codex + Claude (Logo-Code) → Figma (Auswahl, Handarbeit) → Claude Code (Website, Messen) → Bildmodell (Outpainting) → Codex-Regler (Farben) → Claude (Marktcheck, Markenprofil, Styleguide).
 
 ## Wichtige Prompts
 
-- Lucas beschrieb zwei hohe, oben serifenlose Außenstriche, geschwungene untere Übergänge und einen kurzen Mittelsteg mit weichem oberen Abschluss. Die beigefügte Handskizze war die Formreferenz.
-- „Konstruiere außerhalb von Figma … nutze die Schrift Cormorant Unicase … in Vektor“ legte Schrift und Ausgabeweg fest.
-- Das E sollte exakt mittig in der Wortmarke stehen; die Abstände der anderen Buchstaben sollten dafür angepasst werden.
+Wörtlich zitiert ist nur, was in Anführungszeichen steht. Der Rest ist aus dem Logbuch sinngemäß wiedergegeben.
+
+1. **Konstruktion statt Bildgenerierung:** „Konstruiere außerhalb von Figma … nutze die Schrift Cormorant Unicase … in Vektor“. Damit war klar: Das Logo entsteht als messbarer Pfad, nicht als Pixelbild. Das hat jede spätere Korrektur auf Zehntel genau möglich gemacht.
+2. **Die Mitte als Bedingung:** Lucas wollte das E exakt mittig in der Wortmarke, die anderen Buchstaben sollten sich danach richten. Aus dieser einen Anweisung ist das Gestaltungsprinzip „Die Mitte“ geworden, das heute Logo, Hover-Linien, Kränze und das Akkordeon verbindet.
+3. **Hero-Outpainting:** „Outpaint the original portrait into a wide 2.2:1 photographic website hero … Left side is empty continuous warm taupe wall approximately #A39588. Preserve face, hands, rings, hair …“ Damit ließ sich das Hochformat-Porträt als Desktop-Hero verwenden. Die Wandfarbe im Prompt ist dieselbe wie die CSS-Variable `--hero-wall`.
+4. **Werkzeug statt Ergebnis:** Lucas bat Codex nicht um fertige Farben, sondern um Regler für Farbton, Sättigung, Helligkeit und Deckkraft beider Farbwelten direkt auf der Seite. Die KI hat das Werkzeug gebaut, gestaltet hat Lucas. Die 14 exportierten Werte sind seitdem die Palette.
+5. **KI-Marktcheck:** Claude sollte prüfen, ob „Präzision“ ein Alleinstellungsmerkmal ist und was Konkurrenten in München machen (Ammers Vorschlag vom 15.10.). Ergebnis: Als Wort ist Präzision kein Merkmal, jedes PMU-Studio verspricht sie. Glaubwürdig wird sie erst durch die sichtbare Umsetzung. Das hat das Gestaltungsprinzip begründet.
+
+Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `branding/logo-prompt.md`.
 
 ## Wendepunkte
 
-Die Originalkonturen von „AUTY“ sind zusammen breiter als „PM B“. Die exakte Zentrierung erfolgt deshalb über großzügigere Abstände links, ohne die Buchstaben zu verzerren. Die Konstruktion bleibt anhand eines Skripts und der gespeicherten Maße nachvollziehbar.
+- **Die KI hat die Skizze falsch gelesen.** Die erste Claude-Fassung setzte den Balken über die Grundlinie, ohne Kerbe, mit zu hohem Stiel. Erst Lucas' Korrektur mit Maßen aus dem Italiana-Entwurf brachte die richtige Form. Skizzen allein reichen als Prompt nicht, es braucht Maße.
+- **Zwei Agenten, keine Entscheidung.** Codex und Claude lieferten parallel zwölf Varianten (Codex v1 bis v6, Claude drei Höhen und drei Laufweiten A/B/C). Entschieden hat das keine KI: Lucas hat das finale E in Figma von Hand gebaut. Die KI war stark im Messen und Vergleichen, nicht im Wählen.
+- **Rechnerische gegen optische Mitte.** „AUTY“ ist deutlich breiter als „PM B“. Ein exakt mittiges E kostet deshalb einen großen Wortabstand (heute 0,79 × Versalhöhe). Die KI konnte das berechnen, die Abwägung blieb bei Lucas. Ihre Vorschläge (kürzere Füße, Stiel auf Höhe des B-Querstrichs) hat er abgelehnt.
+- **Bauen ist billig, Weglassen ist die Arbeit.** Ein Logo-Intro mit Scroll-Animation, Easing und Ruckel-Fix (vier Commits) und ein pinker Maus-Schein wurden gebaut, live angesehen und wieder entfernt. Geblieben ist ein viel leiserer Schein in den Panels. Weil die KI schnell baut, ist das Ausprobieren am echten Ergebnis günstiger als langes Diskutieren.
+- **Bildgenerierung übertreibt.** Die dritte Outpainting-Runde (mehr Kopfraum) war gestalterisch zu viel und wurde zurückgenommen. Fürs Handy hat Lucas am Ende selbst ein Bild geliefert, das unverändert übernommen wurde.
+- **Wo die KI kontraproduktiv war:** Das Vorschaufenster lief mit etwa 6 Bildern pro Sekunde, Bewegung ließ sich dort nicht beurteilen, nur am echten Gerät. Figma-Aufrufe sind in der Größe begrenzt, Pfade mussten gerundet und Striche von Hand nachgebaut werden. In der Cloud-Sitzung waren Stockfoto-Seiten und eine Referenzseite gesperrt. Ein „funktionierender“ pinker Header war technisch korrekt, aber unsichtbar: Erst die Messung der Farbwerte zeigte das.
+- **Reihenfolge verkehrt.** Logo und Website entstanden am 18.10., das Markenprofil erst am 19.10. Das Profil beschreibt deshalb teilweise im Nachhinein, was schon gestaltet war. Ammers Reihenfolge (erst Profil, dann Logo) wäre sauberer gewesen.
 
 ## Fazit
 
-Präzise Vektorkonstruktion eignet sich für dieses klar beschriebene Zeichen. Die Form und Abstände können gezielt verändert werden. Ob die geometrische Mitte auch die gewünschte Ruhe vermittelt, muss am Entwurf beurteilt werden; eine Freigabe liegt noch nicht vor.
+**Wieder so:**
+- Logo als Code konstruieren statt als Bild generieren. Messbare Pfade machen Präzision überprüfbar, und Präzision ist der Kern der Marke.
+- Die KI messen lassen, selbst entscheiden. Jede Aussage wie „sitzt mittig“ oder „ist sichtbar“ wurde per Messung belegt, nicht geschätzt.
+- Temporäre Werkzeuge bauen lassen (Farbregler), wenn eine Entscheidung nach Augenmaß fallen muss.
+- Ein Logbuch, das nach jedem Schritt von der KI geschrieben und von mir gelesen wird. So ist der ganze Weg nachvollziehbar, auch über drei Werkzeuge hinweg (Codex, Claude in der Cloud, Claude lokal).
+
+**Nicht wieder so:**
+- Zwei Agenten gleichzeitig in denselben Dateien. Das ging gut, war aber riskant. Parallel nur in getrennten Ordnern oder Varianten.
+- Erst gestalten, dann das Markenprofil schreiben.
+- Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
+
+**Offen:** Kleinfassung des Logos für den Header (siehe Bewertung in `branding/logo-prompt.md`), das dynamische Logo und die Animation der Marke, ein echtes Foto- oder Video-Mockup.
