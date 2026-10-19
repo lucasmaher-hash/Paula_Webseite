@@ -397,6 +397,11 @@
 - **Funktioniert:** Nur im Header-Logo ist der Mittelstrich eine eigene Gruppe. CSS: `.site-header.studio-closed` kürzt ihn auf 32 % (Drehpunkt unten mittig über `transform-box: fill-box`), Übergang 1 s. JS am Ende von `main.js`: Öffnungszeiten nach Münchner Uhrzeit, jede Minute neu. Eine Feder (max. 8°) reagiert auf Mausbewegung (der Strich bleibt wie ein Stab etwas zurück) und auf Scrollgeschwindigkeit, läuft nur bei Bewegung und bei „Bewegung reduzieren“ gar nicht. Gemessen: Geschlossen 2,55 statt 7,96 px hoch, Fußpunkt und Mitte unverändert. Scrollen kippt auf etwa −6°, nach 1 s noch etwa 1°. Maus nach rechts −5,9°. Bei 375 und 1440 px kein horizontales Scrollen, keine Konsolenfehler. CSS v61, JS v35.
 - **Nicht funktioniert / offen:** Das Vorschaufenster war ausgeblendet. Dort laufen weder Transitionen noch Animationsframes oder Scroll-Events. Getestet wurde deshalb mit synthetischen Events und einem Timer statt `requestAnimationFrame`. Wie es sich auf einem echten Gerät anfühlt, ist nicht gesehen. Dezent heißt hier auch: Ohne Erklärung erkennt kaum jemand, dass der kurze Strich „geschlossen“ bedeutet. Feiertage werden nicht berücksichtigt.
 
+### 19.10.2026 · Dynamisches Logo nur noch im Styleguide (Claude lokal)
+- **Versucht:** Lucas: „integriere das in den Styleguide, nicht eine separate Seite“. Gemeint war die Prototyp-Seite `branding/dynamic-logo/`.
+- **Funktioniert:** Der Styleguide-Abschnitt „Dynamisches Logo“ hat jetzt alles, was die Seite konnte, außer der Handy-Neigung: große Live-Fläche (volle Fassung, 14°, Pink bei Öffnung), Uhrzeit-Simulation und neu zwei Header-Vorschauen mit Kleinfassung C bei 112 und 96 px, die wie auf der Website nur die Höhe ändern und mit 8° mitkippen. Die Prototyp-Seite ist gelöscht (`git rm`, bleibt in der Historie). Gemessen: geschlossen 13,24/2,97/2,55 px, offen 41,38/9,28/7,96 px Strichhöhe (Fläche/112/96 px), bei Mausbewegung 9,5° groß und 5,4° in den Headern. Desktop 1440 px ohne horizontales Scrollen und ohne Konsolenfehler.
+- **Nicht funktioniert / offen:** Den Neigungs-Knopf gibt es nicht mehr, weil der Styleguide nur für den Desktop gilt. Die Vergleichsseite der Kleinfassungen (`branding/assets/logo-small/vergleich.html`) ist weiterhin eine eigene Seite.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
