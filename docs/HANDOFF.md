@@ -39,7 +39,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
 - **Panels:** Flächen dicht nebeneinander (8 px Handy, 10 px Desktop), 1-px-Kontur; am Handy sind die Radien ca. 30 % kleiner (22/17 px statt 32/24 px).
 - **Mobile first:** Basisregeln gelten fürs Handy, größere Bildschirme per `min-width`. Das Handy ist der wichtigste Kanal für Paulas Kundinnen.
-- **Logo:** `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg`. Es steht inline an drei Stellen in `index.html` (Header, mobiles Menü, Footer), Farbe über `currentColor`. Bei einer Logo-Änderung alle drei ersetzen. Maße und Varianten: `branding/assets/logo-final/README.md`.
+- **Logo:** Auf der Website steht seit 19.10.2026 die **Kleinfassung C** `branding/assets/logo-small/pm-beauty-logo-klein-c-kompromiss.svg` (normale Strichstärke, Mittelstrich 1,75, Wortabstand enger, E exakt mittig), inline an drei Stellen in `index.html` (Header, mobiles Menü, Footer), Farbe über `currentColor`. Bei einer Logo-Änderung alle drei ersetzen. Ab 160 px Breite gilt die große Fassung `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg`. Maße und Varianten: `branding/assets/logo-final/README.md`, `branding/assets/logo-small/README.md`. Prototyp dynamisches Logo: `branding/dynamic-logo/` (im Styleguide eingebunden, nicht auf der Website).
 
 ## 2. Arbeitsweise (von Lucas festgelegt)
 
@@ -87,7 +87,6 @@ Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (
 - **Bildrechte bestätigen:** Sind Nageldesign, Gesichtsmaske und Braue Paulas eigene Arbeiten? Sonst aus „Arbeiten aus dem Studio“ entfernen. Ein Vorher/Nachher mit Wasserzeichen „@skincitylabnyc“ wurde bewusst nicht verwendet.
 - **Gekürzte Schulungstexte** von Paula freigeben lassen (Originale in der Git-Historie, Commit vor `ef5aafc`).
 - **Echte Studiofotos** für den Kontakt (ersetzen `studio-glass.jpg`/`studio-light.jpg`).
-- **Logo-Kleinfassung:** Bewertung in `branding/logo-prompt.md`: Im Header ist der E-Mittelstrich nur 0,2 px breit, der Wortabstand PM|B beträgt 0,79 × Versalhöhe. Ob eine eigene Header-Fassung kommt, entscheidet Lucas.
 
 - **Instagram:** Seit 18.10.2026 verlinkt die Website Paulas aktives Konto `@pm_beauty___` (vorher `@pm_paulabeauty`). Commit `fc48d45`.
 - **Stripe-Links** für Gutscheine sind Platzhalter (`https://buy.stripe.com/PLATZHALTER_50/100/150`). Paula liefert echte Payment Links.

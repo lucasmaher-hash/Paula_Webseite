@@ -387,6 +387,11 @@
 - **Funktioniert:** `branding/dynamic-logo/index.html`. Zwei Reize aus der Umgebung: (1) Maus, Finger oder die Neigung des Handys lenken den Mittelstrich des E bis 14° aus, eine gedämpfte Feder holt ihn exakt auf die Achse zurück. (2) Die Uhrzeit in München (Europe/Berlin) gegen die Öffnungszeiten aus `docs/prd.md` (Mo–Fr 10–20 Uhr): Ist das Studio offen, steht der Mittelstrich voll und die Seite wechselt in die Pink-Welt (`.theme-pink`). Ist es geschlossen, steht der Strich auf einem Drittel und die Seite bleibt braun, mit 1 s Übergang. Eine Simulation (Wochentag, Uhrzeit) erlaubt die Vorführung im Kurs, außerdem eine Header-Vorschau mit 112 und 96 px. Bei „Bewegung reduzieren“ schwingt nichts. Gemessen: Auslenkung bis etwa 9° bei schneller Bewegung, danach Rückkehr gegen 0°. Mo 3:44 echt = geschlossen, Mo 11:00 simuliert = offen und pink. Bei 375 und 1280 px kein horizontales Scrollen, keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Der Mittelstrich mit 0,56 Einheiten war als bewegtes Teil kaum zu sehen, im Prototyp ist er deshalb 1,75 breit. Das Vorschaufenster lief mit etwa 4 Bildern pro Sekunde, Federgefühl und Neigung auf iPhone/Android sind nicht getestet. Noch nicht im Styleguide und nicht auf der Website. Ob das Konzept trägt, entscheidet Lucas, eventuell mit Ammer.
 
+### 19.10.2026 · Kleinfassung C auf der Website, dynamisches Logo im Styleguide (Claude lokal)
+- **Versucht:** Lucas: „Nimm Kleinfassung C für den Header auf der Website und nimm das dynamische Logo in den Styleguide auf.“
+- **Funktioniert:** Header, mobiles Menü und Footer zeigen das Logo alle mit 96/112 px, deshalb steht C an allen drei Stellen (Regel aus dem HANDOFF: Logo immer an allen drei Stellen ersetzen). Gemessen: 96 × 28 px am Handy, 112 × 33 px am Desktop, knapp 1 px höher als vorher. Kein horizontales Scrollen, keine Konsolenfehler. Im Styleguide zeigen „Größen“ bei 96 und 112 px jetzt C, dazu die Regel „bis 160 px Kleinfassung“. Neuer Unterabschnitt „Dynamisches Logo“ mit Live-Fläche (Feder zur Mitte, Öffnungszeiten, Simulation). Drei veraltete Logo-Regeln korrigiert: Logofarbe ist die Textfarbe der Farbwelt statt „Fast-Schwarz #221C16“, Pink ist in der Pink-Welt erlaubt, das E darf sich nur im dynamischen Logo ändern. Styleguide nur am Desktop geprüft (Lucas' Regel).
+- **Nicht funktioniert / offen:** Auf einem echten Handy ist das neue Header-Logo nicht angesehen. In Figma liegt C noch nicht.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
@@ -437,4 +442,4 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Erst gestalten, dann das Markenprofil schreiben.
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
-**Offen:** Wahl der Kleinfassung (`branding/assets/logo-small/`), Entscheidung über den Prototyp des dynamischen Logos (`branding/dynamic-logo/`), ein echtes Foto- oder Video-Mockup.
+**Offen:** Ob das dynamische Logo auf die Website kommt, ein echtes Foto- oder Video-Mockup.

@@ -71,3 +71,5 @@ Gemessen an `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg` (Website-
 | K9 Systemfähigkeit | Das E trägt das Prinzip „Die Mitte“ im Styleguide. Als Favicon ist es noch nicht eingesetzt. | teilweise |
 
 **Urteil:** Das Logo erfüllt die Kriterien, die Präzision messen (K1, K4, K8). Schwach ist es dort, wo es klein und als Wort wirken muss (K2, K3). Die naheliegende Lösung ist eine eigene **Kleinfassung** für den Header: Mittelstrich etwa 2,5-mal so breit und der Wortabstand etwas enger, auch wenn das E dann optisch statt rechnerisch mittig steht. Die Entscheidung liegt bei Lucas.
+
+**Umsetzung (19.10.2026):** Lucas hat Kleinfassung C gewählt (`branding/assets/logo-small/`). Sie steht jetzt im Header, im mobilen Menü und im Footer der Website. K2 ist damit erfüllt (Mittelstrich 0,63 px statt 0,20 px bei 96 px), K3 verbessert (0,62 statt 0,79 × Versalhöhe), K1 bleibt exakt.
