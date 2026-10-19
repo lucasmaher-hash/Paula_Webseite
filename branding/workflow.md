@@ -332,6 +332,11 @@
 - **Funktioniert:** Der Glow sammelt jetzt alle passenden Flächen vom Panel unter dem Cursor bis zum äußersten Abschnitt und malt den Schein auf jeder an derselben Stelle. Gemessen: Über „Permanent Make-up“ leuchten die Kategorie und `.services`. Über einer Bewertung leuchtet nur `.reviews`, weil die Bewertungs-Panels seit vorhin ausgenommen sind. Bei den Schulungen leuchten Kopf und Inhalt zusammen. Keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Hover-Linie unter beiden Adresszeilen
+- **Versucht:** Die Hover-Linie unter der zweizeiligen Adresse lief nur unter der zweiten Zeile, dafür über die volle Blockbreite. Lucas wollte unter jeder Zeile eine eigene Linie, so lang wie der Text.
+- **Funktioniert:** Dieser Link ist jetzt `inline` statt `inline-block`, und die Linie ist ein Hintergrundverlauf mit `box-decoration-break: clone`. So bekommt jede Zeile ihre eigene Linie, die wie die anderen Hover-Linien von der Mitte wächst (0,35/0,45 s). Gemessen: zwei Zeilenrechtecke mit 138 und 81 px, jede mit eigener Linie. Die erste Fassung griff nicht, weil die allgemeine Hover-Linien-Regel weiter unten steht. Behoben mit `.fact.fact-address a`.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

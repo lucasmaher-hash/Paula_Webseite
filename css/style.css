@@ -486,6 +486,16 @@ body.menu-open{overflow:hidden}
 .hours-actions{margin-top:var(--space-6)}
 .fact-address{flex-wrap:nowrap;align-items:flex-start}   /* Label links, Adresse rechts; „München“ in der Zeile darunter */
 .fact-address a{line-height:1.45}
+/* Zweizeiliger Link: Linie pro Zeile, jeweils so lang wie der Text, wächst von der Mitte (statt ::after unter dem ganzen Block) */
+.fact.fact-address a{
+  display:inline;padding-bottom:.12em;
+  background:linear-gradient(currentColor,currentColor) no-repeat 50% 100% / 0 1px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size .35s cubic-bezier(.4,0,.2,1);
+}
+.fact.fact-address a::after{content:none}
+.fact.fact-address a:focus-visible{background-size:100% 1px;transition-duration:.45s}
+@media(hover:hover){.fact.fact-address a:hover{background-size:100% 1px;transition-duration:.45s}}
 .hours{background:var(--color-surface-deep);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */
 .hours table{width:100%;border-collapse:collapse;margin-top:var(--space-4);font-size:.95rem}
 .hours td{padding:10px 0}
