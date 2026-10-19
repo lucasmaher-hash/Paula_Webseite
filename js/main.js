@@ -307,3 +307,53 @@
   }, { threshold: 0.12 });
   items.forEach(function (el) { io.observe(el); });
 })();
+
+// Dynamisches Logo im Header (Styleguide, „Dynamisches Logo“): Der Mittelstrich des E steht voll, solange das Studio
+// laut Öffnungszeiten offen ist (Mo–Fr 10–20 Uhr, Uhrzeit München), sonst auf einem Drittel. Maus- und Scrollbewegung
+// kippen ihn leicht; eine gedämpfte Feder holt ihn exakt in die Mitte zurück. Keine Farbe: Pink bleibt dem Header über pinken Abschnitten.
+(function () {
+  var header = document.querySelector('.site-header');
+  var mid = header && header.querySelector('.brand .mid');
+  if (!mid) return;
+
+  function studioOpen() {
+    var o = {};
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short', hour: 'numeric', hour12: false })
+      .formatToParts(new Date()).forEach(function (x) { o[x.type] = x.value; });
+    var h = +o.hour % 24;
+    return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].indexOf(o.weekday) >= 0 && h >= 10 && h < 20;
+  }
+  function hours() { header.classList.toggle('studio-closed', !studioOpen()); }
+  hours();
+  setInterval(hours, 60000);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var MAX = 8, angle = 0, vel = 0, target = 0, last = 0, running = false;
+  function kick(v) {
+    target = Math.max(-MAX, Math.min(MAX, target + v));
+    if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+  }
+  function frame(now) {
+    var dt = Math.min(0.05, (now - last) / 1000); last = now;
+    target *= Math.pow(0.03, dt);              // Reiz klingt schnell ab: nach 0,5 s noch 17 %
+    vel += (-90 * (angle - target) - 11 * vel) * dt;
+    angle += vel * dt;
+    if (Math.abs(angle) < 0.01 && Math.abs(vel) < 0.01 && Math.abs(target) < 0.01) { angle = 0; vel = 0; target = 0; running = false; }
+    mid.style.transform = angle ? 'rotate(' + angle.toFixed(2) + 'deg)' : '';
+    if (running) requestAnimationFrame(frame);
+  }
+  // Maus: der Strich bleibt wie ein stehender Stab etwas hinter der Bewegung zurück
+  var lastX = null;
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    if (lastX !== null) kick(-(e.clientX - lastX) * 0.06);
+    lastX = e.clientX;
+  }, { passive: true });
+  // Scrollen: kleiner Impuls aus der Scrollgeschwindigkeit, auch am Handy
+  var lastY = window.scrollY;
+  window.addEventListener('scroll', function () {
+    var d = window.scrollY - lastY; lastY = window.scrollY;
+    kick(Math.max(-2.5, Math.min(2.5, -d * 0.04)));
+  }, { passive: true });
+})();

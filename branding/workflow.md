@@ -392,6 +392,11 @@
 - **Funktioniert:** Header, mobiles Menü und Footer zeigen das Logo alle mit 96/112 px, deshalb steht C an allen drei Stellen (Regel aus dem HANDOFF: Logo immer an allen drei Stellen ersetzen). Gemessen: 96 × 28 px am Handy, 112 × 33 px am Desktop, knapp 1 px höher als vorher. Kein horizontales Scrollen, keine Konsolenfehler. Im Styleguide zeigen „Größen“ bei 96 und 112 px jetzt C, dazu die Regel „bis 160 px Kleinfassung“. Neuer Unterabschnitt „Dynamisches Logo“ mit Live-Fläche (Feder zur Mitte, Öffnungszeiten, Simulation). Drei veraltete Logo-Regeln korrigiert: Logofarbe ist die Textfarbe der Farbwelt statt „Fast-Schwarz #221C16“, Pink ist in der Pink-Welt erlaubt, das E darf sich nur im dynamischen Logo ändern. Styleguide nur am Desktop geprüft (Lucas' Regel).
 - **Nicht funktioniert / offen:** Auf einem echten Handy ist das neue Header-Logo nicht angesehen. In Figma liegt C noch nicht.
 
+### 19.10.2026 · Dynamisches Logo im Website-Header (Claude lokal)
+- **Versucht:** Lucas: „Bau das dynamische Logo in den Website-Header ein (Feder + Öffnungszeiten), ruhig und dezent.“ Claude hat den Farbwechsel bewusst weggelassen: Der Header wird schon über den pinken Abschnitten pink, ein zusätzliches Pink während der Öffnungszeiten hätte diese Bedeutung überlagert. Die Neigung am Handy fehlt ebenfalls, weil iOS dafür eine Erlaubnisabfrage zeigt.
+- **Funktioniert:** Nur im Header-Logo ist der Mittelstrich eine eigene Gruppe. CSS: `.site-header.studio-closed` kürzt ihn auf 32 % (Drehpunkt unten mittig über `transform-box: fill-box`), Übergang 1 s. JS am Ende von `main.js`: Öffnungszeiten nach Münchner Uhrzeit, jede Minute neu. Eine Feder (max. 8°) reagiert auf Mausbewegung (der Strich bleibt wie ein Stab etwas zurück) und auf Scrollgeschwindigkeit, läuft nur bei Bewegung und bei „Bewegung reduzieren“ gar nicht. Gemessen: Geschlossen 2,55 statt 7,96 px hoch, Fußpunkt und Mitte unverändert. Scrollen kippt auf etwa −6°, nach 1 s noch etwa 1°. Maus nach rechts −5,9°. Bei 375 und 1440 px kein horizontales Scrollen, keine Konsolenfehler. CSS v61, JS v35.
+- **Nicht funktioniert / offen:** Das Vorschaufenster war ausgeblendet. Dort laufen weder Transitionen noch Animationsframes oder Scroll-Events. Getestet wurde deshalb mit synthetischen Events und einem Timer statt `requestAnimationFrame`. Wie es sich auf einem echten Gerät anfühlt, ist nicht gesehen. Dezent heißt hier auch: Ohne Erklärung erkennt kaum jemand, dass der kurze Strich „geschlossen“ bedeutet. Feiertage werden nicht berücksichtigt.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
@@ -442,4 +447,4 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Erst gestalten, dann das Markenprofil schreiben.
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
-**Offen:** Ob das dynamische Logo auf die Website kommt, ein echtes Foto- oder Video-Mockup.
+**Offen:** Ein echtes Foto- oder Video-Mockup, Test des dynamischen Header-Logos auf echten Geräten.

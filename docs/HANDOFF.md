@@ -10,7 +10,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Domain:** paula-maher.de liegt bei Strato (Paulas Paket mit 1 Inklusiv-Domain und 1 Mailpostfach). Strato-DNS: A-Record `185.199.108.153` (GitHub, Strato erlaubt nur eine IPv4). MX und NS nicht anfassen, sonst bricht Paulas Mail. Die Datei `CNAME` im Repo nicht löschen. HTTPS erzwungen, Zertifikat von GitHub (Let's Encrypt).
 - **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana für Überschriften und große Zahlen, Instrument Sans für alles andere).
 - **Dateien:** `index.html` (One-Pager), `styleguide.html`, `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** aktuell `style.css?v=60`, `main.js?v=33`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
+- **Cache-Busting:** aktuell `style.css?v=61`, `main.js?v=35`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
 
 ### Aufbau von `index.html` (von oben nach unten)
 
@@ -39,7 +39,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
 - **Panels:** Flächen dicht nebeneinander (8 px Handy, 10 px Desktop), 1-px-Kontur; am Handy sind die Radien ca. 30 % kleiner (22/17 px statt 32/24 px).
 - **Mobile first:** Basisregeln gelten fürs Handy, größere Bildschirme per `min-width`. Das Handy ist der wichtigste Kanal für Paulas Kundinnen.
-- **Logo:** Auf der Website steht seit 19.10.2026 die **Kleinfassung C** `branding/assets/logo-small/pm-beauty-logo-klein-c-kompromiss.svg` (normale Strichstärke, Mittelstrich 1,75, Wortabstand enger, E exakt mittig), inline an drei Stellen in `index.html` (Header, mobiles Menü, Footer), Farbe über `currentColor`. Bei einer Logo-Änderung alle drei ersetzen. Ab 160 px Breite gilt die große Fassung `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg`. Maße und Varianten: `branding/assets/logo-final/README.md`, `branding/assets/logo-small/README.md`. Prototyp dynamisches Logo: `branding/dynamic-logo/` (im Styleguide eingebunden, nicht auf der Website).
+- **Logo:** Auf der Website steht seit 19.10.2026 die **Kleinfassung C** `branding/assets/logo-small/pm-beauty-logo-klein-c-kompromiss.svg` (normale Strichstärke, Mittelstrich 1,75, Wortabstand enger, E exakt mittig), inline an drei Stellen in `index.html` (Header, mobiles Menü, Footer), Farbe über `currentColor`. Bei einer Logo-Änderung alle drei ersetzen. Ab 160 px Breite gilt die große Fassung `branding/assets/logo-final/pm-beauty-logo-duenn-kurz.svg`. Maße und Varianten: `branding/assets/logo-final/README.md`, `branding/assets/logo-small/README.md`. **Dynamisches Logo im Header** (seit 19.10.2026): Der Mittelstrich des E (`.brand .mid` nur im Header) steht voll, solange das Studio offen ist (Mo–Fr 10–20 Uhr, Uhrzeit München, Klasse `.studio-closed` am Header), sonst auf 32 %. Maus- und Scrollbewegung kippen ihn bis 8°, eine Feder holt ihn zur Mitte zurück (Ende von `js/main.js`). Bewusst ohne Farbwechsel und ohne Neigungssensor. Feiertage kennt es nicht. Voller Prototyp: `branding/dynamic-logo/`.
 
 ## 2. Arbeitsweise (von Lucas festgelegt)
 
