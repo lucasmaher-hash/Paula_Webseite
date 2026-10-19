@@ -2,7 +2,7 @@
 
 Anlass: Bewertung in `branding/logo-prompt.md`. In der dünnen Website-Fassung ist der Mittelstrich des E bei 96 px Logobreite nur 0,2 px breit, der Wortabstand PM|B beträgt 0,79 × Versalhöhe.
 
-Vergleich: im Styleguide, Abschnitt Logo › „Kleinfassung: Vergleich“ (`styleguide.html#kleinfassung`).
+Vergleich: Tabelle unten. Die frühere Vergleichsseite und der Styleguide-Abschnitt sind entfernt (Lucas, 19.10.2026), beide stehen in der Git-Historie.
 
 Alle drei Fassungen bauen auf `logo-final/pm-beauty-logo-korrigiert.svg` auf, also auf der normalen statt der dünnen Strichstärke. Der E-Überstand ist kurz wie auf der Website. Der Mittelstrich ist 1,75 statt 0,56 breit. Erzeugt per Python aus den Originalpfaden. Die Buchstaben sind nur verschoben, nicht verändert.
 
