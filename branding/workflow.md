@@ -342,6 +342,11 @@
 - **Funktioniert:** Technisch lief der Wechsel, er war aber kaum zu sehen. Gemessen: RGB 245/234/233 ohne und 242/227/228 mit Tönung. Der Header ist zu 68 % deckend und lag ohnehin über einer pinken Fläche. Die Tönung nutzt jetzt die pinke Flächenfarbe `--color-surface` mit 90 % Deckkraft, auch im mobilen Verlauf. Gemessen danach: 233/210/213 gegenüber 245/234/233, im Screenshot klar als Pink erkennbar. Keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Safari konnte hier nicht getestet werden (nur Chromium in der Cloud).
 
+### 19.10.2026 · Glow setzt schon in der Nähe eines Panels ein
+- **Versucht:** Der Glow soll auch wirken, wenn der Cursor außerhalb einer Fläche ist. Nähert man sich, soll die Fläche allmählich dunkler werden statt beim Betreten plötzlich zu springen.
+- **Funktioniert:** Der Glow sucht nicht mehr nach dem Panel unter dem Cursor. Er malt jede Glow-Fläche an, deren Rand weniger als 240 px (= Radius des Verlaufs) von der Glow-Mitte entfernt ist, und zwar an genau dieser Stelle. Nähert man sich, erscheint der Schein zuerst nur am Rand und wird mit kleinerem Abstand kräftiger. Verschachtelte Flächen leuchten weiterhin mit. Beim Scrollen wird neu gemalt statt gelöscht, damit der Schein bei ruhendem Cursor nicht verschwindet. Gemessen: 150 px über dem Kontakt-Panel ist es schon beleuchtet, 300 px darüber nicht. Über einer Kategorie leuchten Kategorien und `.services`. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

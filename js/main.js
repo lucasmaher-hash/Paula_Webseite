@@ -246,52 +246,52 @@
   }
 
   // Glow is painted in the panel background, never in an overlay above content.
+  // Every glow panel within GLOW_R of the painted centre is lit at that point, also when the cursor sits
+  // outside it or on a nested panel above it: approaching a panel darkens its edge gradually (Lucas, 19.10.2026).
   var glowMedia = window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   // Review cards themselves stay flat; only the pink section behind them glows (Lucas, 19.10.2026).
   var glowSelector = '.about-panel, .services, .accordion details, .course-heading, .course-content, .voucher, .reviews, .contact-panel, .hours, .tile';
+  var GLOW_R = 240;   // = radius of the radial-gradient in css/style.css (.panel-glow-active)
   // glowX/Y = cursor, curX/Y = painted centre, which eases after the cursor (GLOW_EASE of the gap per frame).
-  var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0, curX = 0, curY = 0, GLOW_EASE = 0.14;
+  var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0, curX = 0, curY = 0, glowOn = false, GLOW_EASE = 0.14;
+  function unlight(panel) {
+    panel.classList.remove('panel-glow-active');
+    panel.style.removeProperty('--panel-glow-x');
+    panel.style.removeProperty('--panel-glow-y');
+  }
   function clearGlow() {
-    cancelAnimationFrame(glowFrame); glowFrame = 0;
-    glowPanels.forEach(function (panel) {
-      panel.classList.remove('panel-glow-active');
-      panel.style.removeProperty('--panel-glow-x');
-      panel.style.removeProperty('--panel-glow-y');
-    });
+    cancelAnimationFrame(glowFrame); glowFrame = 0; glowOn = false;
+    glowPanels.forEach(unlight);
     glowPanels = [];
   }
   function paintGlow() {
     glowFrame = 0;
     curX += (glowX - curX) * GLOW_EASE; curY += (glowY - curY) * GLOW_EASE;
-    glowPanels.forEach(function (panel) {
+    var lit = [];
+    document.querySelectorAll(glowSelector).forEach(function (panel) {
       var rect = panel.getBoundingClientRect();
+      var dx = Math.max(rect.left - curX, 0, curX - rect.right), dy = Math.max(rect.top - curY, 0, curY - rect.bottom);
+      if (dx * dx + dy * dy >= GLOW_R * GLOW_R) return;
       panel.style.setProperty('--panel-glow-x', (curX - rect.left) + 'px');
       panel.style.setProperty('--panel-glow-y', (curY - rect.top) + 'px');
       panel.classList.add('panel-glow-active');
+      lit.push(panel);
     });
+    glowPanels.forEach(function (panel) { if (lit.indexOf(panel) < 0) unlight(panel); });
+    glowPanels = lit;
     if (Math.abs(glowX - curX) + Math.abs(glowY - curY) > 0.5) glowFrame = requestAnimationFrame(paintGlow);
   }
+  function requestGlow() { if (glowOn && !glowFrame) glowFrame = requestAnimationFrame(paintGlow); }
   document.addEventListener('pointermove', function (event) {
     if (!glowMedia.matches || event.pointerType !== 'mouse') { clearGlow(); return; }
-    var target = event.target.closest(glowSelector);
-    if (!target || event.target.closest('img, picture, .course-media, .about-figure')) { clearGlow(); return; }
-    // Desktop course title and body form one visual frame: share the same cursor.
-    // Every glow panel under the cursor lights up, including the ones behind a nested panel
-    // (e.g. the pink Behandlungen background behind a category), as if the cursor were on it.
-    var panels = [];
-    for (var el = target; el; el = el.parentElement && el.parentElement.closest(glowSelector)) {
-      if (el.matches('.course-heading, .course-content')) {
-        el.closest('.course').querySelectorAll('.course-heading, .course-content').forEach(function (p) { if (panels.indexOf(p) < 0) panels.push(p); });
-      } else panels.push(el);
-    }
     glowX = event.clientX; glowY = event.clientY;
-    var samePanels = panels.length === glowPanels.length && panels.every(function (p, i) { return p === glowPanels[i]; });
-    if (!samePanels) { clearGlow(); glowPanels = panels; curX = glowX; curY = glowY; }
-    if (!glowFrame) glowFrame = requestAnimationFrame(paintGlow);
+    if (!glowOn) { glowOn = true; curX = glowX; curY = glowY; }
+    requestGlow();
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', clearGlow);
   window.addEventListener('blur', clearGlow);
-  window.addEventListener('scroll', clearGlow, { passive: true, capture: true });
+  // Scrolling moves the panels under a resting cursor: repaint instead of clearing.
+  window.addEventListener('scroll', requestGlow, { passive: true, capture: true });
   glowMedia.addEventListener('change', clearGlow);
 
   // Einblenden beim Scrollen
