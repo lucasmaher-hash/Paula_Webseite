@@ -382,6 +382,11 @@
 - **Funktioniert:** Drei Fassungen in `branding/assets/logo-small/`, alle auf der normalen statt der dünnen Strichstärke, Mittelstrich 1,75 statt 0,56: A nur kräftiger, B mit Wortabstand 0,5 × Versalhöhe (E dafür 1,5 % neben der Mitte), C mit Wortabstand −4 und A/U/T/Y je 1 enger (E bleibt exakt mittig). Die Vergleichsseite `vergleich.html` zeigt alle vier in Echtgröße im Header, über Pink und als gerastertes Pixelbild. Gemessen in diesem Pixelbild: Der Mittelstrich erreicht im Original 20 % des vollen Kontrasts, in den Kleinfassungen 61 bis 70 %. Bei 375 und 1440 px kein horizontales Scrollen, keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Auf einem echten Handy-Display ist es nicht angesehen. Claude empfiehlt C, die Wahl trifft Lucas. Die Website ist unverändert.
 
+### 19.10.2026 · Dynamisches Logo, erster Prototyp (Claude lokal)
+- **Versucht:** Lucas: „danach direkt weiter machen mit dem nächsten Schritt“. Offen aus Kurzprojekt 1 waren das dynamische Logo und die Animation, die auf ihre Umgebung reagiert. Claude hat dafür einen Prototyp auf dem Gestaltungsprinzip „Die Mitte“ gebaut, ohne vorher Varianten abzufragen.
+- **Funktioniert:** `branding/dynamic-logo/index.html`. Zwei Reize aus der Umgebung: (1) Maus, Finger oder die Neigung des Handys lenken den Mittelstrich des E bis 14° aus, eine gedämpfte Feder holt ihn exakt auf die Achse zurück. (2) Die Uhrzeit in München (Europe/Berlin) gegen die Öffnungszeiten aus `docs/prd.md` (Mo–Fr 10–20 Uhr): Ist das Studio offen, steht der Mittelstrich voll und die Seite wechselt in die Pink-Welt (`.theme-pink`). Ist es geschlossen, steht der Strich auf einem Drittel und die Seite bleibt braun, mit 1 s Übergang. Eine Simulation (Wochentag, Uhrzeit) erlaubt die Vorführung im Kurs, außerdem eine Header-Vorschau mit 112 und 96 px. Bei „Bewegung reduzieren“ schwingt nichts. Gemessen: Auslenkung bis etwa 9° bei schneller Bewegung, danach Rückkehr gegen 0°. Mo 3:44 echt = geschlossen, Mo 11:00 simuliert = offen und pink. Bei 375 und 1280 px kein horizontales Scrollen, keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Der Mittelstrich mit 0,56 Einheiten war als bewegtes Teil kaum zu sehen, im Prototyp ist er deshalb 1,75 breit. Das Vorschaufenster lief mit etwa 4 Bildern pro Sekunde, Federgefühl und Neigung auf iPhone/Android sind nicht getestet. Noch nicht im Styleguide und nicht auf der Website. Ob das Konzept trägt, entscheidet Lucas, eventuell mit Ammer.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
@@ -432,4 +437,4 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Erst gestalten, dann das Markenprofil schreiben.
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
-**Offen:** Kleinfassung des Logos für den Header (siehe Bewertung in `branding/logo-prompt.md`), das dynamische Logo und die Animation der Marke, ein echtes Foto- oder Video-Mockup.
+**Offen:** Wahl der Kleinfassung (`branding/assets/logo-small/`), Entscheidung über den Prototyp des dynamischen Logos (`branding/dynamic-logo/`), ein echtes Foto- oder Video-Mockup.
