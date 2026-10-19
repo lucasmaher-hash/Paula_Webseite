@@ -456,6 +456,8 @@ body.menu-open{overflow:hidden}
 @media(min-width:900px){.contact-panel,.hours{padding:var(--space-7)}}
 .contact .muted{max-width:46ch}
 .contact-intro .hero-actions{margin-top:var(--space-5)}
+.fact-address{flex-wrap:nowrap;align-items:flex-start}   /* Label links, Adresse rechts; „München“ in der Zeile darunter */
+.fact-address a{line-height:1.45}
 .hours{background:var(--color-surface-deep);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */
 .hours table{width:100%;border-collapse:collapse;margin-top:var(--space-4);font-size:.95rem}
 .hours td{padding:10px 0}

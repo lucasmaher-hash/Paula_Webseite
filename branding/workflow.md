@@ -302,6 +302,11 @@
 - **Funktioniert:** Der Abstand ist jetzt 8 px am Handy und 10 px am Desktop. Am Desktop stehen die Panels in 3 Spalten. Das neue Panel „Alle Bewertungen“ (5.0 ★, „Alle 26 Bewertungen auf Beautinda ansehen ↗“) ist als Ganzes ein Link und ersetzt den bisherigen Button darunter. Es nutzt `--color-surface-deep` (wie die Öffnungszeiten) und füllt am Desktop die letzten zwei Spalten. Die erste Fassung war nicht dunkler, weil die allgemeine `.review`-Regel weiter unten stand. Behoben mit `.review.review-all`. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Die zusätzliche Bewertung fehlt. Auf der Seite stehen schon alle vier echten Zitate aus `docs/prd.md`, Beautinda ist aus der Cloud gesperrt, und Bewertungen werden nicht erfunden. Kommt ein fünfter echter Text, wird er vor dem Panel eingefügt und `.review-all` verliert die Doppelspalte (3 + 3).
 
+### 19.10.2026 · Adresse zweizeilig, „Erfahrung · 5 Jahre“ statt „Status“
+- **Versucht:** Im Kontakt rutschte die Adresse unter das Label „Adresse“. Lucas wollte das Label links und „München“ in der Zeile darunter, rechtsbündig. In „Über mich“ sollte „Status · Top Rated · Beautinda“ durch die 5 Jahre Erfahrung ersetzt werden.
+- **Funktioniert:** Die Adresszeile bricht nicht mehr um (`.fact-address`). Rechts steht „Fürstenrieder Str. 11,“ und darunter „München ↗“, beides als ein Link. In „Über mich“ steht jetzt „Erfahrung · 5 Jahre“, die Zahl hatte Lucas schon für die Auszeichnungen genannt. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Lucas' Nachricht endete mit „Structure the …“. Der Rest fehlt noch.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
