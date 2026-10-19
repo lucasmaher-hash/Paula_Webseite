@@ -238,7 +238,7 @@
   document.addEventListener('pointermove', function (event) {
     if (!glowMedia.matches || event.pointerType !== 'mouse') { clearGlow(); return; }
     var target = event.target.closest(glowSelector);
-    if (!target || event.target.closest('img, picture, .course-media, .about-figure, .color-tuner')) { clearGlow(); return; }
+    if (!target || event.target.closest('img, picture, .course-media, .about-figure')) { clearGlow(); return; }
     // Desktop course title and body form one visual frame: share the same cursor.
     var panels = target.matches('.course-heading, .course-content')
       ? Array.from(target.closest('.course').querySelectorAll('.course-heading, .course-content')) : [target];

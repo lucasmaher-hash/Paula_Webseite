@@ -267,6 +267,11 @@
 - **Funktioniert:** Braun und Pink ohne weitere gestalterische Änderungen übernommen. Styleguide, Panel-Glow und Buttons verwenden dieselben Farbvariablen; Browser-Themefarbe und CSS-Cacheversion aktualisiert. Alle 14 Quellwerte auf exakte Übereinstimmung geprüft.
 - **Nicht funktioniert / offen:** Nichts. Gespeicherte persönliche Regler-Vorschauen bleiben erhalten; „Zurücksetzen“ lädt die neuen veröffentlichten Standardwerte.
 
+### 19.10.2026 · Farbregler entfernt
+- **Versucht:** Lucas hat seine endgültigen Farbwerte geschickt und wollte, dass der Regler danach verschwindet.
+- **Funktioniert:** Alle 14 Werte standen schon so in `css/style.css` (Braun 16/38/−1/37/51/100/24, Pink 351/35/−4/32/47/100/22). Entfernt sind `css/color-tuner.css`, `js/color-tuner.js`, ihre Einbindung in `index.html`, der Link „Farben direkt auf der Website anpassen“ und der Regler-Text im Styleguide. Stattdessen nennt der Styleguide die festgelegten Werte. Nebenbei sind im Styleguide-Text drei versehentliche `css/style.css?v=46` wieder zu `css/style.css` geworden. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

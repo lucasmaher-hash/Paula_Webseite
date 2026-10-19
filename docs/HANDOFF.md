@@ -8,10 +8,9 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - Lucas hat die bisherige Farbregel ausdrücklich ersetzt: zwei vollständige Farbwelten, Braun (Basis, Header, Studio, Kurse, Gutscheine, Kontakt) und Pink (Behandlungen, Bewertungen). Kein reines Schwarz/Weiß; Texte, Buttons, Akzente, Hover und Rahmen kommen aus den jeweiligen Farbrollen in `css/style.css`.
 - Italiana Regular lokal in `fonts/` für H1–H3 und hervorgehobene Zahlen. Instrument Sans für Fließtext, Navigation, Buttons und Labels bleibt. Das Vektorlogo ist unverändert.
 - Feine 1-px-Rahmen um Karten, Panels und Bildrahmen; Kurs-Textflächen haben am Desktop eine gemeinsame Außenkontur ohne Trennlinie zwischen Kopf und Inhalt.
-- Farbregler: `/?tune=1` (auch über den Styleguide verlinkt). Pro Palette Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Flächendeckkraft und Rahmenkontrast. Einstellungen gelten nur in dieser Vorschau, werden lokal gespeichert und können zurückgesetzt oder als CSS exportiert werden. Kein automatisches Veröffentlichen durch die Regler.
-- Aktuell `style.css?v=46`, `fonts.css?v=2`, `color-tuner.css?v=1`, `color-tuner.js?v=1`; `main.js?v=25`.
+- Aktuell `style.css?v=46`, `fonts.css?v=2`, `main.js?v=26`.
 - Standardfarben: Lucas’ exportierte Reglerwerte vom 19.10.2026 übernommen (Braun: 16/38/−1/37/51/100/24; Pink: 351/35/−4/32/47/100/22; Reihenfolge: Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Deckkraft, Rahmenkontrast). Frühere Kontrastmessungen gelten für die vorherige Palette.
-- Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren. Farbregler ändern Braun/Pink getrennt; Wiederherstellung nach Neuladen, Export und Reset geprüft.
+- Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren.
 
 ## 1. Was live ist
 
