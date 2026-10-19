@@ -412,6 +412,11 @@
 - **Funktioniert:** Öffnungszeiten-Logik aus `main.js`, CSS und Styleguide entfernt, ebenso Simulation, Statuszeile und Pink-Wechsel der großen Fläche. Normal steht der Strich in voller Höhe (22 Einheiten), beim Hover `scaleY(2)` nach oben, der Fuß bleibt (0,45 s hinein, 0,35 s zurück, wie die Hover-Linien). Website-Header, große Styleguide-Fläche und die Header-Vorschauen verhalten sich gleich, die Feder bleibt. Gemessen: Header 9,28 → 18,57 px, Oberkante bleibt unter den E-Stämmen, nach dem Wegziehen wieder 9,29 px. Styleguide-Fläche 41,38 → 82,75 px. Am Handy kein Hover, 7,96 px. Keine Konsolenfehler, kein horizontales Scrollen. CSS v62, JS v36.
 - **Nicht funktioniert / offen:** Auf Touch-Geräten wächst nichts, dort bleibt nur die Feder beim Scrollen. Das Logo reagiert damit nicht mehr auf Daten (Uhrzeit), sondern nur noch auf Interaktion. Für Ammers „Animation, die auf ihre Umgebung reagiert“ zählen jetzt Maus und Scrollen als Umgebung.
 
+### 19.10.2026 · Rahmen um die Collage behoben, Feder des Mittelstrichs entfernt (Claude lokal)
+- **Versucht:** Lucas sah auf paula-maher.de „manchmal einen komischen Border“ um die Bilder bei „Arbeiten aus dem Studio“ (Screenshot). Danach: „remove the sideways movement of the middle line of the E in the logo“.
+- **Funktioniert:** Der Rahmen war der Fokusrahmen des Bilderstreifens: `tabindex="0"` (für das seitliche Scrollen per Tastatur am Handy) plus `.strip:focus-visible`. Nach einem Klick oder Tab bekam der Streifen den Fokus. Jetzt setzt `main.js` den tabindex nur, solange der Streifen scrollbar ist. Gemessen: Handy tabindex 0 (1566 > 375 px), Desktop kein tabindex, Fokus nicht möglich. Die Feder (Kippen bei Maus und Scrollen) ist aus `main.js` und dem Styleguide entfernt. Der Mittelstrich wächst nur noch beim Hover auf seiner Achse (Header 9,28 → 18,57 px, Mitte unverändert). CSS v63, JS v38. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** In Safari am echten Gerät ist der Rahmen-Fix nicht nachgestellt, der Screenshot kam aus Safari. Das Logo reagiert jetzt nur noch auf Hover, auf Touch-Geräten bewegt es sich gar nicht.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
