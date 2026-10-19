@@ -55,6 +55,24 @@
     heroIO.observe(hero);
   }
 
+  // Header wird pink, solange seine Mitte über einem pinken Abschnitt liegt (Beobachtungslinie auf Header-Mitte)
+  var pinkSections = document.querySelectorAll('.services, .reviews');
+  if (siteHeader && pinkSections.length && 'IntersectionObserver' in window) {
+    var pinkIO = null, overPink = new Set();
+    var watchPink = function () {
+      if (pinkIO) pinkIO.disconnect();
+      overPink.clear();
+      var mid = Math.round(siteHeader.offsetHeight / 2);
+      pinkIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) overPink.add(e.target); else overPink.delete(e.target); });
+        siteHeader.classList.toggle('over-pink', overPink.size > 0);
+      }, { rootMargin: '-' + mid + 'px 0px -' + (window.innerHeight - mid - 1) + 'px 0px' });
+      pinkSections.forEach(function (s) { pinkIO.observe(s); });
+    };
+    watchPink();
+    window.addEventListener('resize', watchPink);
+  }
+
   // Mobiles Menü (Vollbild)
   var menu = document.getElementById('mobile-menu');
   var menuBtn = document.querySelector('.menu-btn');

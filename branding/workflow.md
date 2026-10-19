@@ -322,6 +322,11 @@
 - **Funktioniert:** Ein IntersectionObserver (35 % sichtbar) setzt einmalig `.grown`. Die Kränze wachsen dann in 1 s von 45 % auf 100 % und blenden ein. Die drei sind um je 0,15 s versetzt, Zahl und Text erscheinen danach. Gemessen nach 0,4 s: 0,93 / 0,82 / 0,56, nach 1,6 s alle fertig. Den Startzustand setzt ein kleines Skript im `<head>` (`html.js`), damit die Kränze nicht erst groß erscheinen und dann schrumpfen. Ohne JavaScript oder mit „Bewegung reduzieren“ stehen sie sofort fertig da. Bei 375 und 1440 px keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Die erste Fassung setzte die Startklasse erst per JavaScript. Dadurch schrumpften die Kränze nach dem Laden sichtbar, bevor sie wuchsen. Behoben.
 
+### 19.10.2026 · Header blendet über pinken Abschnitten zu Pink
+- **Versucht:** Liegt die Navigationsleiste über einem pinken Bereich, soll sie weich zu Pink überblenden und beim Verlassen zurück, in etwa 1 s.
+- **Funktioniert:** Im Header liegt eine zusätzliche Schicht `.header-tint` mit der Pink-Palette (`theme-pink`). Sie liegt über dem braunen Hintergrund und blendet per `opacity` in 1 s ein und aus. Ein IntersectionObserver beobachtet eine 1 px hohe Linie auf Höhe der Header-Mitte und setzt `.over-pink`, solange Behandlungen oder Bewertungen darunter liegen. Bei einer Größenänderung des Fensters wird die Linie neu berechnet. Die Schicht kopiert auch den mobilen Verlauf, damit es am Handy gleich aussieht. Gemessen bei 375 und 1440 px: oben 0, in Behandlungen nach 0,3 s etwa 0,45 und nach 1,2 s 1, in Schulungen 0, in Bewertungen 1. Bei „Bewegung reduzieren“ ohne Übergang. Keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** „Mit einer Verzögerung von 1 Sekunde“ ist als 1 s Überblendung umgesetzt, nicht als 1 s Wartezeit vor dem Start.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
