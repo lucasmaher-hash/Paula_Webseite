@@ -262,6 +262,11 @@
 - **Funktioniert:** Radialer CSS-Hintergrund mit 190 px Radius, maximal 10 % Deckkraft und dem jeweiligen Braun-/Pink-Farbton. Die Hintergrundebene liegt von selbst unter allen Inhalten und wird an den abgerundeten Panelrändern begrenzt. Nur das innerste Panel reagiert; Kurskopf und Kursinhalt erhalten gemeinsame Mauskoordinaten. Positionsupdates werden pro Animationsframe gebündelt. Im Desktop-Browser beide Farbwelten und unveränderte Schriftfarbe geprüft; beim Verlassen verschwindet der Effekt. Bei 375 px kein Glow und kein horizontales Scrollen, keine Browserfehler. Styleguide und Cache-Versionen aktualisiert.
 - **Nicht funktioniert / offen:** Keine technischen Blocker. Die dezente Stärke ist eine gestalterische Ausgangseinstellung für Lucas' Beurteilung. Auf Touch-Geräten und bei reduzierter Bewegung bleibt der Effekt aus.
 
+### 19.10.2026 · Codex · Lucas’ exportierte Farbwerte übernommen
+- **Versucht:** Die von Lucas übermittelten 14 Reglerwerte exakt als öffentliche Standardpalette setzen.
+- **Funktioniert:** Braun und Pink ohne weitere gestalterische Änderungen übernommen. Styleguide, Panel-Glow und Buttons verwenden dieselben Farbvariablen; Browser-Themefarbe und CSS-Cacheversion aktualisiert. Alle 14 Quellwerte auf exakte Übereinstimmung geprüft.
+- **Nicht funktioniert / offen:** Nichts. Gespeicherte persönliche Regler-Vorschauen bleiben erhalten; „Zurücksetzen“ lädt die neuen veröffentlichten Standardwerte.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

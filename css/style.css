@@ -2,10 +2,10 @@
    Mobile first: Basis-Regeln gelten fürs Handy, größere Bildschirme per min-width. */
 :root{
   /* Two palettes. The tuning panel edits only these source values. */
-  --brown-hue:27; --brown-saturation:28; --brown-brightness:0;
-  --brown-text:30; --brown-button:43; --brown-opacity:100; --brown-border:26;
-  --pink-hue:350; --pink-saturation:26; --pink-brightness:0;
-  --pink-text:32; --pink-button:44; --pink-opacity:100; --pink-border:26;
+  --brown-hue:16; --brown-saturation:38; --brown-brightness:-1;
+  --brown-text:37; --brown-button:51; --brown-opacity:100; --brown-border:24;
+  --pink-hue:351; --pink-saturation:35; --pink-brightness:-4;
+  --pink-text:32; --pink-button:47; --pink-opacity:100; --pink-border:22;
   --hero-wall:#A39588;              /* Wandton des Hero-Fotos */
 
   --font-display:"Italiana",Georgia,serif;
