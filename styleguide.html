@@ -246,6 +246,17 @@
 .sg-dyn-ctl label{display:flex;align-items:center;gap:8px}
 .sg-dyn-ctl input[type=range]{flex:1;min-width:140px;accent-color:var(--color-button)}
 .sg-dyn-ctl select{font:inherit;font-size:.85rem;padding:5px 10px;border-radius:999px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-on-surface)}
+/* Bewegung: Karten mit Live-Vorschau, je ein Satz */
+.sg-moves{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:var(--space-6)}
+.sg-move{background:var(--color-surface-raised);border:1px solid var(--color-border);border-radius:var(--rounded-xl);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
+.sg-move.wide{grid-column:span 2}
+.sg-move h3{font-size:1rem;margin-top:var(--space-2)}
+.sg-move .sg-note{max-width:60ch}
+.sg-move-stage{height:240px;border-radius:var(--rounded-lg);background:var(--color-background);border:1px solid var(--color-border);padding:10px;display:grid;gap:10px;cursor:crosshair}
+.sg-glow-demo{grid-template-columns:1fr 1fr}
+.sg-glow-panel{border-radius:var(--rounded-lg);border:1px solid var(--color-border);background-color:var(--color-surface);display:flex;align-items:flex-end;padding:14px 16px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--color-on-surface-muted)}
+/* wie .panel-glow-active auf der Website, Deckkraft verdoppelt (24 % statt 12 %) */
+.sg-glow-panel.is-lit{background-image:radial-gradient(circle 240px at var(--gx) var(--gy),hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .24) 0%,hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .096) 45%,transparent 100%);background-origin:border-box}
 </style>
 </head>
 <body class="sg">
@@ -572,6 +583,16 @@
       <span class="eyebrow">09 · Bewegung</span>
       <h2 id="bewegung-h">Ruhig, nie verspielt.</h2>
       <p class="intro">Eine Kurve für fast alles: <span class="sg-code">cubic-bezier(.4, 0, .2, 1)</span>, schnell los und weich aus. Bei „Bewegung reduzieren“ keine Animation.</p>
+      <div class="sg-moves">
+        <article class="sg-move wide">
+          <div class="sg-move-stage sg-glow-demo" id="glowDemo">
+            <div class="sg-glow-panel theme-pink">Pink</div>
+            <div class="sg-glow-panel theme-brown">Braun</div>
+          </div>
+          <h3>Panel-Glow</h3>
+          <p class="sg-note">Ein weicher, dunklerer Schein folgt dem Cursor mit leichter Verzögerung und liegt unter Text und Bildern. Hier mit doppeltem Kontrast, auf der Website halb so stark.</p>
+        </article>
+      </div>
       <div class="sg-panel raised">
         <div class="sg-motion-wrap">
           <table class="sg-motion">
@@ -682,6 +703,39 @@
     });
   }, { rootMargin: '-35% 0px -60% 0px' });
   Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+})();
+</script>
+<script>
+// Bewegung · Panel-Glow: gleiche Logik wie js/main.js (Radius 240 px, 14 % Nachführung pro Frame,
+// jede Fläche im Umkreis wird an dieser Stelle getönt), nur mit doppelter Deckkraft im CSS.
+(function () {
+  var stage = document.getElementById('glowDemo'); if (!stage) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var panels = [].slice.call(stage.querySelectorAll('.sg-glow-panel'));
+  var R = 240, EASE = 0.14, tx = 0, ty = 0, cx = 0, cy = 0, on = false, raf = 0;
+  function paint() {
+    raf = 0;
+    cx += (tx - cx) * EASE; cy += (ty - cy) * EASE;
+    panels.forEach(function (p) {
+      var r = p.getBoundingClientRect();
+      var dx = Math.max(r.left - cx, 0, cx - r.right), dy = Math.max(r.top - cy, 0, cy - r.bottom);
+      if (dx * dx + dy * dy >= R * R) { p.classList.remove('is-lit'); return; }
+      p.style.setProperty('--gx', (cx - r.left) + 'px');
+      p.style.setProperty('--gy', (cy - r.top) + 'px');
+      p.classList.add('is-lit');
+    });
+    if (on && Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5) raf = requestAnimationFrame(paint);
+  }
+  stage.addEventListener('pointermove', function (e) {
+    tx = e.clientX; ty = e.clientY;
+    if (!on) { on = true; cx = tx; cy = ty; }
+    if (!raf) raf = requestAnimationFrame(paint);
+  });
+  stage.addEventListener('pointerleave', function () {
+    on = false; if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    panels.forEach(function (p) { p.classList.remove('is-lit'); });
+  });
+  window.addEventListener('scroll', function () { if (on && !raf) raf = requestAnimationFrame(paint); }, { passive: true });
 })();
 </script>
 </body>
