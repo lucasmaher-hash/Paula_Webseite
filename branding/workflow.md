@@ -432,6 +432,11 @@
 - **Funktioniert:** Drei neue Richtungen in `branding/assets/pm-beauty-logo/versions/v8/`: Blüte (eigenes Symbol), Soft Type (kräftige Kleinbuchstaben) und Kontur (eigenes Gesichtsprofil). Übernommen wurden Gestaltungsprinzipien, keine fremden Zeichen oder Logo-Pfade. Alle drei Entwürfe in Paulas Farben als SVG mit Pfadschrift, plus Vorschauen und dokumentierte Quellen. SVG-Struktur geprüft und gerenderte Vorschauen visuell kontrolliert.
 - **Nicht funktioniert / offen:** Ein Referenzbild ließ sich über die Websuche zunächst nicht laden, im Browser war es sichtbar. Auswahl und Freigabe bleiben offen; Namenszusätze brauchen für kleine Anwendungen eine eigene Adaption.
 
+### 19.10.2026 · Markenprofil als Kurzfassung im Styleguide (Claude lokal)
+- **Versucht:** Lucas wollte das Markenprofil als Kurzfassung mit Fokus auf die Kernwerte, als eigene Seite, erreichbar über einen dunklen Knopf oben rechts im Styleguide.
+- **Funktioniert:** Neue Seite `markenprofil.html` im Look des Styleguides: Markenkern als dunkle Fläche („Präzise Schönheit, die bleibt.“ mit Paulas Leitsatz), die drei Werte groß als Karten, jeweils mit „Sichtbar in der Gestaltung“, dazu Charakter mit Tonalität und Abgrenzung mit der Begründung aus dem KI-Marktcheck. Alle Aussagen kommen aus `branding/markenprofil.md`, ohne neue Fakten. Der Pink-Widerspruch des Profils („höchstens eine pinke Fläche pro Ansicht“) ist in der Kurzfassung durch die heutige Regel ersetzt (Pink nur für Behandlungen und Bewertungen). Im Styleguide steht oben rechts ein dunkelbrauner Knopf „Markenprofil ↗“. Geprüft bei 1440 px: kein horizontales Scrollen, keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Die Langfassung `branding/markenprofil.md` sagt beim Pink noch das Alte und sollte angeglichen werden. Die Werte-Karten habe ich nur über das DOM geprüft, nicht optisch.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

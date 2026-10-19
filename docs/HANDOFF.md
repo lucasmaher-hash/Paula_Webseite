@@ -31,6 +31,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 
 ### Gestaltung (Bausteine in `css/style.css`)
 
+- **Markenprofil (Kurzfassung):** `markenprofil.html`, verlinkt über den dunklen Knopf oben rechts im Styleguide. Quelle ist `branding/markenprofil.md`.
 - **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
 
 - **Panel-Glow** (Lucas/Codex, 19.10.2026): Nur Desktop ab 900 px, echte Maus, keine reduzierte Bewegung. Radialer Verlauf als CSS-Hintergrund der Panels (240 px Radius, max. 12 % Deckkraft), kein Overlay. Jede Glow-Fläche im Umkreis von 240 px um die Glow-Mitte wird an dieser Stelle getönt, also auch Flächen hinter einem Panel und Flächen, denen man sich nähert. Die Mitte läuft dem Cursor mit 14 % pro Frame nach. Bewertungs-Karten selbst sind ausgenommen (nur der pinke Hintergrund leuchtet).
