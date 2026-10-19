@@ -427,6 +427,11 @@
 - **Funktioniert:** Drei getrennte Richtungen in `branding/assets/pm-beauty-logo/versions/v7/`: Editorial mit Italiana und Namenszusatz, ineinandergreifendes PM in Pink und individuell gezeichnetes kleines pm im offenen Oval. Schrift in Pfade umgewandelt; transparente SVGs plus Vorschauen auf der Seitenfarbe. Alle SVGs als XML geprüft und alle drei gerenderten Vorschauen visuell kontrolliert. Bisherige Logo-Versionen erhalten; das Website-Logo wurde nicht ersetzt.
 - **Nicht funktioniert / offen:** Für die Instrument-Sans-WOFF2 musste die vorhandene Python-Umgebung um Brotli ergänzt werden. Auswahl und Freigabe durch Lucas/Paula stehen aus; Kleinstgrößen sind noch nicht optimiert.
 
+### 19.10.2026 · Codex · Beauty-Logo-Recherche und drei weitere Varianten
+- **Versucht:** Lucas wollte vor einer neuen Runde Beauty-Salon-Logos recherchieren. Projektseiten von Kriss, Moiselle und Hani Nails gelesen, deren Logos im Browser visuell verglichen; FACEGYM als zusätzliche typografische Referenz aus der Bildsuche.
+- **Funktioniert:** Drei neue Richtungen in `branding/assets/pm-beauty-logo/versions/v8/`: Blüte (eigenes Symbol), Soft Type (kräftige Kleinbuchstaben) und Kontur (eigenes Gesichtsprofil). Übernommen wurden Gestaltungsprinzipien, keine fremden Zeichen oder Logo-Pfade. Alle drei Entwürfe in Paulas Farben als SVG mit Pfadschrift, plus Vorschauen und dokumentierte Quellen. SVG-Struktur geprüft und gerenderte Vorschauen visuell kontrolliert.
+- **Nicht funktioniert / offen:** Ein Referenzbild ließ sich über die Websuche zunächst nicht laden, im Browser war es sichtbar. Auswahl und Freigabe bleiben offen; Namenszusätze brauchen für kleine Anwendungen eine eigene Adaption.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
