@@ -352,6 +352,11 @@
 - **Funktioniert:** Die vier Absätze sind auf ihren Kern gekürzt, ohne neue Aussagen. Lashlift: „Lerne Korean Lashlift, die neueste Technik auf dem Markt, in Theorie und Praxis.“ und „Für den Einstieg in die Beauty-Branche oder als Ergänzung deines Angebots.“ Masterclass: Die fette Zeile bleibt, danach „Perfektioniere deine Technik und kreiere Ergebnisse, die für sich sprechen.“ und „Technik und Verständnis, mit denen du dich langfristig weiterentwickelst. Für Einsteigerinnen und alle, die ihre Fähigkeiten perfektionieren möchten.“ Das Panel mischt jetzt 14 % Akzentfarbe in `--color-surface-deep`. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Paula sollte die gekürzten Texte noch freigeben. Die Originale stehen in der Git-Historie.
 
+### 19.10.2026 · Header: nur Schrift und Buttons werden pink, nicht die Leiste
+- **Versucht:** Lucas hatte den pinken Header anders gemeint: Nicht die Leiste soll pink werden, sondern Schrift, Logo und Buttons darauf sollen von Braun zu Pink wechseln.
+- **Funktioniert:** Die pinke Schicht `.header-tint` ist entfernt. `.site-header.over-pink` setzt jetzt nur die Text-, Akzent- und Button-Farben auf die Pink-Palette (gleiche Formeln wie die Farbrollen, mit den Pink-Werten). Der Hintergrund `--color-background` bleibt unverändert. Logo, Nav-Links, Instagram-Knopf und „Termin buchen“ blenden Farbe, Hintergrund und Rahmen in 1 s über. Gemessen bei 1440 px: Logo von RGB 116/84/73 zu 99/64/70, Button von 161/116/99 zu 147/93/101, Leiste unverändert. Der IntersectionObserver von vorher bleibt. Bei „Bewegung reduzieren“ ohne Übergang. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Die 1-s-Übergänge im Header gelten auch für den Hover der Buttons dort. Der Hover wirkt dadurch etwas träger als im Rest der Seite.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

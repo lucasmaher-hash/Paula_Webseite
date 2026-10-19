@@ -55,7 +55,7 @@
     heroIO.observe(hero);
   }
 
-  // Header wird pink, solange seine Mitte über einem pinken Abschnitt liegt (Beobachtungslinie auf Header-Mitte)
+  // Schrift und Buttons im Header werden pink, solange seine Mitte über einem pinken Abschnitt liegt (Beobachtungslinie auf Header-Mitte)
   var pinkSections = document.querySelectorAll('.services, .reviews');
   if (siteHeader && pinkSections.length && 'IntersectionObserver' in window) {
     var pinkIO = null, overPink = new Set();
