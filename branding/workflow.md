@@ -292,6 +292,11 @@
 - **Funktioniert:** Am Desktop ist die Fläche ein Raster nach der Skizze (Spalten 1 : 1 : 0,9, 10 px Abstand). Der Termin-Button steht beim Text, die Kontaktdaten haben ein eigenes Panel. Am Handy kommen Text und Kontaktdaten zuerst, dann die beiden Bilder als Quadrate nebeneinander, dann die Öffnungszeiten. Auf dem Lichtschrank-Foto war eine Tür mit der Aufschrift „LABOR“ zu sehen. Das Bild ist deshalb auf die runde, beleuchtete Schrankecke zugeschnitten. Ein erster Zuschnitt zeigte nur eine flache Wand und wurde verworfen. Originale liegen in `branding/assets/photos/originals/`. Bei 375, 430, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Die beiden Fotos zeigen nicht Paulas Studio. Sie sind im HTML als vorläufige Stimmungsbilder markiert und haben ein leeres `alt`, damit sie nicht als Studio beschrieben werden. Sobald es Fotos vom echten Studio gibt, sollten sie ersetzt werden.
 
+### 19.10.2026 · Collage: Brauen oben links, unten rechts frei
+- **Versucht:** Lucas wollte das Brauenbild von vorher oben links in der Studio-Collage und das Bild unten rechts ganz aus dem Raster entfernt haben.
+- **Funktioniert:** Aus dem Bild mit Wimpern und Brauen ist die untere Hälfte mit der Braue als `images/brow.jpg` zugeschnitten (978 × 578), das Original liegt in `branding/assets/photos/originals/lashes-brows.jpg`. Es ersetzt oben links ein Lippenbild. Das Lippenbild unten rechts ist entfernt. Spalte 4 hat jetzt ein hohes Bild mit Luft darunter, wie in der ursprünglichen Referenz. Die Collage hat 7 Bilder, am Handy auch. Bei 375, 1024 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Wie bei den anderen Chat-Bildern ist noch nicht bestätigt, dass die Braue Paulas Arbeit ist.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
