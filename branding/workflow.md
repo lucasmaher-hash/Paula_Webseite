@@ -272,6 +272,11 @@
 - **Funktioniert:** Alle 14 Werte standen schon so in `css/style.css` (Braun 16/38/−1/37/51/100/24, Pink 351/35/−4/32/47/100/22). Entfernt sind `css/color-tuner.css`, `js/color-tuner.js`, ihre Einbindung in `index.html`, der Link „Farben direkt auf der Website anpassen“ und der Regler-Text im Styleguide. Stattdessen nennt der Styleguide die festgelegten Werte. Nebenbei sind im Styleguide-Text drei versehentliche `css/style.css?v=46` wieder zu `css/style.css` geworden. Geprüft bei 375, 430 und 1440 px: keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Panel-Glow größer, stärker und mit Verzögerung
+- **Versucht:** Lucas wollte den Maus-Glow in den Panels (von Codex) mit 60 % mehr Fläche, 20 % stärker und so, dass er dem Cursor leicht hinterherläuft.
+- **Funktioniert:** Der Radius ist von 190 auf 240 px gewachsen. Die Fläche wächst mit dem Quadrat des Radius, also +60 %. Die Deckkraft ist von 0,10/0,04 auf 0,12/0,048 gestiegen (+20 %). Die gemalte Mitte läuft dem Cursor jetzt per `requestAnimationFrame` nach und holt pro Frame 14 % des Abstands auf. Wechselt der Glow in ein anderes Panel, startet er direkt unter dem Cursor. Gemessen nach einem Sprung um 300 px: kurz danach steht er bei 271/190 statt 450/250, nach 0,8 s genau unter dem Cursor. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Der erste Test schien zu zeigen, dass der Glow nicht anspringt. Ursache war das weiche Scrollen im Test: Jedes Scroll-Event blendet den Glow aus, und das ist Absicht. Falls „60 %“ den Durchmesser meinte, wäre der Radius 304 px.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

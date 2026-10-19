@@ -216,7 +216,8 @@
   // Glow is painted in the panel background, never in an overlay above content.
   var glowMedia = window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   var glowSelector = '.about-panel, .services, .accordion details, .course-heading, .course-content, .voucher, .reviews, .review, .contact-panel, .hours, .tile';
-  var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0;
+  // glowX/Y = cursor, curX/Y = painted centre, which eases after the cursor (GLOW_EASE of the gap per frame).
+  var glowPanels = [], glowFrame = 0, glowX = 0, glowY = 0, curX = 0, curY = 0, GLOW_EASE = 0.14;
   function clearGlow() {
     cancelAnimationFrame(glowFrame); glowFrame = 0;
     glowPanels.forEach(function (panel) {
@@ -228,12 +229,14 @@
   }
   function paintGlow() {
     glowFrame = 0;
+    curX += (glowX - curX) * GLOW_EASE; curY += (glowY - curY) * GLOW_EASE;
     glowPanels.forEach(function (panel) {
       var rect = panel.getBoundingClientRect();
-      panel.style.setProperty('--panel-glow-x', (glowX - rect.left) + 'px');
-      panel.style.setProperty('--panel-glow-y', (glowY - rect.top) + 'px');
+      panel.style.setProperty('--panel-glow-x', (curX - rect.left) + 'px');
+      panel.style.setProperty('--panel-glow-y', (curY - rect.top) + 'px');
       panel.classList.add('panel-glow-active');
     });
+    if (Math.abs(glowX - curX) + Math.abs(glowY - curY) > 0.5) glowFrame = requestAnimationFrame(paintGlow);
   }
   document.addEventListener('pointermove', function (event) {
     if (!glowMedia.matches || event.pointerType !== 'mouse') { clearGlow(); return; }
@@ -242,8 +245,8 @@
     // Desktop course title and body form one visual frame: share the same cursor.
     var panels = target.matches('.course-heading, .course-content')
       ? Array.from(target.closest('.course').querySelectorAll('.course-heading, .course-content')) : [target];
-    if (panels[0] !== glowPanels[0]) { clearGlow(); glowPanels = panels; }
     glowX = event.clientX; glowY = event.clientY;
+    if (panels[0] !== glowPanels[0]) { clearGlow(); glowPanels = panels; curX = glowX; curY = glowY; }
     if (!glowFrame) glowFrame = requestAnimationFrame(paintGlow);
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', clearGlow);
