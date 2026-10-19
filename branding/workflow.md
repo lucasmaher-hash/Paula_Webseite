@@ -327,6 +327,11 @@
 - **Funktioniert:** Im Header liegt eine zusätzliche Schicht `.header-tint` mit der Pink-Palette (`theme-pink`). Sie liegt über dem braunen Hintergrund und blendet per `opacity` in 1 s ein und aus. Ein IntersectionObserver beobachtet eine 1 px hohe Linie auf Höhe der Header-Mitte und setzt `.over-pink`, solange Behandlungen oder Bewertungen darunter liegen. Bei einer Größenänderung des Fensters wird die Linie neu berechnet. Die Schicht kopiert auch den mobilen Verlauf, damit es am Handy gleich aussieht. Gemessen bei 375 und 1440 px: oben 0, in Behandlungen nach 0,3 s etwa 0,45 und nach 1,2 s 1, in Schulungen 0, in Bewertungen 1. Bei „Bewegung reduzieren“ ohne Übergang. Keine Konsolenfehler, kein horizontales Scrollen.
 - **Nicht funktioniert / offen:** „Mit einer Verzögerung von 1 Sekunde“ ist als 1 s Überblendung umgesetzt, nicht als 1 s Wartezeit vor dem Start.
 
+### 19.10.2026 · Glow wirkt auch auf die Fläche hinter einem Panel
+- **Versucht:** Hovert man über ein Panel, das auf einer anderen leuchtenden Fläche liegt (zum Beispiel eine Kategorie auf dem pinken Behandlungs-Hintergrund), wurde nur das obere Panel dunkler. Lucas wollte, dass die Fläche darunter trotzdem an der Cursor-Stelle dunkler wird, als läge der Cursor direkt auf ihr.
+- **Funktioniert:** Der Glow sammelt jetzt alle passenden Flächen vom Panel unter dem Cursor bis zum äußersten Abschnitt und malt den Schein auf jeder an derselben Stelle. Gemessen: Über „Permanent Make-up“ leuchten die Kategorie und `.services`. Über einer Bewertung leuchtet nur `.reviews`, weil die Bewertungs-Panels seit vorhin ausgenommen sind. Bei den Schulungen leuchten Kopf und Inhalt zusammen. Keine Konsolenfehler.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.

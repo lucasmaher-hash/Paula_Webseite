@@ -276,10 +276,17 @@
     var target = event.target.closest(glowSelector);
     if (!target || event.target.closest('img, picture, .course-media, .about-figure')) { clearGlow(); return; }
     // Desktop course title and body form one visual frame: share the same cursor.
-    var panels = target.matches('.course-heading, .course-content')
-      ? Array.from(target.closest('.course').querySelectorAll('.course-heading, .course-content')) : [target];
+    // Every glow panel under the cursor lights up, including the ones behind a nested panel
+    // (e.g. the pink Behandlungen background behind a category), as if the cursor were on it.
+    var panels = [];
+    for (var el = target; el; el = el.parentElement && el.parentElement.closest(glowSelector)) {
+      if (el.matches('.course-heading, .course-content')) {
+        el.closest('.course').querySelectorAll('.course-heading, .course-content').forEach(function (p) { if (panels.indexOf(p) < 0) panels.push(p); });
+      } else panels.push(el);
+    }
     glowX = event.clientX; glowY = event.clientY;
-    if (panels[0] !== glowPanels[0]) { clearGlow(); glowPanels = panels; curX = glowX; curY = glowY; }
+    var samePanels = panels.length === glowPanels.length && panels.every(function (p, i) { return p === glowPanels[i]; });
+    if (!samePanels) { clearGlow(); glowPanels = panels; curX = glowX; curY = glowY; }
     if (!glowFrame) glowFrame = requestAnimationFrame(paintGlow);
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', clearGlow);
