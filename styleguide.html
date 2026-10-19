@@ -249,13 +249,21 @@
 /* Bewegung: Karten mit Live-Vorschau, je ein Satz */
 .sg-moves{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:var(--space-6)}
 .sg-move{background:var(--color-surface-raised);border:1px solid var(--color-border);border-radius:var(--rounded-xl);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
-.sg-move.wide{grid-column:span 2}
+.sg-move.wide{grid-column:1 / span 2}
 .sg-move h3{font-size:1rem;margin-top:var(--space-2)}
 .sg-move .sg-note{max-width:60ch}
 .sg-move-stage{height:240px;border-radius:var(--rounded-lg);background:var(--color-background);border:1px solid var(--color-border);padding:10px;display:grid;gap:10px;cursor:crosshair}
 .sg-glow-demo{grid-template-columns:1fr 1fr}
 .sg-glow-panel{border-radius:var(--rounded-lg);border:1px solid var(--color-border);background-color:var(--color-surface);display:flex;align-items:flex-end;padding:14px 16px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--color-on-surface-muted)}
 /* wie .panel-glow-active auf der Website, Deckkraft verdoppelt (24 % statt 12 %) */
+/* Linie fährt aus: Kontur eines Panels zeichnet sich im Uhrzeigersinn (SVG-Rechteck startet oben links) */
+.sg-draw-demo{display:block;padding:18px}
+.sg-draw-frame{position:relative;height:100%;border-radius:var(--rounded-lg);background:var(--color-surface);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between}
+.sg-draw-frame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.sg-draw-frame rect{fill:none;stroke:var(--color-primary);stroke-width:1;stroke-dasharray:100;stroke-dashoffset:100}
+.sg-draw-frame.is-drawn rect{stroke-dashoffset:0;transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1)}
+@media(prefers-reduced-motion:reduce){.sg-draw-frame rect{stroke-dashoffset:0}}
+.sg-draw-frame .ln{display:block;height:1px;background:var(--color-border)}
 .sg-glow-panel.is-lit{background-image:radial-gradient(circle 240px at var(--gx) var(--gy),hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .24) 0%,hsl(var(--tone-h) calc(var(--tone-s) * 1%) 42% / .096) 45%,transparent 100%);background-origin:border-box}
 </style>
 </head>
@@ -592,6 +600,17 @@
           <h3>Panel-Glow</h3>
           <p class="sg-note">Ein weicher, dunklerer Schein folgt dem Cursor mit leichter Verzögerung und liegt unter Text und Bildern. Hier mit doppeltem Kontrast, auf der Website halb so stark.</p>
         </article>
+        <article class="sg-move wide">
+          <div class="sg-move-stage sg-draw-demo">
+            <div class="sg-draw-frame" id="drawDemo">
+              <svg aria-hidden="true"><rect pathLength="100"/></svg>
+              <span class="eyebrow">Öffnungszeiten</span>
+              <span class="ln"></span>
+            </div>
+          </div>
+          <h3>Linie fährt aus</h3>
+          <p class="sg-note">Rahmen und Linien sind nicht einfach da, sie zeichnen sich: die Kontur läuft in 2 s im Uhrzeigersinn um das Panel. Mit der Maus darüber läuft sie erneut.</p>
+        </article>
       </div>
       <div class="sg-panel raised">
         <div class="sg-motion-wrap">
@@ -736,6 +755,30 @@
     panels.forEach(function (p) { p.classList.remove('is-lit'); });
   });
   window.addEventListener('scroll', function () { if (on && !raf) raf = requestAnimationFrame(paint); }, { passive: true });
+})();
+</script>
+<script>
+// Bewegung · Linie fährt aus: Rechteck an die Panelgröße anpassen, beim Sichtbarwerden und bei Hover neu zeichnen
+(function () {
+  var f = document.getElementById('drawDemo'); if (!f) return;
+  var rect = f.querySelector('rect');
+  function size() {
+    var b = f.getBoundingClientRect(), r = parseFloat(getComputedStyle(f).borderTopLeftRadius) || 0;
+    rect.setAttribute('x', 0.5); rect.setAttribute('y', 0.5);
+    rect.setAttribute('width', Math.max(0, b.width - 1)); rect.setAttribute('height', Math.max(0, b.height - 1));
+    rect.setAttribute('rx', r); rect.setAttribute('ry', r);
+  }
+  function draw() {
+    f.classList.remove('is-drawn');
+    void rect.getBoundingClientRect();          // Neustart erzwingen
+    requestAnimationFrame(function () { f.classList.add('is-drawn'); });
+  }
+  size(); window.addEventListener('resize', size);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { draw(); io.disconnect(); } }, { threshold: 0.6 });
+    io.observe(f);
+  } else draw();
+  f.parentElement.addEventListener('pointerenter', draw);
 })();
 </script>
 </body>
