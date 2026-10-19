@@ -1,13 +1,24 @@
-# Übergabe: PM Beauty Website (Stand 18.10.2026)
+# Übergabe: PM Beauty Website (Stand 19.10.2026)
 
 Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (ab 18.10.2026: Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo).
+
+
+## Aktualisierung 19.10.2026 · Codex
+
+- Lucas hat die bisherige Farbregel ausdrücklich ersetzt: zwei vollständige Farbwelten, Braun (Basis, Header, Studio, Kurse, Gutscheine, Kontakt) und Pink (Behandlungen, Bewertungen). Kein reines Schwarz/Weiß; Texte, Buttons, Akzente, Hover und Rahmen kommen aus den jeweiligen Farbrollen in `css/style.css`.
+- Italiana Regular lokal in `fonts/` für H1–H3 und hervorgehobene Zahlen. Instrument Sans für Fließtext, Navigation, Buttons und Labels bleibt. Das Vektorlogo ist unverändert.
+- Feine 1-px-Rahmen um Karten, Panels und Bildrahmen; Kurs-Textflächen haben am Desktop eine gemeinsame Außenkontur ohne Trennlinie zwischen Kopf und Inhalt.
+- Farbregler: `/?tune=1` (auch über den Styleguide verlinkt). Pro Palette Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Flächendeckkraft und Rahmenkontrast. Einstellungen gelten nur in dieser Vorschau, werden lokal gespeichert und können zurückgesetzt oder als CSS exportiert werden. Kein automatisches Veröffentlichen durch die Regler.
+- Aktuell `style.css?v=44`, `fonts.css?v=2`, `color-tuner.css?v=1`, `color-tuner.js?v=1`; `main.js?v=24` unverändert.
+- Standardkontraste: Braun-Button 4,67:1, Pink-Button 5,23:1; Nebentext auf Standard-Panels jeweils über 4,5:1. Freie Reglerwerte können diese Kontraste verändern.
+- Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren. Farbregler ändern Braun/Pink getrennt; Wiederherstellung nach Neuladen, Export und Reset geprüft.
 
 ## 1. Was live ist
 
 - **Live:** https://lucasmaher-hash.github.io/Paula_Webseite/ (GitHub Pages, Branch `main`, Repo öffentlich).
-- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Instrument Sans, Space Mono).
+- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana, Instrument Sans, Space Mono).
 - **Dateien:** `index.html` (One-Pager), `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** CSS und JS werden mit `?v=N` eingebunden (aktuell `style.css?v=15`, `main.js?v=12`). Bei jeder Änderung an einer der Dateien die Nummer in `index.html` erhöhen, sonst sehen Handy und GitHub Pages die alte Version (HTML wird 10 min gecacht).
+- **Cache-Busting:** CSS und JS werden mit `?v=N` eingebunden (aktuell `style.css?v=44`, `main.js?v=24`). Bei jeder Änderung an einer der Dateien die Nummer in `index.html` erhöhen, sonst sehen Handy und GitHub Pages die alte Version (HTML wird 10 min gecacht).
 
 ### Aufbau von `index.html` (von oben nach unten)
 
@@ -30,7 +41,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 
 - **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
 
-- **Farben bleiben** (Lucas, 18.10.2026): Tokens oben in `style.css` (`--color-background #F2EDE5`, `--color-primary #221C16`, `--color-accent #8A6D57` …). Hero-Wandton `--hero-wall #A39588`.
+- **Zwei Farbwelten** (Lucas, 19.10.2026): Braun als Basis, Pink für Behandlungen und Bewertungen. Einstellbare Quellwerte `--brown-*` und `--pink-*` oben in `style.css`; daraus entstehen alle Farbrollen. Hero-Wandton `--hero-wall #A39588` bleibt die Foto-Grundfarbe. Italiana für Überschriften, Instrument Sans für Fließtext und Bedienelemente.
 - **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeilkreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.checklist` + `.perks` (Kurskarten mit vier Icon-Kacheln), Akkordeon mit runden +/–.
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
 - **Mobile first:** Basisregeln gelten fürs Handy, größere Bildschirme per `min-width`. Das Handy ist der wichtigste Kanal für Paulas Kundinnen.

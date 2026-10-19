@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F2EDE5">
+<meta name="theme-color" content="#F6F2EF">
 <meta name="robots" content="noindex">
 <title>PM Beauty Styleguide</title>
 <meta name="description" content="Styleguide der Marke PM Beauty: Logo, Farben, Schrift, Abstände, Komponenten, Bewegung und Bildsprache der Website.">
-<link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="css/style.css?v=43">
+<link rel="stylesheet" href="fonts/fonts.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=44">
 <style>
-/* Nur für den Styleguide. Alle Marken-Werte kommen aus css/style.css (gleiche Datei wie die Website). */
+/* Nur für den Styleguide. Alle Marken-Werte kommen aus css/style.css?v=44 (gleiche Datei wie die Website). */
 .sg-top{padding:var(--space-7) 0 var(--space-5)}
 .sg-top .brand-xl{display:block;width:min(320px,70vw);color:var(--color-primary)}
 .sg-top .brand-xl svg{display:block;width:100%;height:auto;overflow:visible}
-.sg-top h1{font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02;margin:var(--space-6) 0 var(--space-4)}
+.sg-top h1{font-size:var(--type-display);font-weight:400;letter-spacing:-.035em;line-height:1.02;margin:var(--space-6) 0 var(--space-4)}
 .sg-top .lead{color:var(--color-on-surface-muted);max-width:56ch;font-size:1.05rem}
 .sg-toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--color-background) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border)}
 .sg-toc ul{list-style:none;display:flex;gap:var(--space-5);overflow-x:auto;padding:14px var(--gutter);max-width:1240px;margin:0 auto;scrollbar-width:none}
@@ -24,12 +24,12 @@
 .sg section:last-of-type{padding-bottom:var(--space-9)}
 .sg h2{margin-top:var(--space-3)}
 .sg .intro{color:var(--color-on-surface-muted);max-width:62ch;margin-bottom:var(--space-6)}
-.sg h3.sg-h{font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--color-on-surface-muted);margin:var(--space-6) 0 var(--space-3)}
+.sg h3.sg-h{font-family:var(--font-sans);font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--color-on-surface-muted);margin:var(--space-6) 0 var(--space-3)}
 .sg-panels{display:grid;gap:8px}
 @media(min-width:900px){.sg-panels{grid-template-columns:repeat(2,1fr);gap:10px}.sg-panels.three{grid-template-columns:repeat(3,1fr)}}
 .sg-panel{background:var(--color-surface);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}
 @media(min-width:900px){.sg-panel{padding:var(--space-6)}}
-.sg-panel.dark{background:var(--color-primary);color:var(--color-on-primary)}
+.sg-panel.dark{background:var(--color-button);color:var(--color-on-primary)}
 .sg-panel.raised{background:var(--color-surface-raised)}
 .sg-panel p+p{margin-top:var(--space-3)}
 .sg-note{font-size:.88rem;color:var(--color-on-surface-muted)}
@@ -112,7 +112,7 @@
 <header class="container sg-top">
   <a class="brand-xl" href="index.html" aria-label="PM Beauty, zur Website"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20.512 273.33 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.472 51.6768C7.3077 51.4123 10.063 51.28 12.9729 51.28C21.1734 51.28 24.6562 54.1733 24.6562 59.96C24.6562 62.6384 24.0655 64.9861 22.6767 67.0032C21.9492 68.0944 21.0926 68.9707 19.5715 69.632C18.0504 70.2603 16.4614 70.5744 14.3121 70.5744L6.3538 70.5744L6.3538 86L3.472 86L3.472 51.6768ZM13.0225 51.776C11.1046 51.776 8.4701 51.8917 6.3538 52.1232L6.3538 70.0784L14.3121 70.0784C18.9745 69.88 21.9232 66.5403 21.9232 60.0592C21.9232 57.4139 21.058 55.3803 19.6692 53.9584C18.2804 52.5035 15.767 51.776 13.0225 51.776ZM31.6357 86L30.9909 86L35.572 51.28L36.688 51.28L47.3589 83.3712L57.9802 51.28L59.0962 51.28L63.6773 86L60.1734 86L56.751 58.224L46.5729 86L44.6219 86L34.9589 58.5712L31.6357 86ZM90.9839 51.6768C94.8197 51.4123 97.5915 51.28 100.5344 51.28C108.7015 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.7083 63.2832 110.5183 64.7712C109.3273 66.2261 107.7859 67.2181 105.1739 67.7472C107.6869 68.0448 109.3959 68.8053 110.8509 70.0288C112.3049 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 109.3465 86 101.1792 86L90.9839 86L90.9839 51.6768ZM93.8657 85.504L101.1792 85.504C104.1222 85.504 106.6868 84.7435 107.9098 83.2224C109.1668 81.6683 109.931 79.304 109.931 76.1296C109.931 72.9552 109.0834 70.8389 107.8264 69.7808C106.5704 68.7227 104.304 68.1605 101.824 68.0944L93.8657 68.0944L93.8657 85.504ZM100.5344 51.776C98.6166 51.776 95.982 51.8917 93.8657 52.1232L93.8657 67.5984L101.824 67.5984C106.4865 67.4 109.435 64.7216 109.435 59.5632C109.435 57.0501 108.5548 55.1323 107.1658 53.8096C105.7768 52.4539 103.279 51.776 100.5344 51.776ZM161.112 86L160.517 86L175.347 51.28L175.893 51.032L188.392 86L184.758 86L180.889 75.088L165.824 75.088L161.112 86ZM174.3922 56.6368L166.023 74.592L180.7412 74.592L174.3922 56.6368ZM217.213 51.28L217.858 51.28L217.858 71.12C217.858 76.3115 216.833 80.1307 214.783 82.5776C212.733 84.9915 210.054 86.1984 206.748 86.1984C204.665 86.1984 203.0575 86.0165 201.6035 85.6528C200.1485 85.256 198.9974 84.5451 197.7084 83.52C195.0624 81.4699 193.9735 77.3365 193.9735 71.12L193.9735 51.28L196.8555 51.28L196.8555 71.0704C196.8555 77.0885 197.9234 81.1061 199.7424 83.1232C200.6674 84.1152 201.8724 84.7931 202.8644 85.1568C203.8894 85.5205 205.326 85.7024 206.748 85.7024C209.922 85.7024 212.452 84.5451 214.337 82.2304C216.254 79.8827 217.213 76.1627 217.213 71.0704L217.213 51.28ZM234.1615 86L231.2795 86L231.2795 51.776L222.6985 51.776L222.6985 51.28L242.7915 51.28L242.7915 51.776L234.1615 51.776L234.1615 86ZM268.915 51.28C269.543 51.9083 269.858 52.7184 269.858 53.7104C269.858 54.5371 269.676 55.3803 269.312 56.24L259.8165 74.2448L259.8165 86L256.9345 86L256.9345 75.336L246.397 51.28L250.0444 51.28L259.5174 73.6496L268.717 56.24C269.08 55.4133 269.262 54.5536 269.262 53.6608C269.262 52.768 269.014 52.0736 268.518 51.5776L268.915 51.28Z"/><rect x="117.915" y="20.512" width="2.45" height="61.988"/><rect x="152.965" y="20.512" width="2.45" height="61.988"/><rect x="136.385" y="59" width="0.56" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></a>
   <h1>Styleguide</h1>
-  <p class="lead">Wie PM Beauty aussieht, klingt und sich bewegt. Alle Farben, Schriften und Bausteine auf dieser Seite kommen aus derselben CSS-Datei wie die Website (<span class="sg-code">css/style.css</span>). Was hier steht, ist also genau das, was live ist.</p>
+  <p class="lead">Wie PM Beauty aussieht, klingt und sich bewegt. Alle Farben, Schriften und Bausteine auf dieser Seite kommen aus derselben CSS-Datei wie die Website (<span class="sg-code">css/style.css?v=44</span>). Was hier steht, ist also genau das, was live ist.</p>
   <div class="badges" style="margin-top:var(--space-5)">
     <span class="badge">Stand 18.10.2026</span>
     <span class="badge">Beauty &amp; PMU Studio · München</span>
@@ -197,34 +197,31 @@
   <section id="farben" aria-labelledby="farben-h">
     <div class="container">
       <span class="eyebrow">03 · Farben</span>
-      <h2 id="farben-h">Warmes Papier, Braun, Fast-Schwarz.</h2>
-      <p class="intro">Kein reines Weiß, kein kaltes Grau. Tiefe entsteht durch Flächen in Abstufungen statt durch Schatten. Pink ist ein Flüstern: eine Fläche pro Seite (Behandlungen), sonst nur Details.</p>
-      <div class="sg-swatches">
-        <figure class="sg-swatch"><div class="chip" style="background:#F2EDE5"></div><figcaption><b>Background</b><span class="sg-code">#F2EDE5</span>Seitenhintergrund</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#EAE3D8"></div><figcaption><b>Surface</b><span class="sg-code">#EAE3D8</span>Panels, Karten</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#F7F3EC"></div><figcaption><b>Surface raised</b><span class="sg-code">#F7F3EC</span>Kacheln auf Panels</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#DED5C8"></div><figcaption><b>Surface dark</b><span class="sg-code">#DED5C8</span>Zweites Panel (Öffnungszeiten)</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#221C16"></div><figcaption><b>Primary</b><span class="sg-code">#221C16</span>Text, Haupt-Buttons, Logo</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#75695C"></div><figcaption><b>Muted</b><span class="sg-code">#75695C</span>Nebentext, Labels</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#8A6D57"></div><figcaption><b>Accent</b><span class="sg-code">#8A6D57</span>DM-Button, Lorbeer, Icons</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#D9CFC1"></div><figcaption><b>Border</b><span class="sg-code">#D9CFC1</span>Trennlinien</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#EFD9D6"></div><figcaption><b>Pink soft</b><span class="sg-code">#EFD9D6</span>Fläche Behandlungen</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#D9A8A4"></div><figcaption><b>Pink</b><span class="sg-code">#D9A8A4</span>Kleine Details</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#A39588"></div><figcaption><b>Hero wall</b><span class="sg-code">#A39588</span>Wandton des Hero-Fotos</figcaption></figure>
-        <figure class="sg-swatch"><div class="chip" style="background:#F5F1EA"></div><figcaption><b>On primary</b><span class="sg-code">#F5F1EA</span>Text auf dunklem Grund</figcaption></figure>
-      </div>
-      <h3 class="sg-h">Kontrast (WCAG)</h3>
-      <div class="sg-panel raised">
-        <table class="sg-contrast">
-          <tr><td><span class="sg-pair" style="background:#F2EDE5;color:#221C16">Aa</span>Primary auf Background</td><td>14,5 : 1 · AAA</td></tr>
-          <tr><td><span class="sg-pair" style="background:#221C16;color:#F5F1EA">Aa</span>On primary auf Primary (Buttons)</td><td>15,0 : 1 · AAA</td></tr>
-          <tr><td><span class="sg-pair" style="background:#8A6D57;color:#fff">Aa</span>Weiß auf Accent (DM-Button)</td><td>4,8 : 1 · AA</td></tr>
-          <tr><td><span class="sg-pair" style="background:#F2EDE5;color:#75695C">Aa</span>Muted auf Background</td><td>4,6 : 1 · AA</td></tr>
-          <tr><td><span class="sg-pair" style="background:#EAE3D8;color:#75695C">Aa</span>Muted auf Surface</td><td>4,2 : 1 · nur große Schrift</td></tr>
-          <tr><td><span class="sg-pair" style="background:#EFD9D6;color:#221C16">Aa</span>Primary auf Pink soft</td><td>12,5 : 1 · AAA</td></tr>
-        </table>
-        <p class="sg-note" style="margin-top:var(--space-4)">Muted auf Surface liegt knapp unter AA für kleinen Text. Lange Nebentexte in Panels deshalb nicht kleiner als 0,95 rem setzen.</p>
-      </div>
+      <h2 id="farben-h">Zwei Farbwelten. Eine ruhige Sprache.</h2>
+      <p class="intro">Warmes Braun für Header, Studio, Schulungen, Gutscheine und Kontakt. Gedämpftes Pink für Behandlungen und Bewertungen. Jede Farbwelt hat eigene Flächen, Texte, Akzente, Buttons und feine Rahmen. Kein reines Schwarz oder Weiß.</p>
+      <p class="intro"><a class="btn btn-primary" href="index.html?tune=1">Farben direkt auf der Website anpassen ↗</a></p>
+      <div class="theme-brown"><h3 class="sg-h">Braun</h3><div class="sg-swatches">
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-background)"></div><figcaption><b>Background</b><span class="sg-code">--color-background</span>Seitenhintergrund</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-surface)"></div><figcaption><b>Surface</b><span class="sg-code">--color-surface</span>Panels und Karten</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-surface-raised)"></div><figcaption><b>Raised</b><span class="sg-code">--color-surface-raised</span>Innere Karten</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-on-surface)"></div><figcaption><b>Text</b><span class="sg-code">--color-on-surface</span>Überschriften und Fließtext</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-on-surface-muted)"></div><figcaption><b>Muted</b><span class="sg-code">--color-on-surface-muted</span>Nebentexte</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-accent)"></div><figcaption><b>Accent</b><span class="sg-code">--color-accent</span>Icons und Akzente</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-button)"></div><figcaption><b>Button</b><span class="sg-code">--color-button</span>Hauptaktionen</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-border)"></div><figcaption><b>Border</b><span class="sg-code">--color-border</span>Feine Rahmen</figcaption></figure>
+      </div></div>
+      <div class="theme-pink"><h3 class="sg-h">Pink</h3><div class="sg-swatches">
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-background)"></div><figcaption><b>Background</b><span class="sg-code">--color-background</span>Seitenhintergrund</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-surface)"></div><figcaption><b>Surface</b><span class="sg-code">--color-surface</span>Panels und Karten</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-surface-raised)"></div><figcaption><b>Raised</b><span class="sg-code">--color-surface-raised</span>Innere Karten</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-on-surface)"></div><figcaption><b>Text</b><span class="sg-code">--color-on-surface</span>Überschriften und Fließtext</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-on-surface-muted)"></div><figcaption><b>Muted</b><span class="sg-code">--color-on-surface-muted</span>Nebentexte</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-accent)"></div><figcaption><b>Accent</b><span class="sg-code">--color-accent</span>Icons und Akzente</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-button)"></div><figcaption><b>Button</b><span class="sg-code">--color-button</span>Hauptaktionen</figcaption></figure>
+        <figure class="sg-swatch"><div class="chip" style="background:var(--color-border)"></div><figcaption><b>Border</b><span class="sg-code">--color-border</span>Feine Rahmen</figcaption></figure>
+      </div></div>
+      <h3 class="sg-h">Abstimmung</h3>
+      <div class="sg-panel raised"><p>Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Flächendeckkraft und Rahmenkontrast lassen sich für Braun und Pink getrennt einstellen. Rahmen bleiben immer 1 px dünn.</p><p class="sg-note">Der Farbregler speichert nur die persönliche Vorschau in diesem Browser. „Werte exportieren“ gibt die Einstellungen zum Übernehmen in die veröffentlichte Website aus. Individuell aufgehellte Texte und Buttons können weniger Kontrast haben.</p></div>
     </div>
   </section>
 
@@ -232,13 +229,13 @@
   <section id="schrift" aria-labelledby="schrift-h">
     <div class="container">
       <span class="eyebrow">04 · Schrift</span>
-      <h2 id="schrift-h">Instrument Sans.</h2>
-      <p class="intro">Eine leicht warme Grotesk für alles: Überschriften, Fließtext, Buttons, Labels. Gewichte 400 und 500, keine fetten Schnitte. Die Schrift ist lokal eingebunden (<span class="sg-code">fonts/</span>), es werden keine Daten an Google übertragen. Die Logo-Schrift Italiana steckt nur als Pfad im Logo und wird nicht als Text gesetzt.</p>
-      <div class="sg-panel raised"><p class="sg-glyphs">Aa Bb Cc Ää Öö Üü ß<br>0123456789 · ★ ↗ – „“</p></div>
+      <h2 id="schrift-h">Italiana &amp; Instrument Sans.</h2>
+      <p class="intro">Italiana Regular für Überschriften, Gutscheinbeträge, Bewertungszahl und Auszeichnungen. Instrument Sans bleibt für Fließtext, Navigation, Buttons und Labels; Space Mono für technische Angaben. Alle Schriften liegen lokal in <span class="sg-code">fonts/</span>. Das bestehende Vektorlogo bleibt unverändert.</p>
+      <div class="sg-panel raised"><p class="sg-glyphs" style="font-family:var(--font-display)">Aa Bb Cc Ää Öö Üü ß<br>0123456789 · ★ ↗ – „“</p></div>
       <div class="sg-type" style="margin-top:var(--space-5)">
-        <div><span class="meta">Display · 500<br>clamp(2.4 – 4.4 rem) · −0,035 em · Zeile 1,02</span><span style="font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02">Präzision. Ästhetik.</span></div>
-        <div><span class="meta">H2 · 500<br>clamp(1.7 – 2.6 rem) · −0,025 em · Zeile 1,1</span><span style="font-size:var(--type-h2);font-weight:500;letter-spacing:-.025em;line-height:1.1">Alles auf einen Blick.</span></div>
-        <div><span class="meta">H3 · 500<br>1,15 – 1,7 rem · −0,01 bis −0,02 em</span><span style="font-size:1.45rem;font-weight:500;letter-spacing:-.02em;line-height:1.2">Korean Lash &amp; Browlifting</span></div>
+        <div><span class="meta">Display · Italiana 400<br>clamp(2.4 – 4.4 rem) · −0,035 em · Zeile 1,02</span><span style="font-family:var(--font-display);font-size:var(--type-display);font-weight:400;letter-spacing:-.035em;line-height:1.02">Präzision. Ästhetik.</span></div>
+        <div><span class="meta">H2 · Italiana 400<br>clamp(1.7 – 2.6 rem) · −0,025 em · Zeile 1,1</span><span style="font-family:var(--font-display);font-size:var(--type-h2);font-weight:400;letter-spacing:-.025em;line-height:1.1">Alles auf einen Blick.</span></div>
+        <div><span class="meta">H3 · Italiana 400<br>1,15 – 1,7 rem · −0,01 bis −0,02 em</span><span style="font-family:var(--font-display);font-size:1.45rem;font-weight:400;letter-spacing:-.02em;line-height:1.2">Korean Lash &amp; Browlifting</span></div>
         <div><span class="meta">Fließtext · 400<br>1 rem · Zeile 1,6</span><span>Preise und freie Termine siehst du direkt bei der Buchung.</span></div>
         <div><span class="meta">Nebentext · 400 · Muted<br>0,92 – 0,97 rem</span><span class="muted">Langanhaltender Farblack auf dem Naturnagel, inklusive gründlicher Nagelhautentfernung.</span></div>
         <div><span class="meta">Label (Eyebrow) · 500<br>0,74 rem · Versalien · +0,14 em · Punkt davor</span><span><span class="eyebrow">Behandlungen · Mo–Fr 10–20 Uhr</span></span></div>
@@ -285,7 +282,7 @@
     <div class="container">
       <span class="eyebrow">06 · Komponenten</span>
       <h2 id="komp-h">Bausteine der Website.</h2>
-      <p class="intro">Alle Beispiele hier sind echte Bausteine aus <span class="sg-code">css/style.css</span>, keine Nachbauten.</p>
+      <p class="intro">Alle Beispiele hier sind echte Bausteine aus <span class="sg-code">css/style.css?v=44</span>, keine Nachbauten.</p>
 
       <h3 class="sg-h">Buttons</h3>
       <div class="sg-row">
@@ -430,7 +427,7 @@
       <div class="sg-panels">
         <div class="sg-panel"><h3>Technik</h3><ul class="sg-list" style="margin-top:var(--space-4)">
           <li>Statisches HTML, CSS und JavaScript ohne Framework und ohne Build-Schritt</li>
-          <li>Alle Werte als CSS-Variablen in <span class="sg-code">css/style.css</span></li>
+          <li>Alle Werte als CSS-Variablen in <span class="sg-code">css/style.css?v=44</span></li>
           <li>Schriften lokal, keine Cookies, kein Tracking</li>
           <li>Gehostet auf GitHub Pages, jede Änderung geht über einen Commit live</li>
         </ul></div>

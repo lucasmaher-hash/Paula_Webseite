@@ -1,19 +1,14 @@
-/* PM Beauty — Farben/Typo aus docs/design.md, Layout-Muster angelehnt an Lucas' Referenz (Karten, Labels mit Punkt, Bilderstreifen).
+/* PM Beauty — Farben/Typo dokumentiert in styleguide.html, Layout-Muster angelehnt an Lucas' Referenz (Karten, Labels mit Punkt, Bilderstreifen).
    Mobile first: Basis-Regeln gelten fürs Handy, größere Bildschirme per min-width. */
 :root{
-  --color-background:#F2EDE5;
-  --color-surface:#EAE3D8;
-  --color-surface-raised:#F7F3EC;
-  --color-primary:#221C16;
-  --color-on-primary:#F5F1EA;
-  --color-on-surface:#221C16;
-  --color-on-surface-muted:#75695C;
-  --color-accent:#8A6D57;
-  --color-accent-pink:#D9A8A4;
-  --color-accent-pink-soft:#EFD9D6;
-  --color-border:#D9CFC1;
+  /* Two palettes. The tuning panel edits only these source values. */
+  --brown-hue:27; --brown-saturation:28; --brown-brightness:0;
+  --brown-text:30; --brown-button:43; --brown-opacity:100; --brown-border:26;
+  --pink-hue:350; --pink-saturation:26; --pink-brightness:0;
+  --pink-text:32; --pink-button:44; --pink-opacity:100; --pink-border:26;
   --hero-wall:#A39588;              /* Wandton des Hero-Fotos */
 
+  --font-display:"Italiana",Georgia,serif;
   --font-sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
   --font-mono:"Space Mono",ui-monospace,monospace;
 
@@ -29,6 +24,32 @@
   --brand-w:96px;
   --gutter:20px;
 }
+/* Scope every role together so nested pink panels inherit a complete palette. */
+:root,.theme-brown{
+  --tone-h:var(--brown-hue);--tone-s:var(--brown-saturation);--tone-light:var(--brown-brightness);
+  --tone-text:var(--brown-text);--tone-button:var(--brown-button);--tone-opacity:var(--brown-opacity);--tone-border:var(--brown-border);
+}
+.theme-pink,.services,.reviews{
+  --tone-h:var(--pink-hue);--tone-s:var(--pink-saturation);--tone-light:var(--pink-brightness);
+  --tone-text:var(--pink-text);--tone-button:var(--pink-button);--tone-opacity:var(--pink-opacity);--tone-border:var(--pink-border);
+}
+:root,.theme-brown,.theme-pink,.services,.reviews{
+  --color-background:hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((95 + var(--tone-light)) * 1%));
+  --color-surface-raised:hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((96 + var(--tone-light)) * 1%));
+  --color-surface:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((90 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
+  --color-surface-deep:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((86 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
+  --color-primary:hsl(var(--tone-h) calc(var(--tone-s) * .6%) calc(var(--tone-text) * 1%));
+  --color-on-surface:var(--color-primary);
+  --color-on-surface-muted:hsl(var(--tone-h) calc(var(--tone-s) * .55%) calc((var(--tone-text) + 9) * 1%));
+  --color-accent:hsl(var(--tone-h) calc(var(--tone-s) * .8%) calc((var(--tone-text) + 8) * 1%));
+  --color-button:hsl(var(--tone-h) calc(var(--tone-s) * .65%) calc(var(--tone-button) * 1%));
+  --color-button-hover:hsl(var(--tone-h) calc(var(--tone-s) * .65%) calc((var(--tone-button) - 5) * 1%));
+  --color-on-primary:hsl(var(--tone-h) calc(var(--tone-s) * 1%) 97%);
+  --color-border:hsl(var(--tone-h) calc(var(--tone-s) * .65%) 42% / calc(var(--tone-border) * .01));
+  --color-accent-pink:hsl(var(--pink-hue) calc(var(--pink-saturation) * 1%) 72%);
+  --color-accent-pink-soft:hsl(var(--pink-hue) calc(var(--pink-saturation) * 1%) calc((90 + var(--pink-brightness)) * 1%));
+}
+.theme-brown,.theme-pink,.services,.reviews{color:var(--color-on-surface)}
 @media(min-width:900px){:root{--brand-w:112px;--gutter:32px}}
 /* Handy: Rahmen von Panels und Fotos ca. 30 % weniger rund (Buttons und Kacheln bleiben) */
 @media(max-width:899px){:root{--rounded-lg:17px;--rounded-xl:22px}}
@@ -75,8 +96,8 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
 .btn-ic svg{width:14px;height:14px}
 .btn:hover .btn-ic{transform:translate(2px,-2px)}
 .btn:hover .btn-ic.down{transform:translateY(2px)}
-.btn-primary{background:var(--color-primary);color:var(--color-on-primary)}
-.btn-primary:hover{background:#3a3027}
+.btn-primary{background:var(--color-button);color:var(--color-on-primary)}
+.btn-primary:hover{background:var(--color-button-hover)}
 .btn-soft{background:color-mix(in srgb,var(--color-surface-raised) 55%,transparent);color:var(--color-primary);border-color:color-mix(in srgb,var(--color-primary) 18%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .btn-soft:hover{background:var(--color-surface-raised)}
 .btn-sm{min-height:44px;padding:4px 20px;font-size:.88rem;gap:10px}
@@ -90,8 +111,8 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
 .icon-btn svg{width:20px;height:20px}
 .icon-btn:hover{background:var(--color-surface-raised)}
 .icon-btn:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
-.icon-btn-primary{background:var(--color-primary);border-color:transparent;color:var(--color-on-primary)}   /* wie „Termin buchen" */
-.icon-btn-primary:hover{background:#3a3027}
+.icon-btn-primary{background:var(--color-button);border-color:var(--color-border);color:var(--color-on-primary)}   /* wie „Termin buchen" */
+.icon-btn-primary:hover{background:var(--color-button-hover)}
 
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-2)}
 .badge{
@@ -137,7 +158,7 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
   position:absolute;top:calc(100% + 10px);left:-18px;min-width:230px;
   display:flex;flex-direction:column;padding:10px;
   background:var(--color-surface-raised);border:1px solid var(--color-border);border-radius:var(--rounded-md);
-  box-shadow:0 18px 40px rgba(34,28,22,.12);
+  box-shadow:0 18px 40px color-mix(in srgb,var(--color-primary) 12%,transparent);
   opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility .2s;
 }
 .nav-dd-panel::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}   /* Hover-Brücke */
@@ -189,13 +210,13 @@ body.menu-open{overflow:hidden}
   .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 0}
   .hero-content{position:relative;width:100%;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
   .hero-content > *{max-width:540px}
-  /* Text weiß; die Wand links minimal abgedunkelt (läuft zu Paula hin auf 0 aus), damit Weiß lesbar bleibt */
+  /* Warm tinted veil keeps the fine display type readable on the photograph. */
   .hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,rgba(34,28,22,.28) 0%,rgba(34,28,22,.22) 38%,rgba(34,28,22,0) 62%)}
-  .hero-content{color:var(--color-on-primary);text-shadow:0 1px 12px rgba(34,28,22,.22)}
-  .hero .lead{color:color-mix(in srgb,var(--color-on-primary) 92%,transparent)}
-  .hero .eyebrow{color:var(--color-on-primary)}
-  .hero h1 em{color:var(--color-on-primary)}   /* „Qualität.“ weiß wie der Rest */
+    background:linear-gradient(90deg,color-mix(in srgb,var(--color-background) 96%,transparent) 0%,color-mix(in srgb,var(--color-background) 86%,transparent) 30%,transparent 64%)}
+  .hero-content{color:var(--color-on-surface)}
+  .hero .lead{color:var(--color-on-surface-muted)}
+  .hero .eyebrow{color:var(--color-on-surface-muted)}
+  .hero h1 em{color:var(--color-accent)}
   .hero-actions .btn{text-shadow:none}
 }
 
@@ -284,7 +305,7 @@ body.menu-open{overflow:hidden}
 .fact a{text-decoration:none}
 
 /* ---------- Behandlungen ---------- */
-.services{background:var(--color-accent-pink-soft);border-radius:var(--rounded-xl)}   /* gleiches Pink wie Bewertungen */
+.services{background:var(--color-surface);border-radius:var(--rounded-xl)}   /* gleiches Pink wie Bewertungen */
 .section-head{display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-6)}
 @media(min-width:900px){.section-head{flex-direction:row;justify-content:space-between;align-items:flex-end}}
 .section-head p{max-width:54ch}
@@ -351,12 +372,12 @@ body.menu-open{overflow:hidden}
 @media(min-width:560px){.perks{grid-template-columns:repeat(4,1fr)}}
 .perks li{
   display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
-  padding:12px 6px;border-radius:var(--rounded-md);background:transparent;border:1px solid #CBBFAF;   /* nur Kontur, Fläche wie die Karte */
+  padding:12px 6px;border-radius:var(--rounded-md);background:transparent;border:1px solid var(--color-border);   /* nur Kontur, Fläche wie die Karte */
   font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted);line-height:1.3;
 }
 .perks svg{width:22px;height:22px;color:var(--color-accent)}
-.btn-brown{background:var(--color-accent);color:#fff}   /* bräunlich wie die Referenz, Pfeil ohne Kreis */
-.btn-brown:hover{background:#74594a}
+.btn-brown{background:var(--color-button);color:var(--color-on-primary)}   /* bräunlich wie die Referenz, Pfeil ohne Kreis */
+.btn-brown:hover{background:var(--color-button-hover)}
 .course .btn{align-self:stretch;justify-content:space-between}
 @media(min-width:560px){.course .btn{align-self:flex-start;justify-content:center}}
 
@@ -374,7 +395,7 @@ body.menu-open{overflow:hidden}
 .voucher-featured{width:90%;padding:var(--space-6) var(--space-5)}
 .voucher-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}
 .voucher-ic{width:30px;height:30px;color:var(--color-accent)}
-.badge-accent{background:var(--color-accent);border-color:transparent;color:#fff;font-weight:500;letter-spacing:.02em}
+.badge-accent{background:var(--color-button);border-color:var(--color-border);color:var(--color-on-primary);font-weight:500;letter-spacing:.02em}
 .voucher .amount{font-size:2.3rem;font-weight:500;letter-spacing:-.03em;line-height:1}
 .voucher-featured .amount{font-size:3rem}
 @media(min-width:900px){
@@ -394,7 +415,7 @@ body.menu-open{overflow:hidden}
 .voucher-hint{margin-top:var(--space-5);color:var(--color-on-surface-muted);font-size:.92rem;max-width:70ch}
 
 /* ---------- Bewertungen ---------- */
-.reviews{background:var(--color-accent-pink-soft);border-radius:var(--rounded-xl)}
+.reviews{background:var(--color-surface);border-radius:var(--rounded-xl)}
 .rating-badge{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4);margin:var(--space-4) 0}
 .rating-badge .score{font-size:clamp(3.2rem,9vw,4.6rem);font-weight:500;letter-spacing:-.04em;line-height:1}
 .rating-badge .stars{color:var(--color-accent);font-size:1.3rem;letter-spacing:.15em}
@@ -412,11 +433,11 @@ body.menu-open{overflow:hidden}
 @media(min-width:900px){.contact-panel,.hours{padding:var(--space-7)}}
 .contact .muted{max-width:46ch}
 .contact-list{margin:var(--space-5) 0 var(--space-6)}
-.hours{background:#DED5C8;border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */
+.hours{background:var(--color-surface-deep);border-radius:var(--rounded-xl);padding:var(--space-6) var(--space-5)}   /* etwas dunkler als das Kontakt-Panel */
 .hours table{width:100%;border-collapse:collapse;margin-top:var(--space-4);font-size:.95rem}
 .hours td{padding:10px 0}
 .hours td:last-child{text-align:right}
-.hours tr+tr td{border-top:1px solid #CBBFAF}
+.hours tr+tr td{border-top:1px solid var(--color-border)}
 
 .site-footer{border-top:1px solid var(--color-border);padding:var(--space-6) 0 calc(var(--space-6) + env(safe-area-inset-bottom))}
 .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-5);align-items:center}
@@ -462,4 +483,25 @@ body.menu-open{overflow:hidden}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
   .reveal{opacity:1;transform:none}
+}
+
+/* Italiana is reserved for display hierarchy; body and functional labels stay sans. */
+h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .score{
+  font-family:var(--font-display);font-weight:400;font-synthesis:none;letter-spacing:-.015em;
+}
+.hero h1{line-height:1.08}
+.tile h3{font-size:1.6rem}
+.accordion summary h3{font-size:clamp(1.35rem,3.5vw,1.65rem)}
+/* One quiet outline per visual frame, including photo frames. */
+.tile,.strip figure,.services,.reviews,.accordion details,.voucher,.review,.contact-panel,.hours,.sg-panel,.sg-demo-panels .img{
+  border:1px solid var(--color-border);
+}
+@media(max-width:899px){
+  .about-grid,.course{border:1px solid var(--color-border)}
+  .about-figure img,.course-media img{border:1px solid var(--color-border)}
+}
+@media(min-width:900px){
+  .about-figure,.about-panel,.course-media{border:1px solid var(--color-border)}
+  .course-heading{border:1px solid var(--color-border);border-bottom:0}
+  .course-content{border:1px solid var(--color-border);border-top:0}
 }

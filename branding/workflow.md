@@ -252,6 +252,11 @@
 - **Funktioniert:** Element, CSS, JavaScript und die Zeile im Styleguide sind entfernt. Der Eintrag oben bleibt als Dokumentation stehen.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Codex · Italiana, zwei Farbwelten und Farbregler
+- **Versucht:** Lucas wollte Italiana für wichtige Überschriften, unveränderten Fließtext, ruhige Braun- und Pink-Paletten nach den NovaFaces-Screenshots sowie feine, leicht kontrastierende Rahmen. Getrennte Regler sollten Farben, Helligkeit und Deckkraft direkt auf der Seite abstimmen lassen.
+- **Funktioniert:** Italiana lokal eingebunden, Instrument Sans für Fließtext und Bedienelemente erhalten. Vollständige Farbrollen je Palette ersetzen verstreute Einzelwerte, einschließlich Header, Buttons und Hover. Panels und Bildrahmen erhalten 1-px-Konturen. Unter `?tune=1` gibt es je sieben Regler mit lokaler Speicherung, Reset und CSS-Export; der Styleguide verlinkt darauf. Bei 375 und 1440 px kein horizontales Scrollen. Mobiles Menü, Behandlungs-Akkordeon, Kurs-Toggle, getrennte Farbänderung, Speicherung nach Neuladen, Export und Reset im Browser geprüft. Standard-Buttonkontraste rechnerisch 4,67:1 (Braun) und 5,23:1 (Pink). Keine Browserfehler beim Desktop-Test.
+- **Nicht funktioniert / offen:** Reglerwerte sind eine persönliche Vorschau; Änderungen werden erst durch Übernahme des Exports und ein Deployment öffentlich. Stark aufgehellte individuelle Einstellungen können den Textkontrast verringern. Die eigene Vorschau ist kein Ersatz für Paulas gestalterische Freigabe.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
