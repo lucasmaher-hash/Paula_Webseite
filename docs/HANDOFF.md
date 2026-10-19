@@ -12,6 +12,8 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - Standardfarben: Lucas’ exportierte Reglerwerte vom 19.10.2026 übernommen (Braun: 16/38/−1/37/51/100/24; Pink: 351/35/−4/32/47/100/22; Rahmen am 19.10. um 20 % schwächer: 19,2 und 17,6; Reihenfolge: Farbton, Sättigung, Flächenhelligkeit, Texthelligkeit, Buttonhelligkeit, Deckkraft, Rahmenkontrast). Frühere Kontrastmessungen gelten für die vorherige Palette.
 - Prüfung: 375 px und 1440 px ohne horizontales Scrollen; mobiles Menü, Behandlungs-Akkordeon und Kurs-Toggle funktionieren.
 
+- Kontakt (19.10.2026): 3×2-Raster nach Lucas’ Skizze. `images/studio-glass.jpg` und `images/studio-light.jpg` sind vorläufige Stimmungsbilder, nicht Paulas Studio. Ersetzen, sobald echte Studiofotos da sind.
+
 ## 1. Was live ist
 
 - **Live:** https://lucasmaher-hash.github.io/Paula_Webseite/ (GitHub Pages, Branch `main`, Repo öffentlich).
