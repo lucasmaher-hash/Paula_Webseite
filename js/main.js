@@ -308,24 +308,13 @@
   items.forEach(function (el) { io.observe(el); });
 })();
 
-// Dynamisches Logo im Header (Styleguide, „Dynamisches Logo“): Der Mittelstrich des E steht voll, solange das Studio
-// laut Öffnungszeiten offen ist (Mo–Fr 10–20 Uhr, Uhrzeit München), sonst auf einem Drittel. Maus- und Scrollbewegung
-// kippen ihn leicht; eine gedämpfte Feder holt ihn exakt in die Mitte zurück. Keine Farbe: Pink bleibt dem Header über pinken Abschnitten.
+// Dynamisches Logo im Header (Styleguide, „Dynamisches Logo“): Maus- und Scrollbewegung kippen den Mittelstrich des E leicht,
+// eine gedämpfte Feder holt ihn exakt in die Mitte zurück. Das Wachsen beim Hovern macht CSS (.brand:hover .mid-bar).
 (function () {
   var header = document.querySelector('.site-header');
   var mid = header && header.querySelector('.brand .mid');
   if (!mid) return;
 
-  function studioOpen() {
-    var o = {};
-    new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short', hour: 'numeric', hour12: false })
-      .formatToParts(new Date()).forEach(function (x) { o[x.type] = x.value; });
-    var h = +o.hour % 24;
-    return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].indexOf(o.weekday) >= 0 && h >= 10 && h < 20;
-  }
-  function hours() { header.classList.toggle('studio-closed', !studioOpen()); }
-  hours();
-  setInterval(hours, 60000);
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

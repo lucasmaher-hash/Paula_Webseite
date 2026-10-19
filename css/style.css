@@ -154,11 +154,11 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
 .brand{display:block;flex-shrink:0;width:var(--brand-w);color:var(--color-primary);-webkit-tap-highlight-color:transparent}
 .brand svg{display:block;width:100%;height:auto;overflow:visible}
 .brand:focus-visible{outline:2px solid var(--color-accent);outline-offset:6px;border-radius:var(--rounded-sm)}
-/* Dynamisches Logo im Header: Mittelstrich des E. Voll = Studio offen (Mo–Fr 10–20 Uhr), ein Drittel = geschlossen.
+/* Dynamisches Logo im Header: Der Mittelstrich des E wächst beim Hovern auf die doppelte Höhe (nach oben, Fuß bleibt).
    Die Neigung setzt js/main.js (Feder zur Mitte nach Maus- oder Scrollbewegung). */
 .brand .mid,.brand .mid-bar{transform-box:fill-box;transform-origin:50% 100%}
-.brand .mid-bar{transition:transform 1s cubic-bezier(.4,0,.2,1)}
-.site-header.studio-closed .brand .mid-bar{transform:scaleY(.32)}
+.brand .mid-bar{transition:transform .35s cubic-bezier(.4,0,.2,1)}
+@media(hover:hover){.brand:hover .mid-bar,.brand:focus-visible .mid-bar{transform:scaleY(2);transition-duration:.45s}}
 @media(prefers-reduced-motion:reduce){.brand .mid-bar{transition:none}}
 .header-actions{display:flex;align-items:center;gap:var(--space-2)}
 /* Nur ausblenden, nie ein display setzen: sonst verliert z. B. der Instagram-Kreis seine Grid-Zentrierung */

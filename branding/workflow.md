@@ -407,6 +407,11 @@
 - **Funktioniert:** Neuer Unterabschnitt „Kleinfassung: Vergleich“ im Logo-Abschnitt (`styleguide.html#kleinfassung`), vor der Schutzzone: vier Karten (Original, A, B, C) mit 96 und 112 px, gerastertem Pixelbild, großer Ansicht mit Mittelachse und Messwerten. C ist als „Auf der Website“ markiert. Der Hinweis unter „Größen“ verlinkt jetzt auf diesen Anker. `vergleich.html` ist gelöscht (bleibt in der Git-Historie), das README in `logo-small/` ist angepasst. Bei 1440 px kein horizontales Scrollen, keine Konsolenfehler, alle vier Pixelbilder gerendert.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Mittelstrich wächst beim Hover statt nach Öffnungszeiten (Claude lokal)
+- **Versucht:** Lucas: Der mittlere Strich soll nicht mehr je nach Tageszeit wachsen, sondern beim Hovern mit der Maus. Die bisher höchste Stufe ist die normale, beim Hover wächst er auf das Doppelte.
+- **Funktioniert:** Öffnungszeiten-Logik aus `main.js`, CSS und Styleguide entfernt, ebenso Simulation, Statuszeile und Pink-Wechsel der großen Fläche. Normal steht der Strich in voller Höhe (22 Einheiten), beim Hover `scaleY(2)` nach oben, der Fuß bleibt (0,45 s hinein, 0,35 s zurück, wie die Hover-Linien). Website-Header, große Styleguide-Fläche und die Header-Vorschauen verhalten sich gleich, die Feder bleibt. Gemessen: Header 9,28 → 18,57 px, Oberkante bleibt unter den E-Stämmen, nach dem Wegziehen wieder 9,29 px. Styleguide-Fläche 41,38 → 82,75 px. Am Handy kein Hover, 7,96 px. Keine Konsolenfehler, kein horizontales Scrollen. CSS v62, JS v36.
+- **Nicht funktioniert / offen:** Auf Touch-Geräten wächst nichts, dort bleibt nur die Feder beim Scrollen. Das Logo reagiert damit nicht mehr auf Daten (Uhrzeit), sondern nur noch auf Interaktion. Für Ammers „Animation, die auf ihre Umgebung reagiert“ zählen jetzt Maus und Scrollen als Umgebung.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
