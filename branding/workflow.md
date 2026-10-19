@@ -422,6 +422,11 @@
 - **Funktioniert:** Am Handy gab es das schon (`@media(hover:none)`). Neu gilt `.accordion details[open] summary h3::after{transform:scaleX(1)}` für alle Geräte. Die Regeln fürs Zuklappen am Handy stehen danach und gewinnen dort weiter. Gemessen bei 1440 px: geöffnete Kategorie `scaleX(1)` ohne Hover, geschlossene `scaleX(0)`. Bei 375 px unverändert. CSS v64, Styleguide-Text angepasst.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Codex · Drei neue SVG-Logoalternativen
+- **Versucht:** Lucas bat um drei neue Logoentwürfe als SVG direkt im Chat: breite Wortmarke, kompaktes Monogramm und weiches Studio-Emblem.
+- **Funktioniert:** Drei getrennte Richtungen in `branding/assets/pm-beauty-logo/versions/v7/`: Editorial mit Italiana und Namenszusatz, ineinandergreifendes PM in Pink und individuell gezeichnetes kleines pm im offenen Oval. Schrift in Pfade umgewandelt; transparente SVGs plus Vorschauen auf der Seitenfarbe. Alle SVGs als XML geprüft und alle drei gerenderten Vorschauen visuell kontrolliert. Bisherige Logo-Versionen erhalten; das Website-Logo wurde nicht ersetzt.
+- **Nicht funktioniert / offen:** Für die Instrument-Sans-WOFF2 musste die vorhandene Python-Umgebung um Brotli ergänzt werden. Auswahl und Freigabe durch Lucas/Paula stehen aus; Kleinstgrößen sind noch nicht optimiert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
