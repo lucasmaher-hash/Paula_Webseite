@@ -450,7 +450,7 @@ body.menu-open{overflow:hidden}
 /* Abstand wie im Kontakt: 8 px Handy, 10 px Desktop. Desktop 3 Spalten; „Alle Bewertungen“ füllt den Rest der letzten Reihe */
 .reviews-grid{display:grid;gap:8px;margin-top:var(--space-6)}
 @media(min-width:900px){.reviews-grid{grid-template-columns:repeat(3,1fr);gap:10px}.review-all{grid-column:span 2}}
-.review.review-all{background:var(--color-surface-deep);text-decoration:none;color:inherit;justify-content:space-between;min-height:180px;transition:filter .25s ease}
+.review.review-all{background:color-mix(in srgb,var(--color-surface-deep) 86%,var(--color-accent));text-decoration:none;color:inherit;justify-content:space-between;min-height:180px;transition:filter .25s ease}
 .review-all:hover{filter:brightness(.97)}
 .review-all:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
 .review-all-score{font-family:var(--font-display);font-size:clamp(2.4rem,6vw,3.4rem);line-height:1}

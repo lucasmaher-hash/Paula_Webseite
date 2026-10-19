@@ -347,6 +347,11 @@
 - **Funktioniert:** Der Glow sucht nicht mehr nach dem Panel unter dem Cursor. Er malt jede Glow-Fläche an, deren Rand weniger als 240 px (= Radius des Verlaufs) von der Glow-Mitte entfernt ist, und zwar an genau dieser Stelle. Nähert man sich, erscheint der Schein zuerst nur am Rand und wird mit kleinerem Abstand kräftiger. Verschachtelte Flächen leuchten weiterhin mit. Beim Scrollen wird neu gemalt statt gelöscht, damit der Schein bei ruhendem Cursor nicht verschwindet. Gemessen: 150 px über dem Kontakt-Panel ist es schon beleuchtet, 300 px darüber nicht. Über einer Kategorie leuchten Kategorien und `.services`. Keine Konsolenfehler.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 19.10.2026 · Schulungstexte gekürzt, „Alle Bewertungen“ dunkler
+- **Versucht:** Lucas wollte die Texte in den Schulungskarten kürzer haben und das „Alle Bewertungen“-Panel etwas dunkler.
+- **Funktioniert:** Die vier Absätze sind auf ihren Kern gekürzt, ohne neue Aussagen. Lashlift: „Lerne Korean Lashlift, die neueste Technik auf dem Markt, in Theorie und Praxis.“ und „Für den Einstieg in die Beauty-Branche oder als Ergänzung deines Angebots.“ Masterclass: Die fette Zeile bleibt, danach „Perfektioniere deine Technik und kreiere Ergebnisse, die für sich sprechen.“ und „Technik und Verständnis, mit denen du dich langfristig weiterentwickelst. Für Einsteigerinnen und alle, die ihre Fähigkeiten perfektionieren möchten.“ Das Panel mischt jetzt 14 % Akzentfarbe in `--color-surface-deep`. Bei 375, 430 und 1440 px keine Konsolenfehler, kein horizontales Scrollen.
+- **Nicht funktioniert / offen:** Paula sollte die gekürzten Texte noch freigeben. Die Originale stehen in der Git-Historie.
+
 ## Werkzeuge
 
 Codex → Google-Fonts-Originaldatei → Python/fontTools für Schriftkonturen → eigener SVG-Pfad für das E → Sharp für die PNG-Vorschau.
