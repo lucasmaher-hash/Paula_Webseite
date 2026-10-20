@@ -2,6 +2,8 @@
 
 **Logo-Update 21.10.2026:** Lucas hat die gelieferte PM-Handskizze als Website-Logo bestimmt. Der aktuelle, editierbare Vektor liegt in Figma unter [Knoten 32:5](https://www.figma.com/design/ggdHcm9PScFCjahKxyFqDB/paula-webseite?node-id=32-5); Quellen, SVG und Vorschau in `branding/assets/pm-beauty-logo/versions/v9/`. Website: Header, mobiles Menü und Footer nutzen das neue Monogramm. Die alte Italiana-Wortmarke und die E-Animation sind nur noch historische Entwürfe. Der Styleguide zeigt das neue Logo und kennzeichnet die frühere Schreibanimation als Archiv. Angaben zur alten Website-Wortmarke weiter unten sind damit überholt.
 
+**Reinzeichnung v10 (21.10.2026, Entwurf):** `branding/assets/pm-beauty-logo/versions/v10/` ist eine neu gezeichnete Fassung derselben Skizze mit wechselnder Strichbreite. Sie steht nur im Styleguide (Logo: Regler für die Strichstärke 60–160 %; Bewegung: Schreibanimation mit Reglern für Dauer, Kurve, Absetzen und Halten). Die Website zeigt weiter v9.
+
 Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (Claude lokal, Claude in der Cloud, Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo). Der vollständige Verlauf steht in `branding/workflow.md`.
 
 **Neuer Chat? Zuerst:** `git pull` im Repo, dann diese Datei und die letzten Einträge in `branding/workflow.md` lesen, dann `git status` / `git log -5` prüfen (Codex arbeitet im selben Repo).
