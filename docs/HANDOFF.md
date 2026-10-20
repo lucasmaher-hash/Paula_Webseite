@@ -8,9 +8,9 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 
 - **Live:** https://paula-maher.de (seit 19.10.2026; GitHub Pages, Branch `main`; die alte Adresse lucasmaher-hash.github.io/Paula_Webseite/ leitet dorthin weiter). Styleguide: `/styleguide.html`.
 - **Domain:** paula-maher.de liegt bei Strato (Paulas Paket mit 1 Inklusiv-Domain und 1 Mailpostfach). Strato-DNS: A-Record `185.199.108.153` (GitHub, Strato erlaubt nur eine IPv4), CNAME `www` → `lucasmaher-hash.github.io`. Stand 19.10.2026: Zertifikat deckt erst `paula-maher.de` ab, `https://www.…` zeigt noch Zertifikatsfehler (GitHub stellt www verzögert aus). MX und NS nicht anfassen, sonst bricht Paulas Mail. Die Datei `CNAME` im Repo nicht löschen. HTTPS erzwungen, Zertifikat von GitHub (Let's Encrypt).
-- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Italiana für Überschriften und große Zahlen, Instrument Sans für alles andere).
+- **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Schriften lokal in `fonts/` (Lora 500 für Überschriften und große Zahlen, Instrument Sans für Text und Bedienung; die Italiana-Wortmarke bleibt erhalten).
 - **Dateien:** `index.html` (One-Pager), `styleguide.html`, `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** aktuell `style.css?v=64`, `main.js?v=38`, `fonts.css?v=2`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
+- **Cache-Busting:** aktuell `style.css?v=65`, `main.js?v=38`, `fonts.css?v=3`. Bei jeder Änderung an CSS die Nummer in **allen vier** HTML-Dateien erhöhen (index, styleguide, impressum, datenschutz), bei JS nur in `index.html`.
 
 ### Aufbau von `index.html` (von oben nach unten)
 
@@ -35,7 +35,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Styleguide:** `styleguide.html` (live unter `/styleguide.html`) zeigt Logo, Farben, Schrift, Raster, Komponenten, Bewegung, Bildsprache und Sprache. Er lädt dieselbe `css/style.css`. Bei Design-Änderungen den Styleguide mitziehen. `docs/design.md` und `docs/design.html` sind veraltet.
 
 - **Panel-Glow** (Lucas/Codex, 19.10.2026): Nur Desktop ab 900 px, echte Maus, keine reduzierte Bewegung. Radialer Verlauf als CSS-Hintergrund der Panels (240 px Radius, max. 12 % Deckkraft), kein Overlay. Jede Glow-Fläche im Umkreis von 240 px um die Glow-Mitte wird an dieser Stelle getönt, also auch Flächen hinter einem Panel und Flächen, denen man sich nähert. Die Mitte läuft dem Cursor mit 14 % pro Frame nach. Bewertungs-Karten selbst sind ausgenommen (nur der pinke Hintergrund leuchtet).
-- **Zwei Farbwelten** (Lucas, 19.10.2026): Braun als Basis, Pink für Behandlungen und Bewertungen. Einstellbare Quellwerte `--brown-*` und `--pink-*` oben in `style.css`; daraus entstehen alle Farbrollen. Hero-Wandton `--hero-wall #A39588` bleibt die Foto-Grundfarbe. Italiana für Überschriften, Instrument Sans für Fließtext und Bedienelemente.
+- **Zwei Farbwelten** (Lucas, 19.10.2026): Braun als Basis, Pink für Behandlungen und Bewertungen. Einstellbare Quellwerte `--brown-*` und `--pink-*` oben in `style.css`; daraus entstehen alle Farbrollen. Hero-Wandton `--hero-wall #A39588` bleibt die Foto-Grundfarbe. Lora 500 für Überschriften, Instrument Sans für Fließtext und Bedienelemente; Italiana bleibt in der Wortmarke.
 - **Muster** angelehnt an die Referenz https://novafacesmunich.com (nur Layout, keine Texte übernehmen): `.eyebrow` (Label mit Punkt), `.btn` + `.btn-ic` (Pille mit Pfeil, ohne Kreis), `.badge`, `.tile` (große Karte mit ↗), `.strip` (Bilderstreifen), `.course` + `.perks` (Kurskarten mit vier Kontur-Kacheln), Akkordeon mit runden +/–.
 - **Hover-Linie:** 1 px, wächst von der Mitte nach außen, keine Serifen (`.ul` und die Selektorliste im Abschnitt „Hover-Linie").
 - **Panels:** Flächen dicht nebeneinander (8 px Handy, 10 px Desktop), 1-px-Kontur; am Handy sind die Radien ca. 30 % kleiner (22/17 px statt 32/24 px).

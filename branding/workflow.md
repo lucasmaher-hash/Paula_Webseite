@@ -453,6 +453,11 @@
 - **Funktioniert:** Vier Karten untereinander. (1) **Panel-Glow:** ein pinkes und ein braunes Panel mit derselben Logik wie `main.js` (240 px Radius, 14 % Nachführung), doppelte Deckkraft. (2) **Linie fährt aus:** Die Panel-Kontur zeichnet sich in 2 s im Uhrzeigersinn, in der Rahmenfarbe der Website (SVG-Rechteck mit `pathLength`). (3) **Hover-Linie:** das echte Kontakt-Panel, Adresse einzeilig. (4) **Logo schreibt sich:** ein neues E nach Lucas' Bild, mit hohem Mittelstrich und kürzeren Außenstrichen, nachgebaut aus der korrigierten Fassung (PNG ausgemessen). Erst fahren Mittelstrich, Fuß und Außenstriche aus, dann schreiben sich die Buchstaben von der Mitte aus als Fläche. Jeder Buchstabe ist maskiert, die Maske ist ein breiter Strich entlang seiner Kontur. Jede Kontur startet an ihrem dem E nächsten Punkt und wächst in beide Richtungen nach außen (Strichmuster `0 1 0 0` → `.5 0 .5 0`). Gesamt 2,5 s. Variante A (erst Kontur, dann Füllung) ist auf Lucas' Wunsch wieder raus. Außerdem entfernt: der Kleinfassungs-Vergleich, die Schutzzone, die doppelte Bühne um die Demo-Panels.
 - **Nicht funktioniert / offen:** Im ausgeblendeten Vorschaufenster laufen keine Animationen. Geprüft wurde mit gespulten Standbildern (`currentTime`), die Bewegung selbst nicht. Das neue E ist eine Rekonstruktion, kein Original-Vektor. Der Maskenstrich folgt der Außenkontur, nicht einer echten Schreiblinie. Bei kleinen Buchstaben deckt er schnell alles ab.
 
+### 20.10.2026 · Codex · Lesbarere Website-Typografie
+- **Versucht:** Lucas meldete die Typografie als unleserlich. Die feine Italiana wurde für Überschriften und große Zahlen durch Lora 500 ersetzt; Instrument Sans bleibt für Fließtext und Bedienung, die gezeichnete Italiana-Wortmarke bleibt erhalten. Schriftdateien liegen lokal mit OFL-Lizenz.
+- **Funktioniert:** Auf der Website bei 375 und 1440 px sowie im Styleguide und Markenprofil geprüft: Lora lädt, sichtbare Überschriften laufen nicht über, keine horizontale Seitenbreite und keine JavaScript-Fehler. Styleguide und Cache-Versionen sind angepasst.
+- **Nicht funktioniert / offen:** Die Wirkung auf echten Geräten und Paulas Urteil zur Schrift sind noch nicht geprüft.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
