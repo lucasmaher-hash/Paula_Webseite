@@ -463,6 +463,11 @@
 - **Funktioniert:** Gambarino 400 und Melodrama 600 laden in den Vorschauen. Bei 375 und 1440 px geprüft: keine sichtbaren überlaufenden Überschriften, keine horizontale Seitenbreite und keine JavaScript-Fehler.
 - **Nicht funktioniert / offen:** Lucas hat noch keine der beiden Varianten ausgewählt. Die Vorschauen benötigen für die Display-Schrift eine Verbindung zu Fontshare.
 
+### 21.10.2026 · Codex · Gambarino als Hauptschrift
+- **Versucht:** Lucas wählte nach dem Vergleich mit Lora Gambarino. Die Display-Schrift der Hauptseite und des Styleguides wurde auf Gambarino 400 umgestellt; Instrument Sans und die gezeichnete Italiana-Wortmarke bleiben. Die Schrift kommt über die offizielle Fontshare-API, weil ihre Lizenz die Weitergabe der Datei über das öffentliche Repository ausschließt. Der Datenschutzhinweis wurde an die externe Schriftverbindung angepasst.
+- **Funktioniert:** Die bestehende Gambarino-Vorschau diente als Vorlage für Schriftgewicht und Laufweite; Hauptseite, Styleguide und Markenprofil sind auf denselben Stand gebracht. Gambarino lädt bei 375 und 1440 px auf allen fünf Seiten, ohne sichtbare überlaufende Überschriften, horizontale Seitenbreite oder JavaScript-Fehler. Mobiles Menü und Behandlungs-Akkordeon funktionieren.
+- **Nicht funktioniert / offen:** Die Datenschutzerklärung enthält weiterhin andere alte Platzhalter und benötigt eine fachliche Prüfung. Die Schrift hängt von der Erreichbarkeit von Fontshare ab; die lokal gespeicherte Lora ist Fallback.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

@@ -8,7 +8,7 @@
   --pink-text:32; --pink-button:47; --pink-opacity:100; --pink-border:17.6;
   --hero-wall:#A39588;              /* Wandton des Hero-Fotos */
 
-  --font-display:"Lora",Georgia,serif;
+  --font-display:"Gambarino","Lora",Georgia,serif;
   --font-sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
   --font-mono:"Space Mono",ui-monospace,monospace;
 
@@ -553,11 +553,11 @@ body.menu-open{overflow:hidden}
   .reveal{opacity:1;transform:none}
 }
 
-/* Lora gives headings and large figures sturdier strokes; body and controls stay sans. */
+/* Gambarino shapes the display hierarchy; body text and controls stay sans. */
 h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .score{
-  font-family:var(--font-display);font-weight:500;font-synthesis:none;letter-spacing:-.025em;
+  font-family:var(--font-display);font-weight:400;font-synthesis:none;letter-spacing:-.02em;
 }
-.hero h1{line-height:1.16}
+.hero h1{line-height:1.14}
 .tile h3{font-size:1.6rem}
 .accordion summary h3{font-size:clamp(1.35rem,3.5vw,1.65rem);line-height:1.3}
 /* One quiet outline per visual frame, including photo frames. */
