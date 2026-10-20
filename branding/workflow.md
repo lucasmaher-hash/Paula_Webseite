@@ -503,6 +503,11 @@
 - **Funktioniert:** Die Tönung ist jetzt eine gemeinsame Klasse in `style.css`: Collage, Über-mich-Foto, beide Schulungsbilder und beide Raumbilder im Kontakt; am Handy liegt sie nur über dem Foto, nicht über dem 10-px-Rand. Der Hero bleibt ungetönt. CSS-Cache v69. Das Werkzeug spricht jetzt Alltagssprache: „Tempo“ mit benannten Vorschlägen, „Anlauf“ und „Auslauf“ als Regler mit Wörtern (sofort … sehr sanft), „Bremsen in Ecken“ ja/nein. Das Bild zeigt das Tempo des Stifts statt der abstrakten Kurve (hoch = schnell) mit einem Punkt, der beim Abspielen mitläuft. Die vier Kurvenwerte sind unter „Feineinstellung“ eingeklappt. Geprüft bei 1440 und 375 px, ohne Fehler.
 - **Nicht funktioniert / offen:** Ein Test auf dem echten Handy steht aus.
 
+### 21.10.2026 · Zwei Strichstärken für das Monogramm (Claude in der Cloud)
+- **Versucht:** Lucas lud die 130-%-Fassung aus dem Styleguide herunter: Sie soll klein in der Ecke stehen, sonst gilt 120 % als Standard.
+- **Funktioniert:** Die hochgeladene Datei ist identisch mit der 130-%-Stufe aus `pm-monogram-v10.json`. Website: Header und mobiles Menü 130 %, Footer 120 %. Styleguide: Regler startet bei 120 %, die kleinen Logos (Inhaltsleiste, 64- und 72-px-Größe, Instagram-Avatar) stehen fest auf 130 %. Geprüft bei 1440 px, ohne Fehler.
+- **Nicht funktioniert / offen:** Ob 130 % im Header auf dem Handy-Display gut aussieht, ist noch am Gerät zu prüfen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
