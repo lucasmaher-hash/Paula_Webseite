@@ -650,6 +650,7 @@
             <div>
               <div class="sg-pmctl" style="margin-top:0">
                 <label class="wide"><span>Tempo</span><select id="pmwPreset">
+                  <option value=".53,0,.7,1">Festgelegt (Lucas, 21.10.)</option>
                   <option value=".35,.05,.65,.95">Sanft an und aus</option>
                   <option value=".65,0,.35,1">Kräftig an und aus</option>
                   <option value=".4,0,.2,1">Wie die Website: sanft los, lange ausrollen</option>
@@ -661,8 +662,8 @@
                 <label title="Wie lange der Stift zum Beschleunigen braucht"><span>Anlauf</span><input type="range" id="pmwIn" min="0" max="1" step="0.01"><output id="pmwInOut"></output></label>
                 <label class="wide"><span>Bremsen in Ecken</span><select id="pmwMode"><option value="stroke">ja, an jeder Ecke</option><option value="whole">nein, alles in einem Zug</option></select></label>
                 <label title="Wie lange der Stift zum Abbremsen braucht"><span>Auslauf</span><input type="range" id="pmwOutR" min="0" max="1" step="0.01"><output id="pmwOutROut"></output></label>
-                <label><span>Dauer</span><input type="range" id="pmwDur" min="0.5" max="8" step="0.1" value="3.6"><output id="pmwDurOut"></output></label>
-                <label><span>Pause vor P</span><input type="range" id="pmwPause" min="0" max="1.5" step="0.05" value="0.3"><output id="pmwPauseOut"></output></label>
+                <label><span>Dauer</span><input type="range" id="pmwDur" min="0.5" max="8" step="0.1" value="2.6"><output id="pmwDurOut"></output></label>
+                <label><span>Pause vor P</span><input type="range" id="pmwPause" min="0" max="1.5" step="0.05" value="0.5"><output id="pmwPauseOut"></output></label>
                 <label><span>Stehen am Ende</span><input type="range" id="pmwHold" min="0" max="4" step="0.1" value="1.6"><output id="pmwHoldOut"></output></label>
                 <label><span>Strichstärke</span><input type="range" class="pm10-width" min="0" max="20" step="1" value="12" aria-label="Strichstärke"><output class="pm10-width-out">120 %</output></label>
                 <label><span>Position</span><input type="range" id="pmwPos" min="0" max="1000" step="1" value="0" aria-label="Position in der Animation"><output id="pmwPosOut"></output></label>
@@ -698,7 +699,7 @@
             <tr><td>Kategorie öffnen / schließen</td><td>500 / 400 ms</td><td>Höhe und Deckkraft, danach gleitet sie in die Bildschirmmitte (900 ms)</td></tr>
             <tr><td>Hover-Linie</td><td>450 / 350 ms</td><td>wächst aus der Mitte</td></tr>
             <tr><td>Frühere Wortmarke (Archiv)</td><td>450 / 350 ms</td><td>Der Mittelstrich des E wuchs beim Hover</td></tr>
-            <tr><td>Monogramm schreibt sich</td><td>3,6 s, einstellbar</td><td>ein Zug von links nach rechts, Absetzen, zuletzt der P-Stamm; Werte stehen noch nicht fest</td></tr>
+            <tr><td>Monogramm schreibt sich</td><td>2,6 s + 0,5 s Pause</td><td>ein Zug von links nach rechts, bremst an jeder Ecke (cubic-bezier(.53, 0, .7, 1)), Pause, zuletzt der P-Stamm</td></tr>
             <tr><td>Lorbeerkränze</td><td>1 s, versetzt</td><td>wachsen aus der Mitte</td></tr>
             <tr><td>Header über Pink</td><td>1 s</td><td>Schrift, Logo und Buttons wechseln zu Pink</td></tr>
             <tr><td>Einblenden beim Scrollen</td><td>600 ms</td><td>14 px nach oben, Deckkraft 0 → 1</td></tr>

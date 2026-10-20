@@ -513,6 +513,11 @@
 - **Funktioniert:** Die Wärme jedes Fotos gemessen (Rot minus Blau im Mittel) und die Mischung „color“ nachgerechnet: Die warmen Fotos liegen mit 28 % bei 55–80, die fast grauen nur bei 30–35. Deshalb tragen die kühlen Fotos eine stärkere Tönung inline (`--tint`): Lashlift .5, Tuchmaske .6, Paula im Studio .45 (bei .6 wirkte das Porträt sepia), im Moodboard zusätzlich Stoff und Lack .5. CSS-Cache v70.
 - **Nicht funktioniert / offen:** –
 
+### 21.10.2026 · Werte der Schreibanimation festgelegt (Claude in der Cloud)
+- **Versucht:** Lucas hat die Schreibanimation mit den Reglern eingestellt und die Werte kopiert.
+- **Funktioniert:** Sie sind jetzt der Standard im Styleguide: Kurve `cubic-bezier(.53, 0, .7, 1)` (Anlauf sanft, Auslauf kurz) als erster Vorschlag „Festgelegt“, bremst an jeder Ecke, Dauer 2,6 s, Pause vor dem P-Stamm 0,5 s, Stehen am Ende 1,6 s, Strichstärke 120 %. Die Bewegungstabelle nennt dieselben Werte.
+- **Nicht funktioniert / offen:** Die Animation läuft bisher nur im Styleguide, nicht auf der Website.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
