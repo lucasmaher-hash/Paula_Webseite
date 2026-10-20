@@ -518,6 +518,11 @@
 - **Funktioniert:** Sie sind jetzt der Standard im Styleguide: Kurve `cubic-bezier(.53, 0, .7, 1)` (Anlauf sanft, Auslauf kurz) als erster Vorschlag „Festgelegt“, bremst an jeder Ecke, Dauer 2,6 s, Pause vor dem P-Stamm 0,5 s, Stehen am Ende 1,6 s, Strichstärke 120 %. Die Bewegungstabelle nennt dieselben Werte.
 - **Nicht funktioniert / offen:** Die Animation läuft bisher nur im Styleguide, nicht auf der Website.
 
+### 21.10.2026 · Pinke Abschnitte im Styleguide (Claude in der Cloud)
+- **Versucht:** Auf der Website wechseln Braun und Pink, im Styleguide war fast alles braun.
+- **Funktioniert:** Prinzip, Schrift, Komponenten, Bildsprache und Sprache stehen jetzt in der pinken Farbwelt (`theme-pink`), als abgerundete Fläche wie Behandlungen und Bewertungen auf der Website; Panels darin eine Stufe heller. Dabei auch „Bildsprache“ auf die Fotos der Website umgestellt (vorher alte Lippen-, Nagel- und Wimpernbilder, die nicht mehr auf der Seite sind), mit Tönung. Geprüft bei 1440 px, ohne Fehler.
+- **Nicht funktioniert / offen:** –
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
