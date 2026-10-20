@@ -27,7 +27,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <meta property="og:image" content="images/hero-paula.jpg">
 <link rel="stylesheet" href="fonts/fonts.css?v=3">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=gambarino%40400&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=68">
+<link rel="stylesheet" href="css/style.css?v=69">
 </head>
 <body>
 <!-- PM-Monogramm v10 (branding/assets/pm-beauty-logo/versions/v10/), 100 % Strichstärke; Header, mobiles Menü und Footer nutzen es per <use> -->
@@ -141,21 +141,21 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     </div>
     <!-- Reihenfolge = Raster am Desktop (4 Spalten, 12 Zeilen-Einheiten): Spalte 1 kurz+hoch, 2 hoch+kurz, 3 kurz+hoch, 4 hoch+flach mit Luft darunter -->
     <div class="strip" aria-label="Bilder von Behandlungsergebnissen">
-      <figure><img src="images/lips-zoom.jpg" alt="Lippenpigmentierung, Nahaufnahme der Lippen" loading="lazy" width="760" height="1013"></figure>
-      <figure><img src="images/brows-lashes.jpg" alt="Augenbrauen und Wimpern, Nahaufnahme" loading="lazy" width="900" height="1200"></figure>
-      <figure><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme der Wimpern" loading="lazy" width="675" height="1200"></figure>
-      <figure><img src="images/nails-tortoise.jpg" alt="Nageldesign in Schokobraun und Schildpatt" loading="lazy" width="1159" height="1200"></figure>
-      <figure><img src="images/nails-floral.jpg" alt="Nude-Nägel mit kleinen Blüten an den Spitzen" loading="lazy" width="926" height="1200"></figure>
-      <figure><img src="images/microneedling.jpg" alt="Gesichtsbehandlung mit Microneedling-Gerät" loading="lazy" width="800" height="1067"></figure>
-      <figure><img src="images/facial-sheet-mask.jpg" alt="Gesichtsbehandlung mit Tuchmaske" loading="lazy" width="960" height="1200"></figure>
-      <figure><img src="images/nails-art.jpg" alt="Nageldesign in Rot mit Blütenmotiv und Goldakzenten" loading="lazy" width="917" height="1200"></figure>
+      <figure class="tint-pink"><img src="images/lips-zoom.jpg" alt="Lippenpigmentierung, Nahaufnahme der Lippen" loading="lazy" width="760" height="1013"></figure>
+      <figure class="tint-brown"><img src="images/brows-lashes.jpg" alt="Augenbrauen und Wimpern, Nahaufnahme" loading="lazy" width="900" height="1200"></figure>
+      <figure class="tint-brown"><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme der Wimpern" loading="lazy" width="675" height="1200"></figure>
+      <figure class="tint-brown"><img src="images/nails-tortoise.jpg" alt="Nageldesign in Schokobraun und Schildpatt" loading="lazy" width="1159" height="1200"></figure>
+      <figure class="tint-pink"><img src="images/nails-floral.jpg" alt="Nude-Nägel mit kleinen Blüten an den Spitzen" loading="lazy" width="926" height="1200"></figure>
+      <figure class="tint-brown"><img src="images/microneedling.jpg" alt="Gesichtsbehandlung mit Microneedling-Gerät" loading="lazy" width="800" height="1067"></figure>
+      <figure class="tint-brown"><img src="images/facial-sheet-mask.jpg" alt="Gesichtsbehandlung mit Tuchmaske" loading="lazy" width="960" height="1200"></figure>
+      <figure class="tint-pink"><img src="images/nails-art.jpg" alt="Nageldesign in Rot mit Blütenmotiv und Goldakzenten" loading="lazy" width="917" height="1200"></figure>
     </div>
   </section>
 
   <!-- Über Paula & Studio -->
   <section class="about" id="studio" aria-labelledby="about-heading">
     <div class="container about-grid">
-      <div class="about-figure reveal">
+      <div class="about-figure reveal tint-brown">
         <img src="images/paula-studio.jpg" alt="Paula Maher im PM Beauty Studio" loading="lazy" width="675" height="925">
       </div>
       <div class="about-panel">
@@ -284,7 +284,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 
       <div class="courses">
         <article class="course reveal" id="schulung-lashlift">
-          <div class="course-media" id="schulung-lashlift-image"><img src="images/lashlift.jpg" alt="Korean Lashlift, Ergebnis aus Paulas Studio" loading="lazy" width="675" height="1200"></div>
+          <div class="course-media tint-brown" id="schulung-lashlift-image"><img src="images/lashlift.jpg" alt="Korean Lashlift, Ergebnis aus Paulas Studio" loading="lazy" width="675" height="1200"></div>
           <div class="course-heading">
             <div class="badges">
               <span class="badge">1 Schulungstag</span>
@@ -313,7 +313,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
         </article>
 
         <article class="course reveal" id="schulung-manikuere">
-          <div class="course-media" id="schulung-manikuere-image"><img src="images/nails.jpg" alt="Gelnagel aus Paulas Studio" loading="lazy" width="681" height="1200"></div>
+          <div class="course-media tint-brown" id="schulung-manikuere-image"><img src="images/nails.jpg" alt="Gelnagel aus Paulas Studio" loading="lazy" width="681" height="1200"></div>
           <div class="course-heading">
             <div class="badges">
               <span class="badge">2 Tage</span>
@@ -428,8 +428,8 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
         <h2 id="contact-heading">Besuch mich im Studio.</h2>
         <p class="muted">Termine buchst du am schnellsten direkt online über Beautinda — dort siehst du alle freien Slots in Echtzeit.</p>
       </div>
-      <figure class="contact-figure contact-figure-a"><img src="images/studio-glass.jpg" alt="" loading="lazy" width="640" height="640"></figure>
-      <figure class="contact-figure contact-figure-b"><img src="images/studio-pink.jpg" alt="" loading="lazy" width="1080" height="810"></figure>
+      <figure class="contact-figure contact-figure-a tint-brown"><img src="images/studio-glass.jpg" alt="" loading="lazy" width="640" height="640"></figure>
+      <figure class="contact-figure contact-figure-b tint-pink"><img src="images/studio-pink.jpg" alt="" loading="lazy" width="1080" height="810"></figure>
       <div class="contact-panel contact-facts">
         <ul class="facts contact-list">
           <li class="fact fact-address"><span>Adresse</span><span><a href="https://www.google.com/maps?q=48.1418,11.50383" target="_blank" rel="noopener">Fürstenrieder Str. 11,<br>München ↗</a></span></li>

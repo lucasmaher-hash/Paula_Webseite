@@ -498,6 +498,11 @@
 - **Funktioniert:** Getauscht: Rosé-Nägel → Blüten-Nägel, Nude-Hand → rote Nägel (flacher Ausschnitt), Lippen → `lips-zoom.jpg`, Wimpern-Referenz → Microneedling, Schokobraun-Nagel → Schildpatt, Wimpernverlängerung → Brauen und Wimpern; Paula im Studio und Lashlift bleiben. Die Tönung ist eine Farbfläche im Mischmodus „color“ über jedem Foto (28 % Deckkraft, Braun oder Pink aus den Quellwerten der Website), die Fotodateien bleiben unverändert und die Stärke ist in `--tint` einstellbar. „Aa“ heißt jetzt Gambarino statt Italiana. Geprüft bei 1440 px, ohne Fehler.
 - **Nicht funktioniert / offen:** Die alten Referenzfotos mit Menschen (`mood-nails-pink`, `mood-nails-rose`, `mood-lashes`) liegen noch in `images/`, werden aber nicht mehr verwendet.
 
+### 21.10.2026 · Website-Fotos getönt, Kurven-Werkzeug verständlicher (Claude in der Cloud)
+- **Versucht:** Lucas wollte die Fotos auf der Website wie im Moodboard leicht in Braun oder Pink tönen. Außerdem war das Kurven-Werkzeug der Schreibanimation unverständlich (vier Zahlen x1/y1/x2/y2 und ein Kurvenbild mit Anfassern).
+- **Funktioniert:** Die Tönung ist jetzt eine gemeinsame Klasse in `style.css`: Collage, Über-mich-Foto, beide Schulungsbilder und beide Raumbilder im Kontakt; am Handy liegt sie nur über dem Foto, nicht über dem 10-px-Rand. Der Hero bleibt ungetönt. CSS-Cache v69. Das Werkzeug spricht jetzt Alltagssprache: „Tempo“ mit benannten Vorschlägen, „Anlauf“ und „Auslauf“ als Regler mit Wörtern (sofort … sehr sanft), „Bremsen in Ecken“ ja/nein. Das Bild zeigt das Tempo des Stifts statt der abstrakten Kurve (hoch = schnell) mit einem Punkt, der beim Abspielen mitläuft. Die vier Kurvenwerte sind unter „Feineinstellung“ eingeklappt. Geprüft bei 1440 und 375 px, ohne Fehler.
+- **Nicht funktioniert / offen:** Ein Test auf dem echten Handy steht aus.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
