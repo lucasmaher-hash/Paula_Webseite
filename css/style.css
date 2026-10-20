@@ -586,7 +586,8 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 
 /* ---------- Fotos leicht in die Farbwelt tönen (Lucas, 21.10.2026) ----------
    Eine Farbfläche im Mischmodus "color" legt Farbton und Sättigung von Braun oder Pink über das Foto,
-   die Helligkeit bleibt. Stärke über --tint. Der Hero ist ausgenommen: sein Wandton muss --hero-wall treffen. */
+   die Helligkeit bleibt. Stärke über --tint (Standard .28). Kühle, fast graue Fotos (Lashlift, Tuchmaske, Paula im Studio)
+   tragen --tint .5–.6 inline, damit sie so warm wirken wie die übrigen. Der Hero ist ausgenommen: sein Wandton muss --hero-wall treffen. */
 .tint-brown,.tint-pink{position:relative;isolation:isolate}
 .tint-brown::after,.tint-pink::after{content:"";position:absolute;inset:0;border-radius:inherit;mix-blend-mode:color;opacity:var(--tint,.28);pointer-events:none}
 .tint-brown::after{background:hsl(var(--brown-hue) 38% 45%)}

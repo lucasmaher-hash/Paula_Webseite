@@ -508,6 +508,11 @@
 - **Funktioniert:** Die hochgeladene Datei ist identisch mit der 130-%-Stufe aus `pm-monogram-v10.json`. Website: Header und mobiles Menü 130 %, Footer 120 %. Styleguide: Regler startet bei 120 %, die kleinen Logos (Inhaltsleiste, 64- und 72-px-Größe, Instagram-Avatar) stehen fest auf 130 %. Geprüft bei 1440 px, ohne Fehler.
 - **Nicht funktioniert / offen:** Ob 130 % im Header auf dem Handy-Display gut aussieht, ist noch am Gerät zu prüfen.
 
+### 21.10.2026 · Kühle Fotos stärker getönt (Claude in der Cloud)
+- **Versucht:** Lashlift und Tuchmaske wirkten trotz Tönung noch bläulich.
+- **Funktioniert:** Die Wärme jedes Fotos gemessen (Rot minus Blau im Mittel) und die Mischung „color“ nachgerechnet: Die warmen Fotos liegen mit 28 % bei 55–80, die fast grauen nur bei 30–35. Deshalb tragen die kühlen Fotos eine stärkere Tönung inline (`--tint`): Lashlift .5, Tuchmaske .6, Paula im Studio .45 (bei .6 wirkte das Porträt sepia), im Moodboard zusätzlich Stoff und Lack .5. CSS-Cache v70.
+- **Nicht funktioniert / offen:** –
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
