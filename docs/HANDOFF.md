@@ -1,4 +1,6 @@
-# Übergabe: PM Beauty Website (Stand 19.10.2026, Ende der Cloud-Sitzung)
+# Übergabe: PM Beauty Website (Stand 21.10.2026)
+
+**Logo-Update 21.10.2026:** Lucas hat die gelieferte PM-Handskizze als Website-Logo bestimmt. Der aktuelle, editierbare Vektor liegt in Figma unter [Knoten 32:5](https://www.figma.com/design/ggdHcm9PScFCjahKxyFqDB/paula-webseite?node-id=32-5); Quellen, SVG und Vorschau in `branding/assets/pm-beauty-logo/versions/v9/`. Website: Header, mobiles Menü und Footer nutzen das neue Monogramm. Die alte Italiana-Wortmarke und die E-Animation sind nur noch historische Entwürfe. Der Styleguide zeigt das neue Logo und kennzeichnet die frühere Schreibanimation als Archiv. Angaben zur alten Website-Wortmarke weiter unten sind damit überholt.
 
 Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (Claude lokal, Claude in der Cloud, Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo). Der vollständige Verlauf steht in `branding/workflow.md`.
 

@@ -51,7 +51,7 @@ Beispiel 2: „Korean Lashlift: Deine Wimpern werden angehoben und gefärbt. Hä
 
 ## Leitprinzipien für die Gestaltung
 
-- **Eine Mitte.** Wie das E in der Wortmarke steht Wichtiges exakt mittig oder an einer klaren Achse. Präzision wird sichtbar, bevor man liest.
+- **Eine Mitte.** Wichtiges steht exakt mittig oder an einer klaren Achse. Das handgezeichnete PM ergänzt die präzise Gestaltung um eine persönliche Geste.
 - **Warme Flächen statt Schatten.** Papier, Beige, Braun, Fast-Schwarz. Tiefe entsteht durch Abstufung.
 - **Pink als Flüstern.** Höchstens eine pinke Fläche pro Ansicht, sonst nur Details.
 - **Nah dran.** Fotos sind Nahaufnahmen echter Ergebnisse in abgerundeten Rahmen.

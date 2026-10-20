@@ -468,6 +468,11 @@
 - **Funktioniert:** Die bestehende Gambarino-Vorschau diente als Vorlage für Schriftgewicht und Laufweite; Hauptseite, Styleguide und Markenprofil sind auf denselben Stand gebracht. Gambarino lädt bei 375 und 1440 px auf allen fünf Seiten, ohne sichtbare überlaufende Überschriften, horizontale Seitenbreite oder JavaScript-Fehler. Mobiles Menü und Behandlungs-Akkordeon funktionieren.
 - **Nicht funktioniert / offen:** Die Datenschutzerklärung enthält weiterhin andere alte Platzhalter und benötigt eine fachliche Prüfung. Die Schrift hängt von der Erreichbarkeit von Fontshare ab; die lokal gespeicherte Lora ist Fallback.
 
+### 21.10.2026 · Codex · Handskizze als neues PM-Monogramm
+- **Versucht:** Lucas gab eine Bleistiftskizze als Website-Logo vor und bat um eine digitale Figma-Fassung; den schwarzen Strich rechts oben sollte ich ignorieren. Ich rekonstruierte den durchgehenden P-zu-M-Linienzug und den separaten P-Stamm als zwei Vektorpfade.
+- **Funktioniert:** Editierbare Figma-Komponente `32:5` und Präsentationsrahmen `33:2`; SVG, Originalskizze, Vorschau und Notizen in `branding/assets/pm-beauty-logo/versions/v9/`. Header, mobiles Menü und Footer verwenden das neue Monogramm mit `currentColor`; CSS-Cache v67. Der aktuelle Styleguide und das Markenprofil beschreiben nun den neuen Stand. Figma- und Browser-Ansicht visuell kontrolliert.
+- **Nicht funktioniert / offen:** Die frühere E-Schreibanimation bleibt als archiviertes Beispiel im Styleguide. Ein echter 375-px-Gerätetest auf dem Handy steht noch aus.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
