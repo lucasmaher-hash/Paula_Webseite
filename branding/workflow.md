@@ -483,6 +483,11 @@
 - **Funktioniert:** `images/studio-pink.jpg` (ganzes Querformat, 1080 × 810) ersetzt `studio-light.jpg`; der Rahmen und sein Ausschnitt (`object-position` 50 % 40 %) blieben, am Desktop (427 × 283) sitzen Vitrinen, Kleid und Blumenwand im Bild, am Handy (164 × 164) das Kleid mittig. Die Farbreihen zeigen Background, Surface, Text, Accent und Button; Raised, Muted und Border sind aus der Liste raus (die CSS-Rollen gibt es weiter). Die Animation schreibt erst den Zug von links nach rechts, setzt ab und zieht dann den P-Stamm; der Regler heißt jetzt „Absetzen vor P“.
 - **Nicht funktioniert / offen:** Die Farbbalken unter „Bedeutung“ zeigen weiter sechs Töne (mit Taupe bzw. dem mittleren Pink). Auch das neue Raumbild ist nicht Paulas Studio.
 
+### 21.10.2026 · v10 auf der Website, Styleguide nur noch mit v10, fünf Töne in „Bedeutung“ (Claude in der Cloud)
+- **Versucht:** Lucas entschied sich für die Reinzeichnung v10: Sie ersetzt die Handzeichnung v9 auf der Website, und v9 verschwindet ganz aus dem Styleguide. Die Farbbalken unter „Bedeutung“ sollen wie die Listen nur fünf Töne zeigen.
+- **Funktioniert:** `index.html` trägt v10 einmal als Symbol, Header, mobiles Menü und Footer verweisen darauf; `currentColor` und der pinke Header funktionieren unverändert. Im Styleguide zeigen Logo-Abschnitt, Größen, Inhaltsleiste, Prinzip-Kachel, Visitenkarte, Gutschein und Instagram-Vorschau v10; der Strichstärke-Regler wirkt auf alle. Die Balken zeigen Background, Surface, Accent, Button und Text (Taupe und das mittlere Pink sind raus, Taupe bleibt im Text erklärt). Geprüft bei 375 und 1440 px: Logo 64 × 38 bzw. 72 × 43 px, keine horizontale Scrollbreite, keine JavaScript-Fehler.
+- **Nicht funktioniert / offen:** v10 ist im Verhältnis etwas breiter als v9 (1,67 : 1 statt 1,6 : 1), bei gleicher Logobreite also 2 px flacher. Ein Test auf dem echten Handy steht aus.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

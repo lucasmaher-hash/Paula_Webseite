@@ -1,6 +1,6 @@
-# v10 · Reinzeichnung des skizzierten PM-Monogramms (Entwurf, 21.10.2026)
+# v10 · Reinzeichnung des skizzierten PM-Monogramms (21.10.2026, auf der Website)
 
-Quelle: dieselbe Bleistiftskizze wie v9 (`source/source-sketch.jpeg`). v9 bleibt unverändert und steht weiter auf der Website.
+Quelle: dieselbe Bleistiftskizze wie v9 (`source/source-sketch.jpeg`). v9 bleibt als Datei unverändert. **Seit 21.10.2026 steht v10 (100 %) auf der Website** (Header, mobiles Menü, Footer, als `<symbol id="pm10">` in `index.html`) und ist das einzige Monogramm im Styleguide.
 
 Statt zwei Linien mit fester Breite ist v10 ein Strich mit wechselnder Breite, gezeichnet aus geraden Abschnitten und Kreisbögen:
 
