@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="de" class="preview-melodrama">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F6EDEA">
+<script>
+// Markiert JS-fähige Seiten, damit Startzustände von Animationen schon beim ersten Zeichnen gelten.
+document.documentElement.classList.add('js');
+// Vor dem Seitenaufbau verhindern, dass Neuladen zum letzten Abschnitt springt.
+if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+  history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+  window.addEventListener('pageshow', function () {
+    requestAnimationFrame(function () {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      history.scrollRestoration = 'auto';
+    });
+  }, { once: true });
+}
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Melodrama Vorschau · PM Beauty — Beauty Studio München | Permanent Make-up, Nägel, Lashes & Facials</title>
+<meta name="description" content="PM Beauty in München: Permanent Make-up, Russische Maniküre & Gelnägel, Gesichtsbehandlungen, Korean Lash- & Browlift. 5.0 ★ auf Beautinda. Jetzt Termin buchen.">
+<meta property="og:title" content="PM Beauty — Beauty Studio München">
+<meta property="og:description" content="Präzision, Ästhetik und Qualität. Permanent Make-up, Nägel, Lashes & Facials in München. 5.0 ★ · 26 Bewertungen.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/hero-paula.jpg">
+<link rel="stylesheet" href="fonts/fonts.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=65">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=melodrama%40600&amp;display=swap">
+<link rel="stylesheet" href="css/font-previews.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="PM Beauty — zum Seitenanfang">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="4.002 20.512 265.327 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7.472 51.6768C11.3077 51.4123 14.6805 51.28 17.5904 51.28C25.7909 51.28 29.8912 54.1733 29.8912 59.96C29.8912 62.6384 29.1968 64.9861 27.808 67.0032C27.0805 68.0944 25.9563 68.9707 24.4352 69.632C22.9141 70.2603 21.0789 70.5744 18.9296 70.5744H11.5888V86H7.472V51.6768ZM17.64 51.776C15.7221 51.776 13.7051 51.8917 11.5888 52.1232V70.0784H18.9296C23.592 69.88 25.9232 66.5403 25.9232 60.0592C25.9232 57.4139 25.2288 55.3803 23.84 53.9584C22.4512 52.5035 20.3845 51.776 17.64 51.776ZM36.2532 86H35.6084L39.9236 51.28H41.5604L51.9764 83.3712L62.3428 51.28H63.9796L68.2948 86H64.178L60.7556 58.224L51.778 86H48.6532L39.5764 58.5712L36.2532 86ZM89.7489 51.6768C93.5847 51.4123 96.974 51.28 99.9169 51.28C108.084 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.573 63.2832 110.383 64.7712C109.192 66.2261 107.291 67.2181 104.679 67.7472C107.192 68.0448 109.176 68.8053 110.631 70.0288C112.085 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 108.729 86 100.5617 86H89.7489V51.6768ZM93.8657 85.504H100.5617C103.5047 85.504 105.588 84.7435 106.811 83.2224C108.068 81.6683 108.696 79.304 108.696 76.1296C108.696 72.9552 108.068 70.8389 106.811 69.7808C105.555 68.7227 103.6865 68.1605 101.2065 68.0944H93.8657V85.504ZM99.9169 51.776C97.9991 51.776 95.982 51.8917 93.8657 52.1232V67.5984H101.2065C105.869 67.4 108.2 64.7216 108.2 59.5632C108.2 57.0501 107.506 55.1323 106.117 53.8096C104.728 52.4539 102.6615 51.776 99.9169 51.776ZM160.113 86H159.518L174.348 51.28L174.894 51.032L187.393 86H183.177L179.308 75.088H164.825L160.113 86ZM172.811 56.6368L165.024 74.592H179.16L172.811 56.6368ZM215.214 51.28H215.859V71.12C215.859 76.3115 214.834 80.1307 212.784 82.5776C210.734 84.9915 208.055 86.1984 204.749 86.1984C202.666 86.1984 200.896 86.0165 199.442 85.6528C197.987 85.256 196.614 84.5451 195.325 83.52C192.679 81.4699 191.357 77.3365 191.357 71.12V51.28H195.474V71.0704C195.474 77.0885 196.383 81.1061 198.202 83.1232C199.127 84.1152 200.086 84.7931 201.078 85.1568C202.103 85.5205 203.327 85.7024 204.749 85.7024C207.923 85.7024 210.453 84.5451 212.338 82.2304C214.255 79.8827 215.214 76.1627 215.214 71.0704V51.28ZM231.78 86H227.663V51.776H219.082V51.28H240.41V51.776H231.78V86ZM264.916 51.28C265.544 51.9083 265.859 52.7184 265.859 53.7104C265.859 54.5371 265.677 55.3803 265.313 56.24L256.435 74.2448V86H252.318V75.336L242.398 51.28H246.614L256.087 73.6496L264.718 56.24C265.081 55.4133 265.263 54.5536 265.263 53.6608C265.263 52.768 265.015 52.0736 264.519 51.5776L264.916 51.28Z"/><rect x="117.915" y="20.512" width="3.5" height="61.988"/><rect x="151.915" y="20.512" width="3.5" height="61.988"/><g class="mid"><rect class="mid-bar" x="135.79" y="59" width="1.75" height="22"/></g><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg>
+    </a>
+
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="ul" href="#studio">Studio</a>
+      <div class="nav-dd">
+        <button class="nav-dd-btn ul" type="button" aria-expanded="false" aria-controls="dd-behandlungen">Behandlungen <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dd-panel" id="dd-behandlungen">
+          <a href="#manikuere" data-open="manikuere">Maniküre</a>
+          <a href="#pmu" data-open="pmu">Permanent Make-up</a>
+          <a href="#gesicht" data-open="gesicht">Gesicht &amp; Körper</a>
+          <a href="#wimpern" data-open="wimpern">Wimpern</a>
+          <a href="#brauen" data-open="brauen">Augenbrauen</a>
+          <a href="#behandlungen">Alle Behandlungen</a>
+        </div>
+      </div>
+      <a class="ul" href="#schulungen">Schulungen</a>
+      <a class="ul" href="#gutscheine">Gutscheine</a>
+      <a class="ul" href="#bewertungen">Bewertungen</a>
+      <a class="ul" href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn icon-btn-primary hide-mobile" href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener" aria-label="PM Beauty auf Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.9" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+      </a>
+      <a class="btn btn-primary btn-sm hide-mobile" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Termin buchen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="icon-btn icon-btn-primary show-mobile" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener" aria-label="Termin buchen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+      <button class="icon-btn icon-btn-primary menu-btn show-mobile" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14M5 15h14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobiles Menü (Vollbild) -->
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <div class="mobile-menu-head">
+    <a class="brand" href="#top" aria-label="PM Beauty — zum Seitenanfang" data-close><svg xmlns="http://www.w3.org/2000/svg" viewBox="4.002 20.512 265.327 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7.472 51.6768C11.3077 51.4123 14.6805 51.28 17.5904 51.28C25.7909 51.28 29.8912 54.1733 29.8912 59.96C29.8912 62.6384 29.1968 64.9861 27.808 67.0032C27.0805 68.0944 25.9563 68.9707 24.4352 69.632C22.9141 70.2603 21.0789 70.5744 18.9296 70.5744H11.5888V86H7.472V51.6768ZM17.64 51.776C15.7221 51.776 13.7051 51.8917 11.5888 52.1232V70.0784H18.9296C23.592 69.88 25.9232 66.5403 25.9232 60.0592C25.9232 57.4139 25.2288 55.3803 23.84 53.9584C22.4512 52.5035 20.3845 51.776 17.64 51.776ZM36.2532 86H35.6084L39.9236 51.28H41.5604L51.9764 83.3712L62.3428 51.28H63.9796L68.2948 86H64.178L60.7556 58.224L51.778 86H48.6532L39.5764 58.5712L36.2532 86ZM89.7489 51.6768C93.5847 51.4123 96.974 51.28 99.9169 51.28C108.084 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.573 63.2832 110.383 64.7712C109.192 66.2261 107.291 67.2181 104.679 67.7472C107.192 68.0448 109.176 68.8053 110.631 70.0288C112.085 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 108.729 86 100.5617 86H89.7489V51.6768ZM93.8657 85.504H100.5617C103.5047 85.504 105.588 84.7435 106.811 83.2224C108.068 81.6683 108.696 79.304 108.696 76.1296C108.696 72.9552 108.068 70.8389 106.811 69.7808C105.555 68.7227 103.6865 68.1605 101.2065 68.0944H93.8657V85.504ZM99.9169 51.776C97.9991 51.776 95.982 51.8917 93.8657 52.1232V67.5984H101.2065C105.869 67.4 108.2 64.7216 108.2 59.5632C108.2 57.0501 107.506 55.1323 106.117 53.8096C104.728 52.4539 102.6615 51.776 99.9169 51.776ZM160.113 86H159.518L174.348 51.28L174.894 51.032L187.393 86H183.177L179.308 75.088H164.825L160.113 86ZM172.811 56.6368L165.024 74.592H179.16L172.811 56.6368ZM215.214 51.28H215.859V71.12C215.859 76.3115 214.834 80.1307 212.784 82.5776C210.734 84.9915 208.055 86.1984 204.749 86.1984C202.666 86.1984 200.896 86.0165 199.442 85.6528C197.987 85.256 196.614 84.5451 195.325 83.52C192.679 81.4699 191.357 77.3365 191.357 71.12V51.28H195.474V71.0704C195.474 77.0885 196.383 81.1061 198.202 83.1232C199.127 84.1152 200.086 84.7931 201.078 85.1568C202.103 85.5205 203.327 85.7024 204.749 85.7024C207.923 85.7024 210.453 84.5451 212.338 82.2304C214.255 79.8827 215.214 76.1627 215.214 71.0704V51.28ZM231.78 86H227.663V51.776H219.082V51.28H240.41V51.776H231.78V86ZM264.916 51.28C265.544 51.9083 265.859 52.7184 265.859 53.7104C265.859 54.5371 265.677 55.3803 265.313 56.24L256.435 74.2448V86H252.318V75.336L242.398 51.28H246.614L256.087 73.6496L264.718 56.24C265.081 55.4133 265.263 54.5536 265.263 53.6608C265.263 52.768 265.015 52.0736 264.519 51.5776L264.916 51.28Z"/><rect x="117.915" y="20.512" width="3.5" height="61.988"/><rect x="151.915" y="20.512" width="3.5" height="61.988"/><rect x="135.79" y="59" width="1.75" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></a>
+    <button class="icon-btn" type="button" data-close aria-label="Menü schließen">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-menu-list" aria-label="Menü">
+    <a href="#studio" data-close>Studio <span class="row-ic" aria-hidden="true">↗</span></a>
+    <div class="mm-group">
+      <button type="button" class="mm-toggle" aria-expanded="false" aria-controls="mm-behandlungen">Behandlungen <span class="row-ic plus" aria-hidden="true"></span></button>
+      <div class="mm-sub" id="mm-behandlungen" hidden>
+        <a href="#manikuere" data-open="manikuere" data-close>Maniküre</a>
+        <a href="#pmu" data-open="pmu" data-close>Permanent Make-up</a>
+        <a href="#gesicht" data-open="gesicht" data-close>Gesicht &amp; Körper</a>
+        <a href="#wimpern" data-open="wimpern" data-close>Wimpern</a>
+        <a href="#brauen" data-open="brauen" data-close>Augenbrauen</a>
+      </div>
+    </div>
+    <a href="#schulungen" data-close>Schulungen <span class="row-ic" aria-hidden="true">↗</span></a>
+    <a href="#gutscheine" data-close>Gutscheine <span class="row-ic" aria-hidden="true">↗</span></a>
+    <a href="#bewertungen" data-close>Bewertungen <span class="row-ic" aria-hidden="true">↗</span></a>
+    <a href="#kontakt" data-close>Kontakt <span class="row-ic" aria-hidden="true">↗</span></a>
+    <a href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">Instagram <span class="row-ic" aria-hidden="true">↗</span></a>
+  </nav>
+  <a class="btn btn-primary btn-block" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Termin buchen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+</div>
+
+<main id="top">
+
+  <!-- Hero: Paula rechts, Text links (Handy: Text unter dem Bild) -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <picture class="hero-media">
+      <source media="(min-width: 900px)" srcset="images/hero-paula-wide-outpaint-v2.jpg" width="2400" height="1091">
+      <img src="images/hero-paula-mobile-approved.jpg" alt="Paula Maher, Inhaberin von PM Beauty" width="1148" height="1795" fetchpriority="high">
+    </picture>
+    <div class="container hero-content">
+      <span class="eyebrow">Beauty &amp; PMU Studio · München</span>
+      <h1 id="hero-heading">Präzision. Ästhetik. <em>Qualität.</em></h1>
+      <p class="lead">Permanent Make-up, Russische Maniküre, Gesichtsbehandlungen und Korean Lash- &amp; Browlift — mit klaren Standards, in ruhiger Atmosphäre.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Termin buchen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-primary" href="#behandlungen">Behandlungen <span class="btn-ic down" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 2.5v7M2.8 6.3 6 9.5l3.2-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auszeichnungen: Zahlen von Lucas (18.10.2026). Nur mit belegten Fakten ändern. -->
+  <section class="awards" aria-label="Auszeichnungen">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="laurel" viewBox="0 0 200 200"><g><path d="M73.3 167.1Q62.5 164.5 55.1 172.8Q65.9 175.4 73.3 167.1ZM73.3 167.1Q73.2 156.1 63.4 150.9Q63.4 162 73.3 167.1ZM57.7 159.2Q48.2 154.4 39.5 160.5Q49 165.3 57.7 159.2ZM57.7 159.2Q60.1 148.8 52 141.8Q49.7 152.2 57.7 159.2ZM44.4 147.8Q36.6 141.3 27.2 145.1Q35 151.6 44.4 147.8ZM44.4 147.8Q48.9 138.7 42.9 130.5Q38.4 139.6 44.4 147.8ZM34 133.8Q28.2 126 18.6 127.5Q24.4 135.3 34 133.8ZM34 133.8Q40.2 126.2 36.4 117.3Q30.3 124.8 34 133.8ZM27.2 117.7Q23.5 109.2 14.2 108.5Q17.9 117 27.2 117.7ZM27.2 117.7Q34.5 112.1 33 102.9Q25.6 108.6 27.2 117.7ZM24.1 100.5Q22.5 91.8 14.1 89.2Q15.7 97.8 24.1 100.5ZM24.1 100.5Q32.2 96.9 32.7 88.1Q24.7 91.7 24.1 100.5ZM25.1 83.1Q25.5 74.7 18.3 70.4Q17.9 78.8 25.1 83.1ZM25.1 83.1Q33.3 81.4 35.7 73.4Q27.5 75.1 25.1 83.1ZM30 66.3Q32.2 58.7 26.5 53.2Q24.4 60.8 30 66.3ZM30 66.3Q37.9 66.6 41.9 59.7Q34 59.5 30 66.3ZM38.7 51.1Q42.3 44.6 38.3 38.3Q34.6 44.8 38.7 51.1ZM38.7 51.1Q45.9 53.1 51 47.6Q43.8 45.7 38.7 51.1ZM50.5 38.3Q55.3 33.1 52.9 26.5Q48.2 31.7 50.5 38.3ZM50.5 38.3Q56.7 41.6 62.5 37.8Q56.4 34.4 50.5 38.3ZM57.5 33Q64.4 32.5 67.4 26.3Q60.6 26.8 57.5 33Z"/><path d="M92.1 171.6A76 76 0 0 1 57.5 33" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><g transform="matrix(-1 0 0 1 200 0)"><path d="M73.3 167.1Q62.5 164.5 55.1 172.8Q65.9 175.4 73.3 167.1ZM73.3 167.1Q73.2 156.1 63.4 150.9Q63.4 162 73.3 167.1ZM57.7 159.2Q48.2 154.4 39.5 160.5Q49 165.3 57.7 159.2ZM57.7 159.2Q60.1 148.8 52 141.8Q49.7 152.2 57.7 159.2ZM44.4 147.8Q36.6 141.3 27.2 145.1Q35 151.6 44.4 147.8ZM44.4 147.8Q48.9 138.7 42.9 130.5Q38.4 139.6 44.4 147.8ZM34 133.8Q28.2 126 18.6 127.5Q24.4 135.3 34 133.8ZM34 133.8Q40.2 126.2 36.4 117.3Q30.3 124.8 34 133.8ZM27.2 117.7Q23.5 109.2 14.2 108.5Q17.9 117 27.2 117.7ZM27.2 117.7Q34.5 112.1 33 102.9Q25.6 108.6 27.2 117.7ZM24.1 100.5Q22.5 91.8 14.1 89.2Q15.7 97.8 24.1 100.5ZM24.1 100.5Q32.2 96.9 32.7 88.1Q24.7 91.7 24.1 100.5ZM25.1 83.1Q25.5 74.7 18.3 70.4Q17.9 78.8 25.1 83.1ZM25.1 83.1Q33.3 81.4 35.7 73.4Q27.5 75.1 25.1 83.1ZM30 66.3Q32.2 58.7 26.5 53.2Q24.4 60.8 30 66.3ZM30 66.3Q37.9 66.6 41.9 59.7Q34 59.5 30 66.3ZM38.7 51.1Q42.3 44.6 38.3 38.3Q34.6 44.8 38.7 51.1ZM38.7 51.1Q45.9 53.1 51 47.6Q43.8 45.7 38.7 51.1ZM50.5 38.3Q55.3 33.1 52.9 26.5Q48.2 31.7 50.5 38.3ZM50.5 38.3Q56.7 41.6 62.5 37.8Q56.4 34.4 50.5 38.3ZM57.5 33Q64.4 32.5 67.4 26.3Q60.6 26.8 57.5 33Z"/><path d="M92.1 171.6A76 76 0 0 1 57.5 33" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path d="M100.0 164.0L101.7 168.7L106.7 168.8L102.8 171.9L104.1 176.7L100.0 173.9L95.9 176.7L97.2 171.9L93.3 168.8L98.3 168.7Z"/></symbol></svg>
+    <div class="container">
+      <ul class="awards-grid">
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>5</strong><span>Jahre Erfahrung</span></span></li>
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>5 ★</strong><span>Bewertungen</span></span></li>
+        <li class="award"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="award-text"><strong>4</strong><span>Weiter&shy;bildungen</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Ergebnisse: horizontaler Bilderstreifen -->
+  <section class="results" aria-labelledby="results-heading">
+    <div class="container">
+      <span class="eyebrow">Ergebnisse</span>
+      <h2 id="results-heading">Arbeiten aus dem Studio.</h2>
+    </div>
+    <!-- Reihenfolge = Raster am Desktop: Spalte 1 kurz+hoch, 2 hoch+kurz, 3 kurz+hoch, 4 hoch mit Luft darunter -->
+    <div class="strip" aria-label="Bilder von Behandlungsergebnissen">
+      <figure><img src="images/brow.jpg" alt="Augenbrauen nach der Behandlung" loading="lazy" width="978" height="578"></figure>
+      <figure><img src="images/lips-1.jpg" alt="Lippenpigmentierung, Ergebnis" loading="lazy" width="675" height="1200"></figure>
+      <figure><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme der Wimpern" loading="lazy" width="675" height="1200"></figure>
+      <figure><img src="images/nails.jpg" alt="Gelnagel in Schokobraun" loading="lazy" width="681" height="1200"></figure>
+      <figure><img src="images/facial-mask.jpg" alt="Gesichtsbehandlung mit Maske" loading="lazy" width="897" height="1200"></figure>
+      <figure><img src="images/lashes.jpg" alt="Wimpernverlängerung, Ergebnis" loading="lazy" width="689" height="1200"></figure>
+      <figure><img src="images/nails-art.jpg" alt="Nageldesign in Rot mit Blütenmotiv und Goldakzenten" loading="lazy" width="917" height="1200"></figure>
+    </div>
+  </section>
+
+  <!-- Über Paula & Studio -->
+  <section class="about" id="studio" aria-labelledby="about-heading">
+    <div class="container about-grid">
+      <div class="about-figure reveal">
+        <img src="images/paula-studio.jpg" alt="Paula Maher im PM Beauty Studio" loading="lazy" width="675" height="925">
+      </div>
+      <div class="about-panel">
+        <span class="eyebrow">Über mich &amp; Studio</span>
+        <h2 id="about-heading">Hey, ich bin Paula.</h2>
+        <blockquote>„Beauty war für mich nie nur ein Trend, sondern schon immer eine Leidenschaft. Heute ist daraus ein Business mit klaren Standards geworden. Präzision, Ästhetik und Qualität stehen bei mir an erster Stelle. Willkommen bei PM Beauty."</blockquote>
+        <div class="facts">
+          <div class="fact"><span>Standort</span><span><a href="https://www.google.com/maps?q=48.1418,11.50383" target="_blank" rel="noopener">Fürstenrieder Str. 11, München</a></span></div>
+          <div class="fact"><span>Termine</span><span>Mo–Fr · 10:00–20:00</span></div>
+          <div class="fact"><span>Erfahrung</span><span>5 Jahre &amp; 4 Weiterbildungen</span></div>
+          <div class="fact"><span>Instagram</span><span><a href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">@pm_beauty___</a></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Behandlungen (ohne Preise; Preise & Termine bei der Buchung) -->
+  <section class="services" id="behandlungen" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Behandlungen · Mo–Fr 10–20 Uhr</span>
+          <h2 id="services-heading">Alles auf einen Blick.</h2>
+          <p class="muted">Preise und freie Termine siehst du direkt bei der Buchung.</p>
+        </div>
+        <a class="btn btn-primary" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termine <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+
+      <div class="accordion">
+        <details id="manikuere">
+          <summary><h3>Maniküre</h3><span class="summary-meta"><span class="count">14 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+          <ul class="service-list">
+            <li><span class="name">Neumodellage Gel (ohne Design)</span><span class="desc">Komplett neue Gel-Nägel — Form, Länge und Finish nach Wunsch.</span></li>
+            <li><span class="name">Neumodellage Gel Überlänge (ohne Design)</span><span class="desc">Neumodellage für extra lange Nägel.</span></li>
+            <li><span class="name">Shellack (inkl. russischer Maniküre)</span><span class="desc">Langanhaltender Farblack auf dem Naturnagel, inklusive gründlicher Nagelhautentfernung.</span></li>
+            <li><span class="name">Shellack mit French (inkl. russischer Maniküre)</span><span class="desc">Shellack mit klassischer weißer French-Spitze.</span></li>
+            <li><span class="name">Russische Maniküre inkl. Klarlack</span><span class="desc">Besonders präzise Nagelhautentfernung mit dem Fräser für ein extra sauberes Finish.</span></li>
+            <li><span class="name">Auffüllen Gel (ohne Design)</span><span class="desc">Herausgewachsene Gel-Nägel auffüllen — keine Fremdarbeit.</span></li>
+            <li><span class="name">Auffüllen Gel Überlänge (ohne Design)</span><span class="desc">Auffüllen bei Überlänge — keine Fremdarbeit.</span></li>
+            <li><span class="name">French / Babyboomer</span><span class="desc">French-Spitze oder sanfter Babyboomer-Verlauf als Zusatz.</span></li>
+            <li><span class="name">Farbe</span><span class="desc">Farbgel als Zusatz zur Modellage.</span></li>
+            <li><span class="name">Einfaches Design</span><span class="desc">Dezente Akzente — z. B. feine Linien oder einzelne Steinchen.</span></li>
+            <li><span class="name">Mittelaufwendiges Design</span><span class="desc">Mehr Details auf mehreren Nägeln.</span></li>
+            <li><span class="name">Aufwendiges Design</span><span class="desc">Detailreiche Nail-Art auf allen Nägeln.</span></li>
+            <li><span class="name">Extrem aufwändiges Design</span><span class="desc">Aufwendige Handmalerei und 3D-Elemente — kleine Kunstwerke.</span></li>
+            <li><span class="name">Nägel entfernen</span><span class="desc">Schonendes Entfernen der Modellage.</span></li>
+          </ul>
+          <a class="book-link ul" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termin ↗</a>
+          </div>
+        </details>
+
+        <details id="pmu">
+          <summary><h3>Permanent Make-up</h3><span class="summary-meta"><span class="count">7 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+          <ul class="service-list">
+            <li><span class="name">Microblading — Erstbehandlung</span><span class="desc">Feinste Härchenzeichnung für natürlich volle Augenbrauen.</span></li>
+            <li><span class="name">Powderbrows — Erstbehandlung</span><span class="desc">Sanft schattierte Brauen mit weichem Puder-Effekt.</span></li>
+            <li><span class="name">Lippenpigmentierung — Erstbehandlung</span><span class="desc">Definierte Kontur und frische Farbe für die Lippen.</span></li>
+            <li><span class="name">Nachbehandlung (innerhalb 4–6 Wochen)</span><span class="desc">Perfektionierung des Ergebnisses nach der Erstbehandlung.</span></li>
+            <li><span class="name">Auffrischung (innerhalb 12 Monate)</span><span class="desc">Farbauffrischung im ersten Jahr.</span></li>
+            <li><span class="name">Auffrischung (innerhalb 24 Monate)</span><span class="desc">Farbauffrischung im zweiten Jahr.</span></li>
+            <li><span class="name">Remover</span><span class="desc">Schonendes Entfernen bzw. Aufhellen alter Pigmentierungen.</span></li>
+          </ul>
+          <a class="book-link ul" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termin ↗</a>
+          </div>
+        </details>
+
+        <details id="gesicht">
+          <summary><h3>Gesichts- &amp; Körperbehandlungen</h3><span class="summary-meta"><span class="count">7 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+          <ul class="service-list">
+            <li><span class="name">Luxury Glas Skin Kombi</span><span class="desc">Intensiv-Kombi für den ebenmäßigen „Glass Skin"-Glow.</span></li>
+            <li><span class="name">Aquafacial &amp; Microneedling</span><span class="desc">Tiefenreinigung plus Kollagen-Boost in einer Sitzung.</span></li>
+            <li><span class="name">Microneedling mit Lachs-DNA</span><span class="desc">Microneedling mit regenerierendem Polynukleotid-Serum.</span></li>
+            <li><span class="name">Microneedling</span><span class="desc">Feine Nadelreize aktivieren die hauteigene Kollagenbildung.</span></li>
+            <li><span class="name">Aquafacial</span><span class="desc">Porentiefe Reinigung, Peeling und Hydration in einem.</span></li>
+            <li><span class="name">Dermaplaning</span><span class="desc">Sanftes Entfernen von Härchen und abgestorbenen Hautzellen für glatte Haut.</span></li>
+            <li><span class="name">Classic Glow Facial</span><span class="desc">Klassische Gesichtsbehandlung für frischen, gepflegten Teint.</span></li>
+          </ul>
+          <a class="book-link ul" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termin ↗</a>
+          </div>
+        </details>
+
+        <details id="wimpern">
+          <summary><h3>Wimpernbehandlungen</h3><span class="summary-meta"><span class="count">7 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+          <ul class="service-list">
+            <li><span class="name">Korean Lashlift</span><span class="desc">Natürlicher Schwung für die eigenen Wimpern — ganz ohne Extensions.</span></li>
+            <li><span class="name">Korean Lashlift &amp; Browlift</span><span class="desc">Wimpern- und Brauenlifting in einem Termin.</span></li>
+            <li><span class="name">Korean Lashlift &amp; Browlift Deluxe</span><span class="desc">Das Kombi-Treatment mit zusätzlicher Pflege.</span></li>
+            <li><span class="name">Wimpernverlängerung „1:1 Technik" — Neuanlage</span><span class="desc">Eine Extension pro Naturwimper für einen natürlichen Look.</span></li>
+            <li><span class="name">Wimpernverlängerung „2–5D Volumen" — Neuanlage</span><span class="desc">Leichte Volumenfächer für mehr Fülle und Ausdruck.</span></li>
+            <li><span class="name">Wimpernverlängerung Auffüllen (bis zum 21. Tag)</span><span class="desc">Auffüllen bestehender Extensions — keine Fremdarbeit.</span></li>
+            <li><span class="name">Wimpern entfernen</span><span class="desc">Schonendes Entfernen der Extensions.</span></li>
+          </ul>
+          <a class="book-link ul" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termin ↗</a>
+          </div>
+        </details>
+
+        <details id="brauen">
+          <summary><h3>Augenbrauenbehandlungen</h3><span class="summary-meta"><span class="count">3 Leistungen</span><span class="indicator" aria-hidden="true"></span></span></summary>
+          <div class="service-panel">
+          <ul class="service-list">
+            <li><span class="name">Brow Lifting Delux</span><span class="desc">Brauenlifting mit Färben, Zupfen und Pflege — das Rundum-Paket.</span></li>
+            <li><span class="name">Korean Browlift</span><span class="desc">Sanftes Lifting für definierte, gleichmäßig liegende Brauen.</span></li>
+            <li><span class="name">Brow Shape &amp; Tint</span><span class="desc">Form und Farbe — Zupfen plus Färben.</span></li>
+          </ul>
+          <a class="book-link ul" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Preise &amp; Termin ↗</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schulungen (Inhalte von Paula, 18.10.2026). Bilder sind vorläufig: Fotos aus dem Studio, die Kursgrafiken kommen später. -->
+  <section class="training" id="schulungen" aria-labelledby="training-heading">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Schulungen · PM Beauty Academy</span>
+          <h2 id="training-heading">Lernen bei Paula.</h2>
+          <p class="muted">Für alle, die neu in die Beauty-Branche einsteigen oder ihre Technik weiterentwickeln möchten. Theorie, echte Modellarbeit und Betreuung, die nach der Schulung nicht aufhört.</p>
+        </div>
+      </div>
+
+      <div class="courses">
+        <article class="course reveal" id="schulung-lashlift">
+          <div class="course-media" id="schulung-lashlift-image"><img src="images/lashlift.jpg" alt="Korean Lashlift, Ergebnis aus Paulas Studio" loading="lazy" width="675" height="1200"></div>
+          <div class="course-heading">
+            <div class="badges">
+              <span class="badge">1 Schulungstag</span>
+              <span class="badge">Theorie &amp; Praxis</span>
+              <span class="badge">München</span>
+            </div>
+            <div class="course-title">
+              <h3 id="schulung-lashlift-title">Korean Lash &amp; Browlifting Intensiv-Schulung</h3>
+              <button class="course-toggle icon-btn" type="button" aria-expanded="true" aria-controls="schulung-lashlift-content" aria-labelledby="schulung-lashlift-toggle-label schulung-lashlift-title" hidden>
+                <span class="sr-only" id="schulung-lashlift-toggle-label">Details anzeigen oder ausblenden:</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="course-content" id="schulung-lashlift-content">
+            <p>Lerne Korean Lashlift, die neueste Technik auf dem Markt, in Theorie und Praxis.</p>
+            <p class="muted">Für den Einstieg in die Beauty-Branche oder als Ergänzung deines Angebots.</p>
+            <ul class="perks" aria-label="Inklusive: Ratenzahlung möglich, Zertifikat, Starterpaket, lebenslange Betreuung">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17" stroke="currentColor" stroke-width="1.3"/></svg>Ratenzahlung möglich</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.5" width="12" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M9 8h6M9 11h6M9 14h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Zertifikat</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5h12l-1 11.5H7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Starterpaket</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 4.9-7 9.2-7 9.2z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Lebenslange Betreuung</li>
+            </ul>
+            <a class="btn btn-brown" href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">Per DM anfragen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </article>
+
+        <article class="course reveal" id="schulung-manikuere">
+          <div class="course-media" id="schulung-manikuere-image"><img src="images/nails.jpg" alt="Gelnagel aus Paulas Studio" loading="lazy" width="681" height="1200"></div>
+          <div class="course-heading">
+            <div class="badges">
+              <span class="badge">2 Tage</span>
+              <span class="badge">Masterclass</span>
+              <span class="badge">München</span>
+            </div>
+            <div class="course-title">
+              <h3 id="schulung-manikuere-title">Masterclass Russian Manicure &amp; Gel</h3>
+              <button class="course-toggle icon-btn" type="button" aria-expanded="true" aria-controls="schulung-manikuere-content" aria-labelledby="schulung-manikuere-toggle-label schulung-manikuere-title" hidden>
+                <span class="sr-only" id="schulung-manikuere-toggle-label">Details anzeigen oder ausblenden:</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="course-content" id="schulung-manikuere-content">
+            <p><strong>Die Methode, um aus der Masse herauszustechen.</strong> Perfektioniere deine Technik und kreiere Ergebnisse, die für sich sprechen.</p>
+            <p class="muted">Technik und Verständnis, mit denen du dich langfristig weiterentwickelst. Für Einsteigerinnen und alle, die ihre Fähigkeiten perfektionieren möchten.</p>
+            <ul class="perks" aria-label="Inklusive: Ratenzahlung möglich, Zertifikat, Starterpaket, lebenslange Betreuung">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17" stroke="currentColor" stroke-width="1.3"/></svg>Ratenzahlung möglich</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.5" width="12" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M9 8h6M9 11h6M9 14h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Zertifikat</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5h12l-1 11.5H7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>Starterpaket</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 4.9-7 9.2-7 9.2z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Lebenslange Betreuung</li>
+            </ul>
+            <a class="btn btn-brown" href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">Per DM anfragen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gutscheine -->
+  <section class="vouchers" id="gutscheine" aria-labelledby="vouchers-heading">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Gutscheine</span>
+          <h2 id="vouchers-heading">Schönheit verschenken.</h2>
+          <p class="muted">Der PM Beauty Gutschein — einlösbar für alle Behandlungen. Online kaufen, als PDF erhalten, verschenken.</p>
+        </div>
+      </div>
+      <div class="vouchers-grid">
+        <!-- TODO: Platzhalter-Links durch echte Stripe Payment Links ersetzen (Stripe Dashboard → Payment Links) -->
+        <div class="voucher reveal">
+          <div class="voucher-top"><svg class="voucher-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5 12v7.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V12M12 8v12.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 8C10.6 5 7.2 4.3 7.2 6.3 7.2 7.6 9.4 8 12 8zm0 0c1.4-3 4.8-3.7 4.8-1.7 0 1.3-2.2 1.7-4.8 1.7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <div class="amount">50&nbsp;€</div>
+          <p>Ideal für Maniküre, Lashlift oder ein Glow Facial.</p>
+          <a class="btn btn-primary" href="https://buy.stripe.com/PLATZHALTER_50" target="_blank" rel="noopener">Kaufen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+        <div class="voucher voucher-featured reveal">
+          <div class="voucher-top"><svg class="voucher-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5 12v7.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V12M12 8v12.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 8C10.6 5 7.2 4.3 7.2 6.3 7.2 7.6 9.4 8 12 8zm0 0c1.4-3 4.8-3.7 4.8-1.7 0 1.3-2.2 1.7-4.8 1.7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span class="badge badge-accent">Bestseller</span></div>
+          <div class="amount">100&nbsp;€</div>
+          <p>Für Aquafacial, Microneedling oder eine Kombi-Behandlung.</p>
+          <a class="btn btn-primary" href="https://buy.stripe.com/PLATZHALTER_100" target="_blank" rel="noopener">Kaufen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+        <div class="voucher reveal">
+          <div class="voucher-top"><svg class="voucher-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5 12v7.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V12M12 8v12.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 8C10.6 5 7.2 4.3 7.2 6.3 7.2 7.6 9.4 8 12 8zm0 0c1.4-3 4.8-3.7 4.8-1.7 0 1.3-2.2 1.7-4.8 1.7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <div class="amount">150&nbsp;€</div>
+          <p>Das große Verwöhn-Budget — bis hin zum Permanent Make-up.</p>
+          <a class="btn btn-primary" href="https://buy.stripe.com/PLATZHALTER_150" target="_blank" rel="noopener">Kaufen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+      <p class="voucher-hint">Nach dem Kauf erhältst du eine Zahlungsbestätigung per E-Mail — der Gutschein kommt anschließend persönlich von Paula. Wunschbetrag? Schreib uns einfach auf <a href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">Instagram</a>.</p>
+    </div>
+  </section>
+
+  <!-- Bewertungen -->
+  <section class="reviews" id="bewertungen" aria-labelledby="reviews-heading">
+    <div class="container">
+      <span class="eyebrow">Bewertungen</span>
+      <h2 id="reviews-heading" class="sr-only">Kundenbewertungen</h2>
+      <div class="rating-badge">
+        <span class="score">5.0</span>
+        <div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <span class="muted">26 Bewertungen auf Beautinda</span>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <article class="review reveal">
+          <p>„Ich gehe seit Jahren sehr gerne zu Paula, weil sie die besten Nägel macht und man sich super wohl fühlt. Bin nur noch mit ihren Ergebnissen zufrieden und liebe sie einfach!"</p>
+          <footer><span>Kundin</span><span>Juni 2026</span></footer>
+        </article>
+        <article class="review reveal">
+          <p>„Eine sehr sympathische Person und der Service war echt super 💕"</p>
+          <footer><span>Viktoria · Korean Lashlift</span><span>Juni 2026</span></footer>
+        </article>
+        <article class="review reveal">
+          <p>„Paula macht ihre Arbeit sehr professionell und ordentlich. Ich komme seit ungefähr zwei Jahren zu ihr und bin jedes Mal aufs Neue begeistert — Nägel, Gesichtsbehandlungen und Lash- &amp; Browlifting."</p>
+          <footer><span>Romy</span><span>Juni 2026</span></footer>
+        </article>
+        <article class="review reveal">
+          <p>„Alles super, immer wieder gerne 🩷"</p>
+          <footer><span>Scarlet · Classic Glow Facial</span><span>Juni 2026</span></footer>
+        </article>
+        <!-- Platz für eine 5. echte Bewertung (Text von Lucas/Paula); dann .review-all ohne Doppelspalte -->
+        <a class="review review-all reveal" href="https://beautinda.de/artist/hebb68m5vleBjoPRrOEG3Bi5mP43" target="_blank" rel="noopener">
+          <span class="eyebrow">Alle Bewertungen</span>
+          <span class="review-all-score">5.0 <span aria-hidden="true">★</span></span>
+          <span class="review-all-cta">Alle 26 Bewertungen auf Beautinda ansehen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="contact" id="kontakt" aria-labelledby="contact-heading">
+    <!-- Raster am Desktop: Text | Bild | Öffnungszeiten (hoch) / Bild | Kontaktdaten | Öffnungszeiten.
+         Die beiden Raumfotos sind vorläufige Stimmungsbilder, nicht Paulas Studio. -->
+    <div class="container contact-grid">
+      <div class="contact-panel contact-intro">
+        <span class="eyebrow">Kontakt</span>
+        <h2 id="contact-heading">Besuch mich im Studio.</h2>
+        <p class="muted">Termine buchst du am schnellsten direkt online über Beautinda — dort siehst du alle freien Slots in Echtzeit.</p>
+      </div>
+      <figure class="contact-figure contact-figure-a"><img src="images/studio-glass.jpg" alt="" loading="lazy" width="640" height="640"></figure>
+      <figure class="contact-figure contact-figure-b"><img src="images/studio-light.jpg" alt="" loading="lazy" width="660" height="700"></figure>
+      <div class="contact-panel contact-facts">
+        <ul class="facts contact-list">
+          <li class="fact fact-address"><span>Adresse</span><span><a href="https://www.google.com/maps?q=48.1418,11.50383" target="_blank" rel="noopener">Fürstenrieder Str. 11,<br>München ↗</a></span></li>
+          <li class="fact"><span>Instagram</span><span><a href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">@pm_beauty___ ↗</a></span></li>
+          <li class="fact"><span>Buchung</span><span><a href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">beautinda.de ↗</a></span></li>
+        </ul>
+      </div>
+      <div class="hours">
+        <span class="eyebrow">Öffnungszeiten</span>
+        <table>
+          <tr><td>Montag</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Dienstag</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Mittwoch</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Donnerstag</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Freitag</td><td>10:00 – 20:00</td></tr>
+          <tr><td>Sa / So</td><td>geschlossen</td></tr>
+        </table>
+        <div class="hero-actions hours-actions">
+          <a class="btn btn-primary" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener">Termin buchen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="brand" href="#top" aria-label="PM Beauty — zum Seitenanfang"><svg xmlns="http://www.w3.org/2000/svg" viewBox="4.002 20.512 265.327 77.488" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7.472 51.6768C11.3077 51.4123 14.6805 51.28 17.5904 51.28C25.7909 51.28 29.8912 54.1733 29.8912 59.96C29.8912 62.6384 29.1968 64.9861 27.808 67.0032C27.0805 68.0944 25.9563 68.9707 24.4352 69.632C22.9141 70.2603 21.0789 70.5744 18.9296 70.5744H11.5888V86H7.472V51.6768ZM17.64 51.776C15.7221 51.776 13.7051 51.8917 11.5888 52.1232V70.0784H18.9296C23.592 69.88 25.9232 66.5403 25.9232 60.0592C25.9232 57.4139 25.2288 55.3803 23.84 53.9584C22.4512 52.5035 20.3845 51.776 17.64 51.776ZM36.2532 86H35.6084L39.9236 51.28H41.5604L51.9764 83.3712L62.3428 51.28H63.9796L68.2948 86H64.178L60.7556 58.224L51.778 86H48.6532L39.5764 58.5712L36.2532 86ZM89.7489 51.6768C93.5847 51.4123 96.974 51.28 99.9169 51.28C108.084 51.28 112.168 54.008 112.168 59.464C112.168 61.5141 111.573 63.2832 110.383 64.7712C109.192 66.2261 107.291 67.2181 104.679 67.7472C107.192 68.0448 109.176 68.8053 110.631 70.0288C112.085 71.2523 112.813 73.3851 112.813 76.4272C112.813 82.8091 108.729 86 100.5617 86H89.7489V51.6768ZM93.8657 85.504H100.5617C103.5047 85.504 105.588 84.7435 106.811 83.2224C108.068 81.6683 108.696 79.304 108.696 76.1296C108.696 72.9552 108.068 70.8389 106.811 69.7808C105.555 68.7227 103.6865 68.1605 101.2065 68.0944H93.8657V85.504ZM99.9169 51.776C97.9991 51.776 95.982 51.8917 93.8657 52.1232V67.5984H101.2065C105.869 67.4 108.2 64.7216 108.2 59.5632C108.2 57.0501 107.506 55.1323 106.117 53.8096C104.728 52.4539 102.6615 51.776 99.9169 51.776ZM160.113 86H159.518L174.348 51.28L174.894 51.032L187.393 86H183.177L179.308 75.088H164.825L160.113 86ZM172.811 56.6368L165.024 74.592H179.16L172.811 56.6368ZM215.214 51.28H215.859V71.12C215.859 76.3115 214.834 80.1307 212.784 82.5776C210.734 84.9915 208.055 86.1984 204.749 86.1984C202.666 86.1984 200.896 86.0165 199.442 85.6528C197.987 85.256 196.614 84.5451 195.325 83.52C192.679 81.4699 191.357 77.3365 191.357 71.12V51.28H195.474V71.0704C195.474 77.0885 196.383 81.1061 198.202 83.1232C199.127 84.1152 200.086 84.7931 201.078 85.1568C202.103 85.5205 203.327 85.7024 204.749 85.7024C207.923 85.7024 210.453 84.5451 212.338 82.2304C214.255 79.8827 215.214 76.1627 215.214 71.0704V51.28ZM231.78 86H227.663V51.776H219.082V51.28H240.41V51.776H231.78V86ZM264.916 51.28C265.544 51.9083 265.859 52.7184 265.859 53.7104C265.859 54.5371 265.677 55.3803 265.313 56.24L256.435 74.2448V86H252.318V75.336L242.398 51.28H246.614L256.087 73.6496L264.718 56.24C265.081 55.4133 265.263 54.5536 265.263 53.6608C265.263 52.768 265.015 52.0736 264.519 51.5776L264.916 51.28Z"/><rect x="117.915" y="20.512" width="3.5" height="61.988"/><rect x="151.915" y="20.512" width="3.5" height="61.988"/><rect x="135.79" y="59" width="1.75" height="22"/><path d="M155.415 81V86C154.311 80.8465 119.019 80.8465 117.915 86V81H155.415Z"/></svg></a>
+    <div class="footer-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="https://www.instagram.com/pm_beauty___/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="muted small">© 2026 PM Beauty · München</span>
+  </div>
+</footer>
+
+<script src="js/main.js?v=38"></script>
+</body>
+</html>

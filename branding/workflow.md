@@ -458,6 +458,11 @@
 - **Funktioniert:** Auf der Website bei 375 und 1440 px sowie im Styleguide und Markenprofil geprüft: Lora lädt, sichtbare Überschriften laufen nicht über, keine horizontale Seitenbreite und keine JavaScript-Fehler. Styleguide und Cache-Versionen sind angepasst.
 - **Nicht funktioniert / offen:** Die Wirkung auf echten Geräten und Paulas Urteil zur Schrift sind noch nicht geprüft.
 
+### 20.10.2026 · Codex · Gambarino und Melodrama als Website-Vorschau
+- **Versucht:** Lucas wollte anhand zweier Fontshare-Screenshots Gambarino und Melodrama direkt auf der Website vergleichen. Zwei vollständige, getrennte Vorschauseiten angelegt; Schriftdateien kommen über die offizielle Fontshare-API. Das bestehende Logo, Fließtext und die Live-Startseite bleiben unverändert.
+- **Funktioniert:** Gambarino 400 und Melodrama 600 laden in den Vorschauen. Bei 375 und 1440 px geprüft: keine sichtbaren überlaufenden Überschriften, keine horizontale Seitenbreite und keine JavaScript-Fehler.
+- **Nicht funktioniert / offen:** Lucas hat noch keine der beiden Varianten ausgewählt. Die Vorschauen benötigen für die Display-Schrift eine Verbindung zu Fontshare.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
