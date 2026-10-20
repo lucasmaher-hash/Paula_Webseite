@@ -493,6 +493,11 @@
 - **Funktioniert:** Raster jetzt 4 Spalten × 12 Einheiten, damit acht Bilder hineinpassen und die Formate zu den Fotos passen: Spalte 1 Lippen (fast quadratisch) über Brauen/Wimpern (hoch), Spalte 2 Lashlift (hoch) über Schildpatt (quadratisch), Spalte 3 Blüten-Nägel (quadratisch) über Microneedling (hoch), Spalte 4 Tuchmaske (4:5) über den roten Nägeln als flacher Streifen, darunter Luft. Jeder Ausschnitt wurde bei 1440, 1024 und 375 px angesehen: Gesichter, Nägel und Lippen bleiben ganz im Bild. Die Lippen sind ein neuer Ausschnitt aus dem Original (`lips-zoom.jpg`). CSS-Cache v68.
 - **Nicht funktioniert / offen:** Ob die neuen Fotos Paulas eigene Arbeiten sind, ist nicht bestätigt (Abschnitt heißt „Arbeiten aus dem Studio“). Die entfernten Bilder liegen weiter in `images/`, der Styleguide nutzt teils noch `lashes.jpg` und `nails.jpg`.
 
+### 21.10.2026 · Moodboard im Styleguide neu, Bilder leicht getönt (Claude in der Cloud)
+- **Versucht:** Lucas wollte im Moodboard nur noch Fotos mit Menschen, die auch auf der Website stehen; Stimmungsbilder (Wand, Rose, Lack, Stoff, Interieur) bleiben. Alle Bilder sollen farblich in der braunen oder der pinken Palette liegen.
+- **Funktioniert:** Getauscht: Rosé-Nägel → Blüten-Nägel, Nude-Hand → rote Nägel (flacher Ausschnitt), Lippen → `lips-zoom.jpg`, Wimpern-Referenz → Microneedling, Schokobraun-Nagel → Schildpatt, Wimpernverlängerung → Brauen und Wimpern; Paula im Studio und Lashlift bleiben. Die Tönung ist eine Farbfläche im Mischmodus „color“ über jedem Foto (28 % Deckkraft, Braun oder Pink aus den Quellwerten der Website), die Fotodateien bleiben unverändert und die Stärke ist in `--tint` einstellbar. „Aa“ heißt jetzt Gambarino statt Italiana. Geprüft bei 1440 px, ohne Fehler.
+- **Nicht funktioniert / offen:** Die alten Referenzfotos mit Menschen (`mood-nails-pink`, `mood-nails-rose`, `mood-lashes`) liegen noch in `images/`, werden aber nicht mehr verwendet.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
