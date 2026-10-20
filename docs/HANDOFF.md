@@ -14,7 +14,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 - **Domain:** paula-maher.de liegt bei Strato (Paulas Paket mit 1 Inklusiv-Domain und 1 Mailpostfach). Strato-DNS: A-Record `185.199.108.153` (GitHub, Strato erlaubt nur eine IPv4), CNAME `www` → `lucasmaher-hash.github.io`. Stand 19.10.2026: Zertifikat deckt erst `paula-maher.de` ab, `https://www.…` zeigt noch Zertifikatsfehler (GitHub stellt www verzögert aus). MX und NS nicht anfassen, sonst bricht Paulas Mail. Die Datei `CNAME` im Repo nicht löschen. HTTPS erzwungen, Zertifikat von GitHub (Let's Encrypt).
 - **Technik:** statisches HTML/CSS/Vanilla-JS, kein Build, keine Abhängigkeiten. Gambarino 400 für Überschriften und große Zahlen über die Fontshare-API; Instrument Sans für Text und Bedienung lokal in `fonts/`. Lora bleibt als lokaler Fallback erhalten, die Italiana-Wortmarke bleibt unverändert.
 - **Dateien:** `index.html` (One-Pager), `styleguide.html`, `css/style.css`, `js/main.js`, `images/`, `impressum.html`, `datenschutz.html`.
-- **Cache-Busting:** aktuell `style.css?v=66`, `main.js?v=38`, `fonts.css?v=3`. Bei jeder Änderung an CSS die Nummer in **allen fünf** HTML-Dateien erhöhen (index, styleguide, markenprofil, impressum, datenschutz), bei JS nur in `index.html`. Die beiden Schriftvorschauen bei Änderungen an `style.css` ebenfalls aktualisieren.
+- **Cache-Busting:** aktuell `style.css?v=68`, `main.js?v=38`, `fonts.css?v=3`. Bei jeder Änderung an CSS die Nummer in **allen fünf** HTML-Dateien erhöhen (index, styleguide, markenprofil, impressum, datenschutz), bei JS nur in `index.html`. Die beiden Schriftvorschauen bei Änderungen an `style.css` ebenfalls aktualisieren.
 
 ### Aufbau von `index.html` (von oben nach unten)
 
@@ -24,7 +24,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 | Mobiles Menü | `#mobile-menu` | Vollbild, Zeilen mit Trennlinie und ↗, „Behandlungen“ klappt mit + auf. |
 | Hero | – | Desktop: Paula rechts, Text links weiß. Handy: Bild oben (5 % Beschnitt pro Seite), Text darunter. Keine Labels mehr im Hero. |
 | Auszeichnungen | – | Drei Lorbeer-Badges: 5 Jahre Erfahrung, 5 ★ Bewertungen, 4 Weiterbildungen (Zahlen von Lucas). Kränze wachsen beim Erreichen in ~1 s aus der Mitte (`html.js` + `.grown`). |
-| Ergebnisse | – | „Arbeiten aus dem Studio“: Desktop versetzte Collage 4 Spalten × 10 Zeilen-Einheiten, 7 Fotos, Spalte 4 mit Luft unten; Zoom im festen Rahmen beim Hover. Handy: Wischstreifen. |
+| Ergebnisse | – | „Arbeiten aus dem Studio“: Desktop versetzte Collage 4 Spalten × 12 Zeilen-Einheiten, 8 Fotos (seit 21.10.2026: Lippen-Ausschnitt, Brauen/Wimpern, Lashlift, Schildpatt-Nägel, Blüten-Nägel, Microneedling, Tuchmaske, rote Nägel flach), Spalte 4 mit Luft unten; Zoom im festen Rahmen beim Hover. Handy: Wischstreifen. |
 | Über Paula | `#studio` | Foto + Textpanel; Fakten: Standort, Termine, Erfahrung „5 Jahre & 4 Weiterbildungen“, Instagram. Handy: ein Rahmen von Rand zu Rand, Foto 10 px eingerückt. |
 | Behandlungen | `#behandlungen` | Pink. Kopfzeile „Behandlungen · Mo–Fr 10–20 Uhr“. 5 Akkordeons (`#manikuere`, `#pmu`, `#gesicht`, `#wimpern`, `#brauen`), ohne Preise; animiertes Öffnen, Seite gleitet zur Kategorie. |
 | Schulungen | `#schulungen` | Zwei Kurse (gekürzte Texte, Freigabe durch Paula offen). Desktop: Bild und Text als zwei Rahmen, Seiten im Wechsel. Handy: eine Karte, Foto eingerückt, Tipp auf Titel klappt auf (animiert). Kacheln nur mit Kontur. „Per DM anfragen“ braun. |
@@ -72,6 +72,8 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 | `paula-studio.jpg` | Paula im Studio (Über mich) | 675 × 925 |
 | `nails-art.jpg`, `facial-mask.jpg`, `lashes-brows.jpg` | Von Lucas im Chat geschickt (19.10.), komprimiert ~1000 px; `images/brow.jpg` ist der Brauen-Ausschnitt. Ob es Paulas Arbeiten sind, ist **nicht bestätigt**. | ~980 × 1300 |
 | `studio-glass.jpg`, `studio-light.jpg` | Von Lucas geschickte Raumfotos, **nicht Paulas Studio**, nur Stimmung im Kontakt (Lichtfoto ohne „LABOR“-Tür zugeschnitten) | 640² / 1200 × 1800 |
+| `brows-lashes.jpg`, `facial-sheet-mask.jpg`, `nails-floral.jpg`, `nails-tortoise.jpg`, `microneedling.jpg` | Von Lucas geschickt (21.10.2026) für die Collage „Arbeiten aus dem Studio“; Originale gleichen Namens in `originals/`. Ob es Paulas Arbeiten sind, ist **nicht bestätigt**. | 800–1206 × 1067–1599 |
+| `lips-zoom.jpg` | Ausschnitt aus `lips-1.jpg`: nur Lippen und Nasenflügel, ohne Auge (21.10.2026) | 760 × 1013 |
 | `studio-pink.jpg` | Rosa Ausstellungsraum mit Kleid, von Lucas geschickt (21.10.2026), **nicht Paulas Studio**. Steht seit 21.10. unten links im Kontakt statt `studio-light.jpg` (Rahmen unverändert) | 1080 × 810 |
 
 Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (Pillow): `python branding/assets/photos/make_images.py branding/assets/photos/originals images`. Die Kundinnen haben der Veröffentlichung zugestimmt (Lucas, 18.10.2026).

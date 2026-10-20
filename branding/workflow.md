@@ -488,6 +488,11 @@
 - **Funktioniert:** `index.html` trägt v10 einmal als Symbol, Header, mobiles Menü und Footer verweisen darauf; `currentColor` und der pinke Header funktionieren unverändert. Im Styleguide zeigen Logo-Abschnitt, Größen, Inhaltsleiste, Prinzip-Kachel, Visitenkarte, Gutschein und Instagram-Vorschau v10; der Strichstärke-Regler wirkt auf alle. Die Balken zeigen Background, Surface, Accent, Button und Text (Taupe und das mittlere Pink sind raus, Taupe bleibt im Text erklärt). Geprüft bei 375 und 1440 px: Logo 64 × 38 bzw. 72 × 43 px, keine horizontale Scrollbreite, keine JavaScript-Fehler.
 - **Nicht funktioniert / offen:** v10 ist im Verhältnis etwas breiter als v9 (1,67 : 1 statt 1,6 : 1), bei gleicher Logobreite also 2 px flacher. Ein Test auf dem echten Handy steht aus.
 
+### 21.10.2026 · Neue Collage „Arbeiten aus dem Studio“ mit acht Fotos (Claude in der Cloud)
+- **Versucht:** Lucas nahm vier Bilder heraus (Braue, orange Maske, ganzes Gesicht, dunkelroter Einzelnagel), schickte fünf neue (Brauen und Wimpern, Tuchmaske, Blüten-Nägel, Schildpatt-Nägel, Microneedling) und wollte die roten Lippen so eng, dass das Auge nicht mehr zu sehen ist. Neues Raster, gleicher Look, Luft unten rechts.
+- **Funktioniert:** Raster jetzt 4 Spalten × 12 Einheiten, damit acht Bilder hineinpassen und die Formate zu den Fotos passen: Spalte 1 Lippen (fast quadratisch) über Brauen/Wimpern (hoch), Spalte 2 Lashlift (hoch) über Schildpatt (quadratisch), Spalte 3 Blüten-Nägel (quadratisch) über Microneedling (hoch), Spalte 4 Tuchmaske (4:5) über den roten Nägeln als flacher Streifen, darunter Luft. Jeder Ausschnitt wurde bei 1440, 1024 und 375 px angesehen: Gesichter, Nägel und Lippen bleiben ganz im Bild. Die Lippen sind ein neuer Ausschnitt aus dem Original (`lips-zoom.jpg`). CSS-Cache v68.
+- **Nicht funktioniert / offen:** Ob die neuen Fotos Paulas eigene Arbeiten sind, ist nicht bestätigt (Abschnitt heißt „Arbeiten aus dem Studio“). Die entfernten Bilder liegen weiter in `images/`, der Styleguide nutzt teils noch `lashes.jpg` und `nails.jpg`.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
