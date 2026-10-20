@@ -72,6 +72,7 @@ Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website we
 | `paula-studio.jpg` | Paula im Studio (Über mich) | 675 × 925 |
 | `nails-art.jpg`, `facial-mask.jpg`, `lashes-brows.jpg` | Von Lucas im Chat geschickt (19.10.), komprimiert ~1000 px; `images/brow.jpg` ist der Brauen-Ausschnitt. Ob es Paulas Arbeiten sind, ist **nicht bestätigt**. | ~980 × 1300 |
 | `studio-glass.jpg`, `studio-light.jpg` | Von Lucas geschickte Raumfotos, **nicht Paulas Studio**, nur Stimmung im Kontakt (Lichtfoto ohne „LABOR“-Tür zugeschnitten) | 640² / 1200 × 1800 |
+| `studio-pink.jpg` | Rosa Ausstellungsraum mit Kleid, von Lucas geschickt (21.10.2026), **nicht Paulas Studio**. Steht seit 21.10. unten links im Kontakt statt `studio-light.jpg` (Rahmen unverändert) | 1080 × 810 |
 
 Die Web-Versionen in `images/` erzeugt `branding/assets/photos/make_images.py` (Pillow): `python branding/assets/photos/make_images.py branding/assets/photos/originals images`. Die Kundinnen haben der Veröffentlichung zugestimmt (Lucas, 18.10.2026).
 
