@@ -66,7 +66,7 @@
       pinkIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) overPink.add(e.target); else overPink.delete(e.target); });
         siteHeader.classList.toggle('over-pink', overPink.size > 0);
-      }, { rootMargin: '-' + mid + 'px 0px -' + (window.innerHeight - mid - 1) + 'px 0px' });
+      }, { rootMargin: '-' + mid + 'px 0px -' + Math.max(0, window.innerHeight - mid - 1) + 'px 0px' });
       pinkSections.forEach(function (s) { pinkIO.observe(s); });
     };
     watchPink();

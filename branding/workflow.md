@@ -533,6 +533,11 @@
 - **Funktioniert:** `js/frame-draw.js`: Kontakt-Panels, Öffnungszeiten, Gutscheine, Bewertungen und die beiden pinken Abschnitts-Flächen zeichnen ihren 1-px-Rahmen in 2 s im Uhrzeigersinn, sobald sie ins Bild kommen, mit Maus bei Hover erneut. `js/logo-write.js`: Das Header-Logo schreibt sich mit den festgelegten Werten (cubic-bezier(.53, 0, .7, 1), 2,6 s, 0,5 s Pause, zuletzt der P-Stamm), einmal pro Sitzung beim ersten Laden und mit Maus bei jedem Hover; bis zum Start ist es unsichtbar (Kopf-Skript, spätestens nach 4 s sichtbar). Bei „Bewegung reduzieren“ beides aus. Prinzip und Abstände & Radien stehen im Styleguide jetzt komplett in Pink (ohne Hintergrundfläche). CSS-Cache v71. Geprüft bei 1440 px: Zwischenbilder des Logos, Rahmen zur Hälfte und fertig gezeichnet, keine Fehler.
 - **Nicht funktioniert / offen:** Test auf dem echten Handy steht aus (dort läuft das Logo nur beim ersten Laden, ohne Hover).
 
+### 21.10.2026 · Codex · Tintenreferenzen, zentrierter P-Stamm und Schreibmaske
+- **Versucht:** Lucas' zwei neuen Tintenreferenzen als gefüllte Vektorkonturen nachgezeichnet. Die Fassung ohne P-Stamm bestimmte die Hauptproportionen; der separate Stamm wurde 30 SVG-Einheiten unter seine nachgezeichnete Position gesetzt. Die Header-Schreibanimation auf die neue Kontur abgestimmt.
+- **Funktioniert:** v11 enthält beide Varianten und ihren reproduzierbaren Quellcode. Figma-Komponenten `38:7` (mit Stamm) und `38:10` (ohne). Website und aktueller Styleguide zeigen v11. Die bisherige Animationsmaske deckte von v11 nur rund 51 % der Fläche; die neue Mittellinie deckt in der Rasterprüfung mehr als 99,9 % und erhält 2,6 s Schreibzeit plus 0,5 s Pause. Bei 375 px im Browser: 64 px Logo, kein horizontaler Überlauf; Start- und Endzustand der Animation geprüft. Ein fehlerhafter negativer `rootMargin` bei sehr kleiner Fensterhöhe ist abgefangen.
+- **Nicht funktioniert / offen:** Bewegung auf einem physischen Handy bleibt ungeprüft. Der v10-Strichstärken-Regler und seine Schreibdemo bleiben im Styleguide als Archiv erhalten.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
