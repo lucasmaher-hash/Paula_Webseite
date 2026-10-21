@@ -553,6 +553,11 @@
 - **Funktioniert:** `branding/experiments/manicure-panels.html` enthält CSS, JavaScript und beide Schriftdateien eingebettet und funktioniert lokal ohne Netzwerkanfragen. Bewegte Auswahlfläche mit unterbrechbarer Feder, kurzer Textwechsel und reduzierte Bewegung berücksichtigt. Browserprüfung bei 375 px ohne horizontalen Überlauf sowie bei 1280 × 800 und 1440 × 900 ohne Seitenscrollen; Klick, Hover, Pfeiltasten und schnelle Wechsel geprüft, keine JavaScript-Fehler. Hauptseite unverändert.
 - **Nicht funktioniert / offen:** Gestaltung und ausführlichere Inhalte des rechten Panels folgen Lucas’ nächster Rückmeldung. Für diesen ersten Stand bestehende Kurzbeschreibungen übernommen; Display-Schrift nutzt die bereits vorhandene lokale Lora-Fallbackschrift statt extern geladenem Gambarino. Erster Teststart scheiterte am fehlenden Playwright-Browser; mit installiertem Chrome erfolgreich geprüft.
 
+### 21.10.2026 · Codex · Rechter Rahmen als abstrakter Nagel
+- **Versucht:** Lucas’ Referenz direkt auf die Panel-Fläche übertragen: French als weiße Spitze mit geschwungener Oberkante, Babyboomer als weicher weißer Verlauf von unten nach oben. French/Babyboomer für den Vergleich in zwei auswählbare Einträge getrennt.
+- **Funktioniert:** Rechtes Panel ist eine textfreie, abstrakte Nagelfläche; Spitze, Verlauf, Glanz und Farbfläche reagieren auf Hover, Klick und Tastatur. French ist der Startzustand. Lokale Einzeldatei bleibt offline nutzbar. Browserprüfung bei 375 px sowie 1280 × 800 und 1440 × 900: kein horizontaler Überlauf bzw. Desktop-Scrollen; French, Verlauf, Tastatur und reduzierte Bewegung geprüft, keine JavaScript-Fehler oder Netzwerkanfragen.
+- **Nicht funktioniert / offen:** Glanz, Gel und Überlänge sind erste abstrakte Studien; weitere Gestaltung nach Lucas’ Rückmeldung. Die neuen unsichtbaren Beschreibungen erklären nur die Visualisierung, keine zusätzlichen Leistungsversprechen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
