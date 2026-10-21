@@ -543,6 +543,11 @@
 - **Funktioniert:** Die v10-Hauptkontur, die beiden festgelegten Strichstärken und das Timing der Schreibanimation bleiben erhalten. Der P-Stamm der Animationsmaske folgt derselben Verschiebung wie der sichtbare Pfad; dadurch stimmen Zwischenbild und fertiges Logo überein. v10 und v11 bleiben archiviert.
 - **Nicht funktioniert / offen:** Die vorherige v11-Aktivierung war ein Missverständnis. Ein Test auf einem physischen Handy steht weiter aus.
 
+### 21.10.2026 · Codex · Schreibmaske auf volle Logo-Breite angepasst
+- **Versucht:** Den von Lucas gemeldeten Sprung zwischen dünner Animation und dicker Endfassung in einer frischen Browsersitzung reproduziert und Bilder direkt vor und nach Ende der Maske verglichen.
+- **Funktioniert:** Die Mittellinien-Maske ist nun breit genug, um beim Schreiben die volle v10/v12-Vektorkontur freizulegen. Vorher/Nachher-Bilder bei 2,67 s und 3,22 s zeigen dieselbe Strichstärke. Die Styleguide-Demo nutzt dieselbe Maskenbreite. Logoform und P-Stamm-Position blieben unverändert.
+- **Nicht funktioniert / offen:** Ein Test auf einem physischen Handy steht weiter aus.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

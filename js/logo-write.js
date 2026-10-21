@@ -35,7 +35,9 @@
       var d = 'M' + pts[a][0] + ' ' + pts[a][1], w = 0;
       for (i = a; i <= b; i++) { if (i > a) d += 'L' + pts[i][0] + ' ' + pts[i][1]; w = Math.max(w, pts[i][2]); }
       var len = s[b] - s[a], el = document.createElementNS(NS, 'path');
-      el.setAttribute('d', d); el.setAttribute('stroke-width', (w * K + 10).toFixed(1));
+      // The sampled centreline underestimates the raster-traced outline at 130%.
+      // A wider reveal mask exposes the existing thick vector contour while drawing.
+      el.setAttribute('d', d); el.setAttribute('stroke-width', (w * K * 2 + 20).toFixed(1));
       el.style.strokeDasharray = len + ' ' + (len + 2);
       g.appendChild(el); pieces.push({ el: el, g0: total + s[a], len: len });
       a = b;

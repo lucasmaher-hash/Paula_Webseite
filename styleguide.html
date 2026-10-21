@@ -965,7 +965,7 @@
   }
   function applyWidth() {
     var k = kOf(step);
-    pieces.forEach(function (p) { p.el.setAttribute('stroke-width', (p.w * k + 10).toFixed(1)); });
+    pieces.forEach(function (p) { p.el.setAttribute('stroke-width', (p.w * k * 2 + 20).toFixed(1)); });
     var parts = data.widths[keyOf(step)].split('ZM');
     $('pmwFill').setAttribute('d', parts[0] + 'Z');
     $('pmwFillStem').setAttribute('d', 'M' + parts[1]);
