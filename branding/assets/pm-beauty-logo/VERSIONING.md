@@ -8,4 +8,4 @@ For every subsequent change, create the next unused `versions/vN/` directory. Ke
 
 `versions/v9/` is the handwritten PM sketch supplied by Lucas, digitized as editable vector paths on 21.10.2026 and used on the website. Its source sketch, SVG, preview and notes are kept together.
 
-`versions/v10/` is the refined, variable-width construction from the first pencil sketch. `versions/v11/` reconstructs Lucas's later ink references as two filled vector silhouettes, with and without the detached left stem. The stem is shifted 30 SVG units down from its trace for optical centering; the with-stem variant is used on the website. Both versions remain in their own folders.
+`versions/v10/` is the refined, variable-width construction from the first pencil sketch. `versions/v11/` is an alternate reconstruction from later ink references; it was briefly used on the website in error and remains archived. `versions/v12/` keeps the approved v10 main contour and moves only its detached left stem 70 SVG units down. v12 is the current website variant.

@@ -538,6 +538,11 @@
 - **Funktioniert:** v11 enthält beide Varianten und ihren reproduzierbaren Quellcode. Figma-Komponenten `38:7` (mit Stamm) und `38:10` (ohne). Website und aktueller Styleguide zeigen v11. Die bisherige Animationsmaske deckte von v11 nur rund 51 % der Fläche; die neue Mittellinie deckt in der Rasterprüfung mehr als 99,9 % und erhält 2,6 s Schreibzeit plus 0,5 s Pause. Bei 375 px im Browser: 64 px Logo, kein horizontaler Überlauf; Start- und Endzustand der Animation geprüft. Ein fehlerhafter negativer `rootMargin` bei sehr kleiner Fensterhöhe ist abgefangen.
 - **Nicht funktioniert / offen:** Bewegung auf einem physischen Handy bleibt ungeprüft. Der v10-Strichstärken-Regler und seine Schreibdemo bleiben im Styleguide als Archiv erhalten.
 
+### 21.10.2026 · Codex · Korrektur: v10 beibehalten, nur P-Stamm und Animation
+- **Versucht:** Lucas stellte klar, dass die bereits verwendete v10-Reinzeichnung die richtige Logoform war. Die irrtümlich aktivierte v11-Rekonstruktion wurde auf Website und Styleguide zurückgenommen. Auf Basis von v10 wurde eine neue, getrennte v12 erstellt, die ausschließlich den losen linken P-Stamm um 70 SVG-Einheiten nach unten verschiebt.
+- **Funktioniert:** Die v10-Hauptkontur, die beiden festgelegten Strichstärken und das Timing der Schreibanimation bleiben erhalten. Der P-Stamm der Animationsmaske folgt derselben Verschiebung wie der sichtbare Pfad; dadurch stimmen Zwischenbild und fertiges Logo überein. v10 und v11 bleiben archiviert.
+- **Nicht funktioniert / offen:** Die vorherige v11-Aktivierung war ein Missverständnis. Ein Test auf einem physischen Handy steht weiter aus.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
