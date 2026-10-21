@@ -523,6 +523,11 @@
 - **Funktioniert:** Prinzip, Schrift, Komponenten, Bildsprache und Sprache stehen jetzt in der pinken Farbwelt (`theme-pink`), als abgerundete Fläche wie Behandlungen und Bewertungen auf der Website; Panels darin eine Stufe heller. Dabei auch „Bildsprache“ auf die Fotos der Website umgestellt (vorher alte Lippen-, Nagel- und Wimpernbilder, die nicht mehr auf der Seite sind), mit Tönung. Geprüft bei 1440 px, ohne Fehler.
 - **Nicht funktioniert / offen:** –
 
+### 21.10.2026 · Pink nur an einzelnen Stellen statt als Abschnitts-Fläche (Claude in der Cloud)
+- **Versucht:** Die pinken Flächen hinter ganzen Abschnitten gefielen Lucas nicht. Pink soll nur einzelne Panels und Schrift färben, und nur dort, wo es inhaltlich passt.
+- **Funktioniert:** Flächen entfernt. Pink sind jetzt: das Panel „Qualität“ (echte Bewertungen), das Prinzip-Panel „Bewegung“ (Behandlungs-Kategorie), in „Schrift“ die Zeilen mit dem Behandlungsnamen und dem Label „Behandlungen“, das Akkordeon in „Komponenten“ und die Schrift im Abschnitt „Bildsprache“ (Ergebnisse). Alles wie auf der Website: Pink steht für Behandlung und Ergebnis.
+- **Nicht funktioniert / offen:** –
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
