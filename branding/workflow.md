@@ -548,6 +548,11 @@
 - **Funktioniert:** Die Mittellinien-Maske ist nun breit genug, um beim Schreiben die volle v10/v12-Vektorkontur freizulegen. Vorher/Nachher-Bilder bei 2,67 s und 3,22 s zeigen dieselbe Strichstärke. Die Styleguide-Demo nutzt dieselbe Maskenbreite. Logoform und P-Stamm-Position blieben unverändert.
 - **Nicht funktioniert / offen:** Ein Test auf einem physischen Handy steht weiter aus.
 
+### 21.10.2026 · Codex · Maniküre als interaktives Panel-Paar
+- **Versucht:** Eigenständige HTML-Spielwiese mit den fünf Maniküre-Leistungen aus Lucas’ Screenshot: links nur Namen, rechts die bestehende Beschreibung. Zwei gleich hohe, vollständig sichtbare Desktop-Panels; Auswahl per Hover, Klick und Tastatur.
+- **Funktioniert:** `branding/experiments/manicure-panels.html` enthält CSS, JavaScript und beide Schriftdateien eingebettet und funktioniert lokal ohne Netzwerkanfragen. Bewegte Auswahlfläche mit unterbrechbarer Feder, kurzer Textwechsel und reduzierte Bewegung berücksichtigt. Browserprüfung bei 375 px ohne horizontalen Überlauf sowie bei 1280 × 800 und 1440 × 900 ohne Seitenscrollen; Klick, Hover, Pfeiltasten und schnelle Wechsel geprüft, keine JavaScript-Fehler. Hauptseite unverändert.
+- **Nicht funktioniert / offen:** Gestaltung und ausführlichere Inhalte des rechten Panels folgen Lucas’ nächster Rückmeldung. Für diesen ersten Stand bestehende Kurzbeschreibungen übernommen; Display-Schrift nutzt die bereits vorhandene lokale Lora-Fallbackschrift statt extern geladenem Gambarino. Erster Teststart scheiterte am fehlenden Playwright-Browser; mit installiertem Chrome erfolgreich geprüft.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
