@@ -85,6 +85,8 @@ if (renderer) {
   const ctx = textureCanvas.getContext('2d');
   const previousCanvas = document.createElement('canvas'); previousCanvas.width = 512; previousCanvas.height = 1024;
   const previousCtx = previousCanvas.getContext('2d');
+  const baseCanvas = document.createElement('canvas'); baseCanvas.width = 512; baseCanvas.height = 1024;
+  const baseCtx = baseCanvas.getContext('2d');
   let hasPrevious = false;
   const texture = new THREE.CanvasTexture(textureCanvas); texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
@@ -109,11 +111,17 @@ if (renderer) {
     gem.userData.placement = [x, y]; gem.userData.size = scale; gems.add(gem);
   }
 
+  const shineStart = performance.now();
   let stageWidth = 0, stageHeight = 0, look = detail.dataset.look, lookStart = performance.now(), dirty = true;
   let pointerX = 0, pointerY = 0, smoothX = 0, smoothY = 0, lastDraw = 0;
   const palette = ['#123e42', '#441e37', '#6b3025', '#213652'];
   const a = new THREE.Color(), b = new THREE.Color();
-  function drawTexture(seconds) {
+  function basicLength(seconds) {
+    if (look !== 'basic' || reducedMotion.matches) return 1;
+    const phase = (seconds % 4) / 4;
+    return .78 + .22 * THREE.MathUtils.smoothstep(phase, .10, .70) * (1 - THREE.MathUtils.smoothstep(phase, .85, 1));
+  }
+  function drawTexture(seconds, shineSeconds = 0) {
     const w = 512, h = 1024;
     ctx.clearRect(0, 0, w, h);
     const nude = ctx.createLinearGradient(0, 0, w, 0);
@@ -136,32 +144,40 @@ if (renderer) {
     if (look === 'glow') {
       const base = ctx.createLinearGradient(0, 0, w, 0); base.addColorStop(0, '#350308'); base.addColorStop(.45, '#680714'); base.addColorStop(1, '#340107');
       ctx.fillStyle = base; ctx.fillRect(0, 0, w, h);
-      const y = h * (.5 + (reducedMotion.matches ? 0 : Math.sin(seconds * Math.PI / 2) * .32));
+      const y = h * (.5 + (reducedMotion.matches ? 0 : Math.sin(shineSeconds * Math.PI / 2) * .32));
       ctx.save(); ctx.translate(w / 2, y); ctx.scale(1, .62);
       const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, w * .44);
-      glow.addColorStop(0, '#ffe0d9e6'); glow.addColorStop(.28, '#f19aacc4'); glow.addColorStop(.65, '#ce3c6559'); glow.addColorStop(1, '#96082c00');
+      glow.addColorStop(0, '#ffe0d973'); glow.addColorStop(.28, '#f19aac62'); glow.addColorStop(.65, '#ce3c652d'); glow.addColorStop(1, '#96082c00');
       ctx.fillStyle = glow; ctx.fillRect(-w, -h, w * 2, h * 2); ctx.restore();
     }
+    if (hasPrevious && !reducedMotion.matches && seconds < .45) {
+      ctx.globalAlpha = 1 - THREE.MathUtils.smoothstep(seconds, 0, .45);
+      ctx.drawImage(previousCanvas, 0, 0); ctx.globalAlpha = 1;
+    }
+    baseCtx.clearRect(0, 0, w, h); baseCtx.drawImage(textureCanvas, 0, 0);
+    // A shared clock continues through every look change. Compensate for Basic's
+    // changing length so reflections remain at the same on-screen height.
+    const driftX = Math.sin(shineSeconds * Math.PI / 5) * .09;
+    const driftY = Math.sin(shineSeconds * Math.PI / 6) * .035;
+    const reflectionTilt = -.055 + Math.sin(shineSeconds * Math.PI / 5) * .035;
+    ctx.save(); ctx.scale(1, 1 / basicLength(seconds)); ctx.translate(w * driftX, h * driftY);
     // Very soft polish reflection, in addition to the actual environment reflections.
     const sheen = ctx.createLinearGradient(0, 0, w, h * .18);
     sheen.addColorStop(0, '#ffffff00'); sheen.addColorStop(.13, '#ffffff00'); sheen.addColorStop(.21, '#ffffff28'); sheen.addColorStop(.34, '#ffffff08'); sheen.addColorStop(.6, '#ffffff00');
     ctx.fillStyle = sheen; ctx.fillRect(0, 0, w, h);
     // Reflections of two long manicure-studio light strips in the clear coat.
     for (const [x, y, width, strength] of [[.25, .43, .038, .50], [.76, .37, .012, .32]]) {
-      ctx.save(); ctx.translate(w * x, h * y); ctx.rotate(-.055); ctx.scale(width, .85);
+      ctx.save(); ctx.translate(w * x, h * y); ctx.rotate(reflectionTilt); ctx.scale(width, .85);
       const reflection = ctx.createRadialGradient(0, 0, 0, 0, 0, h * .35);
       reflection.addColorStop(0, `rgba(255,255,255,${strength})`);
       reflection.addColorStop(.42, `rgba(255,255,255,${strength * .65})`);
       reflection.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = reflection; ctx.fillRect(-h, -h, h * 2, h * 2); ctx.restore();
     }
-    ctx.save(); ctx.translate(w * .25, h * .43); ctx.rotate(-.055);
+    ctx.save(); ctx.translate(w * .25, h * .43); ctx.rotate(reflectionTilt);
     ctx.beginPath(); ctx.ellipse(0, 0, w * .024, h * .18, 0, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(255,250,246,.42)'; ctx.lineWidth = 1.8; ctx.stroke(); ctx.restore();
-    if (hasPrevious && !reducedMotion.matches && seconds < .45) {
-      ctx.globalAlpha = 1 - THREE.MathUtils.smoothstep(seconds, 0, .45);
-      ctx.drawImage(previousCanvas, 0, 0); ctx.globalAlpha = 1;
-    }
+    ctx.restore();
     texture.needsUpdate = true;
   }
   function resize() {
@@ -177,12 +193,7 @@ if (renderer) {
   }
   function animateNail(seconds) {
     const phase = (seconds % 4) / 4;
-    let length = 1;
-    if (look === 'basic' && !reducedMotion.matches) {
-      const growth = THREE.MathUtils.smoothstep(phase, .10, .70);
-      const reset = THREE.MathUtils.smoothstep(phase, .85, 1);
-      length = .78 + .22 * growth * (1 - reset);
-    }
+    const length = basicLength(seconds);
     // Anchor the upper edge. Only the bottom extends; the HTML text never scales.
     nail.scale.y = length; nail.position.y = (1 - length) * (stageHeight / 2 - 2);
     gems.visible = look === 'ornament';
@@ -195,7 +206,7 @@ if (renderer) {
     });
   }
   const observer = new MutationObserver(() => {
-    previousCtx.clearRect(0, 0, 512, 1024); previousCtx.drawImage(textureCanvas, 0, 0); hasPrevious = true;
+    previousCtx.clearRect(0, 0, 512, 1024); previousCtx.drawImage(baseCanvas, 0, 0); hasPrevious = true;
     look = detail.dataset.look; lookStart = performance.now(); dirty = true;
   });
   observer.observe(detail, { attributes: true, attributeFilter: ['data-look'] });
@@ -218,8 +229,10 @@ if (renderer) {
     if (!dirty && !movingLight && !movingLook && !fading) return;
     if (time - lastDraw < 1000 / 30) return;
     smoothX += (pointerX - smoothX) * .12; smoothY += (pointerY - smoothY) * .12;
-    key.position.set(-260 + smoothX * 260, 380 + smoothY * 160, 600);
-    if (dirty || fading || (!reducedMotion.matches && ['french', 'colour', 'glow'].includes(look))) drawTexture((time - lookStart) / 1000);
+    const shineSeconds = reducedMotion.matches ? 0 : (time - shineStart) / 1000;
+    key.position.set(-260 + smoothX * 260 + Math.sin(shineSeconds * Math.PI / 5) * 60,
+      380 + smoothY * 160 + Math.sin(shineSeconds * Math.PI / 6) * 35, 600);
+    if (dirty || fading || movingLook) drawTexture((time - lookStart) / 1000, shineSeconds);
     animateNail((time - lookStart) / 1000);
     renderer.render(scene, camera); dirty = false; lastDraw = time;
   }
