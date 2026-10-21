@@ -4,8 +4,8 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-const stage = document.querySelector('.panels');
 const detail = document.querySelector('.detail');
+const stage = detail;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let renderer;
 try {
@@ -88,9 +88,8 @@ if (renderer) {
   let hasPrevious = false;
   const texture = new THREE.CanvasTexture(textureCanvas); texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  const left = new THREE.Mesh(new THREE.BufferGeometry(), lacquer(null, '#cb9eaf'));
   const nail = new THREE.Mesh(new THREE.BufferGeometry(), lacquer(texture, '#ffffff'));
-  scene.add(left, nail);
+  scene.add(nail);
   const gems = new THREE.Group(); nail.add(gems);
   const gemMaterial = new THREE.MeshPhysicalMaterial({ color: '#d5c9dd', metalness: .55, roughness: .08,
     clearcoat: 1, clearcoatRoughness: .02, transmission: .12, thickness: 3, ior: 2.3, envMapIntensity: .85 });
@@ -125,7 +124,10 @@ if (renderer) {
   function drawTexture(seconds) {
     const w = 512, h = 1024;
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#b88e98'; ctx.fillRect(0, 0, w, h);
+    const nude = ctx.createLinearGradient(0, 0, w, 0);
+    nude.addColorStop(0, '#926674'); nude.addColorStop(.18, '#b18a97');
+    nude.addColorStop(.5, '#bf9aa2'); nude.addColorStop(.82, '#af8592'); nude.addColorStop(1, '#895e6d');
+    ctx.fillStyle = nude; ctx.fillRect(0, 0, w, h);
     if (look === 'colour') {
       const cycle = reducedMotion.matches ? 0 : seconds / 4;
       const index = Math.floor(cycle) % palette.length, fraction = cycle % 1;
@@ -138,12 +140,12 @@ if (renderer) {
       ctx.quadraticCurveTo(w / 2, h * .95, w, h * .75); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
     }
     if (look === 'glow') {
-      const base = ctx.createLinearGradient(0, 0, w, 0); base.addColorStop(0, '#a76a85'); base.addColorStop(.45, '#d7a9c1'); base.addColorStop(1, '#ad7799');
+      const base = ctx.createLinearGradient(0, 0, w, 0); base.addColorStop(0, '#350308'); base.addColorStop(.45, '#680714'); base.addColorStop(1, '#340107');
       ctx.fillStyle = base; ctx.fillRect(0, 0, w, h);
       const y = h * (.5 + (reducedMotion.matches ? 0 : Math.sin(seconds * Math.PI / 2) * .32));
-      ctx.save(); ctx.translate(w / 2, y); ctx.scale(1, .36);
-      const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, w * .8);
-      glow.addColorStop(0, '#fff3ff'); glow.addColorStop(.28, '#f8dcf4cc'); glow.addColorStop(.65, '#f0c9f066'); glow.addColorStop(1, '#f0c9f000');
+      ctx.save(); ctx.translate(w / 2, y); ctx.scale(1, .62);
+      const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, w * .44);
+      glow.addColorStop(0, '#ffe0d9e6'); glow.addColorStop(.28, '#f19aacc4'); glow.addColorStop(.65, '#ce3c6559'); glow.addColorStop(1, '#96082c00');
       ctx.fillStyle = glow; ctx.fillRect(-w, -h, w * 2, h * 2); ctx.restore();
     }
     // Very soft polish reflection, in addition to the actual environment reflections.
@@ -151,7 +153,7 @@ if (renderer) {
     sheen.addColorStop(0, '#ffffff00'); sheen.addColorStop(.13, '#ffffff00'); sheen.addColorStop(.21, '#ffffff28'); sheen.addColorStop(.34, '#ffffff08'); sheen.addColorStop(.6, '#ffffff00');
     ctx.fillStyle = sheen; ctx.fillRect(0, 0, w, h);
     // Reflections of two long manicure-studio light strips in the clear coat.
-    for (const [x, y, width, strength] of [[.20, .43, .055, .52], [.79, .37, .018, .38]]) {
+    for (const [x, y, width, strength] of [[.25, .43, .038, .50], [.76, .37, .012, .32]]) {
       ctx.save(); ctx.translate(w * x, h * y); ctx.rotate(-.055); ctx.scale(width, .85);
       const reflection = ctx.createRadialGradient(0, 0, 0, 0, 0, h * .35);
       reflection.addColorStop(0, `rgba(255,255,255,${strength})`);
@@ -159,6 +161,9 @@ if (renderer) {
       reflection.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = reflection; ctx.fillRect(-h, -h, h * 2, h * 2); ctx.restore();
     }
+    ctx.save(); ctx.translate(w * .25, h * .43); ctx.rotate(-.055);
+    ctx.beginPath(); ctx.ellipse(0, 0, w * .024, h * .18, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,250,246,.42)'; ctx.lineWidth = 1.8; ctx.stroke(); ctx.restore();
     if (hasPrevious && !reducedMotion.matches && seconds < .45) {
       ctx.globalAlpha = 1 - THREE.MathUtils.smoothstep(seconds, 0, .45);
       ctx.drawImage(previousCanvas, 0, 0); ctx.globalAlpha = 1;
@@ -169,12 +174,10 @@ if (renderer) {
     const box = stage.getBoundingClientRect(); stageWidth = box.width; stageHeight = box.height;
     renderer.setSize(stageWidth, stageHeight, false);
     camera.left = -stageWidth / 2; camera.right = stageWidth / 2; camera.top = stageHeight / 2; camera.bottom = -stageHeight / 2; camera.updateProjectionMatrix();
-    for (const [element, mesh] of [[document.querySelector('.list'), left], [detail, nail]]) {
-      const r = element.getBoundingClientRect(); mesh.geometry.dispose(); mesh.geometry = geometry(r.width, r.height);
-      mesh.position.set(r.x - box.x + r.width / 2 - stageWidth / 2, stageHeight / 2 - (r.y - box.y + r.height / 2), 0);
-      if (mesh === nail) for (const gem of gems.children) {
-        const [x, y] = gem.userData.placement; gem.position.set((x - .5) * r.width, (.5 - y) * r.height, 21);
-      }
+    const r = detail.getBoundingClientRect(); nail.geometry.dispose(); nail.geometry = geometry(r.width, r.height);
+    nail.position.set(0, 0, 0);
+    for (const gem of gems.children) {
+      const [x, y] = gem.userData.placement; gem.position.set((x - .5) * r.width, (.5 - y) * r.height, 21);
     }
     dirty = true;
   }
