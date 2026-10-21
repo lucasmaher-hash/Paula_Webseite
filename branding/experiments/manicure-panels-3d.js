@@ -91,30 +91,22 @@ if (renderer) {
   const nail = new THREE.Mesh(new THREE.BufferGeometry(), lacquer(texture, '#ffffff'));
   scene.add(nail);
   const gems = new THREE.Group(); nail.add(gems);
-  const gemMaterial = new THREE.MeshPhysicalMaterial({ color: '#d5c9dd', metalness: .55, roughness: .08,
-    clearcoat: 1, clearcoatRoughness: .02, transmission: .12, thickness: 3, ior: 2.3, envMapIntensity: .85 });
-  function jewelGeometry() {
-    const rings = [[3.2, 7], [6.8, 3], [7.1, 1], [0, -4]], points = [];
-    const at = (r, z, i) => [Math.cos(i * Math.PI / 4) * r, Math.sin(i * Math.PI / 4) * r, z];
-    for (let i = 0; i < 8; i++) {
-      points.push(0, 0, 7, ...at(3.2, 7, i), ...at(3.2, 7, i + 1));
-      for (let k = 0; k < rings.length - 1; k++) {
-        const [r, z] = rings[k], [nr, nz] = rings[k + 1];
-        points.push(...at(r, z, i), ...at(nr, nz, i), ...at(nr, nz, i + 1));
-        points.push(...at(r, z, i), ...at(nr, nz, i + 1), ...at(r, z, i + 1));
-      }
-    }
-    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(points, 3)); g.computeVertexNormals(); return g;
-  }
-  const gemGeometry = jewelGeometry();
+  const gemMaterial = new THREE.MeshPhysicalMaterial({ color: '#bec4cc', metalness: 1, roughness: .13,
+    clearcoat: 1, clearcoatRoughness: .035, envMapIntensity: 1.5 });
+  const rimMaterial = new THREE.MeshStandardMaterial({ color: '#7f8996', metalness: 1, roughness: .19 });
+  const gemGeometry = new THREE.SphereGeometry(7, 32, 20);
+  const rimGeometry = new THREE.TorusGeometry(7, .65, 10, 40);
   const gemLocations = [
     [.10, .07, 1], [.17, .11, .7], [.09, .15, .65], [.18, .18, .45], [.10, .22, .35],
     [.88, .89, 1], [.80, .86, .75], [.90, .81, .6], [.81, .78, .4],
     [.94, .39, .6], [.92, .44, .4], [.94, .49, .3]
   ];
   for (const [x, y, scale] of gemLocations) {
-    const gem = new THREE.Mesh(gemGeometry, gemMaterial); gem.scale.set(scale, scale * 1.25, scale);
-    gem.rotation.set(.07, -.12, x * 15); gem.userData.placement = [x, y]; gems.add(gem);
+    const gem = new THREE.Group();
+    const dome = new THREE.Mesh(gemGeometry, gemMaterial); dome.scale.z = .5; dome.position.z = 1.8;
+    const rim = new THREE.Mesh(rimGeometry, rimMaterial); rim.position.z = .6;
+    gem.add(rim, dome); gem.scale.setScalar(scale);
+    gem.userData.placement = [x, y]; gem.userData.size = scale; gems.add(gem);
   }
 
   let stageWidth = 0, stageHeight = 0, look = detail.dataset.look, lookStart = performance.now(), dirty = true;
@@ -136,8 +128,10 @@ if (renderer) {
       ctx.fillStyle = '#' + a.getHexString(); ctx.fillRect(0, 0, w, h);
     }
     if (look === 'french') {
+      const phase = (seconds % 4) / 4;
+      ctx.globalAlpha = reducedMotion.matches ? 1 : THREE.MathUtils.smoothstep(phase, .08, .5) * (1 - THREE.MathUtils.smoothstep(phase, .82, 1));
       ctx.fillStyle = '#fff9f3'; ctx.beginPath(); ctx.moveTo(0, h * .75);
-      ctx.quadraticCurveTo(w / 2, h * .95, w, h * .75); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
+      ctx.quadraticCurveTo(w / 2, h * .95, w, h * .75); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
     }
     if (look === 'glow') {
       const base = ctx.createLinearGradient(0, 0, w, 0); base.addColorStop(0, '#350308'); base.addColorStop(.45, '#680714'); base.addColorStop(1, '#340107');
@@ -181,6 +175,25 @@ if (renderer) {
     }
     dirty = true;
   }
+  function animateNail(seconds) {
+    const phase = (seconds % 4) / 4;
+    let length = 1;
+    if (look === 'basic' && !reducedMotion.matches) {
+      const growth = THREE.MathUtils.smoothstep(phase, .10, .70);
+      const reset = THREE.MathUtils.smoothstep(phase, .85, 1);
+      length = .78 + .22 * growth * (1 - reset);
+    }
+    // Anchor the upper edge. Only the bottom extends; the HTML text never scales.
+    nail.scale.y = length; nail.position.y = (1 - length) * (stageHeight / 2 - 2);
+    gems.visible = look === 'ornament';
+    gems.children.forEach((gem, index) => {
+      const appear = reducedMotion.matches ? 1 : THREE.MathUtils.smoothstep(seconds % 4, .15 + index * .16, .37 + index * .16);
+      const disappear = reducedMotion.matches ? 0 : THREE.MathUtils.smoothstep(phase, .87, 1);
+      const scale = appear * (1 - disappear);
+      gem.visible = scale > .001;
+      gem.scale.setScalar(gem.userData.size * Math.max(.001, scale));
+    });
+  }
   const observer = new MutationObserver(() => {
     previousCtx.clearRect(0, 0, 512, 1024); previousCtx.drawImage(textureCanvas, 0, 0); hasPrevious = true;
     look = detail.dataset.look; lookStart = performance.now(); dirty = true;
@@ -200,17 +213,17 @@ if (renderer) {
     requestAnimationFrame(frame);
     if (document.hidden) return;
     const movingLight = Math.abs(smoothX - pointerX) + Math.abs(smoothY - pointerY) > .001;
-    const movingLook = !reducedMotion.matches && (look === 'glow' || look === 'colour');
+    const movingLook = !reducedMotion.matches;
     const fading = !reducedMotion.matches && time - lookStart < 450;
     if (!dirty && !movingLight && !movingLook && !fading) return;
     if (time - lastDraw < 1000 / 30) return;
     smoothX += (pointerX - smoothX) * .12; smoothY += (pointerY - smoothY) * .12;
     key.position.set(-260 + smoothX * 260, 380 + smoothY * 160, 600);
-    if (dirty || movingLook || fading) drawTexture((time - lookStart) / 1000);
-    gems.visible = look === 'ornament';
+    if (dirty || fading || (!reducedMotion.matches && ['french', 'colour', 'glow'].includes(look))) drawTexture((time - lookStart) / 1000);
+    animateNail((time - lookStart) / 1000);
     renderer.render(scene, camera); dirty = false; lastDraw = time;
   }
-  resize(); drawTexture(0); gems.visible = look === 'ornament'; renderer.render(scene, camera);
+  resize(); drawTexture(0); animateNail(0); renderer.render(scene, camera);
   document.documentElement.classList.add('has-3d'); document.documentElement.dataset.renderer = 'three-webgl';
   requestAnimationFrame(frame);
 }
