@@ -19,27 +19,39 @@ main{width:calc(100% - 32px);margin:32px auto}header{display:flex;justify-conten
 .nail-colour{background:hsl(351 35% 72%);opacity:0;transition:opacity .65s ease}
 .nail-gloss{background:linear-gradient(105deg,transparent 12%,rgb(255 255 255 / .25) 19%,rgb(255 255 255 / .08) 25%,transparent 36%);opacity:0;transform:translateX(-5%);transition:opacity .6s,transform .9s cubic-bezier(.2,.7,.2,1)}
 .nail-tip{transform:translateY(30%);opacity:0;transition:transform .75s cubic-bezier(.22,.75,.22,1),opacity .4s ease}
-.nail-ombre{background:linear-gradient(to top,#fff 0%,rgb(255 255 255 / .96) 8%,rgb(255 255 255 / .65) 25%,rgb(255 255 255 / .25) 45%,transparent 70%);opacity:0;transform:translateY(18%);transition:opacity .85s ease,transform .9s cubic-bezier(.22,.75,.22,1)}
 .detail[data-look=french] .nail-tip{opacity:1;transform:translateY(0)}
-.detail[data-look=babyboomer] .nail-ombre{opacity:1;transform:translateY(0)}
-.detail[data-look=clear] .nail-gloss,.detail[data-look=gel] .nail-gloss,.detail[data-look=long] .nail-gloss{opacity:1;transform:translateX(0)}
-.detail[data-look=gel] .nail-colour{opacity:.35}.detail[data-look=long] .nail-colour{opacity:.55}
-.detail[data-look=long] .nail-tip{opacity:.3;transform:translateY(14%)}
-.detail[data-look=colour] .nail-colour{opacity:1}
-/* The moving lower edge reveals the page beneath; the two-column layout stays fixed. */
-.detail[data-look=gel],.detail[data-look=long]{animation:refill 4s cubic-bezier(.45,0,.25,1) infinite;--missing:26%}
-.detail[data-look=long]{--missing:36%}
-@keyframes refill{0%,10%{clip-path:inset(0 0 var(--missing) 0 round var(--radius))}70%,85%{clip-path:inset(0 0 0 0 round var(--radius))}100%{clip-path:inset(0 0 var(--missing) 0 round var(--radius))}}
+.detail[data-look=colour] .nail-colour{opacity:1;animation:colour-cycle 16s linear infinite}
+@keyframes colour-cycle{0%,20%{background:#245d61}25%,45%{background:#63334e}50%,70%{background:#954c3b}75%,95%{background:#354d72}100%{background:#245d61}}
 .nail-glow-base{background:linear-gradient(100deg,#b98298 0%,#d3a8bd 38%,#c594ae 68%,#ad7d97 100%);opacity:0;transition:opacity .6s ease}
 .nail-glow-band{background:radial-gradient(ellipse 100% 15% at 50% 50%,rgb(255 251 255 / .95),rgb(246 226 255 / .8) 32%,rgb(236 201 243 / .4) 65%,transparent 100%);opacity:0;mix-blend-mode:screen;transform:translateY(-33%)}
 .nail-reflection{background:radial-gradient(ellipse 2% 23% at 27% 47%,rgb(255 255 255 / .85),rgb(255 255 255 / .22) 65%,transparent 100%),radial-gradient(ellipse 1% 19% at 77% 40%,rgb(255 255 255 / .5),transparent 100%);opacity:0;transition:opacity .6s ease}
 .detail[data-look=glow] .nail-glow-base,.detail[data-look=glow] .nail-reflection{opacity:1}
 .detail[data-look=glow] .nail-glow-band{opacity:1;animation:glow-sweep 4s ease-in-out infinite}
 @keyframes glow-sweep{0%,100%{transform:translateY(-33%)}50%{transform:translateY(33%)}}
+.detail{color:#452d36;transition:color .6s ease}
+.detail[data-look=colour]{color:#fff7f1}
+.detail>.panel-copy{inset:28px 24px;width:auto;height:auto;display:flex;flex-direction:column;justify-content:center;gap:18px;pointer-events:auto;z-index:2}
+.look-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.panel-copy h1{font:400 clamp(28px,2.5vw,36px)/1.15 Lora,Georgia,serif;letter-spacing:-.035em;margin:0;overflow-wrap:anywhere}
+.panel-copy p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
+.nail-ornament{opacity:0;transition:opacity .5s ease}
+.detail[data-look=ornament] .nail-ornament{opacity:1}
+.cluster{position:absolute;width:80px;height:100px}
+.top-left{left:10px;top:14px;transform:rotate(-14deg)}
+.bottom-right{right:4px;bottom:12px;transform:rotate(165deg)}
+.edge{right:-8px;top:40%;transform:rotate(10deg);width:32px}
+.cluster i{position:absolute;display:block;width:15px;height:22px;clip-path:polygon(50% 0,88% 20%,100% 60%,50% 100%,0 60%,12% 20%);background:conic-gradient(from 20deg,#fffaf8 0deg,#b1a4b3 55deg,#fff 90deg,#d8cad4 140deg,#9b91a1 185deg,#fff 225deg,#e6dce5 270deg,#aca0b0 315deg,#fffaf8 360deg);filter:drop-shadow(0 1px 2px #61475c);transform:rotate(25deg)}
+.cluster i:after{content:"";position:absolute;inset:4px;background:linear-gradient(135deg,#fff,#fff7 40%,#8f8298 42%,#e7dce4 65%,#fff);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.cluster i:nth-child(1){left:14px;top:3px;width:20px;height:27px}
+.cluster i:nth-child(2){left:37px;top:20px;transform:rotate(70deg)}
+.cluster i:nth-child(3){left:8px;top:37px;transform:rotate(-20deg)}
+.cluster i:nth-child(4){left:31px;top:56px;width:11px;height:16px}
+.cluster i:nth-child(5){left:7px;top:74px;width:8px;height:11px}
+.edge i:nth-child(1){left:10px;top:0;width:12px;height:17px}.edge i:nth-child(2){left:4px;top:28px;width:9px;height:13px}.edge i:nth-child(3){left:13px;top:53px;width:7px;height:10px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .hint{font-size:12px;line-height:1.6;color:var(--muted);margin:16px 4px 0}
-@media(min-width:800px){:root{--radius:32px}body{min-height:100svh;display:grid;place-items:center}main{width:calc(70vw + 1.667px);max-width:1035px;margin:32px auto}.panels{grid-template-columns:1.1fr .65fr;height:66svh;min-height:440px;max-height:690px}.list{padding:18px}.selection{left:18px;right:18px;border-radius:19px}.tabs{grid-template-rows:repeat(7,1fr)}button{min-height:0;padding:16px 24px;font-size:clamp(16px,1.35vw,19px)}button+button:before{left:24px;right:24px}.hint{margin-top:18px}}
-@media(prefers-reduced-motion:reduce){.detail[data-look=glow] .nail-glow-band{transform:none}*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(min-width:800px){:root{--radius:32px}body{min-height:100svh;display:grid;place-items:center}main{width:calc(62.2vw + 2.596px);max-width:920.786px;margin:32px auto}.panels{grid-template-columns:1.1fr .455fr;height:66svh;min-height:440px;max-height:690px}.list{padding:18px}.selection{left:18px;right:18px;border-radius:19px}.tabs{grid-template-rows:repeat(5,1fr)}button{min-height:0;padding:16px 24px;font-size:clamp(16px,1.35vw,19px)}button+button:before{left:24px;right:24px}.hint{margin-top:18px}}
+@media(prefers-reduced-motion:reduce){.detail[data-look=colour] .nail-colour{background:#245d61}.detail[data-look=glow] .nail-glow-band{transform:none}*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -48,23 +60,25 @@ main{width:calc(100% - 32px);margin:32px auto}header{display:flex;justify-conten
 <div class="panels">
 <section class="panel list" aria-label="Maniküre-Leistungen">
 <div class="selection" aria-hidden="true"></div>
-<div class="tabs" role="tablist" aria-label="Leistung auswählen" aria-orientation="vertical"><button type="button" id="service-0" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="0"><span>Russische Maniküre inkl. Klarlack</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-1" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="1"><span>Auffüllen Gel (ohne Design)</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-2" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="2"><span>Auffüllen Gel Überlänge (ohne Design)</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-3" role="tab" aria-selected="true" aria-controls="description" tabindex="0" data-index="3"><span>French</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-4" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="4"><span>Babyboomer</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-5" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="5"><span>Farbe</span><span class="arrow" aria-hidden="true">↗</span></button>
-<button type="button" id="service-6" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="6"><span>Glow</span><span class="arrow" aria-hidden="true">↗</span></button></div>
+<div class="tabs" role="tablist" aria-label="Leistung auswählen" aria-orientation="vertical"><button type="button" id="service-0" role="tab" aria-selected="true" aria-controls="description" tabindex="0" data-index="0"><span>Basic</span><span class="arrow" aria-hidden="true">↗</span></button>
+<button type="button" id="service-1" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="1"><span>French</span><span class="arrow" aria-hidden="true">↗</span></button>
+<button type="button" id="service-2" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="2"><span>Color</span><span class="arrow" aria-hidden="true">↗</span></button>
+<button type="button" id="service-3" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="3"><span>Ornament</span><span class="arrow" aria-hidden="true">↗</span></button>
+<button type="button" id="service-4" role="tab" aria-selected="false" aria-controls="description" tabindex="-1" data-index="4"><span>Glow</span><span class="arrow" aria-hidden="true">↗</span></button></div>
 </section>
-<section class="panel detail" id="description" role="tabpanel" aria-labelledby="service-3" tabindex="0" data-look="french">
+<section class="panel detail" id="description" role="tabpanel" aria-labelledby="service-0" tabindex="0" data-look="basic">
 <div class="nail-colour" aria-hidden="true"></div>
 <div class="nail-gloss" aria-hidden="true"></div>
-<div class="nail-ombre" aria-hidden="true"></div>
 <div class="nail-glow-base" aria-hidden="true"></div>
 <div class="nail-glow-band" aria-hidden="true"></div>
 <div class="nail-reflection" aria-hidden="true"></div>
 <svg class="nail-tip" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 75 Q50 95 100 75 V100 H0 Z" fill="white"/></svg>
-<p class="sr-only" id="visual-description">Eine weiße Spitze mit klarer, geschwungener Kante.</p>
+<div class="nail-ornament" aria-hidden="true">
+<div class="cluster top-left"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="cluster bottom-right"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="cluster edge"><i></i><i></i><i></i></div>
+</div>
+<div class="panel-copy"><span class="look-label">Maniküre</span><h1>Basic</h1><p id="visual-description">Schlicht und natürlich. Eine ruhige, gleichmäßige Oberfläche ohne zusätzliches Design.</p></div>
 </section>
 </div>
 <p class="hint">Mit der Maus entdecken oder eine Leistung anklicken. Mit ↑ und ↓ durch die Liste wechseln.</p>
@@ -72,13 +86,13 @@ main{width:calc(100% - 32px);margin:32px auto}header{display:flex;justify-conten
 <script>
 'use strict';
 // Abstract visual studies, not additional treatment claims. No external requests.
-const services=[["Russische Maniküre inkl. Klarlack", "Transparenter Glanz auf einem natürlichen Nagel."], ["Auffüllen Gel (ohne Design)", "Der fehlende untere Teil des Panels füllt sich in einer Vier-Sekunden-Schleife."], ["Auffüllen Gel Überlänge (ohne Design)", "Der fehlende untere Teil wächst in einer Vier-Sekunden-Schleife zur Überlänge."], ["French", "Eine weiße Spitze mit klarer, geschwungener Kante."], ["Babyboomer", "Ein weicher Übergang von Weiß an der Spitze zum natürlichen Nagel."], ["Farbe", "Eine gleichmäßige Farbfläche."], ["Glow", "Ein perlmuttfarbener Lichtschein wandert auf der glänzenden Fläche auf und ab."]];
-const looks=["clear","gel","long","french","babyboomer","colour","glow"];
+const services=[["Basic", "Schlicht und natürlich. Eine ruhige, gleichmäßige Oberfläche ohne zusätzliches Design."], ["French", "Eine klare weiße Spitze mit sanft geschwungener Kante auf natürlichem Nude."], ["Color", "Satte Farbe, gleichmäßig aufgetragen. Petrol, Pflaume, Terrakotta und Nachtblau wechseln sich hier ab."], ["Ornament", "Kleine Steine setzen Akzente: in feinen Gruppen an den Ecken und einzeln am Rand."], ["Glow", "Ein seidiger Perlmuttschimmer. Das Licht wandert über die rosige Oberfläche und bringt sie zum Leuchten."]];
+const looks=["basic","french","colour","ornament","glow"];
 const buttons=[...document.querySelectorAll('[role=tab]')];
 const panel=document.querySelector('.detail');
 const highlight=document.querySelector('.selection'),list=document.querySelector('.list');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-let current=3,position=0,velocity=0,target=0,height=0,targetHeight=0,heightVelocity=0,raf=0,lastTime=0;
+let current=0,position=0,velocity=0,target=0,height=0,targetHeight=0,heightVelocity=0,raf=0,lastTime=0;
 function tick(time){
  const dt=Math.min((time-lastTime)/1000||1/60,1/30);lastTime=time;
  // Critically damped spring: new input retargets without losing velocity.
@@ -98,6 +112,7 @@ function select(index){
  buttons.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===index));b.tabIndex=i===index?0:-1});
  panel.setAttribute('aria-labelledby',buttons[index].id);
  panel.dataset.look=looks[index];
+ document.querySelector('.panel-copy h1').textContent=services[index][0];
  document.querySelector('#visual-description').textContent=services[index][1];
  moveHighlight();
 }

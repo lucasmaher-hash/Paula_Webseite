@@ -563,6 +563,11 @@
 - **Funktioniert:** Auffüllen bewegt die gerundete untere Rahmenkante ohne Layoutsprung; Glow zeigt eine rosa-perlmuttfarbene Fläche, Glanzreflexe und ein weich leuchtendes Band, das auf und ab wandert. Browserprüfung: rechte Breite bei 1280 und 1440 px jeweils 65 % des vorherigen Werts, kein Desktop-Scrollen, bei 375 px kein horizontaler Überlauf. Animationszustände und 4000-ms-Dauer geprüft; Hover/Klick und reduzierte Bewegung funktionieren, keine JavaScript-Fehler.
 - **Nicht funktioniert / offen:** Glow ist eine abstrakte Materialstudie und keine neu behauptete Studio-Leistung. Visuelle Feinabstimmung folgt Lucas’ Rückmeldung.
 
+### 21.10.2026 · Codex · Fünf Looks mit sichtbarer Beschreibung
+- **Versucht:** Lucas’ neue Auswahl Basic, French, Color, Ornament und Glow umgesetzt. Sichtbare Überschrift und Beschreibung in das rechte Panel zurückgebracht. Rechtes Panel nochmals um 30 % gegenüber dem unmittelbar vorherigen Stand verschmälert, linke Breite beibehalten.
+- **Funktioniert:** Bei 1440 px ist rechts die Breite von 371 auf 260 px reduziert, bei 1280 px von 330 auf 231 px. Color wechselt mit weichen Farbübergängen alle vier Sekunden zwischen Petrol, Pflaume, Terrakotta und Nachtblau; Ornament zeigt kleine facettierte Steine oben links, unten rechts und am rechten Rand. Alle fünf Beschreibungen sichtbar und innerhalb des Panels, Hover/Klick/Tastatur synchron. Browserprüfung bei 375, 1280 und 1440 px: kein horizontaler Überlauf, Desktop ohne Scrollen; Farbzustände, 16-Sekunden-Gesamtzyklus, reduzierte Bewegung und Offline-Nutzung geprüft, keine JavaScript-Fehler.
+- **Nicht funktioniert / offen:** Die frühere textfreie Fassung entsprach nicht Lucas’ Wunsch nach Beschreibung. Auffüllen und Babyboomer sind in dieser Iteration durch die ausdrücklich gewünschten fünf Looks ersetzt; frühere Stände bleiben in Git erhalten. Texte beschreiben die experimentellen Looks, keine neuen Studio-Angebote.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
