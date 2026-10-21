@@ -558,6 +558,11 @@
 - **Funktioniert:** Rechtes Panel ist eine textfreie, abstrakte Nagelfläche; Spitze, Verlauf, Glanz und Farbfläche reagieren auf Hover, Klick und Tastatur. French ist der Startzustand. Lokale Einzeldatei bleibt offline nutzbar. Browserprüfung bei 375 px sowie 1280 × 800 und 1440 × 900: kein horizontaler Überlauf bzw. Desktop-Scrollen; French, Verlauf, Tastatur und reduzierte Bewegung geprüft, keine JavaScript-Fehler oder Netzwerkanfragen.
 - **Nicht funktioniert / offen:** Glanz, Gel und Überlänge sind erste abstrakte Studien; weitere Gestaltung nach Lucas’ Rückmeldung. Die neuen unsichtbaren Beschreibungen erklären nur die Visualisierung, keine zusätzlichen Leistungsversprechen.
 
+### 21.10.2026 · Codex · Schmaleres Nagel-Panel, Auffüllen und Glow
+- **Versucht:** Rechten Rahmen gegenüber dem vorherigen Stand um 35 % verschmälert, linke Breite beibehalten. Für beide Auffüllen-Studien wächst die zunächst fehlende untere Panel-Partie in einer 4-Sekunden-Schleife nach; Überlänge startet mit größerem fehlendem Anteil. Glow als zusätzliche experimentelle Option nach Lucas’ beiden Referenzbildern.
+- **Funktioniert:** Auffüllen bewegt die gerundete untere Rahmenkante ohne Layoutsprung; Glow zeigt eine rosa-perlmuttfarbene Fläche, Glanzreflexe und ein weich leuchtendes Band, das auf und ab wandert. Browserprüfung: rechte Breite bei 1280 und 1440 px jeweils 65 % des vorherigen Werts, kein Desktop-Scrollen, bei 375 px kein horizontaler Überlauf. Animationszustände und 4000-ms-Dauer geprüft; Hover/Klick und reduzierte Bewegung funktionieren, keine JavaScript-Fehler.
+- **Nicht funktioniert / offen:** Glow ist eine abstrakte Materialstudie und keine neu behauptete Studio-Leistung. Visuelle Feinabstimmung folgt Lucas’ Rückmeldung.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
