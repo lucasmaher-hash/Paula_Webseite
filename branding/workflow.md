@@ -528,6 +528,11 @@
 - **Funktioniert:** Flächen entfernt. Pink sind jetzt: das Panel „Qualität“ (echte Bewertungen), das Prinzip-Panel „Bewegung“ (Behandlungs-Kategorie), in „Schrift“ die Zeilen mit dem Behandlungsnamen und dem Label „Behandlungen“, das Akkordeon in „Komponenten“ und die Schrift im Abschnitt „Bildsprache“ (Ergebnisse). Alles wie auf der Website: Pink steht für Behandlung und Ergebnis.
 - **Nicht funktioniert / offen:** –
 
+### 21.10.2026 · Linie fährt aus und Logo schreibt sich auf der Website; zwei Styleguide-Abschnitte pink (Claude in der Cloud)
+- **Versucht:** Die Bewegung „Linie fährt aus“ aus dem Styleguide sollte auf die Website, und das Header-Logo soll sich beim ersten Laden schreiben und bei Hover erneut. Im Styleguide sollten „Prinzip“ und „Abstände & Radien“ ganz pink werden (Panels und ihre Farben).
+- **Funktioniert:** `js/frame-draw.js`: Kontakt-Panels, Öffnungszeiten, Gutscheine, Bewertungen und die beiden pinken Abschnitts-Flächen zeichnen ihren 1-px-Rahmen in 2 s im Uhrzeigersinn, sobald sie ins Bild kommen, mit Maus bei Hover erneut. `js/logo-write.js`: Das Header-Logo schreibt sich mit den festgelegten Werten (cubic-bezier(.53, 0, .7, 1), 2,6 s, 0,5 s Pause, zuletzt der P-Stamm), einmal pro Sitzung beim ersten Laden und mit Maus bei jedem Hover; bis zum Start ist es unsichtbar (Kopf-Skript, spätestens nach 4 s sichtbar). Bei „Bewegung reduzieren“ beides aus. Prinzip und Abstände & Radien stehen im Styleguide jetzt komplett in Pink (ohne Hintergrundfläche). CSS-Cache v71. Geprüft bei 1440 px: Zwischenbilder des Logos, Rahmen zur Hälfte und fertig gezeichnet, keine Fehler.
+- **Nicht funktioniert / offen:** Test auf dem echten Handy steht aus (dort läuft das Logo nur beim ersten Laden, ohne Hover).
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

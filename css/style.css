@@ -596,3 +596,14 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 @media(max-width:899px){
   :is(.about-figure,.course-media):is(.tint-brown,.tint-pink)::after{inset:10px 10px 0;border-radius:calc(var(--rounded-xl) - 10px)}
 }
+
+/* ---------- Linie fährt aus (js/frame-draw.js) ----------
+   Der echte Rahmen wird durchsichtig, eine SVG-Kontur zeichnet sich in 2 s im Uhrzeigersinn (Start oben links). */
+.frame-host{border-color:transparent!important}
+.frame-draw{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.frame-draw rect{fill:none;stroke:var(--color-border);stroke-width:1;stroke-dasharray:100;stroke-dashoffset:100}
+.frame-host.is-drawn .frame-draw rect{stroke-dashoffset:0;transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1)}
+
+/* ---------- Header-Logo schreibt sich (js/logo-write.js) ----------
+   Beim ersten Laden einer Sitzung ist das Logo bis zum Start der Animation unsichtbar (Klasse aus dem Kopf-Skript). */
+.logo-intro .site-header .brand svg{visibility:hidden}

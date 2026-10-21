@@ -7,6 +7,13 @@
 <script>
 // Markiert JS-fähige Seiten, damit Startzustände von Animationen schon beim ersten Zeichnen gelten.
 document.documentElement.classList.add('js');
+// Header-Logo schreibt sich beim ersten Laden einer Sitzung (js/logo-write.js): bis dahin unsichtbar, nach 4 s spätestens sichtbar.
+try {
+  if (!sessionStorage.getItem('pmLogoWritten') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('logo-intro');
+    setTimeout(function () { document.documentElement.classList.remove('logo-intro'); }, 4000);
+  }
+} catch (e) {}
 // Vor dem Seitenaufbau verhindern, dass Neuladen zum letzten Abschnitt springt.
 if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
   history.scrollRestoration = 'manual';
@@ -27,7 +34,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <meta property="og:image" content="images/hero-paula.jpg">
 <link rel="stylesheet" href="fonts/fonts.css?v=3">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=gambarino%40400&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=70">
+<link rel="stylesheet" href="css/style.css?v=71">
 </head>
 <body>
 <!-- PM-Monogramm v10 (branding/assets/pm-beauty-logo/versions/v10/): #pm10s = 130 % Strichstärke für die kleine Fassung in der Ecke (Header, mobiles Menü), #pm10 = 120 % als Standard (Footer) -->
@@ -469,5 +476,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 </footer>
 
 <script src="js/main.js?v=38"></script>
+<script src="js/logo-write.js?v=1"></script>
+<script src="js/frame-draw.js?v=1"></script>
 </body>
 </html>
