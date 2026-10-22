@@ -609,7 +609,9 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 .logo-intro .site-header .brand svg{visibility:hidden}
 
 /* Wortmarke im Header (nur Hauptversion) und Namenszug auf dem Hero-Bild */
-.brand:has(.brand-word){width:calc(var(--brand-w) * 2.3)}
+.brand:has(.brand-text){width:auto;text-decoration:none}
+.brand-text{display:block;text-decoration:none;font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-.01em;line-height:1;white-space:nowrap}
+@media(min-width:900px){.brand-text{font-size:1.65rem}}
 .hero-name{position:absolute;z-index:1;top:calc(var(--header-h) + var(--space-3));left:calc(var(--gutter) + var(--space-5));font-family:var(--font-display,inherit);font-size:.95rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(0,0,0,.25);pointer-events:none}
 @media(min-width:900px){.hero-name{left:auto;right:calc(var(--gutter) + var(--space-6));top:calc(var(--header-h) + var(--space-5));font-size:1.05rem}}
 .hours-note{margin-top:var(--space-4);font-size:.85rem;line-height:1.6;color:var(--color-on-surface-muted)}
