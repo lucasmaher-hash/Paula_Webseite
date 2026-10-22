@@ -208,9 +208,9 @@ body.menu-open{overflow:hidden}
 
 /* ---------- Hero: Paula rechts, Text links; Handy: Bild oben, Text darunter ---------- */
 .hero{padding:0;margin-top:calc(-1 * var(--header-h));position:relative}
-.hero-media{display:block;background:var(--hero-wall)}
-.hero-media img{width:100%;height:auto;aspect-ratio:1033/1795;object-fit:cover;object-position:50% 18%}   /* Handy: links und rechts je 5 % weg (1148 px Bildbreite → 1033) */
-.hero-content{padding-top:var(--space-6);padding-bottom:var(--space-7)}
+.hero-media{display:block}
+.hero-media img{width:100%;height:auto;aspect-ratio:1033/2154;object-fit:cover;object-position:50% 18%}   /* Handy: links und rechts je 5 % weg (1148 px Bildbreite → 1033); unten um 1/5 verlängert, ab dem letzten Fünftel des Originals blendet das Bild in den Seitenhintergrund aus */
+.hero-content{position:relative;margin-top:calc(-1 * var(--space-7));padding-top:0;padding-bottom:var(--space-5)}   /* Text liegt leicht über dem ausgeblendeten Bildrand */
 .hero h1{font-size:var(--type-display);font-weight:500;letter-spacing:-.035em;line-height:1.02;margin:var(--space-4) 0}
 .hero h1 em{font-style:normal;color:var(--color-accent)}
 .hero .lead{color:var(--color-on-surface-muted);max-width:46ch;margin-bottom:var(--space-6)}
@@ -221,7 +221,7 @@ body.menu-open{overflow:hidden}
   .hero{min-height:max(min(92vh,880px),calc(100vw * 1091 / 2400 + var(--header-h)));display:flex;align-items:center;background:var(--hero-wall)}
   .hero-media{position:absolute;inset:var(--header-h) 0 0}
   .hero-media img{height:100%;aspect-ratio:auto;object-position:100% 0}
-  .hero-content{position:relative;width:100%;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
+  .hero-content{position:relative;width:100%;margin-top:0;padding-top:calc(var(--header-h) + var(--space-7));padding-bottom:var(--space-8)}
   .hero-content > *{max-width:540px}
   /* Warm tinted veil keeps the fine display type readable on the photograph. */
   .hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -234,7 +234,7 @@ body.menu-open{overflow:hidden}
 }
 
 /* ---------- Auszeichnungen: Lorbeer-Badges unter dem Hero ---------- */
-.awards{padding:var(--space-7) 0 0}
+.awards{padding:var(--space-4) 0 0}
 .awards-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2);max-width:820px;margin:0 auto}
 .award{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:220px;width:100%;margin:0 auto;color:var(--color-on-surface)}
 .award .laurel{position:absolute;inset:0;width:100%;height:100%;color:var(--color-accent);fill:currentColor;opacity:.8}
@@ -428,7 +428,7 @@ body.menu-open{overflow:hidden}
 .voucher .amount{font-size:2.3rem;font-weight:500;letter-spacing:-.03em;line-height:1}
 .voucher-featured .amount{font-size:3rem}
 @media(min-width:900px){
-  .vouchers-grid{grid-template-columns:1fr 1.3fr 1fr;align-items:center;gap:var(--space-4)}
+  .vouchers-grid{grid-template-columns:repeat(3,1fr);align-items:center;gap:var(--space-4)}
   .voucher,.voucher-featured{width:auto;justify-self:stretch}
   .voucher-featured{padding:var(--space-7) var(--space-6)}
   .voucher .amount{font-size:2.6rem}
@@ -607,3 +607,9 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 /* ---------- Header-Logo schreibt sich (js/logo-write.js) ----------
    Beim ersten Laden einer Sitzung ist das Logo bis zum Start der Animation unsichtbar (Klasse aus dem Kopf-Skript). */
 .logo-intro .site-header .brand svg{visibility:hidden}
+
+/* Wortmarke im Header (nur Hauptversion) und Namenszug auf dem Hero-Bild */
+.brand:has(.brand-word){width:calc(var(--brand-w) * 2.3)}
+.hero-name{position:absolute;z-index:1;top:calc(var(--header-h) + var(--space-3));left:calc(var(--gutter) + var(--space-5));font-family:var(--font-display,inherit);font-size:.95rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(0,0,0,.25);pointer-events:none}
+@media(min-width:900px){.hero-name{left:auto;right:calc(var(--gutter) + var(--space-6));top:calc(var(--header-h) + var(--space-5));font-size:1.05rem}}
+.hours-note{margin-top:var(--space-4);font-size:.85rem;line-height:1.6;color:var(--color-on-surface-muted)}
