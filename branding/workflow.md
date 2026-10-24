@@ -588,6 +588,11 @@
 - **Funktioniert:** Gemeinsame, vom gewählten Look unabhängige Uhr bewegt Reflexstreifen, Reflexkontur und Studiolicht ruhig weiter. Basic kompensiert seine Längenänderung in den Reflexkoordinaten, damit das Licht beim Wechsel zur vollen Länge nicht mitspringt. Design-Crossfade und Glanz sind getrennt, sodass keine alte Reflexposition mitüberblendet wird. Die Deckkraft des roten Glow-Verlaufs ist ungefähr halbiert; der schmale Glanz bleibt sichtbar. Browserprüfung verfolgt tatsächlich gezeichnete Reflexpositionen: kontinuierliche Bewegung beim Wechsel durch French, Ornament, Color, Glow und Basic ohne Phasen-Reset. Reduzierte Bewegung steht still; Farbwechsel, Tastatur, mobiler Textsitz, Offline-Nutzung und WebGL-Fallback bestanden.
 - **Nicht funktioniert / offen:** Eine erste Testannahme verlangte beim Wechsel zu reduzierter Bewegung zusätzlich die Position exakt null. Das war für die gewünschte statische Darstellung nicht erforderlich; der korrigierte Test prüft Stillstand zwischen zwei Messungen. Physisches Handy weiterhin ungeprüft.
 
+### 24.10.2026 · Claude · Neue Aufgabe und ChatGPT-Briefing
+- **Versucht:** Ammers Aufgabe für Mo 26.10. (Screenshot) in `KURS.md` übernommen und gegen den Repo-Stand abgeglichen. Für die fehlende Anwendungs-Visualisierung ein Briefing geschrieben (`branding/CHATGPT-BRIEFING.md`), damit ChatGPT Bilder und Video mit Marke, Farben und Regeln erzeugen kann.
+- **Funktioniert:** Das Projekt hatte vorher keine Anleitung für ChatGPT, nur Codex-Anweisungen. Das Briefing legt Farbwerte, Logo-Regel (nie von der KI neu zeichnen lassen), Referenzdateien, harte Regeln (Paula ist real, keine erfundenen Fakten) und Startprompts fest.
+- **Nicht funktioniert / offen:** Noch kein Mockup erzeugt. Ob ChatGPT das Logo sauber wiedergibt, ist ungeprüft, vermutlich nicht. Deshalb Logo und Text nachträglich selbst einsetzen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

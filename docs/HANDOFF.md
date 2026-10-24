@@ -6,6 +6,8 @@
 
 **Logo seit 21.10.2026: Reinzeichnung v10** (`branding/assets/pm-beauty-logo/versions/v10/`), eine neu gezeichnete Fassung derselben Skizze mit wechselnder Strichbreite. Website: zwei Symbole direkt nach `<body>` in `index.html`: `#pm10s` mit 130 % Strichstärke für die kleine Fassung in der Ecke (Header, mobiles Menü) und `#pm10` mit 120 % als Standard (Footer); eingebunden per `<use>`. Bei einer Logo-Änderung nur die Symbole ersetzen (Pfade aus `pm-monogram-v10.json`, Schlüssel `1.30` und `1.20`). Styleguide: nur noch v10 (die v9-Handzeichnung ist dort entfernt); Logo-Abschnitt mit Regler für die Strichstärke 60–160 % (wirkt auf alle Logos der Seite), Bewegung mit Schreibanimation (Regler für Dauer, Kurve, Absetzen und Halten). Die Angaben zu v9 oben sind damit überholt.
 
+**Bildgenerierung mit ChatGPT (seit 24.10.2026):** Briefing für Mockups, Fotos und Video unter `branding/CHATGPT-BRIEFING.md` (Marke, Farben, Logo-Regeln, Referenzdateien, Startprompts, Rückgabeformat in `branding/assets/mockups/`).
+
 Dieses Dokument ist der Einstieg für jede KI oder Person, die an der Website weiterarbeitet (Claude lokal, Claude in der Cloud, Codex). Es beschreibt, was live ist, wie gearbeitet wird und was offen ist. Regeln zum Studio und zum Kurs stehen zusätzlich in `CLAUDE.md` (lokal, nicht im Repo). Der vollständige Verlauf steht in `branding/workflow.md`.
 
 **Neuer Chat? Zuerst:** `git pull` im Repo, dann diese Datei und die letzten Einträge in `branding/workflow.md` lesen, dann `git status` / `git log -5` prüfen (Codex arbeitet im selben Repo).
