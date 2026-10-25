@@ -603,6 +603,11 @@
 - **Funktioniert:** Vier PNGs in `branding/assets/mockups/`, jeweils 1536 × 1024 px. Visuell geprüft: warme Braun-/Beigepalette, harte Blitzschatten und glänzende Reflexe; keine Schrift, Logos oder Gesichter. Karten und Verpackung haben freie Flächen für Lucas' nachträglichen Logo-Einsatz; die Hand zeigt fünf plausibel angeordnete Finger. Vollständige verwendete Prompts, Werkzeug-/Modellangabe und Kennzeichnungshinweise in `branding/assets/mockups/PROMPTS.md`. Je Motiv ein Durchlauf ohne Nachbearbeitung. Keine Änderungen an Website-Dateien.
 - **Nicht funktioniert / offen:** Logo und Texte fehlen absichtlich und werden von Lucas eingesetzt. Die Bilder sind KI-generierte Anwendungskonzepte, keine echten Studiofotos oder Arbeiten von Paula. Einbindung in den Styleguide mit Bildunterschrift „KI-generiertes Mockup“ steht noch aus; kein Video erzeugt.
 
+### 26.10.2026 · Codex · Empfang mit Theken- und Wandlogo
+- **Versucht:** Zwei zusätzliche Salon-Mockups nach Lucas' drei hochgeladenen Empfangsreferenzen: ein kleines Logo auf der Thekenfront und ein größeres Logo an der Rückwand. Layouts nur lose übernommen; Materialien, Rundungen und Braun-/Beigepalette auf PM Beauty abgestimmt, Direktblitz-Look beibehalten. Originales v12-SVG unverändert mit Quick Look als Bildvorlage gerendert und mit „use exactly, do not redraw“ an Imagegen übergeben.
+- **Funktioniert:** Zwei Hochformat-PNGs mit jeweils 1024 × 1536 px in `branding/assets/mockups/`: `rezeption-thekenlogo-direktblitz-v1.png` und `rezeption-wandlogo-direktblitz-v1.png`. Beide visuell gesichtet: gewünschte Logo-Positionen, keine Personen, keine fremden Markenzeichen oder zusätzliche Schrift. Je Motiv ein Generierungsdurchlauf. Vollständige Prompts und verwendete Referenzen in `PROMPTS.md` ergänzt. Keine Website-Dateien geändert.
+- **Nicht funktioniert / offen:** Die Räume sind frei entworfene KI-Anwendungskonzepte und zeigen nicht Paulas tatsächliches Studio. Logoform visuell gegen die Vorlage geprüft; pixel- bzw. vektorgetreue Einbettung ist durch die Generierung nicht belegt. Einbindung in den Styleguide und Kennzeichnung als „KI-generiertes Mockup“ bleiben offen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
@@ -653,4 +658,4 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Erst gestalten, dann das Markenprofil schreiben.
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
-**Offen:** Vier KI-generierte Foto-Mockups liegen seit 26.10.2026 in `branding/assets/mockups/`; Logo/Text durch Lucas und Einbindung in den Styleguide mit Kennzeichnung stehen noch aus. Test des dynamischen Header-Logos auf echten Geräten.
+**Offen:** Sechs KI-generierte Foto-Mockups liegen seit 26.10.2026 in `branding/assets/mockups/`, darunter zwei Empfangsräume mit Logo. Bei den ersten vier Motiven ergänzt Lucas Logo/Text selbst. Einbindung in den Styleguide mit Kennzeichnung und Test des dynamischen Header-Logos auf echten Geräten stehen noch aus.
