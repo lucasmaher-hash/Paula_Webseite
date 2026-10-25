@@ -45,6 +45,10 @@ Hinweis: ChatGPT-Bildmodelle verzerren Logos und Text zuverlässig. Besser: Moti
 - Moodboard und Anwendungs-Mockups: `styleguide.html` (`#moodboard`, `#anwendung`).
 - Bisherige Bildprompts (Stil und Ton): `branding/assets/photos/HERO-OUTPAINT.md`.
 
+## Fotostil: Blitzlicht (Lucas, 26.10.2026)
+
+Alle Fotos sehen aus wie **Direktblitz-Aufnahmen** (direct on-camera flash photography): harter, frontaler Blitz, leicht glänzende Highlights auf Haut und Lack, kurze harte Schatten dicht hinter dem Motiv, Snapshot-Look wie mit einer Kompaktkamera, leicht überbelichtete Lichter. Weiterhin warme braun-beige Palette, ruhige Komposition, kein Glitzer.
+
 ## Harte Regeln
 
 1. **Paula ist eine reale Person.** Kein KI-Gesicht als Paula ausgeben. Bearbeitungen am Portrait nur mit dem Original als Eingabe und Lucas' Freigabe (siehe HERO-OUTPAINT.md). Keine generierten Personen als „Kundinnen von PM Beauty“ ausgeben.
@@ -56,13 +60,13 @@ Hinweis: ChatGPT-Bildmodelle verzerren Logos und Text zuverlässig. Besser: Moti
 ## Startprompts (anpassen, dann mit Referenzen anhängen)
 
 **Visitenkarte (Foto)**
-> Photorealistic product photo, top-down, of a business card and a second card on a warm linen surface. Front card: matte brown (#745449) with an empty centered area where a monogram will be added later. Back card: pale warm beige, empty. Soft diffused daylight, no hard shadows, calm, premium, minimal. Muted palette of brown, beige and one small dusty-pink detail (#D19FA6). No text, no logo, no glitter, no rose-gold.
+> Photorealistic product photo, top-down, of a business card and a second card on a warm linen surface. Front card: matte brown (#745449) with an empty centered area where a monogram will be added later. Back card: pale warm beige, empty. Direct on-camera flash photography, hard frontal flash with a short hard shadow behind the cards, slightly glossy highlights, compact-camera snapshot look, calm, premium, minimal. Muted palette of brown, beige and one small dusty-pink detail (#D19FA6). No text, no logo, no glitter, no rose-gold.
 
 **Studio-Moment (Foto)**
-> Close-up photograph of a manicured hand resting on a warm beige linen cloth beside a small brown ceramic dish, natural soft window light, shallow depth of field, calm precise mood, like a goldsmith's workbench. Warm taupe background (#A39588). No text, no logo, no face.
+> Close-up photograph of a manicured hand resting on a warm beige linen cloth beside a small brown ceramic dish, direct on-camera flash photography, hard frontal flash with crisp glossy highlights on the nails and a short hard shadow on the cloth, compact-camera snapshot look, calm precise mood, like a goldsmith's workbench. Warm taupe background (#A39588). No text, no logo, no face.
 
 **Video (5–8 s, Sora o. Ä.)**
-> Slow, calm camera move over a tidy beauty-studio table in warm brown and beige tones: a pale card slides into the exact center of the frame and stops, soft daylight, no cuts, no text. Everything stays centered on one vertical axis.
+> Slow, calm camera move over a tidy beauty-studio table in warm brown and beige tones: a pale card slides into the exact center of the frame and stops, harsh camera-flash look, no cuts, no text. Everything stays centered on one vertical axis.
 
 Danach pro Motiv: Lucas sichtet, wählt, setzt Logo und Text selbst ein.
 
