@@ -598,6 +598,11 @@
 - **Funktioniert:** Monogramm und Schreibanimation standen schon im Styleguide, nur die Kennzeichnung der alten Animation war zu leise („Archiv“).
 - **Nicht funktioniert / offen:** Die Live-Website zeigt im Header seit einem Commit vom 25.10. die Text-Wortmarke statt des Monogramms. Entscheidung offen, ob die Website angeglichen wird.
 
+### 26.10.2026 · Codex · Vier Anwendungsfotos mit Direktblitz
+- **Versucht:** Startprompts aus `branding/CHATGPT-BRIEFING.md` für Visitenkarten und Hand auf Leinen übernommen und um eine separate Terminkarte sowie eine Papierverpackung ergänzt. Vier Einzelgenerierungen mit dem eingebauten `image_gen.imagegen`; die konkrete Modell-ID wird vom Werkzeug nicht ausgegeben. Lucas' ausdrückliche Direktblitz-Vorgabe ersetzt für diese Motive die ältere weiche Lichtregel.
+- **Funktioniert:** Vier PNGs in `branding/assets/mockups/`, jeweils 1536 × 1024 px. Visuell geprüft: warme Braun-/Beigepalette, harte Blitzschatten und glänzende Reflexe; keine Schrift, Logos oder Gesichter. Karten und Verpackung haben freie Flächen für Lucas' nachträglichen Logo-Einsatz; die Hand zeigt fünf plausibel angeordnete Finger. Vollständige verwendete Prompts, Werkzeug-/Modellangabe und Kennzeichnungshinweise in `branding/assets/mockups/PROMPTS.md`. Je Motiv ein Durchlauf ohne Nachbearbeitung. Keine Änderungen an Website-Dateien.
+- **Nicht funktioniert / offen:** Logo und Texte fehlen absichtlich und werden von Lucas eingesetzt. Die Bilder sind KI-generierte Anwendungskonzepte, keine echten Studiofotos oder Arbeiten von Paula. Einbindung in den Styleguide mit Bildunterschrift „KI-generiertes Mockup“ steht noch aus; kein Video erzeugt.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
@@ -648,4 +653,4 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Erst gestalten, dann das Markenprofil schreiben.
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
-**Offen:** Ein echtes Foto- oder Video-Mockup, Test des dynamischen Header-Logos auf echten Geräten.
+**Offen:** Vier KI-generierte Foto-Mockups liegen seit 26.10.2026 in `branding/assets/mockups/`; Logo/Text durch Lucas und Einbindung in den Styleguide mit Kennzeichnung stehen noch aus. Test des dynamischen Header-Logos auf echten Geräten.
