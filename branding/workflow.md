@@ -593,6 +593,11 @@
 - **Funktioniert:** Das Projekt hatte vorher keine Anleitung für ChatGPT, nur Codex-Anweisungen. Das Briefing legt Farbwerte, Logo-Regel (nie von der KI neu zeichnen lassen), Referenzdateien, harte Regeln (Paula ist real, keine erfundenen Fakten) und Startprompts fest.
 - **Nicht funktioniert / offen:** Noch kein Mockup erzeugt. Ob ChatGPT das Logo sauber wiedergibt, ist ungeprüft, vermutlich nicht. Deshalb Logo und Text nachträglich selbst einsetzen.
 
+### 26.10.2026 · Claude · Logo-Entscheidung für die Abgabe
+- **Versucht:** Lucas entscheidet: Für die Präsentation gilt das gezeichnete PM-Monogramm, das sich von links nach rechts schreibt. Die frühere E-Wortmarke samt Animation bleibt im Styleguide, wird aber ausdrücklich als „ALT“ gekennzeichnet.
+- **Funktioniert:** Monogramm und Schreibanimation standen schon im Styleguide, nur die Kennzeichnung der alten Animation war zu leise („Archiv“).
+- **Nicht funktioniert / offen:** Die Live-Website zeigt im Header seit einem Commit vom 25.10. die Text-Wortmarke statt des Monogramms. Entscheidung offen, ob die Website angeglichen wird.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
