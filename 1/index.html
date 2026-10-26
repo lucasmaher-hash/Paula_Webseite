@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F6EDEA">
 <script>
 // Markiert JS-fähige Seiten, damit Startzustände von Animationen schon beim ersten Zeichnen gelten.
@@ -31,7 +32,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <meta property="og:title" content="PM Beauty — Beauty Studio München">
 <meta property="og:description" content="Präzision, Ästhetik und Qualität. Permanent Make-up, Nägel, Lashes & Facials in München. 5.0 ★ · 46 Bewertungen.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/hero-paula.jpg">
+<meta property="og:image" content="../images/hero-paula.jpg">
 <link rel="stylesheet" href="../fonts/fonts.css?v=3">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=gambarino%40400&amp;display=swap">
 <link rel="stylesheet" href="../css/style.css?v=73">
@@ -140,22 +141,23 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     </div>
   </section>
 
-  <!-- Ergebnisse: horizontaler Bilderstreifen -->
+  <!-- Bildwelt: separate Entwurfsansicht mit KI-generierten Motiven -->
   <section class="results" aria-labelledby="results-heading">
     <div class="container">
-      <span class="eyebrow">Ergebnisse</span>
-      <h2 id="results-heading">Arbeiten aus dem Studio.</h2>
+      <span class="eyebrow">Bildwelt</span>
+      <h2 id="results-heading">Beauty, nah dran.</h2>
+      <p class="muted small">KI-generierte Stimmungsbilder für diese Entwurfsansicht, keine Behandlungsergebnisse von Paula.</p>
     </div>
-    <!-- Reihenfolge = Raster am Desktop (4 Spalten, 12 Zeilen-Einheiten): Spalte 1 kurz+hoch, 2 hoch+kurz, 3 kurz+hoch, 4 hoch+flach mit Luft darunter -->
-    <div class="strip" aria-label="Bilder von Behandlungsergebnissen">
-      <figure class="tint-pink"><img src="../images/lips-zoom.jpg" alt="Lippenpigmentierung, Nahaufnahme der Lippen" loading="lazy" width="760" height="1013"></figure>
-      <figure class="tint-brown"><img src="../images/brows-lashes.jpg" alt="Augenbrauen und Wimpern, Nahaufnahme" loading="lazy" width="900" height="1200"></figure>
-      <figure class="tint-brown" style="--tint:.5"><img src="../images/lashlift.jpg" alt="Lashlift, Nahaufnahme der Wimpern" loading="lazy" width="675" height="1200"></figure>
-      <figure class="tint-brown"><img src="../images/nails-tortoise.jpg" alt="Nageldesign in Schokobraun und Schildpatt" loading="lazy" width="1159" height="1200"></figure>
-      <figure class="tint-pink"><img src="../images/nails-floral.jpg" alt="Nude-Nägel mit kleinen Blüten an den Spitzen" loading="lazy" width="926" height="1200"></figure>
-      <figure class="tint-brown"><img src="../images/microneedling.jpg" alt="Gesichtsbehandlung mit Microneedling-Gerät" loading="lazy" width="800" height="1067"></figure>
-      <figure class="tint-brown" style="--tint:.6"><img src="../images/facial-sheet-mask.jpg" alt="Gesichtsbehandlung mit Tuchmaske" loading="lazy" width="960" height="1200"></figure>
-      <figure class="tint-pink"><img src="../images/nails-art.jpg" alt="Nageldesign in Rot mit Blütenmotiv und Goldakzenten" loading="lazy" width="917" height="1200"></figure>
+    <!-- Bestehendes Raster: acht Motive, am Handy als Wischstreifen. -->
+    <div class="strip" aria-label="KI-generierte Beauty-Bildwelt">
+      <figure><img src="../images/mockups/serie-lippen-rose-v1.webp" alt="KI-Stimmungsbild: Roséfarbene Lippen mit glänzenden Blitzreflexen" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/serie-brauen-wimpern-v1.webp" alt="KI-Stimmungsbild: Nahaufnahme von Brauen und Wimpern am geschlossenen Auge" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/hand-naegel-leinen-direktblitz-v1.webp" alt="KI-Stimmungsbild: Manikürte Hand auf Leinen neben einer Keramikschale ohne Logo" loading="lazy" decoding="async" width="1536" height="1024"></figure>
+      <figure><img src="../images/mockups/serie-naegel-schoko-schildpatt-v1.webp" alt="KI-Stimmungsbild: Schokobraune Nägel mit Schildpatt-Akzenten" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/serie-naegel-nude-blueten-v1.webp" alt="KI-Stimmungsbild: Nude-Nägel mit kleinen Blüten" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/serie-behandlung-hautdetail-v1.webp" alt="KI-Stimmungsbild: Kosmetisches Behandlungsdetail an einer Wange" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/serie-facial-tuchmaske-v1.webp" alt="KI-Stimmungsbild: Gesichtsbehandlung mit einer Tuchmaske als Nahaufnahme" loading="lazy" decoding="async" width="1024" height="1536"></figure>
+      <figure><img src="../images/mockups/serie-nagellack-stillleben-v1.webp" alt="KI-Stimmungsbild: Roséfarbener Nagellack in einer unbeschrifteten Glasflasche auf Leinen" loading="lazy" decoding="async" width="1024" height="1536" style="object-position:50% 75%"></figure>
     </div>
   </section>
 
@@ -278,7 +280,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     </div>
   </section>
 
-  <!-- Schulungen (Inhalte von Paula, 18.10.2026). Bilder sind vorläufig: Fotos aus dem Studio, die Kursgrafiken kommen später. -->
+  <!-- Schulungen: Inhalte wie bisher; Fotos sind illustrative KI-Motive für die Entwurfsansicht. -->
   <section class="training" id="schulungen" aria-labelledby="training-heading">
     <div class="container">
       <div class="section-head">
@@ -286,12 +288,13 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
           <span class="eyebrow">Schulungen · PM Beauty Academy</span>
           <h2 id="training-heading">Lernen bei Paula.</h2>
           <p class="muted">Für alle, die neu in die Beauty-Branche einsteigen oder ihre Technik weiterentwickeln möchten. Theorie, echte Modellarbeit und Betreuung, die nach der Schulung nicht aufhört.</p>
+          <p class="muted small">Die Kursbilder sind KI-generierte Illustrationen, keine dokumentierten Schulungs- oder Behandlungsergebnisse.</p>
         </div>
       </div>
 
       <div class="courses">
         <article class="course reveal" id="schulung-lashlift">
-          <div class="course-media tint-brown" id="schulung-lashlift-image" style="--tint:.5"><img src="../images/lashlift.jpg" alt="Korean Lashlift, Ergebnis aus Paulas Studio" loading="lazy" width="675" height="1200"></div>
+          <div class="course-media" id="schulung-lashlift-image"><img src="../images/mockups/serie-brauen-wimpern-v1.webp" alt="KI-Stimmungsbild: Brauen und Wimpern am geschlossenen Auge" loading="lazy" decoding="async" width="1024" height="1536"></div>
           <div class="course-heading">
             <div class="badges">
               <span class="badge">1 Schulungstag</span>
@@ -320,7 +323,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
         </article>
 
         <article class="course reveal" id="schulung-manikuere">
-          <div class="course-media tint-brown" id="schulung-manikuere-image"><img src="../images/nails.jpg" alt="Gelnagel aus Paulas Studio" loading="lazy" width="681" height="1200"></div>
+          <div class="course-media" id="schulung-manikuere-image"><img src="../images/mockups/serie-naegel-schoko-schildpatt-v1.webp" alt="KI-Stimmungsbild: Schokobraune Nägel mit Schildpatt-Akzenten" loading="lazy" decoding="async" width="1024" height="1536"></div>
           <div class="course-heading">
             <div class="badges">
               <span class="badge">2 Tage</span>
@@ -428,15 +431,16 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
   <!-- Kontakt -->
   <section class="contact" id="kontakt" aria-labelledby="contact-heading">
     <!-- Raster am Desktop: Text | Bild | Öffnungszeiten (hoch) / Bild | Kontaktdaten | Öffnungszeiten.
-         Die beiden Raumfotos sind vorläufige Stimmungsbilder, nicht Paulas Studio. -->
+         Empfang und Pflanze sind KI-generierte Stimmungsbilder, keine Aufnahmen von Paulas Studio. -->
     <div class="container contact-grid">
       <div class="contact-panel contact-intro">
         <span class="eyebrow">Kontakt</span>
         <h2 id="contact-heading">Besuch mich im Studio.</h2>
         <p class="muted">Termine buchst du am schnellsten direkt online über Beautinda — dort siehst du alle freien Slots in Echtzeit.</p>
+        <p class="muted small">Empfang und Pflanze sind KI-generierte Stimmungsbilder, keine Aufnahmen des tatsächlichen Studios.</p>
       </div>
-      <figure class="contact-figure contact-figure-a tint-brown"><img src="../images/studio-glass.jpg" alt="" loading="lazy" width="640" height="640"></figure>
-      <figure class="contact-figure contact-figure-b tint-pink"><img src="../images/studio-pink.jpg" alt="" loading="lazy" width="1080" height="810"></figure>
+      <figure class="contact-figure contact-figure-a"><img src="../images/mockups/rezeption-wandlogo-direktblitz-v1.webp" alt="KI-Raumkonzept: Empfang mit PM-Monogramm an der Wand" loading="lazy" decoding="async" width="1024" height="1536" style="object-position:50% 30%"></figure>
+      <figure class="contact-figure contact-figure-b"><img src="../images/mockups/serie-pflanze-keramik-v1.webp" alt="KI-Stimmungsbild: Grünpflanze im pinken Keramiktopf" loading="lazy" decoding="async" width="1024" height="1536"></figure>
       <div class="contact-panel contact-facts">
         <ul class="facts contact-list">
           <li class="fact fact-address"><span>Adresse</span><span><a href="https://www.google.com/maps?q=48.1418,11.50383" target="_blank" rel="noopener">Fürstenrieder Str. 11,<br>München ↗</a></span></li>

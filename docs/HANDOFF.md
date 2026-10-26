@@ -1,5 +1,7 @@
 # Übergabe: PM Beauty Website (Stand 21.10.2026)
 
+**Getrennte Bildvorschau 26.10.2026:** Die generierten Fotos sind zusätzlich in `1/index.html` unter `https://paula-maher.de/1/` eingebunden (acht Galerie-, zwei Kurs- und zwei Kontaktbilder). Lucas hat den Austausch ausschließlich für diese Custom-URL beauftragt. Die offizielle Startseite `/index.html` und gemeinsame CSS-/JS-Dateien bleiben unverändert. Vorschau mit KI-Kennzeichnung und `noindex, nofollow`; Paula-Porträts bleiben echt. `/1/` ist kein passwortgeschützter Bereich.
+
 **Logo-Bewegung 26.10.2026:** Im Styleguide ist „nein, alles in einem Zug“ der neue Standard. Der große Zug hat einen längeren Auslauf (`cubic-bezier(.53, 0, .45, 1)`) und bremst vor der Pause vollständig ab; P-Stamm separat mit bisherigem Tempo. Getrennte Freilegungsmasken verhindern den vorzeitig sichtbaren P-Punkt. Änderungen sind inline in `styleguide.html`, die SVG-Originale bleiben unverändert.
 
 **Bild-Update 26.10.2026:** Neue zusammenhängende Direktblitz-Serie und Logo-Anwendungen sind in `styleguide.html` unter Moodboard, Bildsprache und Anwendung integriert, jeweils als KI-Stimmungsbilder/Mockups gekennzeichnet. Aktuelle Auswahl, Versionen und Claude-Übergabe: `docs/HANDOFF-BILDER-2026-10-26.md`; vollständige Prompts: `branding/assets/mockups/PROMPTS.md`. Originale in `branding/assets/mockups/`, WebP-Kopien in `images/mockups/`. Die Kundenwebsite (`index.html`) bleibt unverändert.

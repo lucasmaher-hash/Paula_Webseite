@@ -11,5 +11,6 @@ Die Bildgenerierung und die Einbindung in den Styleguide sind jetzt umgesetzt. E
 - Originales Logo: `branding/assets/pm-beauty-logo/versions/v12/pm-monogram-v12.svg`. Nicht neu zeichnen. Auf Nahaufnahmen von Nägeln/Haut kein künstliches Logo legen.
 - Die generierten Motive nicht als Paulas Arbeiten, reale Kundinnen, tatsächliche Studioräume oder reales Sortiment ausgeben. Die Wattestäbchen-Verpackung ist ein freies Anwendungskonzept mit Lucas' Textfreigabe.
 - Kein zusätzlicher Braun-/Pink-Filter über die neue Serie. Keine Behandlungspreise ergänzen.
-- `index.html`, `css/` und `js/` wurden bei dieser Integration nicht geändert. Die Kundenwebsite zeigt weiterhin ihren vorherigen Bildbestand. Ein weiterer Bildaustausch dort braucht eine saubere Trennung von Stimmungsbildern und belegten Arbeiten.
+- Die separate Vorschau `1/index.html` unter `https://paula-maher.de/1/` zeigt jetzt acht Galerie-, zwei Kurs- und zwei Kontaktmotive aus der generierten Serie. Nur diese Custom-URL wurde auf Lucas' ausdrücklichen Wunsch angepasst, mit sichtbarer KI-Kennzeichnung.
+- Die offizielle `index.html`, `css/` und `js/` bleiben unverändert. Die offizielle Kundenwebsite zeigt weiterhin ihren vorherigen Bildbestand. Keine Bilder dort austauschen, ohne Lucas' gesonderten Auftrag.
 - Projektregeln beibehalten: Handy zuerst, Workflow-Log, commit/push auf main und Pages-Deploy prüfen.

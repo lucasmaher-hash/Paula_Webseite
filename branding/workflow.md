@@ -623,6 +623,11 @@
 - **Funktioniert:** Beide Paletten im Styleguide stehen jetzt in der Reihenfolge Background, Surface, Button, Accent, Text. Die kleinen Farbbalken unter „Bedeutung“ folgen derselben Reihenfolge. Farbwerte und Gestaltung unverändert.
 - **Nicht funktioniert / offen:** Keine offenen Punkte für diese Umsortierung.
 
+### 26.10.2026 · Codex · Generierte Bildwelt nur in der Vorschau unter /1/
+- **Versucht:** Lucas möchte die zusammengehörigen Fotos auch auf der separaten Website mit Custom-URL sehen, ausdrücklich nicht auf Paulas offizieller Startseite. Die vorhandene Version `1/index.html` anhand der Git-Historie als die unter `/1/` erhaltene frühere Website identifiziert.
+- **Funktioniert:** Ausschließlich dort acht Galerie-, zwei Schulungs- und zwei Kontaktbilder durch vorhandene WebP-Motive ersetzt. Neue Fotos ohne zusätzliche Braun-/Pink-Tönung; Kontakt zeigt Empfang mit Wandlogo und Pflanze im pinken Keramiktopf. Das Handfoto bleibt ohne Logo in der Schale. Galerie heißt „Bildwelt / Beauty, nah dran.“ und kennzeichnet die generierten Motive, ebenso die Kurs- und Kontaktbilder. Echte Paula-Porträts bleiben erhalten. Vorschau erhält `noindex, nofollow`; relativen OG-Bildpfad korrigiert. Prüfung bei 375 und 1440 px: alle zwölf generierten Bildeinbindungen geladen, keine JavaScript-Fehler oder horizontale Seitenüberläufe, mobiles Menü funktioniert. Offizielle `index.html` und sämtliche gemeinsamen CSS-/JS-Dateien per Git-Vergleich unverändert.
+- **Nicht funktioniert / offen:** Der bisherige Desktop-Ausschnitt der achten Galerieposition war noch auf die frühere Nagelaufnahme eingestellt; den Bildausschnitt für das Nagellack-Stillleben lokal in `/1/` angepasst. Einbau in die offizielle Startseite ist ausdrücklich nicht beauftragt. Die Custom-URL ist eine getrennte Vorschau, kein Zugriffsschutz.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
