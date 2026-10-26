@@ -624,15 +624,16 @@
         </article>
         <article class="sg-move sg-pmw" id="pmWrite">
           <div class="sg-pmw-stage" id="pmwStage" title="Klicken: neu schreiben">
-            <svg viewBox="30 -20 1590 950" fill="currentColor" role="img" aria-label="PM-Monogramm schreibt sich"><defs><mask id="pmwMask" maskUnits="userSpaceOnUse" x="-200" y="-300" width="2100" height="1600"><g id="pmwPieces" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></g></mask></defs><path id="pmwFill" mask="url(#pmwMask)"/><path id="pmwFillStem" mask="url(#pmwMask)" transform="translate(0 70)"/></svg>
+            <svg viewBox="30 -20 1590 950" fill="currentColor" role="img" aria-label="PM-Monogramm schreibt sich"><defs><mask id="pmwMask" maskUnits="userSpaceOnUse" x="-200" y="-300" width="2100" height="1600"><g id="pmwPieces" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></g></mask><mask id="pmwStemMask" maskUnits="userSpaceOnUse" x="-200" y="-300" width="2100" height="1600"><g id="pmwStemPieces" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></g></mask></defs><path id="pmwFill" mask="url(#pmwMask)"/><g mask="url(#pmwStemMask)"><path id="pmwFillStem" transform="translate(0 70)"/></g></svg>
           </div>
           <h3>Monogramm schreibt sich (einstellbar)</h3>
-          <p class="sg-note">Wie mit dem Stift: erst der durchgehende Zug von links nach rechts, vom Kopf des Schnörkels oben links über das Z und die M-Spitzen bis zum Tropfen unten rechts, dann kurz absetzen und als Letztes der abgesetzte P-Stamm von oben nach unten. Am einfachsten oben bei „Tempo“ die Vorschläge durchprobieren. „Anlauf“ und „Auslauf“ sagen, wie sanft der Stift losfährt und abbremst. Das Bild rechts zeigt das Tempo: hoch heißt schnell.</p>
+          <p class="sg-note">Wie mit dem Stift: Der große Zug schreibt sich ohne Zwischenbremsen von links nach rechts und bremst zum Tropfen unten rechts sanft ab. Danach kurz absetzen und den kleinen P-Stamm von oben nach unten ergänzen. „Anlauf“ und „Auslauf“ steuern den großen Zug; der kleine P-Strich behält sein eigenes Tempo. Das Bild rechts zeigt das Tempo des großen Zugs: hoch heißt schnell.</p>
           <div class="sg-pmw-row">
             <div>
               <div class="sg-pmctl" style="margin-top:0">
                 <label class="wide"><span>Tempo</span><select id="pmwPreset">
-                  <option value=".53,0,.7,1">Festgelegt (Lucas, 21.10.)</option>
+                  <option value=".53,0,.45,1">Festgelegt: längerer Auslauf (Lucas, 26.10.)</option>
+                  <option value=".53,0,.7,1">Früherer Auslauf (21.10.)</option>
                   <option value=".35,.05,.65,.95">Sanft an und aus</option>
                   <option value=".65,0,.35,1">Kräftig an und aus</option>
                   <option value=".4,0,.2,1">Wie die Website: sanft los, lange ausrollen</option>
@@ -642,7 +643,7 @@
                   <option value="custom">Eigene Einstellung</option>
                 </select></label>
                 <label title="Wie lange der Stift zum Beschleunigen braucht"><span>Anlauf</span><input type="range" id="pmwIn" min="0" max="1" step="0.01"><output id="pmwInOut"></output></label>
-                <label class="wide"><span>Bremsen in Ecken</span><select id="pmwMode"><option value="stroke">ja, an jeder Ecke</option><option value="whole">nein, alles in einem Zug</option></select></label>
+                <label class="wide"><span>Bremsen in Ecken</span><select id="pmwMode"><option value="stroke">ja, an jeder Ecke</option><option value="whole" selected>nein, alles in einem Zug</option></select></label>
                 <label title="Wie lange der Stift zum Abbremsen braucht"><span>Auslauf</span><input type="range" id="pmwOutR" min="0" max="1" step="0.01"><output id="pmwOutROut"></output></label>
                 <label><span>Dauer</span><input type="range" id="pmwDur" min="0.5" max="8" step="0.1" value="2.6"><output id="pmwDurOut"></output></label>
                 <label><span>Pause vor P</span><input type="range" id="pmwPause" min="0" max="1.5" step="0.05" value="0.5"><output id="pmwPauseOut"></output></label>
@@ -681,7 +682,7 @@
             <tr><td>Kategorie öffnen / schließen</td><td>500 / 400 ms</td><td>Höhe und Deckkraft, danach gleitet sie in die Bildschirmmitte (900 ms)</td></tr>
             <tr><td>Hover-Linie</td><td>450 / 350 ms</td><td>wächst aus der Mitte</td></tr>
             <tr><td>ALT: frühere Wortmarke (nicht mehr in Gebrauch)</td><td>450 / 350 ms</td><td>Der Mittelstrich des E wuchs beim Hover</td></tr>
-            <tr><td>Monogramm schreibt sich</td><td>2,6 s + 0,5 s Pause</td><td>ein Zug von links nach rechts, bremst an jeder Ecke (cubic-bezier(.53, 0, .7, 1)), Pause, zuletzt der P-Stamm</td></tr>
+            <tr><td>Monogramm schreibt sich</td><td>2,6 s + 0,5 s Pause</td><td>großer Zug ohne Zwischenbremsen, längerer Auslauf am Ende (cubic-bezier(.53, 0, .45, 1)), Pause, zuletzt der P-Stamm mit unverändertem Tempo</td></tr>
             <tr><td>Lorbeerkränze</td><td>1 s, versetzt</td><td>wachsen aus der Mitte</td></tr>
             <tr><td>Header über Pink</td><td>1 s</td><td>Schrift, Logo und Buttons wechseln zu Pink</td></tr>
             <tr><td>Einblenden beim Scrollen</td><td>600 ms</td><td>14 px nach oben, Deckkraft 0 → 1</td></tr>
@@ -928,8 +929,9 @@
 
   function build() {
     var g = $('pmwPieces'); g.textContent = '';
+    var stemGroup = $('pmwStemPieces'); stemGroup.textContent = '';
     pieces = []; strokes = []; var offset = 0;
-    function line(pts, cuts) {
+    function line(pts, cuts, maskGroup) {
       var s = [0], i;
       for (i = 1; i < pts.length; i++) s.push(s[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
       var L = s[s.length - 1], a = 0;
@@ -940,7 +942,7 @@
         var len = s[b] - s[a], el = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         el.setAttribute('d', d);
         el.style.strokeDasharray = len + ' ' + (len + 2);
-        g.appendChild(el);
+        maskGroup.appendChild(el);
         pieces.push({ el: el, g0: offset + s[a], len: len, w: w });
         a = b;
       }
@@ -948,9 +950,9 @@
       for (i = 0; i < c.length - 1; i++) strokes.push({ a: offset + c[i], b: offset + c[i + 1] });
       offset += L;
     }
-    line(data.main, data.cuts);   // erst der Zug, links nach rechts
+    line(data.main, data.cuts, g); // Hauptzug und P-Stamm getrennt maskieren, damit kein Punkt vorab durchscheint
     Li = offset;
-    line(data.i);                 // zuletzt der abgesetzte P-Stamm, oben nach unten
+    line(data.i, null, stemGroup); // zuletzt der abgesetzte P-Stamm, oben nach unten
     total = offset;
     applyWidth();
   }
@@ -970,19 +972,23 @@
     }
   }
   function totalTime() { return +ctl.dur.value + +ctl.pause.value; }
+  var stemEase = bezier(.53, 0, .7, 1); // Der Auslauf-Regler verändert nur den großen Zug.
   function lengthAt(t) {
     var D = +ctl.dur.value, P = +ctl.pause.value, j;
-    if (ctl.mode.value === 'whole') {           // eine Kurve über alles, Absetzen vor dem P-Stamm
-      var lo = 0, hi = D;
-      for (j = 0; j < 30; j++) { var m = (lo + hi) / 2; if (total * ease(m / D) < Li) lo = m; else hi = m; }
-      var tau = t < hi ? t : (t < hi + P ? hi : t - P);
-      local = Math.min(1, Math.max(0, tau / D));
-      return total * ease(local);
+    if (ctl.mode.value === 'whole') { // Der große Zug bremst vor der Pause vollständig ab, der P-Strich folgt separat.
+      var mainDuration = D * Li / total, stemDuration = D - mainDuration;
+      if (t <= mainDuration) {
+        local = Math.min(1, Math.max(0, t / mainDuration));
+        return Li * ease(local);
+      }
+      if (t <= mainDuration + P) { local = 1; return Li; }
+      local = -1;
+      return Li + (total - Li) * stemEase((t - mainDuration - P) / stemDuration);
     }
     var T = 0;                                   // pro Strich: Zeit nach Länge verteilt, jede Ecke neu angesetzt
     for (j = 0; j < strokes.length; j++) {
       var s = strokes[j], dj = D * (s.b - s.a) / total;
-      if (t < T + dj) { local = (t - T) / dj; return s.a + (s.b - s.a) * ease(local); }
+      if (t < T + dj) { local = (t - T) / dj; return s.a + (s.b - s.a) * (j === strokes.length - 1 ? stemEase(local) : ease(local)); }
       T += dj;
       if (j === strokes.length - 2) { if (t < T + P) { local = 1; return s.b; } T += P; }
     }
@@ -1053,7 +1059,7 @@
     $('pmwHoldOut').textContent = (+ctl.hold.value).toFixed(1) + ' s';
     $('pmwInOut').textContent = inWord(); $('pmwOutROut').textContent = outWord();
     ['x1', 'y1', 'x2', 'y2'].forEach(function (n) { $('pmw' + n.toUpperCase() + 'Out').textContent = (+ctl[n].value).toFixed(2); });
-    $('pmwCurveCap').innerHTML = '<b>Tempo des Stifts</b> ' + (ctl.mode.value === 'whole' ? 'über das ganze Logo' : 'auf jeder Linie, von Ecke zu Ecke') +
+    $('pmwCurveCap').innerHTML = '<b>Tempo des Stifts</b> ' + (ctl.mode.value === 'whole' ? 'über den großen, durchgehenden Zug' : 'auf jeder Linie des großen Zugs, von Ecke zu Ecke') +
       '. Hoch = schnell, unten = langsam. Der Punkt zeigt, wo der Stift gerade ist.';
     $('pmwBezier').textContent = curveText();
     $('pmwOut').textContent = summary();

@@ -1,5 +1,7 @@
 # Übergabe: PM Beauty Website (Stand 21.10.2026)
 
+**Logo-Bewegung 26.10.2026:** Im Styleguide ist „nein, alles in einem Zug“ der neue Standard. Der große Zug hat einen längeren Auslauf (`cubic-bezier(.53, 0, .45, 1)`) und bremst vor der Pause vollständig ab; P-Stamm separat mit bisherigem Tempo. Getrennte Freilegungsmasken verhindern den vorzeitig sichtbaren P-Punkt. Änderungen sind inline in `styleguide.html`, die SVG-Originale bleiben unverändert.
+
 **Bild-Update 26.10.2026:** Neue zusammenhängende Direktblitz-Serie und Logo-Anwendungen sind in `styleguide.html` unter Moodboard, Bildsprache und Anwendung integriert, jeweils als KI-Stimmungsbilder/Mockups gekennzeichnet. Aktuelle Auswahl, Versionen und Claude-Übergabe: `docs/HANDOFF-BILDER-2026-10-26.md`; vollständige Prompts: `branding/assets/mockups/PROMPTS.md`. Originale in `branding/assets/mockups/`, WebP-Kopien in `images/mockups/`. Die Kundenwebsite (`index.html`) bleibt unverändert.
 
 **Aktueller Logo-Stand: v12 auf Basis der freigegebenen v10-Zeichnung.** Die Website behält die v10-Hauptkontur und ihre 130-%-Header-/120-%-Footerfassung. Nur der separate linke P-Stamm sitzt 70 SVG-Einheiten tiefer; die Schreibmaske wurde um denselben Wert versetzt. Quelle und SVGs in `branding/assets/pm-beauty-logo/versions/v12/`. Die zwischenzeitlich aktivierte v11-Rekonstruktion aus späteren Fotos wurde auf Lucas’ Korrektur von Website und Styleguide entfernt und bleibt lediglich als archivierte Datei erhalten.
