@@ -618,6 +618,11 @@
 - **Funktioniert:** Hauptzug und P-Stamm haben getrennte Masken, wobei die P-Maske auf der äußeren Gruppe in denselben Koordinaten wie die verschobene Mittellinie sitzt. Standardmodus ist „whole“, Auslauf des Hauptzugs `cubic-bezier(.53, 0, .45, 1)`; er bremst vor der Pause vollständig ab. Der P-Stamm nutzt weiterhin seine bisherige Kurve `.53, 0, .7, 1` und dieselbe längenabhängige Dauer. Pixelprüfung nach Korrektur: null sichtbare P-Pixel an sämtlichen frühen Positionen. Bei 375 und 1440 px Wiederabspielen, Endbild, Pause und unabhängiges P-Tempo geprüft; keine JavaScript-Fehler. Endbild bei 120 und 160 % Strichstärke ohne Alpha-Abweichung zur unmaskierten Vorlage, bei 60 % lediglich ein Antialiasing-Randpixel. Logo-Geometrie und SVG-Quelldateien unverändert.
 - **Nicht funktioniert / offen:** Die bisherige gemeinsame Maske konnte trotz ausgeblendeter P-Maskenstücke einen Teil des P-Stamms über den Hauptzug freilegen. Die frühere Whole-Kurve lief außerdem über Hauptzug und P-Stamm zusammen; dadurch saß das eigentliche Abbremsen am falschen Ende. Beides im Styleguide korrigiert. Prüfung mit separatem lokalem Headless Chrome; physisches Handy nicht geprüft.
 
+### 26.10.2026 · Codex · Farbpaletten nach Helligkeit sortiert
+- **Versucht:** Lucas wünscht die Farbwerte von hell nach dunkel, die Textfarbe ganz rechts.
+- **Funktioniert:** Beide Paletten im Styleguide stehen jetzt in der Reihenfolge Background, Surface, Button, Accent, Text. Die kleinen Farbbalken unter „Bedeutung“ folgen derselben Reihenfolge. Farbwerte und Gestaltung unverändert.
+- **Nicht funktioniert / offen:** Keine offenen Punkte für diese Umsortierung.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
