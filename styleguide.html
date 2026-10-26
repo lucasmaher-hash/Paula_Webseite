@@ -264,6 +264,9 @@
 .sg-move.wide{grid-column:1 / span 2}
 .sg-move h3{font-size:1rem;margin-top:var(--space-2)}
 .sg-move .sg-note{max-width:60ch}
+.sg-nail-demo{grid-column:1 / -1}
+.sg-nail-demo iframe{display:block;width:100%;height:540px;border:0}
+@media(min-width:900px){.sg-nail-demo iframe{height:620px}}
 .sg-move-stage{height:220px;display:grid;gap:10px;cursor:crosshair}
 .sg-glow-demo{grid-template-columns:1fr 1fr}
 .sg-glow-panel{border-radius:var(--rounded-lg);border:1px solid var(--color-border);background-color:var(--color-surface);display:flex;align-items:flex-end;padding:14px 16px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--color-on-surface-muted)}
@@ -590,6 +593,12 @@
       <h2 id="bewegung-h">Ruhig, nie verspielt.</h2>
       <p class="intro">Eine Kurve für fast alles: <span class="sg-code">cubic-bezier(.4, 0, .2, 1)</span>, schnell los und weich aus. Bei „Bewegung reduzieren“ keine Animation.</p>
       <div class="sg-moves">
+        <article class="sg-move sg-nail-demo" id="nagelpanels">
+          <iframe src="branding/experiments/manicure-panels.html?embed=1" title="Interaktive 3D-Nagelpanels: links Look auswählen, rechts die bewegte Oberfläche" loading="lazy"></iframe>
+          <h3>Eine Oberfläche, fünf Looks.</h3>
+          <p class="sg-note">Links mit Maus, Fingertipp oder Pfeiltasten auswählen, rechts reagiert der Nagel: Basic wächst, French blendet die Spitze ein, Color wechselt die Farbe, Ornament setzt Steine und Glow bewegt den Schimmer. Der Glanz läuft beim Wechsel weiter. Abstrakte Gestaltungsstudien.</p>
+          <p class="sg-note"><a class="ul" href="branding/experiments/manicure-panels.html" target="_blank" rel="noopener">Experiment einzeln öffnen ↗</a></p>
+        </article>
         <article class="sg-move wide">
           <div class="sg-move-stage sg-glow-demo" id="glowDemo">
             <div class="sg-glow-panel theme-pink">Pink</div>

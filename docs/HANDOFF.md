@@ -1,5 +1,7 @@
 # Übergabe: PM Beauty Website (Stand 21.10.2026)
 
+**3D-Panels 26.10.2026:** Das Maniküre-Experiment ist unter `styleguide.html#nagelpanels` im Kapitel Bewegung als Live-Ansicht eingebunden. Quelle bleibt `branding/experiments/manicure-panels.html`; `?embed=1` aktiviert die kompakte Ansicht mit Panels nebeneinander auch auf dem Handy. Die eigenständige Seite ohne Parameter und der Three.js-Renderer bleiben unverändert.
+
 **Getrennte Bildvorschau 26.10.2026:** Die generierten Fotos sind zusätzlich in `1/index.html` unter `https://paula-maher.de/1/` eingebunden (acht Galerie-, zwei Kurs- und zwei Kontaktbilder). Lucas hat den Austausch ausschließlich für diese Custom-URL beauftragt. Die offizielle Startseite `/index.html` und gemeinsame CSS-/JS-Dateien bleiben unverändert. Vorschau mit KI-Kennzeichnung und `noindex, nofollow`; Paula-Porträts bleiben echt. `/1/` ist kein passwortgeschützter Bereich.
 
 **Logo-Bewegung 26.10.2026:** Im Styleguide ist „nein, alles in einem Zug“ der neue Standard. Der große Zug hat einen längeren Auslauf (`cubic-bezier(.53, 0, .45, 1)`) und bremst vor der Pause vollständig ab; P-Stamm separat mit bisherigem Tempo. Getrennte Freilegungsmasken verhindern den vorzeitig sichtbaren P-Punkt. Änderungen sind inline in `styleguide.html`, die SVG-Originale bleiben unverändert.

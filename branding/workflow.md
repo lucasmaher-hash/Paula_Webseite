@@ -628,6 +628,11 @@
 - **Funktioniert:** Ausschließlich dort acht Galerie-, zwei Schulungs- und zwei Kontaktbilder durch vorhandene WebP-Motive ersetzt. Neue Fotos ohne zusätzliche Braun-/Pink-Tönung; Kontakt zeigt Empfang mit Wandlogo und Pflanze im pinken Keramiktopf. Das Handfoto bleibt ohne Logo in der Schale. Galerie heißt „Bildwelt / Beauty, nah dran.“ und kennzeichnet die generierten Motive, ebenso die Kurs- und Kontaktbilder. Echte Paula-Porträts bleiben erhalten. Vorschau erhält `noindex, nofollow`; relativen OG-Bildpfad korrigiert. Prüfung bei 375 und 1440 px: alle zwölf generierten Bildeinbindungen geladen, keine JavaScript-Fehler oder horizontale Seitenüberläufe, mobiles Menü funktioniert. Offizielle `index.html` und sämtliche gemeinsamen CSS-/JS-Dateien per Git-Vergleich unverändert.
 - **Nicht funktioniert / offen:** Der bisherige Desktop-Ausschnitt der achten Galerieposition war noch auf die frühere Nagelaufnahme eingestellt; den Bildausschnitt für das Nagellack-Stillleben lokal in `/1/` angepasst. Einbau in die offizielle Startseite ist ausdrücklich nicht beauftragt. Die Custom-URL ist eine getrennte Vorschau, kein Zugriffsschutz.
 
+### 26.10.2026 · Codex · 3D-Nagelpanels im Styleguide unter Bewegung
+- **Versucht:** Lucas möchte das bestehende Three.js-Experiment direkt im Styleguide zeigen, Auswahl und Nagel nebeneinander wie auf der Einzelseite.
+- **Funktioniert:** Vollbreite Live-Einbettung am Anfang von „Bewegung“, erreichbar über `styleguide.html#nagelpanels`. Bestehendes Experiment per `?embed=1` eingebunden, ohne Renderer oder Animationen zu duplizieren. Einbettungsansicht blendet den eigenen Kopf-/Hinweistext aus und hält die Panels auch auf dem Handy nebeneinander; die eigenständige Ansicht ohne Parameter bleibt unverändert. Prüfung bei 375 und 1440 px: aktiver Three.js-WebGL-Renderer, alle fünf Looks und Tastaturwechsel funktionieren, Beschreibung passt in den Nagel, keine internen Scrollbalken oder JavaScript-Fehler.
+- **Nicht funktioniert / offen:** Physisches Handy weiterhin nicht geprüft. Die Panels bleiben abstrakte Gestaltungsstudien, keine neu behaupteten Behandlungen. Original-Experiment zusätzlich über einen Link erreichbar. Reduzierte Bewegung und der CSS-Fallback bei fehlendem WebGL wurden ebenfalls geprüft.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
