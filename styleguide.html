@@ -201,6 +201,9 @@
 .sg-app .scene{flex:1;position:relative;min-height:300px;display:grid;place-items:center;padding:var(--space-6) var(--space-4);overflow:hidden}
 .sg-app .scene.linen{background:radial-gradient(90% 70% at 20% 10%,hsl(var(--brown-hue) 30% 92%),hsl(var(--brown-hue) 26% 80%))}
 .sg-app .scene.blush{background:radial-gradient(90% 70% at 80% 0%,hsl(var(--pink-hue) 40% 92%),hsl(var(--pink-hue) 24% 78%))}
+.sg-app-media{aspect-ratio:3/2;overflow:hidden}
+.sg-app-media.portrait{aspect-ratio:2/3}
+.sg-app-media img{display:block;width:100%;height:100%;object-fit:cover}
 .sg-app .cap{padding:var(--space-4) var(--space-5) var(--space-5);background:var(--color-surface)}
 .sg-app .cap h3{font-size:1rem}
 .sg-app .cap p{font-size:.88rem;color:var(--color-on-surface-muted);margin-top:4px}
@@ -208,33 +211,7 @@
 .sg-phone{width:200px;height:408px;border-radius:32px;background:#1d1714;padding:9px;box-shadow:0 30px 60px -20px rgba(60,35,25,.45)}
 .sg-phone .screen{width:100%;height:100%;border-radius:25px;overflow:hidden;position:relative;background:var(--color-background)}
 .sg-phone iframe{position:absolute;top:0;left:0;width:375px;height:795px;border:0;transform:scale(.4853);transform-origin:0 0}
-/* Karten */
-.sg-card{position:relative;width:min(270px,64vw);aspect-ratio:85/55;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 40px -16px rgba(60,35,25,.45),0 2px 4px rgba(60,35,25,.12)}
-.sg-card svg{display:block;overflow:visible}
-.sg-card .small-print{font-size:.62rem;letter-spacing:.06em;line-height:1.5}
-.sg-card.front{background:var(--color-button);color:var(--color-on-primary);align-items:center;justify-content:center;transform:rotate(-6deg) translate(-20%,-34%)}
-.sg-card.front svg{width:62%}
-.sg-card.back{background:hsl(var(--brown-hue) 38% 96%);color:var(--color-primary);position:absolute;transform:rotate(4deg) translate(20%,34%)}
-.sg-card.back .rows{display:grid;gap:9px}
-.sg-card.back .rows div{display:flex;align-items:flex-end;gap:8px;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted)}
-.sg-card.back .rows div::after{content:"";flex:1;border-bottom:1px solid var(--color-border)}
-.sg-card.back .title{font-family:var(--font-display);font-size:1.15rem}
-.sg-voucher{width:min(330px,82vw);aspect-ratio:3/2;border-radius:14px;background:hsl(var(--pink-hue) 38% 93%);color:hsl(var(--pink-hue) 21% 32%);padding:20px 22px;display:grid;grid-template-rows:auto 1fr auto;box-shadow:0 22px 44px -18px rgba(70,35,40,.45);transform:rotate(-3deg);position:relative}
-.sg-voucher::after{content:"";position:absolute;left:50%;top:14px;bottom:14px;border-left:1px dashed hsl(var(--pink-hue) 30% 60% / .5)}
-.sg-voucher svg{width:110px;display:block;overflow:visible}
-.sg-voucher .amount{font-family:var(--font-display);font-size:3.4rem;line-height:1;align-self:center;justify-self:center;position:relative;z-index:1;background:hsl(var(--pink-hue) 38% 93%);padding:0 10px}
-.sg-voucher .foot{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
-/* Instagram */
-.sg-insta{width:min(280px,76vw);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 22px 44px -18px rgba(60,35,25,.4);color:#1d1714}
-.sg-insta .bar{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:.72rem;font-weight:500}
-.sg-insta .avatar{width:26px;height:26px;border-radius:50%;background:var(--color-button);display:grid;place-items:center;color:var(--color-on-primary)}
-.sg-insta .avatar svg{width:20px;overflow:visible}
-.sg-insta .post{position:relative;aspect-ratio:4/5;overflow:hidden}
-.sg-insta .post img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sg-insta .post .label{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 18px;text-align:center;color:#fff;background:linear-gradient(transparent,rgba(40,25,20,.55))}
-.sg-insta .post .label b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.7rem;line-height:1.1}
-.sg-insta .post .label i{display:block;width:44px;height:1px;background:#fff;margin:10px auto 0}
-.sg-insta .meta{padding:10px 12px 14px;font-size:.7rem;line-height:1.5}
+
 /* Dynamisches Logo */
 .sg-dyn{display:grid;gap:10px;grid-template-columns:1.25fr 1fr}
 @media(max-width:899px){.sg-dyn{grid-template-columns:1fr}}
@@ -399,26 +376,25 @@
   <section id="moodboard" aria-labelledby="mood-h">
     <div class="container">
       <span class="eyebrow">03 · Moodboard</span>
-      <h2 id="mood-h">Warm, ruhig, nah dran.</h2>
-      <p class="intro">Die Richtung gibt das Studio-Interieur vor: dunkles Nussholz, Bouclé, Stein und warmes Licht, dazu Creme-, Haut- und Rosétöne. Fotos mit Menschen sind dieselben wie auf der Website, alles mit „Referenz“ ist Stimmung. Jedes Bild ist leicht in Richtung Braun oder Pink getönt, damit das Board wie eine Palette wirkt.</p>
+      <h2 id="mood-h">Warm, präzise, im Blitzlicht.</h2>
+      <p class="intro">Braun und Beige bilden die Basis, Pink setzt Akzente. Leinen, Keramik und Glas verbinden die Motive. Direkter Kamerablitz, kurze harte Schatten und glänzende Highlights geben den Nahaufnahmen eine gemeinsame Bildsprache.</p>
+      <p class="sg-note" style="margin-bottom:var(--space-4)">Alle Fotos auf diesem Moodboard sind KI-generierte Stimmungsbilder und Mockups. Sie zeigen weder Paulas tatsächliches Studio noch ihre Behandlungsergebnisse.</p>
       <div class="sg-mood" style="grid-auto-flow:dense">
-        <figure class="big tint-brown"><img src="images/mood-studio-direction.jpg" alt="Studio-Interieur: Pilzlampe aus Stein auf einem geriffelten Sideboard aus Nussholz, davor ein Bouclé-Sessel" loading="lazy"><figcaption>Richtung · Nussholz, Bouclé, Stein, warmes Licht</figcaption></figure>
-        <figure class="tall tint-brown" style="--tint:.45"><img src="images/paula-studio.jpg" alt="Paula Maher im Studio" loading="lazy"><figcaption>Paula · klar und ruhig</figcaption></figure>
+        <figure class="big"><img src="images/mockups/rezeption-wandlogo-direktblitz-v1.webp" alt="KI-Mockup eines warmen Empfangs mit PM-Monogramm an der Rückwand" loading="lazy" decoding="async" width="1024" height="1536" style="object-position:50% 30%"><figcaption>Empfang · Braun und Beige</figcaption></figure>
+        <figure class="tall"><img src="images/mockups/serie-naegel-schoko-schildpatt-v1.webp" alt="KI-Stimmungsbild: Schokobraune Nägel mit Schildpatt-Akzenten auf Leinen" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Schokobraun · Schildpatt</figcaption></figure>
         <figure class="plain glyph" style="background:var(--color-surface-raised)"><span aria-hidden="true">Aa</span><figcaption>Gambarino</figcaption></figure>
-        <figure class="chips plain"><span style="background:hsl(var(--brown-hue) 38% 90%)"></span><span style="background:rgb(110,80,60)"></span><span style="background:hsl(var(--pink-hue) 35% 86%)"></span><figcaption>Creme · Nussholz · Rosé</figcaption></figure>
-        <figure class="tall tint-pink"><img src="images/nails-floral.jpg" alt="Nude-Nägel mit kleinen Blüten an den Spitzen" loading="lazy"><figcaption>Nude mit Blüten</figcaption></figure>
-        <figure class="tall tint-pink"><img src="images/studio-light.jpg" alt="Indirektes warmes Licht hinter einer abgerundeten Wand" loading="lazy"><figcaption>Warmes Licht · Referenz</figcaption></figure>
-        <figure class="wide tint-brown" style="--tint:.5"><img src="images/mood-cream-fabric.jpg" alt="Cremefarbener Stoff mit weichen Falten" loading="lazy"><figcaption>Stoff · Referenz</figcaption></figure>
-        <figure class="wide tint-pink"><img src="images/nails-art.jpg" alt="Nageldesign in Rot mit Blütenmotiv und Goldakzenten" loading="lazy" style="object-position:50% 22%"><figcaption>Rot mit Blüten</figcaption></figure>
-        <figure class="tall tint-pink"><img src="images/lips-zoom.jpg" alt="Lippenpigmentierung, Nahaufnahme der Lippen" loading="lazy"><figcaption>Lippen · das Pink der Marke</figcaption></figure>
+        <figure class="chips plain"><span style="background:hsl(var(--brown-hue) 38% 90%)"></span><span style="background:rgb(110,80,60)"></span><span style="background:hsl(var(--pink-hue) 35% 86%)"></span><figcaption>Creme · Braun · Pink</figcaption></figure>
+        <figure class="tall"><img src="images/mockups/serie-naegel-nude-blueten-v1.webp" alt="KI-Stimmungsbild: Nude-Nägel mit kleinen weißen und pinken Blüten" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Nude · feine Blüten</figcaption></figure>
+        <figure class="tall"><img src="images/mockups/serie-pflanze-keramik-v1.webp" alt="KI-Stimmungsbild: Grünpflanze in einem pinken Keramiktopf" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Pink · Keramik</figcaption></figure>
+        <figure class="wide"><img src="images/mockups/serie-leinen-pink-v1.webp" alt="KI-Stimmungsbild: Cremefarbenes Leinen auf einem pinken Tuch" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Leinen · taktile Flächen</figcaption></figure>
+        <figure class="wide"><img src="images/mockups/hand-naegel-leinen-direktblitz-v1.webp" alt="KI-Stimmungsbild: Manikürte Hand auf Leinen neben einer Keramikschale ohne Logo" loading="lazy" decoding="async" width="1536" height="1024"><figcaption>Hand · Leinen · Keramik</figcaption></figure>
+        <figure class="tall"><img src="images/mockups/serie-lippen-rose-v1.webp" alt="KI-Stimmungsbild: Nahaufnahme natürlich roséfarbener Lippen" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Rosé · glänzende Details</figcaption></figure>
         <figure class="plain word wide" style="background:var(--color-surface)"><span>nah dran.</span></figure>
-        <figure class="tint-brown" style="--tint:.5"><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"><figcaption>Präzision im Detail</figcaption></figure>
-        <figure class="wide tint-brown"><img src="images/microneedling.jpg" alt="Gesichtsbehandlung mit Microneedling-Gerät" loading="lazy" style="object-position:50% 68%"><figcaption>Gesicht · Microneedling</figcaption></figure>
-        <figure class="tall tint-pink"><img src="images/mood-rose.jpg" alt="Zweig mit blassrosa Rosenblüten" loading="lazy"><figcaption>Rose · Referenz</figcaption></figure>
-        <figure class="tint-brown"><img src="images/nails-tortoise.jpg" alt="Nageldesign in Schokobraun und Schildpatt" loading="lazy"><figcaption>Schokobraun · Schildpatt</figcaption></figure>
-        <figure class="tint-pink" style="--tint:.5"><img src="images/mood-nail-polish.jpg" alt="Rosé Nagellack auf hellem Grund" loading="lazy"><figcaption>Lack · Referenz</figcaption></figure>
-        <figure class="plain word wide" style="background:var(--color-surface-deep)"><span>ruhig.</span></figure>
-        <figure class="tint-brown"><img src="images/brows-lashes.jpg" alt="Augenbrauen und Wimpern, Nahaufnahme" loading="lazy" style="object-position:40% 72%"><figcaption>Brauen · feine Linie</figcaption></figure>
+        <figure class=""><img src="images/mockups/serie-brauen-wimpern-v1.webp" alt="KI-Stimmungsbild: Einzelne Brauenhaare und Wimpern am geschlossenen Auge" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Brauen · feine Linie</figcaption></figure>
+        <figure class="wide"><img src="images/mockups/serie-behandlung-hautdetail-v1.webp" alt="KI-Stimmungsbild: Kosmetischer Behandlungskopf an einer Wange" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Behandlung · nah dran</figcaption></figure>
+        <figure class="tall"><img src="images/mockups/serie-facial-tuchmaske-v1.webp" alt="KI-Stimmungsbild: Tuchmasken-Detail mit behandschuhten Fingern" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Facial · Textur und Glanz</figcaption></figure>
+        <figure class=""><img src="images/mockups/serie-nagellack-stillleben-v1.webp" alt="KI-Stimmungsbild: Roséfarbener Nagellack in einer unbeschrifteten Glasflasche" loading="lazy" decoding="async" width="1024" height="1536"><figcaption>Lack · Glas · Braun</figcaption></figure>
+        <figure class="plain word wide" style="background:var(--color-surface-deep)"><span>die Mitte.</span></figure>
       </div>
     </div>
   </section>
@@ -720,20 +696,22 @@
   <section id="bilder" class="theme-pink" aria-labelledby="bilder-h">
     <div class="container">
       <span class="eyebrow">10 · Bildsprache</span>
-      <h2 id="bilder-h">Echte Arbeit, nah dran.</h2>
-      <p class="intro">Nahaufnahmen der Ergebnisse, warmes Licht, Hochformat, immer in abgerundeten Rahmen und leicht in Braun oder Pink getönt. Es sind dieselben Fotos wie auf der Website.</p>
+      <h2 id="bilder-h">Direktblitz, nah dran.</h2>
+      <p class="intro">Eine zusammenhängende Serie: warme Hauttöne, Braun, Beige und dosiertes Pink. Nahaufnahmen mit klarer Schärfe, sichtbarer Textur und harten Blitzreflexen, immer in den abgerundeten Rahmen der Marke.</p>
       <div class="sg-photos">
-        <span class="tint-pink"><img src="images/lips-zoom.jpg" alt="Lippenpigmentierung, Nahaufnahme" loading="lazy"></span>
-        <span class="tint-brown" style="--tint:.5"><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"></span>
-        <span class="tint-brown"><img src="images/nails-tortoise.jpg" alt="Nageldesign in Schokobraun und Schildpatt" loading="lazy"></span>
-        <span class="tint-brown"><img src="images/brows-lashes.jpg" alt="Augenbrauen und Wimpern, Nahaufnahme" loading="lazy"></span>
-        <span class="tint-pink"><img src="images/nails-floral.jpg" alt="Nude-Nägel mit kleinen Blüten" loading="lazy"></span>
-        <span class="tint-brown"><img src="images/microneedling.jpg" alt="Gesichtsbehandlung mit Microneedling" loading="lazy"></span>
+        <span><img src="images/mockups/serie-lippen-rose-v1.webp" alt="KI-Stimmungsbild: Roséfarbene Lippen mit klaren Blitzreflexen" loading="lazy" decoding="async" width="1024" height="1536"></span>
+        <span><img src="images/mockups/serie-brauen-wimpern-v1.webp" alt="KI-Stimmungsbild: Brauen und Wimpern am geschlossenen Auge" loading="lazy" decoding="async" width="1024" height="1536"></span>
+        <span><img src="images/mockups/serie-naegel-schoko-schildpatt-v1.webp" alt="KI-Stimmungsbild: Schokobraune Nägel mit Schildpatt-Akzenten" loading="lazy" decoding="async" width="1024" height="1536"></span>
+        <span><img src="images/mockups/serie-naegel-nude-blueten-v1.webp" alt="KI-Stimmungsbild: Nude-Nägel mit kleinen Blüten" loading="lazy" decoding="async" width="1024" height="1536"></span>
+        <span><img src="images/mockups/serie-facial-tuchmaske-v1.webp" alt="KI-Stimmungsbild: Tuchmaske auf einer Wange" loading="lazy" decoding="async" width="1024" height="1536"></span>
+        <span><img src="images/mockups/serie-behandlung-hautdetail-v1.webp" alt="KI-Stimmungsbild: Kosmetisches Behandlungsdetail an einer Wange" loading="lazy" decoding="async" width="1024" height="1536"></span>
       </div>
+      <p class="sg-note" style="margin-top:var(--space-4)">KI-generierte Stimmungsbilder zur Bildsprache. Keine echten Kundinnen und keine Behandlungsergebnisse von Paula.</p>
       <ul class="sg-list" style="margin-top:var(--space-5)">
-        <li><strong>Platzhalter</strong> nur aus kostenlosen Stockfotos mit freier Lizenz. Quelle und Lizenz werden festgehalten.</li>
-        <li><strong>Nie</strong> fremde Behandlungsergebnisse als Paulas Arbeit zeigen.</li>
-        <li>Alt-Texte beschreiben, was zu sehen ist (z. B. „Lippenpigmentierung, Ergebnis“).</li>
+        <li><strong>Licht und Kamera:</strong> frontaler Direktblitz, kurze harte Schatten, kleine glänzende Highlights. Enge, ruhige Ausschnitte statt wechselnder Perspektiven.</li>
+        <li><strong>Farbe:</strong> die gemeinsame Farbwelt steckt bereits in den Bildern. Keine zusätzliche Braun- oder Pink-Tönung über die Fotos legen.</li>
+        <li><strong>Echte Arbeiten:</strong> nur belegte Originalfotos als Paulas Ergebnisse zeigen. KI-Motive bleiben klar als Stimmungsbilder oder Mockups gekennzeichnet.</li>
+        <li>Alt-Texte beschreiben das Motiv und nennen bei generierten Bildern den KI-Kontext.</li>
       </ul>
     </div>
   </section>
@@ -743,29 +721,42 @@
     <div class="container">
       <span class="eyebrow">11 · Anwendung</span>
       <h2 id="anwendung-h">Die Marke im Alltag.</h2>
-      <p class="intro">Vier Stellen, an denen Kundinnen PM Beauty begegnen. Gebaut aus den Werten von <span class="sg-code">css/style.css</span>, das Handy zeigt die echte Website.</p>
+      <p class="intro">Das PM-Monogramm auf Papier, im Raum und als Teil des Materials. Braun, Beige und Pink halten die Anwendungen zusammen. Die Fotos sind KI-generierte Anwendungskonzepte; die Handyvorschau zeigt die aktuelle Website.</p>
       <div class="sg-apps">
         <figure class="sg-app">
+          <div class="sg-app-media"><img src="images/mockups/visitenkarten-direktblitz-logo-v2.webp" alt="KI-generiertes Mockup: Braune und pinke Visitenkarten mit PM-Monogramm auf Leinen" loading="lazy" decoding="async" width="1536" height="1024"></div>
+          <figcaption class="cap"><h3>Visitenkarten</h3><p>Braun und Pink, das Monogramm mittig. Zwei Karten als zusammengehörige Anwendung.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media"><img src="images/mockups/terminkarte-direktblitz-logo-v2.webp" alt="KI-generiertes Mockup: Zartrosa Terminkarte mit braunem PM-Monogramm neben einem Stift" loading="lazy" decoding="async" width="1536" height="1024"></div>
+          <figcaption class="cap"><h3>Terminkarte</h3><p>Das Monogramm steht oben auf der Mittelachse. Darunter bleibt Platz zum Eintragen des Termins.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media portrait"><img src="images/mockups/rezeption-thekenlogo-direktblitz-v1.webp" alt="KI-generiertes Mockup: Beauty-Salon-Empfang mit PM-Monogramm auf der linken Thekenfront" loading="lazy" decoding="async" width="1024" height="1536"></div>
+          <figcaption class="cap"><h3>Logo auf der Theke</h3><p>Kleine, ruhige Markenpräsenz auf einer abgerundeten Empfangstheke. Frei entworfener Raum.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media portrait"><img src="images/mockups/rezeption-wandlogo-direktblitz-v1.webp" alt="KI-generiertes Mockup: Beauty-Salon-Empfang mit PM-Monogramm an der Rückwand" loading="lazy" decoding="async" width="1024" height="1536"></div>
+          <figcaption class="cap"><h3>Logo im Raum</h3><p>Das Monogramm als Wandzeichen, eingerahmt von einer abgerundeten Nische. Frei entworfener Raum.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media portrait"><img src="images/mockups/glasbehaelter-logo-vertieft-direktblitz-v1.webp" alt="KI-generiertes Mockup: Klarer Glasbehälter mit transparent eingearbeitetem PM-Monogramm" loading="lazy" decoding="async" width="1024" height="1536"></div>
+          <figcaption class="cap"><h3>Logo im Glas</h3><p>Das Zeichen wird über Licht, Kanten und die vertiefte Glasstruktur sichtbar. Anwendungskonzept.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media portrait"><img src="images/mockups/wattestaebchen-pink-logo-direktblitz-v1.webp" alt="KI-generiertes Mockup: Offener pinker Wattestäbchen-Behälter mit weißem Deckel und Etikett mit pinkem PM-Monogramm" loading="lazy" decoding="async" width="1024" height="1536"></div>
+          <figcaption class="cap"><h3>Verpackung für kleine Details</h3><p>Pinker Behälter, weißes Etikett, weißer Deckel. Freies Verpackungskonzept, kein reales Verkaufsprodukt.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
+          <div class="sg-app-media"><img src="images/mockups/papierverpackung-direktblitz-logo-v3.webp" alt="KI-generiertes Mockup: Beige Papiertasche mit braunem PM-Monogramm und pinkem Anhänger mit weiterem Monogramm" loading="lazy" decoding="async" width="1536" height="1024"></div>
+          <figcaption class="cap"><h3>Tasche und Anhänger</h3><p>Das Logo auf der Tasche und auf dem pinken Anhänger verbindet die beiden Flächen.</p><p class="sg-note">KI-generiertes Mockup</p></figcaption>
+        </figure>
+        <figure class="sg-app">
           <div class="scene linen"><div class="sg-phone"><div class="screen"><iframe src="index.html" title="PM Beauty Website auf dem Handy" loading="lazy" tabindex="-1"></iframe></div></div></div>
-          <figcaption class="cap"><h3>Website auf dem Handy</h3><p>Der wichtigste Kanal, weil die meisten Kundinnen über Instagram kommen. Die Vorschau ist die Live-Seite und lässt sich scrollen.</p></figcaption>
-        </figure>
-        <figure class="sg-app">
-          <div class="scene linen"><div style="position:relative;display:grid;place-items:center">
-            <div class="sg-card front"><svg viewBox="30 -20 1590 950" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm10"/></svg></div>
-            <div class="sg-card back"><span class="title">Dein nächster Termin.</span><div class="rows"><div>Datum</div><div>Uhrzeit</div><div>Behandlung</div></div><span class="small-print">Fürstenrieder Str. 11 · München · @pm_beauty___</span></div>
-          </div></div>
-          <figcaption class="cap"><h3>Visitenkarte und Terminkarte</h3><p>Vorderseite braun mit mittigem Monogramm, Rückseite hell zum Ausfüllen. Format 85 × 55 mm.</p></figcaption>
-        </figure>
-        <figure class="sg-app">
-          <div class="scene blush"><div class="sg-voucher"><svg style="justify-self:center" viewBox="30 -20 1590 950" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm10"/></svg><span class="amount">100 €</span><div class="foot"><span>Gutschein</span><span>München</span></div></div></div>
-          <figcaption class="cap"><h3>Gutschein</h3><p>Der Betrag sitzt auf der Mittelachse, die gestrichelte Linie zeigt sie. Pink, weil ein Gutschein eine Behandlung verschenkt.</p></figcaption>
-        </figure>
-        <figure class="sg-app">
-          <div class="scene blush"><div class="sg-insta"><div class="bar"><span class="avatar"><svg viewBox="30 -20 1590 950" fill="currentColor" aria-hidden="true" focusable="false"><use href="#pm10s"/></svg></span>pm_beauty___</div><div class="post"><img src="images/lashlift.jpg" alt="Lashlift, Nahaufnahme" loading="lazy"><div class="label"><b>Korean Lashlift.</b><i></i></div></div><div class="meta"><b>pm_beauty___</b> Korean Lashlift. Termin über den Link in der Bio.</div></div></div>
-          <figcaption class="cap"><h3>Instagram-Beitrag</h3><p>Echtes Ergebnisfoto, darunter der Behandlungsname in Italiana mit Punkt und eine kurze Linie aus der Mitte. Kein Text im oberen Bilddrittel.</p></figcaption>
+          <figcaption class="cap"><h3>Website auf dem Handy</h3><p>Die aktuelle Website als interaktive Vorschau im Handyrahmen.</p></figcaption>
         </figure>
       </div>
-      <p class="sg-note" style="margin-top:var(--space-4)">Mockups in HTML und CSS, keine Fotografien.</p>
+      <p class="sg-note" style="margin-top:var(--space-4)">Die Empfangsräume und Verpackungen sind Entwürfe, keine Dokumentation von Paulas Studio oder ihrem Sortiment. Verwendete Prompts und Bildversionen: <a class="ul" href="branding/assets/mockups/PROMPTS.md">Bilddokumentation</a>.</p>
     </div>
   </section>
 
