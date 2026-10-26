@@ -12,5 +12,5 @@ Die Bildgenerierung und die Einbindung in den Styleguide sind jetzt umgesetzt. E
 - Die generierten Motive nicht als Paulas Arbeiten, reale Kundinnen, tatsächliche Studioräume oder reales Sortiment ausgeben. Die Wattestäbchen-Verpackung ist ein freies Anwendungskonzept mit Lucas' Textfreigabe.
 - Kein zusätzlicher Braun-/Pink-Filter über die neue Serie. Keine Behandlungspreise ergänzen.
 - Die separate Vorschau `1/index.html` unter `https://paula-maher.de/1/` zeigt jetzt acht Galerie-, zwei Kurs- und zwei Kontaktmotive aus der generierten Serie. Nur diese Custom-URL wurde auf Lucas' ausdrücklichen Wunsch angepasst, mit sichtbarer KI-Kennzeichnung.
-- Die offizielle `index.html`, `css/` und `js/` bleiben unverändert. Die offizielle Kundenwebsite zeigt weiterhin ihren vorherigen Bildbestand. Keine Bilder dort austauschen, ohne Lucas' gesonderten Auftrag.
+- Die offizielle `index.html`, die gemeinsame CSS-Datei und der Bildbestand der offiziellen Kundenwebsite bleiben unverändert. `js/logo-write.js?v=5` wird nur von `/1/` und dem Styleguide geladen und vereinheitlicht dort die Logo-Bewegung. Keine Bilder auf der offiziellen Startseite austauschen, ohne Lucas' gesonderten Auftrag.
 - Projektregeln beibehalten: Handy zuerst, Workflow-Log, commit/push auf main und Pages-Deploy prüfen.

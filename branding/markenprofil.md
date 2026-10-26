@@ -23,7 +23,7 @@ Bedürfnisse: Zeit sparen, sich auf das Ergebnis verlassen, sich bei einer Perso
 ## Drei Werte
 
 - **Präzision:** exakte Linien bei Brauen und Lippen, saubere Nagelhaut, nichts „ungefähr“.
-- **ruhige Ästhetik:** warmes, aufgeräumtes Studio, keine Hektik, kein Glitzer.
+- **gepflegte Eleganz:** klare Formen, glänzende Oberflächen und sanftes Pink. Feminin, aufgeräumt und bis ins Detail gepflegt (Lucas' Präzisierung vom 26.10.2026).
 - **ehrliche Qualität:** echte Fotos, echte Bewertungen, klare Standards (5,0 ★ bei 26 Bewertungen auf Beautinda).
 
 ## Charakter, Persönlichkeit

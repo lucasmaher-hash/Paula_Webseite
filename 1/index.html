@@ -10,7 +10,7 @@
 document.documentElement.classList.add('js');
 // Header-Logo schreibt sich beim ersten Laden einer Sitzung (js/logo-write.js): bis dahin unsichtbar, nach 4 s spätestens sichtbar.
 try {
-  if (!sessionStorage.getItem('pmLogoWritten') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!sessionStorage.getItem('pmLogoWrittenV2:' + location.pathname) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('logo-intro');
     setTimeout(function () { document.documentElement.classList.remove('logo-intro'); }, 4000);
   }
@@ -481,7 +481,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 </footer>
 
 <script src="../js/main.js?v=39"></script>
-<script src="../js/logo-write.js?v=4"></script>
+<script src="../js/logo-write.js?v=5"></script>
 <script src="../js/frame-draw.js?v=1"></script>
 </body>
 </html>

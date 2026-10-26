@@ -1,5 +1,7 @@
 # Übergabe: PM Beauty Website (Stand 21.10.2026)
 
+**Gemeinsame Logo-Bewegung und Markenwert 26.10.2026:** `js/logo-write.js?v=5` animiert den Header unter `/1/` sowie Seitenleistenlogo und beide Logo-Beispiele im Styleguide mit einem durchgehenden Hauptzug (`.53, 0, .45, 1`), Pause und separat maskiertem P-Stamm mit bisherigem Tempo. Große Styleguide-Logos starten beim Sichtbarwerden, Wiederholung per Maus-Hover. Konturen werden aus den vorhandenen SVG-Symbolen kopiert, keine neue Logo-Zeichnung. „Ästhetik“ heißt in der mittleren Wertekarte jetzt „Gepflegte Eleganz“, synchron im verlinkten Markenprofil. Paulas wörtlicher Leitsatz und die offizielle Startseite bleiben unverändert.
+
 **3D-Panels 26.10.2026:** Das Maniküre-Experiment ist unter `styleguide.html#nagelpanels` im Kapitel Bewegung als Live-Ansicht eingebunden. Quelle bleibt `branding/experiments/manicure-panels.html`; `?embed=1` aktiviert die kompakte Ansicht mit Panels nebeneinander auch auf dem Handy. Die eigenständige Seite ohne Parameter und der Three.js-Renderer bleiben unverändert.
 
 **Getrennte Bildvorschau 26.10.2026:** Die generierten Fotos sind zusätzlich in `1/index.html` unter `https://paula-maher.de/1/` eingebunden (acht Galerie-, zwei Kurs- und zwei Kontaktbilder). Lucas hat den Austausch ausschließlich für diese Custom-URL beauftragt. Die offizielle Startseite `/index.html` und gemeinsame CSS-/JS-Dateien bleiben unverändert. Vorschau mit KI-Kennzeichnung und `noindex, nofollow`; Paula-Porträts bleiben echt. `/1/` ist kein passwortgeschützter Bereich.
