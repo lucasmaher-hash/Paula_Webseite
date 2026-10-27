@@ -638,6 +638,11 @@
 - **Funktioniert:** Das separate Header-Skript auf einen durchgehenden Hauptzug mit längerem Auslauf umgestellt, Pause und P-Tempo erhalten. Dasselbe Skript animiert nun auch das Seitenleistenlogo und beide großen Logo-Beispiele im Styleguide. Eigene Masken je Kontur verhindern vorzeitige P-Punkte; pro Logo eindeutige IDs, Originalpfade beim Abspielen frisch aus dem SVG-Symbol übernommen, sodass der Strichstärke-Regler berücksichtigt bleibt. Cache-Version auf 5 erhöht, Einmal-Abspielen je Seitenpfad getrennt gespeichert. Die frühere Kurve fiel in der reproduzierbaren Zeitprüfung durch; die neue entspricht der festgelegten Kurve. Prüfung beider Seiten bei 375 und 1440 px: Abspielen und Hover-Wiederholung funktionieren, keine JavaScript-Fehler; P-Stamm während Hauptzug/Pause vollständig unsichtbar und fertiges Logo bis auf höchstens ein Antialiasing-Randpixel identisch zur unmaskierten Kontur. Die mittlere Karte heißt „Gepflegte Eleganz“, mit klaren Formen, glänzenden Oberflächen und sanftem Pink; Markenprofil synchronisiert.
 - **Nicht funktioniert / offen:** Die vorherige Änderung war nur in der einstellbaren Styleguide-Demo umgesetzt, nicht im separat geladenen Header-Skript. Jetzt gemeinsam genutzt, bei reduzierter Bewegung statische Logos. Paulas wörtlicher Leitsatz und die offizielle Startseite unverändert; physisches Handy nicht geprüft.
 
+### 27.10.2026 · Claude · Briefing Kurzprojekt 2 (Website) gefüllt
+- **Versucht:** Lucas legt `kurs/briefing.md` (Ammers Vorlage, Abgabe bis morgen) ab und bittet, zu prüfen, was daraus umsetzbar ist und was ich übernehmen kann. Vorlage für PM Beauty ausgefüllt: Ziel, Zielgruppe, Handlung, Inhalt, drei Seiten, Anforderungen, Kriterien.
+- **Funktioniert:** Fakten aus `docs/prd.md` und `docs/HANDOFF.md` übernommen (38 Behandlungen in fünf Kategorien, Öffnungszeiten, Schulungen, Gutscheine, 5.0-Bewertung, Keine-Preise-Regel). Ergebnis in `branding/briefing-website.md`.
+- **Nicht funktioniert / offen:** Zielgruppe (Alter 20–50, München) ist eine Annahme, nicht aus Paulas Angaben belegt; von Paula bestätigen lassen. Die Vorlage nennt Ammers Beispielfragen zur Seitenauswahl; die Auswahl Startseite, Behandlungen, Kontakt ist meine Empfehlung. Die Website selbst wurde nicht geändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
