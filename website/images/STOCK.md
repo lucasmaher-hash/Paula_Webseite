@@ -18,5 +18,5 @@ Bilder in `images/`, die nicht aus Paulas Studio stammen. Sie werden nur als Sti
 | Datei | Motiv | Quelle | Rechte |
 |---|---|---|---|
 | `mood-studio-direction.jpg` | Studio-Interieur (Pilzlampe, Nussholz-Sideboard, Bouclé), Hauptbild des Moodboards | Instagram-Story von @kusnierz.dagmara (geteilt von @figuratti_), Screenshot via WhatsApp, Instagram-Oberfläche und Text weggeschnitten | Lizenz liegt laut Lucas (19.10.2026) bei Paula |
-| `studio-glass.jpg`, `studio-light.jpg` | Raumfotos, nicht Paulas Studio | von Lucas geschickt (19.10.2026) | siehe `docs/HANDOFF.md` |
-| `studio-pink.jpg` | Raumfoto (rosa Ausstellungsraum mit Kleid), nicht Paulas Studio; ersetzt `studio-light.jpg` im Kontakt | von Lucas geschickt (21.10.2026), Original in `branding/assets/photos/originals/studio-pink.jpg` | siehe `docs/HANDOFF.md` |
+| `studio-glass.jpg`, `studio-light.jpg` | Raumfotos, nicht Paulas Studio | von Lucas geschickt (19.10.2026) | siehe `claude_background/docs/HANDOFF.md` |
+| `studio-pink.jpg` | Raumfoto (rosa Ausstellungsraum mit Kleid), nicht Paulas Studio; ersetzt `studio-light.jpg` im Kontakt | von Lucas geschickt (21.10.2026), Original in `branding/assets/photos/originals/studio-pink.jpg` | siehe `claude_background/docs/HANDOFF.md` |

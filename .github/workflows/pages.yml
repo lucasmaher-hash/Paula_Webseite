@@ -21,10 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - name: Branding übernehmen
-        run: cp -R branding Relevant/website/branding
+        run: |
+          cp -R claude_background/branding website/branding
+          cp markenprofil.md workflow.md briefing-website.md website/branding/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: Relevant/website
+          path: website
 
   deploy:
     needs: build
