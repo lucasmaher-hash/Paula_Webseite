@@ -4,15 +4,15 @@ Stand 27.10.2026. Das Briefing beschreibt, was die Website erreichen soll und wi
 
 ## Ziel
 
-Die Website soll Frauen in München dazu bringen, direkt über Beautinda einen Termin bei Paula zu buchen.
-Die Webseite soll ein Gefühl der Legitimität des Business vermitteln. Heißt: Statt nur über Social-Media-Kanäle zu werben, gibt es durch die Webseite einen offiziellen Hub. Es soll also ein Gefühl der Vertrautheit und Legitimität erzeugt werden.
-Auf das Kurs- und Schulungsangebot aufmerksam machen.
+Die Website soll die Professionalität von PM Beauty vermitteln und Vertrauen in Paula und ihr Studio schaffen. Sie ergänzt den Social-Media-Auftritt um eine offizielle Anlaufstelle mit Informationen zu Paula, dem Studio und den Angeboten.
+
+Interessentinnen sollen einen klaren Überblick über die Behandlungen erhalten, auf das Schulungsangebot aufmerksam werden und direkt über Beautinda einen Termin buchen können.
 
 ## Zielgruppe und Situation
 
-Kundinnen zwischen 20 und 50 aus München und Umgebung, die Nägel, Wimpern, Brauen oder Permanent Make-up suchen.
-Die Klientel gehört zur gehobeneren Klasse und hat hohe Ansprüche an Behandlungen, Ergebnisse und Qualität. Sie scheut sich nicht davor, dafür mehr Geld auszugeben.
-Sie kommen meist über TikTok oder Social Media.
+Frauen zwischen 20 und 50 aus München und Umgebung, die Maniküre, Wimpern- und Brauenbehandlungen oder Permanent Make-up suchen. Sie haben hohe Ansprüche an die Qualität der Behandlung und das Ergebnis und sind bereit, dafür mehr zu bezahlen.
+
+Sie werden meist über TikTok oder andere soziale Netzwerke auf PM Beauty aufmerksam und besuchen die Website auf dem Handy. Vor einer Buchung möchten sie das Angebot überblicken, Paula und das Studio kennenlernen und einschätzen, ob die Behandlungen ihren Vorstellungen entsprechen.
 
 ## Die wichtigste Handlung
 

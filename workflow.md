@@ -648,6 +648,11 @@
 - **Funktioniert:** Rechtschreibung, Grammatik und Zeichensetzung korrigiert; Inhalt und Aufbau beibehalten. Dateiname im Pages-Workflow an Lucas’ Umbenennung angepasst.
 - **Nicht funktioniert / offen:** Die Angaben zu drei Seiten und einem Onepager bleiben zur inhaltlichen Klärung unverändert.
 
+### 27.10.2026 · Codex · Ziel und Zielgruppe im Briefing präzisiert
+- **Versucht:** Auf Lucas’ Wunsch die Abschnitte „Ziel“ und „Zielgruppe und Situation“ konkreter formulieren.
+- **Funktioniert:** Ziel als Vertrauensaufbau, offizielle Anlaufstelle, Angebotsüberblick und Buchungsmöglichkeit formuliert; Zielgruppe über Qualitätsanspruch und Zahlungsbereitschaft beschrieben und die Situation vor der Buchung konkretisiert.
+- **Nicht funktioniert / offen:** Keine neue Zielgruppenrecherche; Formulierungen beruhen auf Lucas’ Angaben und dem bestehenden Projektkontext.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
