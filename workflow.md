@@ -658,6 +658,11 @@
 - **Funktioniert:** Bestehende Angaben in sechs Stichpunkten aufbereitet; Inhalt beibehalten.
 - **Nicht funktioniert / offen:** Keine.
 
+### 27.10.2026 · Codex · Experimentelle Website neben die Hauptseite verschoben
+- **Versucht:** Lucas möchte die experimentelle Kopie im selben Ordner wie die anderen Website-Dateien und mit einem verständlichen Dateinamen.
+- **Funktioniert:** `website/1/index.html` nach `website/index-experimentell.html` verschoben und alle 23 relativen Datei- und Bildpfade angepasst. Inhalt und Hauptseite unverändert.
+- **Nicht funktioniert / offen:** Die bisherige Adresse `/1/` entfällt; neue Adresse ist `/index-experimentell.html`.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
