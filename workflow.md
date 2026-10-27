@@ -668,6 +668,11 @@
 - **Funktioniert:** Browser-Reproduktion zeigte 1 px Rahmenversatz und −12 px Abstand zum Gutschein-Hinweis. In der experimentellen Version die alten SVGs durch eine geschlossene, maskierte Verlaufskontur an der Außenkante ersetzt; Fotos mitsamt Rand beschnitten, Schulungstextteile als ein Panel gefasst, Gutschein-Verschiebung im Layout reserviert (jetzt 24 px Abstand). Getrennte Regler für Breite und Vorder-/Hinterfarbe beider Farbwelten, inkl. Schwarz/Weiß, breitem Zahlenbereich, lokalem Speichern, Reset, kopierbaren Werten, Ziehen und Einklappen. Chrome-Tests bei 375/1440 px, an der 899/900-px-Grenze und mit Touch-Emulation bestanden; Außenkante zusätzlich am Foto geprüft. Hauptseite unverändert. Lucas’ bereits vorhandene Kürzung der Inhaltsliste im Briefing wird auf seine Anweisung „alles direkt auf main“ mitcommittet.
 - **Nicht funktioniert / offen:** Ein zu hoher Sichtbarkeitsschwellwert und eine unvollständige Elementauswahl hatten Teile der bisherigen Animation ausgelassen. Das SVG maß die Innenfläche; eine spätere CSS-Regel überschrieb den Gutschein-Abstand. Der neue Verlauf bleibt geschlossen und pausiert nur außerhalb des Bildschirms bzw. bei reduzierter Bewegung. Prüfung auf einem physischen Handy nicht durchgeführt; Regler bleiben vorläufig, bis Lucas Werte festlegt.
 
+### 27.10.2026 · Codex · Logo-Tüte statt Blumentopf im Kontaktbereich
+- **Versucht:** Lucas möchte unten in der experimentellen Website die Tüte mit Logo und pinkem Label statt des Blumentopfs zeigen.
+- **Funktioniert:** Vorhandenes Verpackungs-Mockup v3 eingesetzt, Originalmaße und Bildbeschreibung übernommen sowie KI-Hinweis auf Empfang und Verpackung aktualisiert.
+- **Nicht funktioniert / offen:** Kein neues Bild generiert; die Hauptseite bleibt unverändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
