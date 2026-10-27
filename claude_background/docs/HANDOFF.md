@@ -1,6 +1,8 @@
 # Übergabe: PM Beauty Website (Stand 28.10.2026)
 
 
+**Kategorierahmen 28.10.2026:** In der experimentellen Basis sind geschlossene Behandlungskategorien einfarbig und statisch. Offene oder auf Geräten mit Maus gehoverte Kategorien zeigen den umlaufenden Verlauf mit um 25 % abgedunkelter Vorderfarbe; die Farbmischung nutzt weiterhin den Pink-Regler. Reduzierte Bewegung stoppt die Animation. CSS `experiment-frames.css?v=7`. Andere Rahmen bleiben unverändert.
+
 **Schulungen und 3D-Layouts 28.10.2026:** Zwei Schulungsmotive im Hochformat ohne Schulungstext, erstellt mit Imagegen aus den bisherigen Plakaten: `branding/assets/mockups/schulung-lash-brow-motiv-v2.png` und `schulung-manicure-motiv-v2.png`, WebP unter `website/images/mockups/`. Das bestehende PM-Monogramm liegt als SVG unten rechts darüber. Prompts in `branding/assets/mockups/PROMPTS.md`. Desktop: erste Zeile Text links/Bild rechts mit Freiraum rechts, zweite Bild links/Text rechts mit Freiraum links. Auf `/1/` dieselbe Anordnung für die drei schmalen 3D-Panels; Handy untereinander. CSS `experiment-frames.css?v=6`, `service-panels.css?v=2`. Offizielle Seite unverändert.
 **Dampf-Motiv 28.10.2026:** Lucas ersetzt das Aquafacial-Galeriebild durch eine KI-generierte Dampfbehandlung aus schräger Perspektive hinter dem Kopf. Original `branding/assets/mockups/serie-dampfbehandlung-direktblitz-v1.png`, WebP `website/images/mockups/serie-dampfbehandlung-direktblitz-v1.webp`; vollständiger Imagegen-Prompt in `branding/assets/mockups/PROMPTS.md`. Es ist ein KI-Stimmungsbild, kein Nachweis einer konkreten Studioleistung. Eingebunden in der experimentellen Basis und der daraus erzeugten `/1/`-Variante.
 

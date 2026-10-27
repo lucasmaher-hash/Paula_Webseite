@@ -41,6 +41,24 @@
 }
 .preview-frame-host.is-frame-active::before{animation-play-state:running}
 @keyframes preview-frame-orbit{from{--preview-frame-angle:0deg}to{--preview-frame-angle:360deg}}
+/* Treatment categories have a quiet, solid outline until opened or hovered. */
+.accordion details.preview-frame-host{
+  --preview-frame-start:color-mix(in srgb,var(--preview-frame-pink-start) 75%,#80545e);
+}
+.accordion details.preview-frame-host::before{
+  --category-frame-gradient:conic-gradient(from var(--preview-frame-angle),
+    var(--preview-frame-end) 0deg,
+    color-mix(in srgb,var(--preview-frame-start) 25%,var(--preview-frame-end)) 110deg,
+    color-mix(in srgb,var(--preview-frame-start) 55%,var(--preview-frame-end)) 240deg,
+    var(--preview-frame-start) 350deg,var(--preview-frame-start) 360deg);
+  background:var(--preview-frame-pink-start);animation:none;
+}
+.accordion details.preview-frame-host[open]::before{background:var(--category-frame-gradient);animation:preview-frame-orbit 5s linear infinite paused}
+.accordion details.preview-frame-host[open].is-frame-active::before{animation-play-state:running}
+@media(hover:hover){
+  .accordion details.preview-frame-host:hover::before{background:var(--category-frame-gradient);animation:preview-frame-orbit 5s linear infinite paused}
+  .accordion details.preview-frame-host:hover.is-frame-active::before{animation-play-state:running}
+}
 /* Heading and course content form one continuous panel, with no internal seam. */
 .course-panel{display:flex;flex-direction:column;min-width:0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--rounded-xl);overflow:hidden}
 .course-heading,.course-content{border:0;border-radius:0}
@@ -66,7 +84,7 @@
   .vouchers-grid{padding-bottom:36px}
   .vouchers-grid{grid-template-columns:1fr 1.3fr 1fr}
 }
-@media(prefers-reduced-motion:reduce){.preview-frame-host::before{animation:none}}
+@media(prefers-reduced-motion:reduce){.preview-frame-host::before,.accordion details.preview-frame-host::before{animation:none!important}}
 
 /* Preserved authoring controls: shown only with ?regler=1. */
 #frame-tuner{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:900;

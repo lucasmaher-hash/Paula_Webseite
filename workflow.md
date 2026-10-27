@@ -693,6 +693,11 @@
 - **Funktioniert:** Zwei bestehende Plakatmotive mit eingebautem Imagegen zu textfreien Hochformat-Stillleben umgearbeitet und das vorhandene PM-Monogramm als SVG ergänzt. Die experimentellen Schulungen und die drei `/1/`-3D-Zeilen auf Desktop alternierend versetzt; Mobil untereinander. Prompts und Originale liegen in `branding/assets/mockups/`. Chrome-Prüfung auf 375 und 1440 px, 38 Leistungen und WebGL-Fallback.
 - **Nicht funktioniert / offen:** Illustrative Lernmaterialien sind keine dokumentierten Schulungsunterlagen; kein Test auf einem physischen Handy.
 
+### 28.10.2026 · Codex · Rahmen der Behandlungskategorien
+- **Versucht:** Lucas möchte mehr Kontrast am Anfang der Linie und Bewegung nur bei geöffneten oder mit der Maus berührten Kategorien.
+- **Funktioniert:** Kategorien geschlossen einfarbig und statisch; bei geöffnetem oder mit der Maus berührtem Panel läuft der Verlauf mit etwas dunklerem Anfang. Farbregler bleiben wirksam. Im Browser auf 375 und 1440 px, Öffnen, Hover, tatsächliche Bewegung und reduzierte Bewegung geprüft; übrige Rahmen unverändert.
+- **Nicht funktioniert / offen:** Kein physisches Handy getestet.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
