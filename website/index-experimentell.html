@@ -36,7 +36,8 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <link rel="stylesheet" href="fonts/fonts.css?v=3">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=gambarino%40400&amp;display=swap">
 <link rel="stylesheet" href="css/style.css?v=73">
-<link rel="stylesheet" href="css/experiment-frames.css?v=4">
+<link rel="stylesheet" href="css/experiment-frames.css?v=5">
+<link rel="stylesheet" href="css/service-panels.css?v=1">
 </head>
 <body>
 <!-- PM-Monogramm v12: v10-Kontur unverändert, nur der separate linke P-Stamm optisch zentriert. -->
@@ -114,10 +115,10 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <main id="top">
 
   <!-- Hero: Paula rechts, Text links (Handy: Text unter dem Bild) -->
-  <section class="hero" aria-labelledby="hero-heading">
+  <section class="hero hero-ai" aria-labelledby="hero-heading">
     <picture class="hero-media">
-      <source media="(min-width: 900px)" srcset="images/hero-paula-wide-outpaint-v2.jpg" width="2400" height="1091">
-      <img src="images/hero-paula-mobile-fade.webp" alt="Paula Maher, Inhaberin von PM Beauty" width="1148" height="2154" fetchpriority="high">
+      <source media="(min-width: 900px)" srcset="images/paula-hero-direktblitz-v1.webp" width="1536" height="1024">
+      <img src="images/paula-hero-direktblitz-v1.webp" alt="KI-bearbeitetes Porträt von Paula Maher auf Basis ihrer Originalfotos" width="1536" height="1024" fetchpriority="high">
     </picture>
     <div class="container hero-content">
       <span class="eyebrow">Beauty &amp; PMU Studio · München</span>
@@ -153,7 +154,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     <div class="strip" aria-label="KI-generierte Beauty-Bildwelt">
       <figure><img src="images/mockups/serie-lippen-rose-v1.webp" alt="KI-Stimmungsbild: Roséfarbene Lippen mit glänzenden Blitzreflexen" loading="lazy" decoding="async" width="1024" height="1536"></figure>
       <figure><img src="images/mockups/serie-brauen-wimpern-v1.webp" alt="KI-Stimmungsbild: Nahaufnahme von Brauen und Wimpern am geschlossenen Auge" loading="lazy" decoding="async" width="1024" height="1536"></figure>
-      <figure><img src="images/mockups/hand-naegel-leinen-direktblitz-v1.webp" alt="KI-Stimmungsbild: Manikürte Hand auf Leinen neben einer Keramikschale ohne Logo" loading="lazy" decoding="async" width="1536" height="1024"></figure>
+      <figure><img src="images/mockups/serie-aquafacial-direktblitz-v1.webp" alt="KI-Stimmungsbild: Aquafacial-Behandlung an einer Wange" loading="lazy" decoding="async" width="1024" height="1536"></figure>
       <figure><img src="images/mockups/serie-naegel-schoko-schildpatt-v1.webp" alt="KI-Stimmungsbild: Schokobraune Nägel mit Schildpatt-Akzenten" loading="lazy" decoding="async" width="1024" height="1536"></figure>
       <figure><img src="images/mockups/serie-naegel-nude-blueten-v1.webp" alt="KI-Stimmungsbild: Nude-Nägel mit kleinen Blüten" loading="lazy" decoding="async" width="1024" height="1536"></figure>
       <figure><img src="images/mockups/serie-behandlung-hautdetail-v1.webp" alt="KI-Stimmungsbild: Kosmetisches Behandlungsdetail an einer Wange" loading="lazy" decoding="async" width="1024" height="1536"></figure>
@@ -165,8 +166,8 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
   <!-- Über Paula & Studio -->
   <section class="about" id="studio" aria-labelledby="about-heading">
     <div class="container about-grid">
-      <div class="about-figure reveal tint-brown" style="--tint:.45">
-        <img src="images/paula-studio.jpg" alt="Paula Maher im PM Beauty Studio" loading="lazy" width="675" height="925">
+      <div class="about-figure reveal">
+        <img src="images/paula-about-direktblitz-v1.webp" alt="KI-bearbeitetes Porträt von Paula Maher auf Basis ihrer Originalfotos" loading="lazy" width="1536" height="1024">
       </div>
       <div class="about-panel">
         <span class="eyebrow">Über mich &amp; Studio</span>
@@ -377,7 +378,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
           <p>Für Aquafacial, Microneedling oder eine Kombi-Behandlung.</p>
           <a class="btn btn-primary" href="https://buy.stripe.com/PLATZHALTER_100" target="_blank" rel="noopener">Kaufen <span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
-        <div class="voucher reveal">
+        <div class="voucher voucher-featured reveal">
           <div class="voucher-top"><svg class="voucher-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5 12v7.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V12M12 8v12.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 8C10.6 5 7.2 4.3 7.2 6.3 7.2 7.6 9.4 8 12 8zm0 0c1.4-3 4.8-3.7 4.8-1.7 0 1.3-2.2 1.7-4.8 1.7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
           <div class="amount">150&nbsp;€</div>
           <p>Das große Verwöhn-Budget — bis hin zum Permanent Make-up.</p>
@@ -485,8 +486,9 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
   </div>
 </footer>
 
+<script src="js/service-variant.js?v=1"></script>
 <script src="js/main.js?v=39"></script>
 <script src="js/logo-write.js?v=5"></script>
-<script src="js/experiment-frames.js?v=3"></script>
+<script src="js/experiment-frames.js?v=4"></script>
 </body>
 </html>

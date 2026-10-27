@@ -274,3 +274,7 @@ This is a fictional brand application concept, not proof of a real product sold 
 Zwei separate Generierungen mit eingebautem `image_gen.imagegen`, ohne Referenzbilder als Modelleingabe. Originale: `schulung-korean-lash-browlifting-poster-v1.png` und `schulung-russian-manicure-gel-poster-v1.png`, jeweils 1536 × 1024 px. Die Motive verbinden große Schulungskennzeichnung mit Beige/Braun/Pink und Direktblitz-Stillleben von illustrativen Lernmaterialien. Keine neuen Leistungsversprechen, Termine oder Preise.
 
 Recherchequellen, vollständige Prompts und Dateizuordnung: [SCHULUNGSPLAKATE-2026-10-27.md](SCHULUNGSPLAKATE-2026-10-27.md).
+
+### 28.10.2026 · Aquafacial und Paula-Porträts
+
+Ein neues Aquafacial-Stimmungsbild ersetzt die zusätzliche Maniküre-Nahaufnahme in der Galerie. Außerdem zwei neue, breite Paula-Porträts mit beiden echten Originalfotos als Identitätsreferenzen: Hero rechts mit freier Textfläche und sitzendes About-Porträt. Eingebautes Imagegen; Vorlagen nicht überschrieben. Alle drei vollständigen Prompts, Herkunft und Dateipfade: [BILDER-2026-10-28.md](../BILDER-2026-10-28.md).

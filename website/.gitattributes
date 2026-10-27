@@ -1,0 +1,2 @@
+# Preserve upstream GLSL template-string whitespace in the generated Three.js bundle.
+js/service-panels-3d.js linguist-generated=true whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab

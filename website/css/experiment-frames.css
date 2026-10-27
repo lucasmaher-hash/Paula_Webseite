@@ -1,8 +1,17 @@
 /* Only loaded by index-experimentell.html. A single border at each visual frame's outer edge. */
 @property --preview-frame-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 :root{
-  --preview-frame-brown-width:1px;--preview-frame-brown-start:#dac6be;--preview-frame-brown-end:#f5eeeb;
-  --preview-frame-pink-width:1px;--preview-frame-pink-start:#d6b9be;--preview-frame-pink-end:#f6eced;
+  --preview-frame-brown-width:1.4px;--preview-frame-brown-start:#dac6be;--preview-frame-brown-end:#e5d8d2;
+  --preview-frame-pink-width:1.4px;--preview-frame-pink-start:#d0b3b8;--preview-frame-pink-end:#d9bfc1;
+}
+/* Photographs and their image containers carry no outlines. */
+.strip figure,.contact-figure,.about-figure,.about-figure img,.course-media,.course-media img{border:0!important}
+@media(max-width:899px){
+  .about-grid,.course{border-color:transparent}
+  .about-panel{border:1px solid var(--color-border);border-radius:var(--rounded-xl);background:var(--color-surface)}
+  .hero-ai .hero-media img{aspect-ratio:4/5;object-position:100% 35%;mask-image:linear-gradient(#000 72%,transparent 100%)}
+  .hero-ai .hero-media{padding-top:var(--header-h)}
+  .hero-ai .hero-content{margin-top:-36px}
 }
 .preview-frame-host{
   border-color:transparent!important;
@@ -33,7 +42,7 @@
 .preview-frame-host.is-frame-active::before{animation-play-state:running}
 @keyframes preview-frame-orbit{from{--preview-frame-angle:0deg}to{--preview-frame-angle:360deg}}
 /* Heading and course content form one continuous panel, with no internal seam. */
-.course-panel{display:contents}
+.course-panel{display:flex;flex-direction:column;min-width:0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--rounded-xl);overflow:hidden}
 .course-heading,.course-content{border:0;border-radius:0}
 .course-media-poster{background:var(--color-background)}
 .course-media-poster img{object-fit:contain}
@@ -45,10 +54,11 @@
   .course-panel .course-content{flex:1}
   /* Translated cards need real layout space below their original grid position. */
   .vouchers-grid{padding-bottom:36px}
+  .vouchers-grid{grid-template-columns:1fr 1.3fr 1fr}
 }
 @media(prefers-reduced-motion:reduce){.preview-frame-host::before{animation:none}}
 
-/* Temporary authoring controls: localhost or ?regler=1. */
+/* Preserved authoring controls: shown only with ?regler=1. */
 #frame-tuner{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:900;
   width:min(320px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;
   border:1px solid #ccc;border-radius:20px;background:#f0f0f3;color:#191919;

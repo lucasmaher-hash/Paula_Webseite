@@ -24,6 +24,7 @@ jobs:
         run: |
           cp -R claude_background/branding website/branding
           cp markenprofil.md workflow.md briefing.md website/branding/
+          python3 claude_background/scripts/build-variants.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website

@@ -24,7 +24,7 @@ const { chromium } = require(process.env.PM_PLAYWRIGHT || '/tmp/pm-frame-check/n
         if(delta>.15) issues.push(`${host.className}: contour inset ${delta.toFixed(2)}px`);
         if(ps.content==='none') issues.push(`${host.className}: missing contour`);
       }
-      for(const el of document.querySelectorAll('.strip figure,.voucher,.services,.reviews,.review,.contact-figure,.hours')) {
+      for(const el of document.querySelectorAll('.voucher,.services,.reviews,.review,.hours')) {
         if(!el.classList.contains('preview-frame-host')) issues.push(`missing frame coverage: ${el.className}`);
       }
       const cards=[...document.querySelectorAll('.voucher')];

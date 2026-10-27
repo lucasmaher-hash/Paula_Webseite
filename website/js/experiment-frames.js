@@ -3,7 +3,7 @@
   'use strict';
   var root = document.documentElement;
   var mobile = matchMedia('(max-width:899px)');
-  var selector = '.tile,.strip figure,.services,.reviews,.accordion details,.voucher,.review,.contact-panel,.contact-figure,.hours,.about-grid,.about-figure,.about-panel,.course,.course-media,.course-panel,.perks li';
+  var selector = '.tile,.services,.reviews,.accordion details,.voucher,.review,.contact-panel,.hours,.about-panel,.course-panel,.perks li,.service-copy';
   var hosts = Array.from(document.querySelectorAll(selector));
   var queued = false;
   function update() {
@@ -14,7 +14,8 @@
       var cs = getComputedStyle(target), box = target.getBoundingClientRect();
       var active = box.width > 0 && box.height > 0 && parseFloat(cs.borderTopWidth) > 0;
       host.classList.toggle('preview-frame-host', active);
-      host.dataset.framePalette = host.closest('.theme-pink,.services,.reviews') ? 'pink' : 'brown';
+      var theme = host.closest('.theme-brown,.theme-pink,.services,.reviews');
+      host.dataset.framePalette = theme && !theme.matches('.theme-brown') ? 'pink' : 'brown';
       if (!active) { host.classList.remove('preview-frame-clip'); return; }
       if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
       var hs = getComputedStyle(host), h = host.getBoundingClientRect();
@@ -49,12 +50,13 @@
     hosts.forEach(function (host) { host.classList.add('is-frame-active'); });
   }
 
-  if (!['localhost','127.0.0.1','[::1]'].includes(location.hostname) && new URLSearchParams(location.search).get('regler') !== '1') return;
-  var key = 'pm-beauty:experiment:frame-tuner:v2';
+  // Authoring controls are preserved and can be restored with ?regler=1 on any host.
+  if (new URLSearchParams(location.search).get('regler') !== '1') return;
+  var key = 'pm-beauty:experiment:frame-tuner:v3';
   var palettes = ['brown','pink'];
   var defaults = {
-    brown:{width:1,start:'#dac6be',end:'#f5eeeb'},
-    pink:{width:1,start:'#d6b9be',end:'#f6eced'}
+    brown:{width:1.4,start:'#dac6be',end:'#e5d8d2'},
+    pink:{width:1.4,start:'#d0b3b8',end:'#d9bfc1'}
   };
   function freshAppearance() { return {brown:Object.assign({},defaults.brown),pink:Object.assign({},defaults.pink)}; }
   var appearance = freshAppearance(), ui = {x:null,y:null,collapsed:false};
