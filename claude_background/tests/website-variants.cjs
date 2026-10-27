@@ -25,7 +25,7 @@ const assert=require('node:assert/strict');
    if(width>=900){assert(cards[1].top<cards[0].top-30,'center card staggered up');assert(cards[1].width>cards[0].width*1.2,'center card enlarged');}
    else{assert(cards[1].x>cards[0].x+20,'mobile left/right stagger');assert(cards[2].x===cards[0].x);}
    const hint=await p.locator('.voucher-hint').boundingBox();assert(hint.y-Math.max(...cards.map(c=>c.bottom))>=16);
-   async function outsideSnapshot(){return p.evaluate(()=>[...document.querySelector('main').children].filter(e=>e.id!=='behandlungen').map(e=>({text:e.textContent.replace(/\s+/g,' ').trim(),images:[...e.querySelectorAll('img')].map(i=>i.src)})));}
+   async function outsideSnapshot(){return p.evaluate(()=>[...document.querySelector('main').children].filter(e=>e.id!=='behandlungen').map(e=>({text:e.textContent.replace(/\s+/g,' ').trim(),images:[...e.querySelectorAll('img')].map(i=>i.src),links:[...e.querySelectorAll('a[href]')].map(a=>a.getAttribute('href').startsWith('#')?a.getAttribute('href'):a.href)})));}
    const outside=await outsideSnapshot();
    await p.goto('http://localhost:8080/1/',{waitUntil:'networkidle'});
    await p.waitForFunction(()=>[...document.querySelectorAll('.service-object')].length===3&&[...document.querySelectorAll('.service-object')].every(e=>e.dataset.renderer==='three-webgl'));
