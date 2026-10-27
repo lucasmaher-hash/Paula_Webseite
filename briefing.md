@@ -5,14 +5,18 @@ Stand 27.10.2026. Das Briefing beschreibt, was die Website erreichen soll und wi
 ## Ziel
 
 Die Website soll Frauen in München dazu bringen, direkt über Beautinda einen Termin bei Paula zu buchen.
+Die Webseite soll ein Gefühl der Legitimität des Business vermitteln. Heißt: Statt nur über Social-Media-Kanäle zu werben, gibt es durch die Webseite einen offiziellen Hub. Es soll also ein Gefühl der Vertrautheit und Legitimität erzeugt werden.
+Auf das Kurs- und Schulungsangebot aufmerksam machen.
 
 ## Zielgruppe und Situation
 
-Kundinnen zwischen 20 und 50 aus München und Umgebung, die Nägel, Wimpern, Brauen oder Permanent Make-up suchen. Sie kommen meist über Instagram oder eine Empfehlung, sitzen abends oder in der Mittagspause am Handy und entscheiden in wenigen Minuten.
+Kundinnen zwischen 20 und 50 aus München und Umgebung, die Nägel, Wimpern, Brauen oder Permanent Make-up suchen.
+Die Klientel gehört zur gehobeneren Klasse und hat hohe Ansprüche an Behandlungen, Ergebnisse und Qualität. Sie scheut sich nicht davor, dafür mehr Geld auszugeben.
+Sie kommen meist über TikTok oder Social Media.
 
 ## Die wichtigste Handlung
 
-Termin buchen. Der Button steht schon beim ersten Blick sichtbar oben, bleibt beim Scrollen erreichbar und führt zu Beautinda.
+Auf Dienstleistungen aufmerksam machen und einen Überblick verschaffen (Behandlungen und Schulungen).
 
 ## Inhalt
 
@@ -38,12 +42,11 @@ Gestaltet werden drei Seiten beispielhaft. Die übrigen Seiten (Über Paula, Sch
 - Mobile first: zuerst 375 px, danach Desktop. Das Handy ist der wichtigste Kanal.
 - Deutsch. Mehrsprachigkeit ist nicht Teil des Projekts.
 - Keine Behandlungspreise auf der Website (Wunsch von Paula). Preise sieht man erst über den Buchungslink.
-- Barrierefreiheit: WCAG-AA-Kontraste, semantisches HTML, Bewegung reduziert bei `prefers-reduced-motion`.
-- Datenschutz: keine Cookies, kein Tracking, Schriften lokal eingebunden.
-- Fotos von Kundinnen nur mit Zustimmung. KI-Bilder sind als solche gekennzeichnet.
+- Extrem simples „scrollbares“ Layout als Onepager.
 
 ## Kriterien
 
 - Man erkennt PM Beauty auch ohne Logo an Braun und Pink, den Gambarino-Überschriften und dem Gestaltungsprinzip „Die Mitte“.
 - Man findet in unter 30 Sekunden die gesuchte Behandlung und landet mit zwei Klicks bei der Buchung.
-- Die Seite funktioniert auf dem Handy (375 px) genauso gut wie auf dem Desktop (1440 px): kein horizontales Scrollen, keine Konsolenfehler.
+- Keine Dopplungen oder Verweise auf andere Elemente auf der Seite. Jeder Inhalt ist einmal abgebildet.
+- Jeder Abschnitt ist klar definiert.

@@ -643,6 +643,11 @@
 - **Funktioniert:** Fakten aus `docs/prd.md` und `docs/HANDOFF.md` übernommen (38 Behandlungen in fünf Kategorien, Öffnungszeiten, Schulungen, Gutscheine, 5.0-Bewertung, Keine-Preise-Regel). Ergebnis in `branding/briefing-website.md`.
 - **Nicht funktioniert / offen:** Zielgruppe (Alter 20–50, München) ist eine Annahme, nicht aus Paulas Angaben belegt; von Paula bestätigen lassen. Die Vorlage nennt Ammers Beispielfragen zur Seitenauswahl; die Auswahl Startseite, Behandlungen, Kontakt ist meine Empfehlung. Die Website selbst wurde nicht geändert.
 
+### 27.10.2026 · Codex · Lucas’ überarbeitetes Briefing korrigiert
+- **Versucht:** `briefing.md` auf Lucas’ Wunsch möglichst nah am Original sprachlich korrigieren.
+- **Funktioniert:** Rechtschreibung, Grammatik und Zeichensetzung korrigiert; Inhalt und Aufbau beibehalten. Dateiname im Pages-Workflow an Lucas’ Umbenennung angepasst.
+- **Nicht funktioniert / offen:** Die Angaben zu drei Seiten und einem Onepager bleiben zur inhaltlichen Klärung unverändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

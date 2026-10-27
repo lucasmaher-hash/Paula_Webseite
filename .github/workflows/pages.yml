@@ -23,7 +23,7 @@ jobs:
       - name: Branding übernehmen
         run: |
           cp -R claude_background/branding website/branding
-          cp markenprofil.md workflow.md briefing-website.md website/branding/
+          cp markenprofil.md workflow.md briefing.md website/branding/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website
