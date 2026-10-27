@@ -688,6 +688,11 @@
 - **Funktioniert:** Mit eingebautem Imagegen ein neues Direktblitz-Stimmungsbild von schräg hinter dem Kopf erzeugt: sichtbarer Dampf über dem Gesicht, warmes Beige und dezenter Pinkton. Original-PNG und WebP gespeichert, in der experimentellen Basis eingebunden; `/1/` wird daraus erzeugt. Der vollständige Prompt steht in `claude_background/branding/assets/mockups/PROMPTS.md`.
 - **Nicht funktioniert / offen:** Das Bild ist eine illustrative KI-Szene und kein Beleg für eine konkret angebotene Dampfbehandlung. Das vorherige Aquafacial-Motiv bleibt als Datei erhalten.
 
+### 28.10.2026 · Codex / Imagegen · Textfreie Schulungsmotive und versetzte Panels
+- **Versucht:** Lucas möchte keine Schulungstexte auf den Bildern, nur das Logo, sowie schmale Hochformatbilder und abwechselnd außen Leerraum; dieselbe Anordnung für die 3D-Panels.
+- **Funktioniert:** Zwei bestehende Plakatmotive mit eingebautem Imagegen zu textfreien Hochformat-Stillleben umgearbeitet und das vorhandene PM-Monogramm als SVG ergänzt. Die experimentellen Schulungen und die drei `/1/`-3D-Zeilen auf Desktop alternierend versetzt; Mobil untereinander. Prompts und Originale liegen in `branding/assets/mockups/`. Chrome-Prüfung auf 375 und 1440 px, 38 Leistungen und WebGL-Fallback.
+- **Nicht funktioniert / offen:** Illustrative Lernmaterialien sind keine dokumentierten Schulungsunterlagen; kein Test auf einem physischen Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

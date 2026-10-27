@@ -27,13 +27,16 @@
 .service-object[data-kind=eyes]:not([data-renderer=three-webgl])::after{inset:40% 18%;background:transparent;border-top:8px solid #745449;border-radius:50%;box-shadow:none}
 @media(min-width:800px){
   .service-sections{gap:64px}
-  .service-block{grid-template-columns:1.1fr .9fr;align-items:stretch}
-  .service-block:nth-child(even){grid-template-columns:.9fr 1.1fr}
-  .service-block:nth-child(even) .service-copy{order:2}
-  .service-block:nth-child(even) .service-stage{order:1}
+  .service-block{grid-template-columns:minmax(0,54fr) minmax(0,28fr) minmax(0,18fr);align-items:stretch}
+  .service-block:nth-child(even){grid-template-columns:minmax(0,18fr) minmax(0,28fr) minmax(0,54fr)}
+  .service-block .service-copy{grid-column:1;grid-row:1}
+  .service-block .service-stage{grid-column:2;grid-row:1}
+  .service-block:nth-child(even) .service-copy{grid-column:3}
+  .service-block:nth-child(even) .service-stage{grid-column:2}
   .service-copy{padding:36px}
   .service-stage{min-height:540px}
   .service-object{height:470px}
+  .service-object[data-kind=eyes]{height:320px}
   .service-object[data-kind=nails]{height:440px;max-width:240px}
 }
 @media(prefers-reduced-motion:reduce){.service-option{transition:none}}

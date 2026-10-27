@@ -13,6 +13,14 @@ const assert=require('node:assert/strict');
    const defaults=await p.evaluate(()=>{const c=getComputedStyle(document.documentElement);return ['brown-width','brown-start','brown-end','pink-width','pink-start','pink-end'].map(x=>c.getPropertyValue('--preview-frame-'+x).trim());});
    assert.deepEqual(defaults,['1.4px','#dac6be','#e5d8d2','1.4px','#d0b3b8','#d9bfc1']);
    assert.equal(await p.locator('.strip img[src*=dampfbehandlung]').count(),1);
+   for(const image of await p.locator('.course-media img').all()) { await image.scrollIntoViewIfNeeded(); await image.evaluate(i=>i.decode()); assert((await image.evaluate(i=>i.naturalHeight))>(await image.evaluate(i=>i.naturalWidth)),'portrait course image'); }
+   assert.equal(await p.locator('.course-media .course-mark use[href="#pm10s"]').count(),2);
+   if(width>=900){
+    const courses=await p.locator('.course').evaluateAll(es=>es.map(e=>({row:e.getBoundingClientRect().toJSON(),copy:e.querySelector('.course-panel').getBoundingClientRect().toJSON(),media:e.querySelector('.course-media').getBoundingClientRect().toJSON()})));
+    assert(courses[0].copy.right<courses[0].media.left&&courses[0].row.right-courses[0].media.right>80,'first course has space to right');
+    assert(courses[1].media.right<courses[1].copy.left&&courses[1].media.left-courses[1].row.left>80,'second course has space to left');
+    for(const c of courses) assert(c.media.width<c.media.height,'course image frame is portrait');
+   }
    const originalNames=await p.locator('.service-list .name').allTextContents();assert.equal(originalNames.length,38);
    const gallery=await p.locator('.strip img').evaluateAll(imgs=>imgs.map(i=>i.src));assert.equal(new Set(gallery).size,8);
    const images=await p.evaluate(()=>[...document.querySelectorAll('.strip figure,.contact-figure,.about-figure,.about-figure img,.course-media,.course-media img')].map(e=>({class:e.className,border:getComputedStyle(e).borderTopWidth,animated:e.classList.contains('preview-frame-host')})));
@@ -32,7 +40,7 @@ const assert=require('node:assert/strict');
    assert.deepEqual((await p.locator('.service-option').allTextContents()).sort(),originalNames.sort());
    assert.deepEqual(await outsideSnapshot(),outside,'outside the services section the two variants have identical content');
    const rows=await p.locator('.service-block').evaluateAll(es=>es.map(e=>({copy:e.querySelector('.service-copy').getBoundingClientRect().toJSON(),stage:e.querySelector('.service-stage').getBoundingClientRect().toJSON()})));
-   if(width>=900){assert(rows[0].copy.x<rows[0].stage.x);assert(rows[1].stage.x<rows[1].copy.x);assert(rows[2].copy.x<rows[2].stage.x);}
+   if(width>=900){assert(rows[0].copy.x<rows[0].stage.x);assert(rows[1].stage.x<rows[1].copy.x);assert(rows[2].copy.x<rows[2].stage.x);for(const row of rows)assert(row.stage.width<row.stage.height,'3D frame is portrait');}
    else for(const row of rows)assert(row.copy.y<row.stage.y,'mobile text before visual');
    for(const [name,kind,look]of[['Shellack mit French (inkl. russischer Maniküre)','nails','french'],['Farbe','nails','colour'],['Einfaches Design','nails','ornament'],['Korean Browlift','eyes','brow'],['Wimpernverlängerung „2–5D Volumen" — Neuanlage','eyes','volume'],['Aquafacial','skin','hydrate'],['Microneedling','skin','texture'],['Lippenpigmentierung — Erstbehandlung','skin','pigment']]){
     await p.getByRole('tab',{name,exact:true}).click();assert.equal(await p.locator('.service-object[data-kind='+kind+']').getAttribute('data-look'),look);
@@ -47,7 +55,7 @@ const assert=require('node:assert/strict');
    await context.close();console.log(width+'px PASS: saved defaults, no tuner/photo borders, restored vouchers, new portraits/gallery, exact shared content, all 38 services, real 3D, alternation, selections, keyboard/hash, reduced motion, no overflow/errors/404');
   }
   const offline=await browser.newPage();await offline.addInitScript(()=>{HTMLCanvasElement.prototype.getContext=function(type,...args){if(type.startsWith('webgl'))return null;return null;};});
-  await offline.goto('http://localhost:8080/1/',{waitUntil:'networkidle'});assert.equal(await offline.locator('.service-object[data-renderer=css-fallback]').count(),3);assert.equal(await offline.locator('.service-option').count(),38);await offline.close();
+  await offline.goto('http://localhost:8080/1/',{waitUntil:'networkidle'});await offline.waitForFunction(()=>document.querySelectorAll('.service-object[data-renderer=css-fallback]').length===3);assert.equal(await offline.locator('.service-option').count(),38);await offline.close();
   console.log('PASS: service content remains usable without WebGL');
  } finally {await browser.close();}
 })();

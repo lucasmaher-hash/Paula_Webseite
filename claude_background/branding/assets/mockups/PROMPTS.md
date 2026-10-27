@@ -291,3 +291,13 @@ Camera and mood: direct on-camera compact-camera FLASH, crisp fine skin and towe
 ### 28.10.2026 · Aquafacial und Paula-Porträts
 
 Ein neues Aquafacial-Stimmungsbild ersetzt die zusätzliche Maniküre-Nahaufnahme in der Galerie. Außerdem zwei neue, breite Paula-Porträts mit beiden echten Originalfotos als Identitätsreferenzen: Hero rechts mit freier Textfläche und sitzendes About-Porträt. Eingebautes Imagegen; Vorlagen nicht überschrieben. Alle drei vollständigen Prompts, Herkunft und Dateipfade: [BILDER-2026-10-28.md](../BILDER-2026-10-28.md).
+
+
+## 28.10.2026 · Schulungsmotive ohne Text (Imagegen, eingebautes Tool)
+
+Zwei bestehende Schulungsplakate wurden als Bildreferenzen bearbeitet. Gemeinsamer Prompt: „Edit the supplied image for a portrait website course image. Preserve its photographic still-life visual subject and direct-flash aesthetic: [subject]. Recompose the photograph to fill the entire portrait image, warm pink tabletop, beige and muted brown materials, refined editorial beauty studio lighting. Completely remove all poster typography, labels, titles and lettering, including any on props. No text, no watermark, no border, no graphic layout. Keep the composition clean and beautiful with space at the lower right for an actual logo to be overlaid later. Do not generate a logo.“
+
+- Lash/Brow: „Korean lash and brow lifting: the open instructional sketchbook with delicate lash and brow diagrams, silicone lifting shields and a brush“ → `schulung-lash-brow-motiv-v2.png`.
+- Maniküre: „Russian manicure and gel: open instructional sketchbook with nail shape studies, muted rose nail samples and manicure tools“ → `schulung-manicure-motiv-v2.png`.
+
+Das vorhandene PM-Monogramm wird auf der Website als SVG über das Motiv gelegt; es wurde nicht von der Bild-KI nachgebildet. Die Schulungsmaterialien sind illustrative KI-Motive.
