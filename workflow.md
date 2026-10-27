@@ -653,6 +653,11 @@
 - **Funktioniert:** Ziel als Vertrauensaufbau, offizielle Anlaufstelle, Angebotsüberblick und Buchungsmöglichkeit formuliert; Zielgruppe über Qualitätsanspruch und Zahlungsbereitschaft beschrieben und die Situation vor der Buchung konkretisiert.
 - **Nicht funktioniert / offen:** Keine neue Zielgruppenrecherche; Formulierungen beruhen auf Lucas’ Angaben und dem bestehenden Projektkontext.
 
+### 27.10.2026 · Codex · Zielgruppe und Situation als Stichpunkte
+- **Versucht:** Den Abschnitt auf Lucas’ Wunsch in Stichpunkte umwandeln.
+- **Funktioniert:** Bestehende Angaben in sechs Stichpunkten aufbereitet; Inhalt beibehalten.
+- **Nicht funktioniert / offen:** Keine.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

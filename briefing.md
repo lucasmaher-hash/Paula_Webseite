@@ -10,9 +10,12 @@ Interessentinnen sollen einen klaren Überblick über die Behandlungen erhalten,
 
 ## Zielgruppe und Situation
 
-Frauen zwischen 20 und 50 aus München und Umgebung, die Maniküre, Wimpern- und Brauenbehandlungen oder Permanent Make-up suchen. Sie haben hohe Ansprüche an die Qualität der Behandlung und das Ergebnis und sind bereit, dafür mehr zu bezahlen.
-
-Sie werden meist über TikTok oder andere soziale Netzwerke auf PM Beauty aufmerksam und besuchen die Website auf dem Handy. Vor einer Buchung möchten sie das Angebot überblicken, Paula und das Studio kennenlernen und einschätzen, ob die Behandlungen ihren Vorstellungen entsprechen.
+- Frauen zwischen 20 und 50 aus München und Umgebung
+- Suchen Maniküre, Wimpern- und Brauenbehandlungen oder Permanent Make-up
+- Hohe Ansprüche an die Qualität der Behandlung und das Ergebnis; bereit, dafür mehr zu bezahlen
+- Werden meist über TikTok oder andere soziale Netzwerke auf PM Beauty aufmerksam
+- Besuchen die Website auf dem Handy
+- Möchten vor einer Buchung das Angebot überblicken, Paula und das Studio kennenlernen und einschätzen, ob die Behandlungen ihren Vorstellungen entsprechen
 
 ## Die wichtigste Handlung
 
