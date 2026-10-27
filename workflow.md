@@ -698,6 +698,11 @@
 - **Funktioniert:** Kategorien geschlossen einfarbig und statisch; bei geöffnetem oder mit der Maus berührtem Panel läuft der Verlauf mit etwas dunklerem Anfang. Farbregler bleiben wirksam. Im Browser auf 375 und 1440 px, Öffnen, Hover, tatsächliche Bewegung und reduzierte Bewegung geprüft; übrige Rahmen unverändert.
 - **Nicht funktioniert / offen:** Kein physisches Handy getestet.
 
+### 28.10.2026 · Codex · KI-Hinweise in der Vorschau
+- **Versucht:** Lucas möchte die sichtbaren Hinweise auf KI-generierte Bilder von der Seite entfernen.
+- **Funktioniert:** Die drei Hinweistexte in Galerie, Schulungen und Kontaktbereich aus der experimentellen Basis entfernt; zugängliche Bildbeschreibungen behalten die Einordnung als Stimmungsbilder, illustratives Stillleben oder Raumkonzept. `/1/` wird aus derselben Basis erzeugt. Die Herkunft bleibt in der internen Dokumentation festgehalten.
+- **Nicht funktioniert / offen:** Keine neuen Bilder erstellt; die offizielle Hauptseite blieb unverändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

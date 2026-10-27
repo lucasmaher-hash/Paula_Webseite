@@ -1,6 +1,8 @@
 # Übergabe: PM Beauty Website (Stand 28.10.2026)
 
 
+**KI-Hinweise 28.10.2026:** Lucas hat die sichtbaren Hinweise auf KI-Bilder in der experimentellen Seite und der erzeugten `/1/`-Variante entfernen lassen; Alternativtexte beschreiben die Motive weiterhin als Stimmungsbilder, illustratives Stillleben oder Raumkonzept. Bildherkunft bleibt intern dokumentiert. Die offizielle Hauptseite blieb unverändert.
+
 **Kategorierahmen 28.10.2026:** In der experimentellen Basis sind geschlossene Behandlungskategorien einfarbig und statisch. Offene oder auf Geräten mit Maus gehoverte Kategorien zeigen den umlaufenden Verlauf mit um 25 % abgedunkelter Vorderfarbe; die Farbmischung nutzt weiterhin den Pink-Regler. Reduzierte Bewegung stoppt die Animation. CSS `experiment-frames.css?v=7`. Andere Rahmen bleiben unverändert.
 
 **Schulungen und 3D-Layouts 28.10.2026:** Zwei Schulungsmotive im Hochformat ohne Schulungstext, erstellt mit Imagegen aus den bisherigen Plakaten: `branding/assets/mockups/schulung-lash-brow-motiv-v2.png` und `schulung-manicure-motiv-v2.png`, WebP unter `website/images/mockups/`. Das bestehende PM-Monogramm liegt als SVG unten rechts darüber. Prompts in `branding/assets/mockups/PROMPTS.md`. Desktop: erste Zeile Text links/Bild rechts mit Freiraum rechts, zweite Bild links/Text rechts mit Freiraum links. Auf `/1/` dieselbe Anordnung für die drei schmalen 3D-Panels; Handy untereinander. CSS `experiment-frames.css?v=6`, `service-panels.css?v=2`. Offizielle Seite unverändert.
