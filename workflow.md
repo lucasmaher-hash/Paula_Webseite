@@ -673,6 +673,11 @@
 - **Funktioniert:** Vorhandenes Verpackungs-Mockup v3 eingesetzt, Originalmaße und Bildbeschreibung übernommen sowie KI-Hinweis auf Empfang und Verpackung aktualisiert.
 - **Nicht funktioniert / offen:** Kein neues Bild generiert; die Hauptseite bleibt unverändert.
 
+### 27.10.2026 · Codex / Imagegen · Schulungsplakate statt Behandlungsfotos
+- **Versucht:** Lucas möchte nach Recherche zu Beauty-Schulungen zwei passende Titelbilder, die ausdrücklich als Schulungsangebote auffallen und zur bestehenden Website-Bildsprache passen.
+- **Funktioniert:** Kursflyer von The Lash Co Academy und Katie Barnes Education visuell recherchiert, weitere reduzierte Kursdarstellung von Level Up Beauty Academy gesichtet. Zwei zusammengehörige Plakate mit eingebautem Imagegen generiert: große Schulungskennzeichnung, vorhandene Titel und Dauer, braune Serifenschrift auf Beige, ein pinkes Direktblitz-Stillleben mit Übungsunterlagen/Werkzeugen. PNG-Originale und WebP-Versionen gespeichert, nur in der experimentellen Website eingebunden. Vollständige Prompts und Quellen in `claude_background/branding/assets/mockups/SCHULUNGSPLAKATE-2026-10-27.md`.
+- **Nicht funktioniert / offen:** Generierte Schrift ist Teil des Bildes, keine echte Gambarino-Satzdatei. Die Lernmaterialien sind illustrative Motive, keine dokumentierten Schulungsunterlagen. Keine fremden Bilder, Preise oder Zertifizierungsversprechen übernommen; Hauptseite unverändert.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

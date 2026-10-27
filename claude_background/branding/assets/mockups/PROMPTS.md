@@ -268,3 +268,9 @@ Do not add any other text, ingredient claims, quantities, prices, certification 
 Camera/style: intimate 70mm-equivalent close object portrait, entire open top and lid visible, main jar centered with calm blank space, f/8 crisp focus, believable scale and materials. Harsh DIRECT ON-CAMERA FLASH, compact-camera snapshot, short hard shadow just behind container and lid, crisp shiny flash highlights on pink plastic and cotton edges, subtle sensor grain. Warm neutral cream/taupe backdrop and beige linen; pink tub is the prominent single pink area. No softbox/daylight look, no CGI, no glitter, no rose gold, no flowers or people.
 This is a fictional brand application concept, not proof of a real product sold by the studio.
 ```
+
+### 27.10.2026 · Schulungsplakate für die experimentelle Website
+
+Zwei separate Generierungen mit eingebautem `image_gen.imagegen`, ohne Referenzbilder als Modelleingabe. Originale: `schulung-korean-lash-browlifting-poster-v1.png` und `schulung-russian-manicure-gel-poster-v1.png`, jeweils 1536 × 1024 px. Die Motive verbinden große Schulungskennzeichnung mit Beige/Braun/Pink und Direktblitz-Stillleben von illustrativen Lernmaterialien. Keine neuen Leistungsversprechen, Termine oder Preise.
+
+Recherchequellen, vollständige Prompts und Dateizuordnung: [SCHULUNGSPLAKATE-2026-10-27.md](SCHULUNGSPLAKATE-2026-10-27.md).

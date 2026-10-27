@@ -35,6 +35,9 @@
 /* Heading and course content form one continuous panel, with no internal seam. */
 .course-panel{display:contents}
 .course-heading,.course-content{border:0;border-radius:0}
+.course-media-poster{background:var(--color-background)}
+.course-media-poster img{object-fit:contain}
+@media(max-width:899px){.course-media-poster img{aspect-ratio:3/2}}
 @media(min-width:900px){
   .course-panel{display:flex;flex-direction:column;grid-column:2;grid-row:1 / 3;min-width:0;
     background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--rounded-xl);overflow:hidden}
