@@ -24,13 +24,12 @@ Auf Dienstleistungen aufmerksam machen und einen Überblick verschaffen (Behandl
 ## Inhalt
 
 - Hero mit Paula und dem Terminbutton
-- Die fünf Behandlungskategorien mit allen 38 Behandlungen, Dauer und kurzer Beschreibung: Maniküre (14), Permanent Make-up (7), Gesicht und Körper (7), Wimpern (7), Brauen (3)
-- Über Paula: 5 Jahre Erfahrung, 4 Weiterbildungen, Standort, Öffnungszeiten Mo–Fr 10–20 Uhr
-- Fotos aus dem Studio
-- Zwei Schulungen, Anmeldung per DM
-- Gutscheine über 50, 100 und 150 Euro
-- Bewertungen: 5.0 Sterne aus 26 Bewertungen, echte Zitate
-- Adresse, Instagram, Buchung, Impressum, Datenschutz
+- Die fünf Behandlungskategorien
+- Über Paula & Studio
+- Schulungen
+- Gutscheine
+- Bewertungen
+- Kontakt
 
 ## Seiten
 

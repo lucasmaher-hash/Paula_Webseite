@@ -663,6 +663,11 @@
 - **Funktioniert:** `website/1/index.html` nach `website/index-experimentell.html` verschoben und alle 23 relativen Datei- und Bildpfade angepasst. Inhalt und Hauptseite unverändert.
 - **Nicht funktioniert / offen:** Die bisherige Adresse `/1/` entfällt; neue Adresse ist `/index-experimentell.html`.
 
+### 27.10.2026 · Codex · Geschlossene Rahmenbewegung, getrennte Regler und Gutschein-Abstand
+- **Versucht:** Lucas meldet uneinheitliche, nach innen versetzte Rahmen und überlappende Gutscheine. Maßgebliche Präzisierung: „Linie durchgehend herumfährt“, gleichbleibend breit, vorne dunkler und hinten heller, ohne leere Stelle; Braun und Pink sowie Vorder- und Hinterfarben unabhängig einstellbar.
+- **Funktioniert:** Browser-Reproduktion zeigte 1 px Rahmenversatz und −12 px Abstand zum Gutschein-Hinweis. In der experimentellen Version die alten SVGs durch eine geschlossene, maskierte Verlaufskontur an der Außenkante ersetzt; Fotos mitsamt Rand beschnitten, Schulungstextteile als ein Panel gefasst, Gutschein-Verschiebung im Layout reserviert (jetzt 24 px Abstand). Getrennte Regler für Breite und Vorder-/Hinterfarbe beider Farbwelten, inkl. Schwarz/Weiß, breitem Zahlenbereich, lokalem Speichern, Reset, kopierbaren Werten, Ziehen und Einklappen. Chrome-Tests bei 375/1440 px, an der 899/900-px-Grenze und mit Touch-Emulation bestanden; Außenkante zusätzlich am Foto geprüft. Hauptseite unverändert. Lucas’ bereits vorhandene Kürzung der Inhaltsliste im Briefing wird auf seine Anweisung „alles direkt auf main“ mitcommittet.
+- **Nicht funktioniert / offen:** Ein zu hoher Sichtbarkeitsschwellwert und eine unvollständige Elementauswahl hatten Teile der bisherigen Animation ausgelassen. Das SVG maß die Innenfläche; eine spätere CSS-Regel überschrieb den Gutschein-Abstand. Der neue Verlauf bleibt geschlossen und pausiert nur außerhalb des Bildschirms bzw. bei reduzierter Bewegung. Prüfung auf einem physischen Handy nicht durchgeführt; Regler bleiben vorläufig, bis Lucas Werte festlegt.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

@@ -1,0 +1,68 @@
+/* Only loaded by index-experimentell.html. A single border at each visual frame's outer edge. */
+@property --preview-frame-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+:root{
+  --preview-frame-brown-width:1px;--preview-frame-brown-start:#dac6be;--preview-frame-brown-end:#f5eeeb;
+  --preview-frame-pink-width:1px;--preview-frame-pink-start:#d6b9be;--preview-frame-pink-end:#f6eced;
+}
+.preview-frame-host{
+  border-color:transparent!important;
+  --preview-frame-width:var(--preview-frame-brown-width);
+  --preview-frame-start:var(--preview-frame-brown-start);--preview-frame-end:var(--preview-frame-brown-end);
+}
+.preview-frame-host[data-frame-palette="pink"]{
+  --preview-frame-width:var(--preview-frame-pink-width);
+  --preview-frame-start:var(--preview-frame-pink-start);--preview-frame-end:var(--preview-frame-pink-end);
+}
+/* Keep image cropping, but include the border area in the clipping boundary. */
+.preview-frame-host.preview-frame-clip{overflow:clip;overflow-clip-margin:border-box}
+.preview-frame-host::before{
+  content:"";position:absolute;pointer-events:none;z-index:2;
+  top:var(--preview-frame-top);right:var(--preview-frame-right);
+  bottom:var(--preview-frame-bottom);left:var(--preview-frame-left);
+  padding:var(--preview-frame-width);border:0;
+  border-radius:var(--preview-frame-radius);box-sizing:border-box;
+  background:conic-gradient(from var(--preview-frame-angle),
+    var(--preview-frame-end) 0deg,
+    color-mix(in srgb,var(--preview-frame-start) 25%,var(--preview-frame-end)) 110deg,
+    color-mix(in srgb,var(--preview-frame-start) 55%,var(--preview-frame-end)) 240deg,
+    var(--preview-frame-start) 350deg,var(--preview-frame-start) 360deg);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  animation:preview-frame-orbit 5s linear infinite;animation-play-state:paused;
+}
+.preview-frame-host.is-frame-active::before{animation-play-state:running}
+@keyframes preview-frame-orbit{from{--preview-frame-angle:0deg}to{--preview-frame-angle:360deg}}
+/* Heading and course content form one continuous panel, with no internal seam. */
+.course-panel{display:contents}
+.course-heading,.course-content{border:0;border-radius:0}
+@media(min-width:900px){
+  .course-panel{display:flex;flex-direction:column;grid-column:2;grid-row:1 / 3;min-width:0;
+    background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--rounded-xl);overflow:hidden}
+  .course:nth-child(even) .course-panel{grid-column:1}
+  .course-panel .course-content{flex:1}
+  /* Translated cards need real layout space below their original grid position. */
+  .vouchers-grid{padding-bottom:36px}
+}
+@media(prefers-reduced-motion:reduce){.preview-frame-host::before{animation:none}}
+
+/* Temporary authoring controls: localhost or ?regler=1. */
+#frame-tuner{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:900;
+  width:min(320px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;
+  border:1px solid #ccc;border-radius:20px;background:#f0f0f3;color:#191919;
+  box-shadow:5px 5px 16px #0002,-4px -4px 12px #fff9;font:13px/1.5 var(--font-sans)}
+#frame-tuner .frame-tuner-header{position:sticky;top:0;z-index:1;background:#f0f0f3;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;cursor:grab;touch-action:none}
+#frame-tuner.is-dragging,#frame-tuner.is-dragging .frame-tuner-header{cursor:grabbing}
+#frame-tuner button{padding:5px 9px;border:1px solid #ccc;border-radius:9px;background:#fafafa;color:#191919;font-size:12px}
+#frame-tuner button:focus-visible,#frame-tuner input:focus-visible{outline:2px solid #555;outline-offset:2px}
+#frame-tuner .frame-tuner-body{padding:0 16px 16px}
+#frame-tuner .frame-tuner-body[hidden]{display:none}
+#frame-tuner fieldset{border:0;padding:0;margin:6px 0 18px;min-width:0}
+#frame-tuner legend{font-weight:600}
+#frame-tuner label{display:block;margin:10px 0 6px}
+#frame-tuner .frame-tuner-row{display:flex;gap:10px;align-items:center}
+#frame-tuner input[type=range]{min-width:0;flex:1;accent-color:#333}
+#frame-tuner input[type=number]{width:70px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919}
+#frame-tuner input[type=color]{width:44px;height:32px;padding:2px;border:1px solid #ccc;border-radius:7px;background:#fafafa}
+#frame-tuner pre{margin:14px 0 10px;padding:10px;background:#e5e5e9;border-radius:10px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text}
+#frame-tuner .frame-tuner-gap{height:8px;cursor:grab;touch-action:none}
+body.menu-open #frame-tuner{visibility:hidden}
