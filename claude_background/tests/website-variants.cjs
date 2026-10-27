@@ -12,7 +12,7 @@ const assert=require('node:assert/strict');
    assert.equal(await p.locator('#frame-tuner').count(),0,'tuner hidden even on localhost');
    const defaults=await p.evaluate(()=>{const c=getComputedStyle(document.documentElement);return ['brown-width','brown-start','brown-end','pink-width','pink-start','pink-end'].map(x=>c.getPropertyValue('--preview-frame-'+x).trim());});
    assert.deepEqual(defaults,['1.4px','#dac6be','#e5d8d2','1.4px','#d0b3b8','#d9bfc1']);
-   assert.equal(await p.locator('.strip img[src*=aquafacial]').count(),1);
+   assert.equal(await p.locator('.strip img[src*=dampfbehandlung]').count(),1);
    const originalNames=await p.locator('.service-list .name').allTextContents();assert.equal(originalNames.length,38);
    const gallery=await p.locator('.strip img').evaluateAll(imgs=>imgs.map(i=>i.src));assert.equal(new Set(gallery).size,8);
    const images=await p.evaluate(()=>[...document.querySelectorAll('.strip figure,.contact-figure,.about-figure,.about-figure img,.course-media,.course-media img')].map(e=>({class:e.className,border:getComputedStyle(e).borderTopWidth,animated:e.classList.contains('preview-frame-host')})));

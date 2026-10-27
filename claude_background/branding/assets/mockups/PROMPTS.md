@@ -275,6 +275,19 @@ Zwei separate Generierungen mit eingebautem `image_gen.imagegen`, ohne Referenzb
 
 Recherchequellen, vollständige Prompts und Dateizuordnung: [SCHULUNGSPLAKATE-2026-10-27.md](SCHULUNGSPLAKATE-2026-10-27.md).
 
+### 28.10.2026 · Dampf über dem Gesicht
+
+Datei: `serie-dampfbehandlung-direktblitz-v1.png` (1024 × 1536 px). Generiert mit eingebautem `image_gen.imagegen`; das von Lucas gezeigte Aquafacial-Bild war eine Stilreferenz. Das neue Motiv ist eine illustrative KI-Szene und belegt keine konkrete Behandlung im Studio.
+
+```text
+Use case: photorealistic-natural. Create ONE completely new portrait-format 2:3 photograph for the PM Beauty website gallery. The attached image is ONLY a reference for the warm, precise beauty-studio image series and direct-flash colour treatment. Do not reproduce its Aquafacial handpiece, close cheek angle, pose or composition.
+
+Subject: an atmospheric steam facial as a fictional, clearly illustrative beauty-studio scene. A client rests comfortably on a treatment bed, eyes closed, a neutral soft beige towel wrapped around the hair. Capture from an INTERESTING DISTINCT perspective: a slightly elevated oblique view from BEHIND THE CLIENT'S HEAD looking diagonally down toward her face, showing the arc of her cheek, brow, nose and upper shoulder in natural profile. The composition is a tight crop but wider than a cheek macro: head and edge of towel are visible as coherent shapes, no recognizable full person or face presented as a real client. A slim neutral white facial steamer nozzle enters from the upper opposite corner and sends a fine soft plume of visible STEAM across the face, with delicate translucent tendrils of water vapour catching the flash against the warm taupe background. The mist must be visibly aimed toward the face but remain subtle, realistic and elegant, not thick smoke or fog obscuring the skin. No jets of liquid. This is a non-documentary AI-generated mood image, not a before/after or proof of a specific service at a real studio.
+
+Camera and mood: direct on-camera compact-camera FLASH, crisp fine skin and towel texture, bright flash highlights on the vapour, short sharp nearby shadows, intimate editorial 70mm close-up. Natural warm skin colour, calm composition, not clinical or blue. Palette: warm beige, cream and brown / muted taupe #A39588, at most one small dusty pink #D19FA6 towel accent. Similar light, colour and tactile realism to the attached image and surrounding series, but clearly new angle. Absolutely no text, logos, fake brands, manicure or nail closeups, additional device on the cheek, medical instruments, skin lesions, blood, visual effects glow, flowers, clinical equipment clutter, candles, excessive vapor or fog.
+```
+
+
 ### 28.10.2026 · Aquafacial und Paula-Porträts
 
 Ein neues Aquafacial-Stimmungsbild ersetzt die zusätzliche Maniküre-Nahaufnahme in der Galerie. Außerdem zwei neue, breite Paula-Porträts mit beiden echten Originalfotos als Identitätsreferenzen: Hero rechts mit freier Textfläche und sitzendes About-Porträt. Eingebautes Imagegen; Vorlagen nicht überschrieben. Alle drei vollständigen Prompts, Herkunft und Dateipfade: [BILDER-2026-10-28.md](../BILDER-2026-10-28.md).
