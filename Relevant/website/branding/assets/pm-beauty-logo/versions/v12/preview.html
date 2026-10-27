@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<title>PM-Monogramm v12</title>
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 64px; background: #f6edea; color: #6e5549; font: 14px sans-serif; }
+  figure { text-align: center; }
+  svg { display: block; margin: auto auto 20px; width: 320px; height: auto; }
+  figure:first-child svg { width: 72px; }
+</style>
+<figure id="small"><figcaption>Header · 130 %</figcaption></figure>
+<figure id="standard"><figcaption>Standard · 120 %</figcaption></figure>
+<script>
+  Promise.all([
+    fetch('pm-monogram-v12-small.svg').then(r => r.text()),
+    fetch('pm-monogram-v12.svg').then(r => r.text())
+  ]).then(([small, standard]) => {
+    document.querySelector('#small').insertAdjacentHTML('afterbegin', small);
+    document.querySelector('#standard').insertAdjacentHTML('afterbegin', standard);
+  });
+</script>
+</html>
