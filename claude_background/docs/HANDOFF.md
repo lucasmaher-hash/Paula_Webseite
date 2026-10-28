@@ -1,6 +1,8 @@
 # Übergabe: PM Beauty Website (Stand 28.10.2026)
 
 
+**Freistehende 3D-Objekte 28.10.2026:** Auf `/1/` stehen alle drei 3D-Objekte ohne farbige Hintergrundrahmen und ohne Beschriftung darunter. Das Nagellayout folgt `branding/experiments/manicure-panels.html`: Liste neben der frei stehenden Nagelform, ausgewählte Beschreibung als barrierefreie Textebene auf dem Nagel. Handy untereinander. CSS `service-panels.css?v=3`, JS `service-variant.js?v=2`.
+
 **KI-Hinweise 28.10.2026:** Lucas hat die sichtbaren Hinweise auf KI-Bilder in der experimentellen Seite und der erzeugten `/1/`-Variante entfernen lassen; Alternativtexte beschreiben die Motive weiterhin als Stimmungsbilder, illustratives Stillleben oder Raumkonzept. Bildherkunft bleibt intern dokumentiert. Die offizielle Hauptseite blieb unverändert.
 
 **Kategorierahmen 28.10.2026:** In der experimentellen Basis sind geschlossene Behandlungskategorien einfarbig und statisch. Offene oder auf Geräten mit Maus gehoverte Kategorien zeigen den umlaufenden Verlauf mit um 25 % abgedunkelter Vorderfarbe; die Farbmischung nutzt weiterhin den Pink-Regler. Reduzierte Bewegung stoppt die Animation. CSS `experiment-frames.css?v=7`. Andere Rahmen bleiben unverändert.

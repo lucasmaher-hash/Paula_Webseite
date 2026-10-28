@@ -35,7 +35,8 @@
     var name=node('h4','service-selected-name'),paragraph=node('p','muted');description.append(name,paragraph);
     var stage=node('div','service-stage');
     var object=node('div','service-object');object.dataset.kind=group.kind;object.dataset.look='basic';object.dataset.variant='default';object.setAttribute('role','img');object.setAttribute('aria-label','Abstrakte 3D-Visualisierung: '+group.title);
-    stage.append(object,node('p','service-visual-note','Abstrakte Visualisierung'));
+    stage.append(object);
+    if(group.kind==='nails') stage.append(description);
     function lookFor(item) {
       var n=item.name.toLowerCase();
       if(group.kind==='nails')return /french|babyboomer/.test(n)?'french':/farbe|shellack/.test(n)?'colour':/design/.test(n)&&!n.includes('ohne design')?'ornament':'basic';
@@ -75,7 +76,7 @@
       list.append(button);
     });
     var book=booking.cloneNode(true);book.classList.add('service-book');book.firstChild.textContent='Termin buchen ';
-    copy.append(list,description,book);row.append(copy,stage);rows.append(row);select(0);
+    copy.append(list);if(group.kind!=='nails')copy.append(description);copy.append(book);row.append(copy,stage);rows.append(row);select(0);
     function categoryFromHash(){var id=location.hash.slice(1);if(group.categories.includes(id)){var first=items.findIndex(function(item){return item.category===id;});if(first>=0)select(first);}}
     window.addEventListener('hashchange',categoryFromHash);categoryFromHash();
     document.querySelectorAll('[data-open]').forEach(function(link){link.addEventListener('click',function(){var first=items.findIndex(function(item){return item.category===link.dataset.open;});if(first>=0)select(first);});});

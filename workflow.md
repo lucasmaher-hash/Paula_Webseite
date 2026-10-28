@@ -703,6 +703,11 @@
 - **Funktioniert:** Die drei Hinweistexte in Galerie, Schulungen und Kontaktbereich aus der experimentellen Basis entfernt; zugängliche Bildbeschreibungen behalten die Einordnung als Stimmungsbilder, illustratives Stillleben oder Raumkonzept. `/1/` wird aus derselben Basis erzeugt. Die Herkunft bleibt in der internen Dokumentation festgehalten.
 - **Nicht funktioniert / offen:** Keine neuen Bilder erstellt; die offizielle Hauptseite blieb unverändert.
 
+### 28.10.2026 · Codex · Freie 3D-Objekte nach Nagelreferenz
+- **Versucht:** Lucas möchte die 3D-Objekte ohne Hintergrundrahmen und ohne den Hinweis „Abstrakte Visualisierung“; das Nagellayout soll der separaten Referenz folgen.
+- **Funktioniert:** Die drei 3D-Hintergrundflächen und Hinweise entfernt. Die Nagelform füllt ihre Fläche und trägt die ausgewählte Beschreibung wie im separaten Maniküre-Experiment; die anderen Beschreibungen bleiben in ihren Textpanelen. Barrierefreie Beschreibung als eigenständiges Tabpanel. Browser-Prüfung bei 375 und 1440 px, Auswahl und Fallback ohne WebGL bestanden.
+- **Nicht funktioniert / offen:** Die bestehende Referenz wurde auf die längere tatsächliche Leistungsliste übertragen; ein physisches Handy wurde nicht geprüft.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
