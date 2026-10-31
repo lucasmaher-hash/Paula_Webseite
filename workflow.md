@@ -766,6 +766,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** In `js/service-variant.js` wird die Beschreibung für Wimpern und Haut nicht mehr gezeigt (nur `hidden`, der Inhalt wird weiter gepflegt, damit die spätere Anzeige schnell geht). Maniküre unverändert (Text im Nagel). `/1/` neu generiert, Haut-Frame bei 1440 px angesehen.
 - **Nicht funktioniert / offen:** Wo die Beschreibung für Wimpern und Haut künftig stehen soll, ist offen.
 
+### 31.10.2026 · Claude · Seitenprofil für Haut & Permanent Make-up (zwei Varianten)
+- **Versucht:** Lucas wollte im dritten Frame statt des 3D-Ovals ein abstraktes, helles Seitenprofil einer Frau: Wimpern verlängern sich, Lippen und Brauen werden dunkler. Zwei Varianten untereinander (Frame dupliziert, später eine löschen): 1 nur das Gesicht (Bildausschnitt wie sein Screenshot 1), 2 der ganze Kopf als Silhouette (Screenshot 2).
+- **Funktioniert:** In `js/service-variant.js` und `css/service-panels.css` direkt eingebaut (keine separate Datei). Ein handgezeichneter SVG-Pfad dient für beide Varianten, nur der Bildausschnitt (`viewBox`) unterscheidet sich. Auswahl steuert den Zustand: Microblading/Powderbrows → Brauen dunkel; Lippenpigmentierung → Lippen dunkel; Nachbehandlung/Auffrischung → Brauen und Lippen dunkel, Wimpern verlängert; Remover → alles hell; Microneedling → Punktstruktur und Glow; übrige Gesichtsbehandlungen → Glow. Übergänge 0,7–0,9 s, bei „Bewegung reduzieren“ keine. Im Headless-Chrome alle Zustände bei 1440 px angesehen.
+- **Nicht funktioniert / offen:** Das Profil ist eine einfache Handzeichnung (keine Vorlage nachgezeichnet, die Screenshots dienten nur als Ausschnitt-Idee); Nase und Kinn wirken noch glatt. Die Wimpern sind nur an Auffrischung/Nachbehandlung verlängert, weil die Leistungsliste dort keine Wimpernbehandlung hat. Die zweite Variante ist zum Löschen vorgesehen. Kein Test am Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
