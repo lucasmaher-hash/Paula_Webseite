@@ -5,6 +5,7 @@ import { mountNail } from 'pm:original-nail';
 
 for (const host of document.querySelectorAll('.service-object')) {
   if (host.dataset.kind === 'nails') { mountNail(host); continue; }
+  if (host.dataset.kind === 'profile') { mountProfile(host); continue; }
   mountAbstract(host);
 }
 
@@ -98,6 +99,67 @@ function mountAbstract(host) {
       group.rotation.y=-.2+Math.sin(t*.3)*.025+smoothX*.10;
       group.rotation.x=-.12+smoothY*.07;group.position.y=Math.sin(t*.45)*.025;
     }
+    renderer.render(scene,camera);dirty=false;last=now;
+  }
+  host.dataset.renderer='three-webgl';resize();frame(performance.now());
+}
+
+// Reine Silhouette (Gesicht oder Kopf im Profil) als glänzende, abgerundete 3D-Platte wie das Nagel-Panel.
+// Der Umriss kommt als Punktliste im Attribut data-path ("M x y L x y ... Z", Bildkoordinaten, y nach unten).
+function mountProfile(host) {
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'}); }
+  catch (error) { host.dataset.renderer='css-fallback'; return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.05;
+  renderer.setClearColor(0,0);
+  renderer.domElement.setAttribute('aria-hidden','true');host.append(renderer.domElement);
+  const scene=new THREE.Scene();
+  const camera=new THREE.OrthographicCamera(-2.5,2.5,2.5,-2.5,.1,100);
+  camera.position.set(0,0,8);
+  const pmrem=new THREE.PMREMGenerator(renderer), room=new RoomEnvironment();
+  const env=pmrem.fromScene(room,.08);scene.environment=env.texture;room.dispose();pmrem.dispose();
+  scene.add(new THREE.HemisphereLight(0xfff7ee,0x956874,1.5));
+  const light=new THREE.DirectionalLight(0xfff4eb,3.0);light.position.set(-3,4,5);scene.add(light);
+  const fill=new THREE.DirectionalLight(0xf3d6dd,1);fill.position.set(3,-2,4);scene.add(fill);
+  const nums=host.dataset.path.match(/-?\d+(?:\.\d+)?/g).map(Number),pts=[];
+  for(let i=0;i<nums.length;i+=2)pts.push([nums[i],nums[i+1]]);
+  const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const k=4.3/(maxY-minY),cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+  const shape=new THREE.Shape();
+  pts.forEach((p,i)=>{const x=(p[0]-cx)*k,y=-(p[1]-cy)*k;if(i)shape.lineTo(x,y);else shape.moveTo(x,y);});
+  const geometry=new THREE.ExtrudeGeometry(shape,{depth:.34,bevelEnabled:true,bevelThickness:.1,bevelSize:.09,bevelSegments:8,curveSegments:1});
+  geometry.center();
+  const material=new THREE.MeshPhysicalMaterial({color:'#c98f99',roughness:.36,metalness:.03,clearcoat:.9,clearcoatRoughness:.16,envMapIntensity:.8});
+  const mesh=new THREE.Mesh(geometry,material);
+  const group=new THREE.Group();group.add(mesh);scene.add(group);
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  let visible=true,dirty=true,last=0,pointerX=0,pointerY=0,smoothX=0,smoothY=0;const started=performance.now();
+  function resize() {
+    const box=host.getBoundingClientRect();if(!box.width||!box.height)return;
+    renderer.setSize(box.width,box.height,false);
+    const aspect=box.width/box.height;camera.left=-2.5*aspect;camera.right=2.5*aspect;camera.top=2.5;camera.bottom=-2.5;camera.updateProjectionMatrix();dirty=true;
+  }
+  new ResizeObserver(resize).observe(host);
+  if('IntersectionObserver'in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)dirty=true;}).observe(host);
+  host.addEventListener('pointermove',event=>{if(event.pointerType!=='mouse'||reduced.matches)return;const r=host.getBoundingClientRect();pointerX=(event.clientX-r.left)/r.width-.5;pointerY=(event.clientY-r.top)/r.height-.5;});
+  host.addEventListener('pointerleave',()=>{pointerX=pointerY=0;});
+  reduced.addEventListener('change',()=>{pointerX=pointerY=0;dirty=true;});
+  renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();host.dataset.renderer='css-fallback';visible=false;renderer.domElement.hidden=true;});
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if(!visible||document.hidden||host.dataset.renderer==='css-fallback')return;
+    if(reduced.matches&&!dirty)return;
+    if(now-last<1000/30&&!dirty)return;
+    const t=reduced.matches?0:(now-started)/1000;
+    smoothX+=(pointerX-smoothX)*.08;smoothY+=(pointerY-smoothY)*.08;
+    light.position.x=-3+Math.sin(t*.3)*.35+smoothX;
+    group.rotation.y=-.32+Math.sin(t*.3)*.05+smoothX*.35;
+    group.rotation.x=.04+smoothY*.12;
+    group.position.y=Math.sin(t*.45)*.04;
     renderer.render(scene,camera);dirty=false;last=now;
   }
   host.dataset.renderer='three-webgl';resize();frame(performance.now());

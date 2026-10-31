@@ -776,6 +776,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Beide Bilder (Kopf mit Hals, Gesichtsausschnitt) per OpenCV geglättet, mit Schwellwert in Schwarz/Weiß getrennt, die größte Kontur verfolgt und als SVG-Pfad gespeichert (Kontrolle: Kontur grün über das Original gelegt, sitzt auf dem Rand). Lippen aus dem Umriss abgeleitet (Profil x(y) im Lippenbereich), Brauen, Lid und Wimpern an den im Bild gemessenen Stellen gesetzt. Beide Varianten in `service-variant.js` eingebettet; Zustände wie zuvor. Bei 1440 px angesehen.
 - **Nicht funktioniert / offen:** Die Umrisse stammen aus fremden Fotos (Quelle unbekannt). Das Repo ist öffentlich; ob die Silhouetten so bleiben dürfen, ist nicht geklärt. Lippen wirken durch die Pixelkontur etwas kantig, Brauen- und Wimpernpositionen sind geschätzt. Bei der Gesichtsvariante bleibt die Bildkante links hart (wie im Ausschnitt). Kein Handytest.
 
+### 31.10.2026 · Claude · Profil als reine Silhouette im 3D-Panel
+- **Versucht:** Lucas wollte nur die Silhouette ohne Brauen, Lippen und Wimpern, und als 3D-Panel wie bei den Nägeln.
+- **Funktioniert:** Brauen, Lippen, Wimpern und alle Zustände entfernt. In `claude_background/branding/experiments/service-panels-3d.js` neue Art `profile`: der extrahierte Umriss wird als abgerundete, glänzende Platte (ExtrudeGeometry mit Bevel, Klarlack, gleiche Beleuchtung wie die anderen Panels) gerendert, leichte Drehung nach Maus und langsames Schweben. Bundle `website/js/service-panels-3d.js` mit three 0.184.0 und esbuild neu gebaut (Nagel- und Wimpern-Panels unverändert). Beide Varianten bei 1440 px angesehen, Farbe auf Rosé nachgezogen, weil sie zuerst fast weiß wirkte.
+- **Nicht funktioniert / offen:** Die Umrisse stammen weiter aus fremden Fotos. Die Auswahl in der Liste ändert die Platte noch nicht. Kein Handytest.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
