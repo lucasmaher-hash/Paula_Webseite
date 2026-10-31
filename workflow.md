@@ -781,6 +781,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Brauen, Lippen, Wimpern und alle Zustände entfernt. In `claude_background/branding/experiments/service-panels-3d.js` neue Art `profile`: der extrahierte Umriss wird als abgerundete, glänzende Platte (ExtrudeGeometry mit Bevel, Klarlack, gleiche Beleuchtung wie die anderen Panels) gerendert, leichte Drehung nach Maus und langsames Schweben. Bundle `website/js/service-panels-3d.js` mit three 0.184.0 und esbuild neu gebaut (Nagel- und Wimpern-Panels unverändert). Beide Varianten bei 1440 px angesehen, Farbe auf Rosé nachgezogen, weil sie zuerst fast weiß wirkte.
 - **Nicht funktioniert / offen:** Die Umrisse stammen weiter aus fremden Fotos. Die Auswahl in der Liste ändert die Platte noch nicht. Kein Handytest.
 
+### 31.10.2026 · Claude · Gesichts-Variante entfernt, Kopf-Silhouette bleibt
+- **Versucht:** Lucas entschied sich gegen die Variante „nur das Gesicht“.
+- **Funktioniert:** Zweiter Frame samt Gesichts-Umriss aus `js/service-variant.js` entfernt; die Kopf-Silhouette ist jetzt der einzige Haut-&-PMU-Frame (Nr. 03, ID `gesicht`, damit die Menü-Anker wieder normal greifen). `/1/` neu generiert.
+- **Nicht funktioniert / offen:** Nichts.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
