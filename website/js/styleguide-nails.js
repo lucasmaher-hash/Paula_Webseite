@@ -56,5 +56,5 @@
     list.append(b);
   });
   copy.append(list); row.append(copy, stage); mount.append(row); select(0);
-  var renderer = document.createElement('script'); renderer.src = 'js/service-panels-3d.js?v=3'; renderer.defer = true; document.body.append(renderer);
+  var renderer = document.createElement('script'); renderer.src = 'js/service-panels-3d.js?v=4'; renderer.defer = true; document.body.append(renderer);
 })();

@@ -786,6 +786,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Zweiter Frame samt Gesichts-Umriss aus `js/service-variant.js` entfernt; die Kopf-Silhouette ist jetzt der einzige Haut-&-PMU-Frame (Nr. 03, ID `gesicht`, damit die Menü-Anker wieder normal greifen). `/1/` neu generiert.
 - **Nicht funktioniert / offen:** Nichts.
 
+### 31.10.2026 · Claude · Kopf ohne feste Drehung
+- **Versucht:** Lucas bemerkte, dass ich die Kopf-Silhouette gedreht hatte, und wollte keinen starren Blick nach vorn.
+- **Funktioniert:** Die feste Drehung (−0,32 rad) ist weg: Ruhehaltung ist das exakte Profil der Vorlage. Der Kopf dreht sich nur bei Mausbewegung zum Zeiger (bis etwa 40°) und kehrt zurück. Bundle neu gebaut, Ruhehaltung bei 1440 px angesehen; die Maus-Drehung selbst nicht im Browser getestet.
+- **Nicht funktioniert / offen:** Ich habe „don't just have a forward look“ als „nicht starr geradeaus“ gedeutet; falls etwas anderes gemeint war (z. B. dauerhaft geneigte Haltung), nachfragen. Kein Handytest, dort gibt es keine Mausdrehung.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

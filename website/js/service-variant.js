@@ -88,5 +88,5 @@
     document.querySelectorAll('[data-open]').forEach(function(link){link.addEventListener('click',function(){var first=items.findIndex(function(item){return item.category===link.dataset.open;});if(first>=0)select(first);});});
   });
   content.append(rows);section.replaceChildren(content);
-  var renderer=document.createElement('script');renderer.src=new URL('service-panels-3d.js?v=3',scriptURL).href;renderer.defer=true;document.body.append(renderer);
+  var renderer=document.createElement('script');renderer.src=new URL('service-panels-3d.js?v=4',scriptURL).href;renderer.defer=true;document.body.append(renderer);
 })();

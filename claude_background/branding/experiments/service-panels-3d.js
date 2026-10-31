@@ -157,8 +157,9 @@ function mountProfile(host) {
     const t=reduced.matches?0:(now-started)/1000;
     smoothX+=(pointerX-smoothX)*.08;smoothY+=(pointerY-smoothY)*.08;
     light.position.x=-3+Math.sin(t*.3)*.35+smoothX;
-    group.rotation.y=-.32+Math.sin(t*.3)*.05+smoothX*.35;
-    group.rotation.x=.04+smoothY*.12;
+    // Ruhehaltung: exaktes Profil wie die Vorlage, ohne Drehung. Nur bei Mausbewegung dreht sich der Kopf zum Zeiger.
+    group.rotation.y=Math.sin(t*.3)*.03+smoothX*.7;
+    group.rotation.x=smoothY*.25;
     group.position.y=Math.sin(t*.45)*.04;
     renderer.render(scene,camera);dirty=false;last=now;
   }
