@@ -133,6 +133,7 @@ function mountProfile(host) {
   pts.forEach((p,i)=>{const x=(p[0]-cx)*k,y=-(p[1]-cy)*k;if(i)shape.lineTo(x,y);else shape.moveTo(x,y);});
   const geometry=new THREE.ExtrudeGeometry(shape,{depth:.34,bevelEnabled:true,bevelThickness:.1,bevelSize:.09,bevelSegments:8,curveSegments:1});
   geometry.center();
+  const shapeW=(maxX-minX)*k+.4;  // Breite in Szeneneinheiten (inkl. Rand), damit Gesicht und Hinterkopf nie abgeschnitten werden
   const material=new THREE.MeshPhysicalMaterial({color:'#c98f99',roughness:.36,metalness:.03,clearcoat:.9,clearcoatRoughness:.16,envMapIntensity:.8});
   const mesh=new THREE.Mesh(geometry,material);
   const group=new THREE.Group();group.add(mesh);scene.add(group);
@@ -141,7 +142,7 @@ function mountProfile(host) {
   function resize() {
     const box=host.getBoundingClientRect();if(!box.width||!box.height)return;
     renderer.setSize(box.width,box.height,false);
-    const aspect=box.width/box.height;camera.left=-2.5*aspect;camera.right=2.5*aspect;camera.top=2.5;camera.bottom=-2.5;camera.updateProjectionMatrix();dirty=true;
+    const aspect=box.width/box.height;camera.left=-2.5*aspect;camera.right=2.5*aspect;camera.top=2.5;camera.bottom=-2.5;camera.updateProjectionMatrix();group.scale.setScalar(Math.min(1,(5*aspect*.94)/shapeW));dirty=true;
   }
   new ResizeObserver(resize).observe(host);
   if('IntersectionObserver'in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)dirty=true;}).observe(host);
@@ -156,11 +157,7 @@ function mountProfile(host) {
     if(now-last<1000/30&&!dirty)return;
     const t=reduced.matches?0:(now-started)/1000;
     smoothX+=(pointerX-smoothX)*.08;smoothY+=(pointerY-smoothY)*.08;
-    light.position.x=-3+Math.sin(t*.3)*.35+smoothX;
-    // Ruhehaltung: exaktes Profil wie die Vorlage, ohne Drehung. Nur bei Mausbewegung dreht sich der Kopf zum Zeiger.
-    group.rotation.y=Math.sin(t*.3)*.03+smoothX*.7;
-    group.rotation.x=smoothY*.25;
-    group.position.y=Math.sin(t*.45)*.04;
+    // Statisch: keine Drehung, kein Schweben, keine Reaktion auf die Maus.
     renderer.render(scene,camera);dirty=false;last=now;
   }
   host.dataset.renderer='three-webgl';resize();frame(performance.now());

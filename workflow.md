@@ -791,6 +791,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Die feste Drehung (−0,32 rad) ist weg: Ruhehaltung ist das exakte Profil der Vorlage. Der Kopf dreht sich nur bei Mausbewegung zum Zeiger (bis etwa 40°) und kehrt zurück. Bundle neu gebaut, Ruhehaltung bei 1440 px angesehen; die Maus-Drehung selbst nicht im Browser getestet.
 - **Nicht funktioniert / offen:** Ich habe „don't just have a forward look“ als „nicht starr geradeaus“ gedeutet; falls etwas anderes gemeint war (z. B. dauerhaft geneigte Haltung), nachfragen. Kein Handytest, dort gibt es keine Mausdrehung.
 
+### 31.10.2026 · Claude · Kopf statisch und vollständig im Frame
+- **Versucht:** Lucas: Der Kopf bewegt und neigt sich beim Hover, Gesicht und Hinterkopf sind abgeschnitten.
+- **Funktioniert:** Jede Bewegung entfernt (keine Mausdrehung, kein Schweben, keine Lichtbewegung). Der Kopf wird jetzt nach der Frame-Breite skaliert (`group.scale` in `resize()` aus Umrissbreite und Seitenverhältnis), sodass Nase und Hinterkopf nie am Rand abgeschnitten werden. Bundle neu gebaut, bei 1440 px angesehen: ganzer Kopf sichtbar.
+- **Nicht funktioniert / offen:** Dadurch ist der Kopf im schmalen Objekt-Frame etwas kleiner; breiter über den Ziehgriff oder die Spaltenbreite. Kein Handytest.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
