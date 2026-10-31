@@ -1,5 +1,23 @@
 # Workflow: PM Beauty · Kurzprojekt 1 (Identität) und 2 (Website)
 
+## Kurzprojekt 2 (Website): Überblick
+
+Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Website-Arbeit ohne den gesamten Identity-Verlauf lesbar ist. Einzelheiten stehen in den datierten Einträgen.
+
+**Stand:** Onepager mit neun Abschnitten, live über GitHub Pages. Daneben eine experimentelle Variante (`index-experimentell.html`, Vorschau `/1/`) mit Three.js-Panels für die Behandlungen. Seitenmodell und Reihenfolge: `seitenplan.md`. Gestaltungsregeln: `design.md`. Briefing: `briefing.md`.
+
+**Verlauf:**
+- 18.10.: Redesign nach Paulas Referenz, Claude Code baut die Seite, Messung im eingebauten Browser.
+- 20.–21.10.: Typografie (Gambarino als Überschrift), Monogramm, getönte Fotos, Collage. Mischung aus Claude (Cloud und lokal) und Codex.
+- 21.10.: Codex baut interaktive Nagel-Panels (Three.js) für die Maniküre.
+- 27.10.: Briefing ausgefüllt (Claude), danach von Lucas und Codex überarbeitet; experimentelle Basis neben die Hauptseite gestellt.
+- 28.10.: Codex mit Bildgenerierung liefert Porträts und Schulungsmotive; 3D-Panels für alle Leistungen in der Vorschau.
+- 31.10.: Kurs- und Projektordner zusammengeführt, `design.md`, `seitenplan.md` und Briefing-Bereinigung (Claude).
+
+**Was die KI getan hat und was ich:** Code, Bildvarianten und Messungen kamen von Claude und Codex. Entschieden haben Lucas (Logo, Farben, was wieder entfernt wird) und Paula (Inhalte, keine Preise). Fakten über das Studio kommen nur von Paula.
+
+**Noch offen für Montag:** Gutschein-Kaufweg (Platzhalter-Links), Test auf echtem Handy, Impressum/Datenschutz-Angaben. Animationen sind bewusst auf nächste Woche verschoben.
+
 ## Logbuch
 
 ### 18.10.2026 · Wortmarke mit eigenem E
@@ -707,6 +725,16 @@
 - **Versucht:** Lucas möchte die 3D-Objekte ohne Hintergrundrahmen und ohne den Hinweis „Abstrakte Visualisierung“; das Nagellayout soll der separaten Referenz folgen.
 - **Funktioniert:** Die drei 3D-Hintergrundflächen und Hinweise entfernt. Die Nagelform füllt ihre Fläche und trägt die ausgewählte Beschreibung wie im separaten Maniküre-Experiment; die anderen Beschreibungen bleiben in ihren Textpanelen. Barrierefreie Beschreibung als eigenständiges Tabpanel. Browser-Prüfung bei 375 und 1440 px, Auswahl und Fallback ohne WebGL bestanden.
 - **Nicht funktioniert / offen:** Die bestehende Referenz wurde auf die längere tatsächliche Leistungsliste übertragen; ein physisches Handy wurde nicht geprüft.
+
+### 31.10.2026 · Claude · Ordner zusammengeführt, design.md, Seitenplan, Briefing
+- **Versucht:** Kurs- und Projektordner zusammenführen, Aufgabe bis Montag auswerten, `design.md` nach Ammers Vorlage füllen, Briefing und Seitenmodell bereinigen.
+- **Funktioniert:** Vorlagen nach `vorlagen/`, `kurs`-Symlink repariert. `design.md` aus `style.css` und Styleguide abgeleitet (Hex aus den HSL-Variablen berechnet). Briefing auf das Onepager-Modell festgelegt, `seitenplan.md` angelegt.
+- **Nicht funktioniert / offen:** Kontrast nicht gemessen, kein Handy-Test, Gutschein-Links weiter Platzhalter (echte Links fehlen, nicht erfunden). Seitenskizze nur als Text, nicht als Bild.
+
+### 31.10.2026 · Claude · Arbeitsregeln festgelegt
+- **Versucht:** Ammers Website-Prompt (Discord, 28.10.) auf den Ist-Stand übertragen und Lucas' Arbeitsweise verbindlich festhalten.
+- **Funktioniert:** Der Bau-Prompt (Plan, Startseite, Unterseite) entfällt, weil die Seite schon steht. Übernommen: eine Änderung pro Prompt, jede Änderung sofort ins Logbuch, bei Grundsätzlichem zuerst `design.md`. Regeln im Abschnitt „Arbeitsweise“ der `CLAUDE.md`, dazu zwei Memory-Einträge.
+- **Nicht funktioniert / offen:** Nichts. Entscheidung Lucas: Gutschein-Links bleiben unverändert.
 
 ## Werkzeuge
 

@@ -1,6 +1,6 @@
 # Briefing: Website für PM Beauty
 
-Stand 27.10.2026. Das Briefing beschreibt, was die Website erreichen soll und wie. Marke, Werte und Tonalität stehen im Markenprofil (`branding/markenprofil.md`), die Gestaltung im Styleguide (`styleguide.html`).
+Stand 31.10.2026 (Seitenmodell präzisiert, Inhalt gegen die Website abgeglichen). Das Briefing beschreibt, was die Website erreichen soll und wie. Marke, Werte und Tonalität stehen im Markenprofil (`branding/markenprofil.md`), die Gestaltung im Styleguide (`styleguide.html`).
 
 ## Ziel
 
@@ -19,25 +19,20 @@ Interessentinnen sollen einen klaren Überblick über die Behandlungen erhalten,
 
 ## Die wichtigste Handlung
 
-Auf Dienstleistungen aufmerksam machen und einen Überblick verschaffen (Behandlungen und Schulungen).
+- **Ziel der Seite:** Auf die Dienstleistungen aufmerksam machen und einen Überblick verschaffen (Behandlungen und Schulungen).
+- **Handlung, die daraus folgt:** Termin buchen über Beautinda. Der Button steht im Hero, im Menü und im Kontaktbereich; jede Behandlungskategorie hat einen eigenen Link „Preise & Termin“, so sind es höchstens zwei Klicks.
 
-## Inhalt
+## Seitenmodell
 
-- Hero mit Paula und dem Terminbutton
-- Die fünf Behandlungskategorien
-- Über Paula & Studio
-- Schulungen
-- Gutscheine
-- Bewertungen
-- Kontakt
+Die Website ist ein **Onepager**: eine scrollbare Seite mit Abschnitten, die über das Menü als Anker erreichbar sind. Es gibt keine echten Unterseiten außer Impressum und Datenschutz. Die Reihenfolge der Abschnitte steht in `seitenplan.md`.
 
-## Seiten
+Drei Abschnitte sind als Beispiele für das Designsystem besonders ausgearbeitet:
 
-Gestaltet werden drei Seiten beispielhaft. Die übrigen Seiten (Über Paula, Schulungen, Gutscheine, Bewertungen) folgen demselben System und sind angelegt.
-
-- **Startseite:** erster Eindruck. Hier wirkt die Logo-Schreibbewegung als Einstieg, und hier zeigt sich, ob die Marke auch ohne Logo trägt (Gestaltungsprinzip „Die Mitte“).
+- **Startseite (Hero):** erster Eindruck. Hier wirkt die Logo-Schreibbewegung als Einstieg, und hier zeigt sich, ob die Marke auch ohne Logo trägt (Gestaltungsprinzip „Die Mitte“).
 - **Behandlungen:** zeigt, wie das Designsystem Ordnung schafft. Braun ist die Basis, Pink markiert die Behandlungen. Akkordeons nach Kategorie, Dauer in Mono, keine Preise.
 - **Kontakt und Buchung:** der Ort, an dem aus Interesse ein Termin wird. Öffnungszeiten, Adresse, Buchungsbutton.
+
+Die übrigen Abschnitte (Studio, Schulungen, Gutscheine, Bewertungen) folgen demselben System.
 
 ## Besondere Anforderungen
 
