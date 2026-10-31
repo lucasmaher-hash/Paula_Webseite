@@ -6,7 +6,7 @@
 }
 .service-sections{display:grid;gap:var(--sp-block-gap,48px)}
 .service-block{display:grid;gap:var(--sp-gap,10px);min-width:0;scroll-margin-top:90px}
-.service-copy{position:relative;min-width:0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--sp-radius,var(--rounded-xl));padding:var(--sp-pad,24px)}
+.service-copy{position:relative;min-width:0;min-height:var(--sp-copy-h,0);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--sp-radius,var(--rounded-xl));padding:var(--sp-pad,24px)}
 .service-title{font-family:var(--font-display);font-size:var(--sp-title-size,clamp(1.8rem,3vw,2.5rem));font-weight:400;line-height:1.1;margin:16px 0 24px}
 .service-tabs{max-height:var(--sp-tabs-h,290px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--color-border) transparent;border-block:1px solid var(--color-border)}
 .service-option{display:block;width:100%;text-align:left;padding:14px 12px;border-radius:0;font-size:.92rem;line-height:1.45;transition:background-color .3s,color .3s}
@@ -32,8 +32,8 @@
 .service-object[data-kind=eyes]:not([data-renderer=three-webgl])::after{inset:40% 18%;background:transparent;border-top:8px solid #745449;border-radius:50%;box-shadow:none}
 @media(min-width:800px){
   .service-sections{gap:var(--sp-block-gap,64px)}
-  .service-block{grid-template-columns:minmax(0,calc(var(--sp-copy,54) * 1fr)) minmax(0,calc(var(--sp-stage,28) * 1fr)) minmax(0,calc(var(--sp-side,18) * 1fr));align-items:stretch}
-  .service-block:nth-child(even){grid-template-columns:minmax(0,calc(var(--sp-side,18) * 1fr)) minmax(0,calc(var(--sp-stage,28) * 1fr)) minmax(0,calc(var(--sp-copy,54) * 1fr))}
+  .service-block{grid-template-columns:minmax(0,var(--sp-copy-w,54fr)) minmax(0,var(--sp-stage-w,28fr)) minmax(0,18fr);align-items:stretch}
+  .service-block:nth-child(even){grid-template-columns:minmax(0,18fr) minmax(0,var(--sp-stage-w,28fr)) minmax(0,var(--sp-copy-w,54fr))}
   .service-block .service-copy{grid-column:1;grid-row:1}
   .service-block .service-stage{grid-column:2;grid-row:1}
   .service-block:nth-child(even) .service-copy{grid-column:3}
@@ -44,3 +44,19 @@
   .service-object[data-kind=eyes]{height:var(--sp-eyes-h,320px)}
 }
 @media(prefers-reduced-motion:reduce){.service-option{transition:none}}
+
+/* Ziehgriffe (nur lokal oder mit ?regler=1, siehe js/service-tuner.js) */
+.sp-h{position:absolute;z-index:5;background:transparent;transition:background-color .15s}
+.sp-h:hover,.sp-h.is-drag{background:#8b3a4a55}
+.sp-h[data-edge=l],.sp-h[data-edge=r]{top:12px;bottom:12px;width:14px;cursor:ew-resize}
+.sp-h[data-edge=l]{left:-7px}.sp-h[data-edge=r]{right:-7px}
+.sp-h[data-edge=b]{left:12px;right:12px;bottom:-7px;height:14px;cursor:ns-resize}
+.sp-h[data-edge=bl],.sp-h[data-edge=br]{bottom:-9px;width:22px;height:22px;border-radius:50%}
+.sp-h[data-edge=bl]{left:-9px;cursor:nesw-resize}.sp-h[data-edge=br]{right:-9px;cursor:nwse-resize}
+
+/* Feste Zeilenhöhe nach dem Ziehen: Liste scrollt, Objekt füllt den Frame */
+.sp-sized .service-block{height:var(--sp-row-h)}
+.sp-sized .service-copy{display:flex;flex-direction:column;min-height:0}
+.sp-sized .service-tabs{flex:1 1 auto;min-height:0;max-height:none}
+.sp-sized .service-stage{min-height:0}
+.sp-sized .service-object:not([data-kind=nails]){height:min(var(--sp-obj-h,470px),100%)}
