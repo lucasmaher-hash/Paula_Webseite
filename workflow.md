@@ -746,6 +746,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Neue `js/styleguide-nails.js` baut dieselbe Struktur und Klassen wie `/1/` (`service-block`, `service-object`, `css/service-panels.css`) und lädt den gleichen Renderer `service-panels-3d.js`, mit den 14 Maniküre-Leistungen der Website. iframe und Link entfernt, `manicure-panels.html` gelöscht. Im Headless-Chrome bei 1440 und 390 px geprüft: WebGL-Renderer aktiv, Auswahl „Shellack mit French“ zeigt die French-Spitze. Außerdem lokal Symlink `website/branding`, damit `/branding/…` wieder lädt (nur lokal, nicht im Repo).
 - **Nicht funktioniert / offen:** Die Hauptseite `index.html` enthält die 3D-Panels nicht, nur die Vorschau `/1/` (Lucas hatte „in der Webseite verbaut“ gesagt). `build-manicure-3d.cjs` schreibt noch in die gelöschte HTML-Datei und ist damit überholt. Kein physisches Handy getestet.
 
+### 31.10.2026 · Claude · „Buchen“-Button neben die Überschrift der Behandlungs-Frames
+- **Versucht:** Lucas wollte den breiten „Termin buchen“-Button unter den Behandlungs-Frames klein neben die Überschrift („Form, Farbe und Finish.“) setzen und in „Buchen“ umbenennen, in allen drei Frames.
+- **Funktioniert:** In `js/service-variant.js` sitzt der Button jetzt in einer Kopfzeile (`.service-head`) rechts neben dem Titel, Klasse `btn-sm`, Beschriftung „Buchen“, `aria-label` bleibt „Termin buchen: <Bereich>“. Gilt für Maniküre, Wimpern & Brauen und Haut & PMU auf `/1/`; `/1/` neu generiert. Der Styleguide-Frame hat denselben Button. Bei 390 und 1440 px im Headless-Chrome angesehen; Cache-Versionen erhöht.
+- **Nicht funktioniert / offen:** Haut & PMU nicht einzeln angesehen (gleicher Code). Die Hauptseite `index.html` ist nicht betroffen, weil sie diese Frames nicht enthält. Kein physisches Handy getestet.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

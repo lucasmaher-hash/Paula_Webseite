@@ -26,7 +26,9 @@
   }
   var row = node('article', 'service-block theme-pink'); row.dataset.kind = 'nails';
   var copy = node('div', 'service-copy');
-  copy.append(node('span', 'eyebrow', 'Maniküre'), node('h3', 'service-title', 'Form, Farbe und Finish.'));
+  var book = node('a', 'btn btn-primary btn-sm service-book', 'Buchen'); book.href = 'https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders'; book.target = '_blank'; book.rel = 'noopener'; book.setAttribute('aria-label', 'Termin buchen: Maniküre');
+  var head = node('div', 'service-head'); head.append(node('h3', 'service-title', 'Form, Farbe und Finish.'), book);
+  copy.append(node('span', 'eyebrow', 'Maniküre'), head);
   var list = node('div', 'service-tabs'); list.setAttribute('role', 'tablist'); list.setAttribute('aria-label', 'Maniküre auswählen'); list.setAttribute('aria-orientation', 'vertical');
   var description = node('div', 'service-description'); description.id = 'sg-nail-description'; description.setAttribute('role', 'tabpanel');
   var name = node('h4', 'service-selected-name'), paragraph = node('p', 'muted'); description.append(name, paragraph);

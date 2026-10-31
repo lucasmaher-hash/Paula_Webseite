@@ -29,7 +29,8 @@
     var items=group.categories.flatMap(function (id){return categories[id] || [];});
     var row=node('article','service-block '+(index===1?'theme-brown':'theme-pink'));row.id=group.id;row.dataset.kind=group.kind;
     var copy=node('div','service-copy');copy.append(node('span','eyebrow',String(index+1).padStart(2,'0')+' · '+group.title));
-    copy.append(node('h3','service-title',group.lead));
+    var book=booking.cloneNode(true);book.classList.add('service-book','btn-sm');book.firstChild.textContent='Buchen ';book.setAttribute('aria-label','Termin buchen: '+group.title);
+    var head=node('div','service-head');head.append(node('h3','service-title',group.lead),book);copy.append(head);
     var list=node('div','service-tabs');list.setAttribute('role','tablist');list.setAttribute('aria-label',group.title+' auswählen');list.setAttribute('aria-orientation','vertical');
     var description=node('div','service-description');description.id='service-description-'+index;description.setAttribute('role','tabpanel');
     var name=node('h4','service-selected-name'),paragraph=node('p','muted');description.append(name,paragraph);
@@ -75,8 +76,7 @@
       });
       list.append(button);
     });
-    var book=booking.cloneNode(true);book.classList.add('service-book');book.firstChild.textContent='Termin buchen ';
-    copy.append(list);if(group.kind!=='nails')copy.append(description);copy.append(book);row.append(copy,stage);rows.append(row);select(0);
+    copy.append(list);if(group.kind!=='nails')copy.append(description);row.append(copy,stage);rows.append(row);select(0);
     function categoryFromHash(){var id=location.hash.slice(1);if(group.categories.includes(id)){var first=items.findIndex(function(item){return item.category===id;});if(first>=0)select(first);}}
     window.addEventListener('hashchange',categoryFromHash);categoryFromHash();
     document.querySelectorAll('[data-open]').forEach(function(link){link.addEventListener('click',function(){var first=items.findIndex(function(item){return item.category===link.dataset.open;});if(first>=0)select(first);});});
