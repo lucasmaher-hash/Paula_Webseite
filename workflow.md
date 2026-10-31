@@ -751,6 +751,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** In `js/service-variant.js` sitzt der Button jetzt in einer Kopfzeile (`.service-head`) rechts neben dem Titel, Klasse `btn-sm`, Beschriftung „Buchen“, `aria-label` bleibt „Termin buchen: <Bereich>“. Gilt für Maniküre, Wimpern & Brauen und Haut & PMU auf `/1/`; `/1/` neu generiert. Der Styleguide-Frame hat denselben Button. Bei 390 und 1440 px im Headless-Chrome angesehen; Cache-Versionen erhöht.
 - **Nicht funktioniert / offen:** Haut & PMU nicht einzeln angesehen (gleicher Code). Die Hauptseite `index.html` ist nicht betroffen, weil sie diese Frames nicht enthält. Kein physisches Handy getestet.
 
+### 31.10.2026 · Claude · Regler für Text-Frame und Nagel-Frame
+- **Versucht:** Lucas wollte alle Maße der Behandlungs-Frames, auch des Nagel-Frames, selbst einstellen können.
+- **Funktioniert:** `css/service-panels.css` liest jetzt CSS-Variablen (`--sp-*`) mit den bisherigen Werten als Standard. Neues `js/service-tuner.js` zeigt mit `?regler=1` ein Reglerfeld unten links: Text-Frame (Innenabstand, Eckenradius, Überschrift, Listenhöhe), Spaltenverhältnis und Abstände (nur Desktop), Nagel-Frame (Frame-/Nagelhöhe, Nagelbreite, Textposition und -größe), Höhe von Wimpern/Haut. Werte bleiben im Browser gespeichert, darunter steht der `:root{…}`-Block zum Übernehmen. Auf `/1/` und im Styleguide eingebunden, im Headless-Chrome mit gesetzten Werten geprüft (Innenabstand 60 px, Nagelbreite 300 px wirken).
+- **Nicht funktioniert / offen:** Ohne `?regler=1` unsichtbar. Gewählte Werte sind noch nicht in die CSS-Standards übernommen; dafür den `:root{…}`-Block schicken. Mobile und Desktop teilen sich dieselben Werte, nur die Spaltenregler wirken nur auf Desktop.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
