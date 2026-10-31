@@ -76,7 +76,8 @@
       });
       list.append(button);
     });
-    copy.append(list);if(group.kind!=='nails')copy.append(description);row.append(copy,stage);rows.append(row);select(0);
+    copy.append(list);if(group.kind!=='nails'){description.hidden=true;copy.append(description);}  // Erklärtexte unter Wimpern/Haut vorerst ausgeblendet, Anzeige folgt später
+    row.append(copy,stage);rows.append(row);select(0);
     function categoryFromHash(){var id=location.hash.slice(1);if(group.categories.includes(id)){var first=items.findIndex(function(item){return item.category===id;});if(first>=0)select(first);}}
     window.addEventListener('hashchange',categoryFromHash);categoryFromHash();
     document.querySelectorAll('[data-open]').forEach(function(link){link.addEventListener('click',function(){var first=items.findIndex(function(item){return item.category===link.dataset.open;});if(first>=0)select(first);});});

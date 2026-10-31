@@ -761,6 +761,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** In `css/service-panels.css` sind 437 px Zeilenhöhe und 601 px Text-Frame jetzt der feste Standard ab 800 px Breite (Objekt-Frame füllt den Rest, Liste scrollt). Ziehgriffe überschreiben das lokal, „Zurücksetzen“ führt auf diese Werte zurück. Alle drei Zeilen bei 1440 px angesehen.
 - **Nicht funktioniert / offen:** Am Handy unverändert (eine Spalte, alte Höhen). Kein Touch-Test.
 
+### 31.10.2026 · Claude · Erklärtexte unter Wimpern/Brauen und Haut/PMU ausgeblendet
+- **Versucht:** Lucas wollte die Beschreibung unter der Liste (Name und Satz zur gewählten Leistung) in den beiden unteren Frames entfernen; wie sie dort angezeigt wird, klären wir später.
+- **Funktioniert:** In `js/service-variant.js` wird die Beschreibung für Wimpern und Haut nicht mehr gezeigt (nur `hidden`, der Inhalt wird weiter gepflegt, damit die spätere Anzeige schnell geht). Maniküre unverändert (Text im Nagel). `/1/` neu generiert, Haut-Frame bei 1440 px angesehen.
+- **Nicht funktioniert / offen:** Wo die Beschreibung für Wimpern und Haut künftig stehen soll, ist offen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
