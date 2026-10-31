@@ -771,6 +771,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** In `js/service-variant.js` und `css/service-panels.css` direkt eingebaut (keine separate Datei). Ein handgezeichneter SVG-Pfad dient für beide Varianten, nur der Bildausschnitt (`viewBox`) unterscheidet sich. Auswahl steuert den Zustand: Microblading/Powderbrows → Brauen dunkel; Lippenpigmentierung → Lippen dunkel; Nachbehandlung/Auffrischung → Brauen und Lippen dunkel, Wimpern verlängert; Remover → alles hell; Microneedling → Punktstruktur und Glow; übrige Gesichtsbehandlungen → Glow. Übergänge 0,7–0,9 s, bei „Bewegung reduzieren“ keine. Im Headless-Chrome alle Zustände bei 1440 px angesehen.
 - **Nicht funktioniert / offen:** Das Profil ist eine einfache Handzeichnung (keine Vorlage nachgezeichnet, die Screenshots dienten nur als Ausschnitt-Idee); Nase und Kinn wirken noch glatt. Die Wimpern sind nur an Auffrischung/Nachbehandlung verlängert, weil die Leistungsliste dort keine Wimpernbehandlung hat. Die zweite Variante ist zum Löschen vorgesehen. Kein Test am Handy.
 
+### 31.10.2026 · Claude · Profil-Umriss aus der Referenz extrahiert
+- **Versucht:** Lucas lehnte die handgezeichnete Profilform ab („das ist nicht die Silhouette“) und verlangte, den Umriss aus seinen beiden Referenzbildern zu gewinnen.
+- **Funktioniert:** Beide Bilder (Kopf mit Hals, Gesichtsausschnitt) per OpenCV geglättet, mit Schwellwert in Schwarz/Weiß getrennt, die größte Kontur verfolgt und als SVG-Pfad gespeichert (Kontrolle: Kontur grün über das Original gelegt, sitzt auf dem Rand). Lippen aus dem Umriss abgeleitet (Profil x(y) im Lippenbereich), Brauen, Lid und Wimpern an den im Bild gemessenen Stellen gesetzt. Beide Varianten in `service-variant.js` eingebettet; Zustände wie zuvor. Bei 1440 px angesehen.
+- **Nicht funktioniert / offen:** Die Umrisse stammen aus fremden Fotos (Quelle unbekannt). Das Repo ist öffentlich; ob die Silhouetten so bleiben dürfen, ist nicht geklärt. Lippen wirken durch die Pixelkontur etwas kantig, Brauen- und Wimpernpositionen sind geschätzt. Bei der Gesichtsvariante bleibt die Bildkante links hart (wie im Ausschnitt). Kein Handytest.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

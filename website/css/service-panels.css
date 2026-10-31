@@ -73,15 +73,15 @@
 /* Seitenprofil (Haut & Permanent Make-up): Brauen und Lippen werden dunkler, Wimpern länger */
 .service-profile{width:100%;height:100%;min-height:300px;display:grid;place-items:center;filter:drop-shadow(0 14px 28px #a8737d33)}
 .service-profile svg{width:100%;height:100%;display:block}
-.service-profile .pf-brow{stroke:#b98f8e;stroke-width:3;opacity:.45;transition:stroke .7s ease,stroke-width .7s ease,opacity .7s ease}
-.service-profile .pf-lip{fill:#e2c3c1;transition:fill .7s ease}
-.service-profile .pf-lashes path{stroke:#a97f7e;stroke-dasharray:6 60;transition:stroke-dasharray .9s cubic-bezier(.4,0,.2,1),stroke .7s ease}
+.service-profile .pf-brow{stroke:#b98f8e;stroke-width:4;opacity:.45;transition:stroke .7s ease,stroke-width .7s ease,opacity .7s ease}
+.service-profile .pf-lip{fill:#dcb6b4;transition:fill .7s ease}
+.service-profile .pf-lashes path{stroke:#a97f7e;stroke-dasharray:7 70;transition:stroke-dasharray .9s cubic-bezier(.4,0,.2,1),stroke .7s ease}
 .service-profile .pf-glow{opacity:.25;transition:opacity .8s ease}
 .service-profile .pf-dots{opacity:0;transition:opacity .6s ease}
 .service-profile[data-look=glow] .pf-glow{opacity:1}
 .service-profile[data-look=texture] .pf-dots{opacity:.55}
 .service-profile[data-look=texture] .pf-glow{opacity:.55}
-.service-profile:is([data-look=brows],[data-look=full]) .pf-brow{stroke:#5b343a;stroke-width:5.5;opacity:1}
+.service-profile:is([data-look=brows],[data-look=full]) .pf-brow{stroke:#5b343a;stroke-width:8;opacity:1}
 .service-profile:is([data-look=lips],[data-look=full]) .pf-lip{fill:#98495a}
-.service-profile[data-look=full] .pf-lashes path{stroke:#4b2c31;stroke-dasharray:40 60}
+.service-profile[data-look=full] .pf-lashes path{stroke:#4b2c31;stroke-dasharray:50 70}
 @media(prefers-reduced-motion:reduce){.service-profile *{transition:none!important}}
