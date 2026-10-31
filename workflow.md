@@ -756,6 +756,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** `js/service-tuner.js` ersetzt die Regler durch Ziehgriffe an Text-Frame und Objekt-/Nagel-Frame (linke und rechte Kante, Unterkante, untere Ecken). Breite setzt `--sp-copy-w` bzw. `--sp-stage-w`, Höhe `--sp-row-h` (Liste scrollt, Objekt füllt den Frame). Aktiv automatisch lokal (localhost/LAN) oder mit `?regler=1`, auf der Live-Seite sonst nicht. Unten links „Kopieren“ (CSS-Block in die Zwischenablage) und „Zurücksetzen“, Werte bleiben im Browser. Per simulierter Maus im Headless-Chrome geprüft: Text-Frame 624→474 px, Objekt-Frame 324→535 px, Höhe 606→526 px.
 - **Nicht funktioniert / offen:** Auf dem Handy (eine Spalte) wirkt nur die Höhe. Gezogene Werte sind noch nicht als CSS-Standard übernommen (dafür „Kopieren“ und mir schicken). Kein Test mit Touch.
 
+### 31.10.2026 · Claude · Gezogene Maße als Standard festgelegt
+- **Versucht:** Lucas hat die Frames per Maus eingestellt und die Werte `--sp-row-h:437px; --sp-copy-w:601px` geschickt.
+- **Funktioniert:** In `css/service-panels.css` sind 437 px Zeilenhöhe und 601 px Text-Frame jetzt der feste Standard ab 800 px Breite (Objekt-Frame füllt den Rest, Liste scrollt). Ziehgriffe überschreiben das lokal, „Zurücksetzen“ führt auf diese Werte zurück. Alle drei Zeilen bei 1440 px angesehen.
+- **Nicht funktioniert / offen:** Am Handy unverändert (eine Spalte, alte Höhen). Kein Touch-Test.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
