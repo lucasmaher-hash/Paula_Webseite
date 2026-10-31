@@ -736,6 +736,16 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Der Bau-Prompt (Plan, Startseite, Unterseite) entfällt, weil die Seite schon steht. Übernommen: eine Änderung pro Prompt, jede Änderung sofort ins Logbuch, bei Grundsätzlichem zuerst `design.md`. Regeln im Abschnitt „Arbeitsweise“ der `CLAUDE.md`, dazu zwei Memory-Einträge.
 - **Nicht funktioniert / offen:** Nichts. Entscheidung Lucas: Gutschein-Links bleiben unverändert.
 
+### 31.10.2026 · Lucas · Abschlussprüfung für Montag
+- **Versucht:** Seite auf Handy und Desktop durchgegangen, Doppelungen und `workflow.md` gegengelesen.
+- **Funktioniert:** Navigation und Bedienung auf beiden Geräten in Ordnung, keine Doppelungen, Workflow geprüft (Angabe von Lucas, nicht von Claude nachgemessen).
+- **Nicht funktioniert / offen:** Nichts gemeldet.
+
+### 31.10.2026 · Claude · Nagelpanels im Styleguide als Komponente, Experiment gelöscht
+- **Versucht:** Lucas wollte das alte Einzel-Experiment `manicure-panels.html` löschen, weil die Komponente schon im Behandlungsbereich der Vorschau steckt. Der Styleguide band es aber per iframe ein (sonst 404).
+- **Funktioniert:** Neue `js/styleguide-nails.js` baut dieselbe Struktur und Klassen wie `/1/` (`service-block`, `service-object`, `css/service-panels.css`) und lädt den gleichen Renderer `service-panels-3d.js`, mit den 14 Maniküre-Leistungen der Website. iframe und Link entfernt, `manicure-panels.html` gelöscht. Im Headless-Chrome bei 1440 und 390 px geprüft: WebGL-Renderer aktiv, Auswahl „Shellack mit French“ zeigt die French-Spitze. Außerdem lokal Symlink `website/branding`, damit `/branding/…` wieder lädt (nur lokal, nicht im Repo).
+- **Nicht funktioniert / offen:** Die Hauptseite `index.html` enthält die 3D-Panels nicht, nur die Vorschau `/1/` (Lucas hatte „in der Webseite verbaut“ gesagt). `build-manicure-3d.cjs` schreibt noch in die gelöschte HTML-Datei und ist damit überholt. Kein physisches Handy getestet.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
