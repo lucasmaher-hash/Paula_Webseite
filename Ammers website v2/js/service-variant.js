@@ -85,6 +85,24 @@ window.pmParticleFill = (function () {
   return {attach:attach, set:function (el, on) { if (el._pf) el._pf.set(on); }};
 })();
 
+// Flip panels (ovals, gallery, course panels): hover, keyboard focus or a first tap turns the inner panel 180 degrees.
+// Leaving does not spin back: the inner panel resets at once while its back fades out quickly (.is-leaving, css/service-panels.css).
+window.pmFlip = function (list) {
+  var touch = matchMedia('(hover: none)');
+  function close(el) { if (!el.classList.contains('is-open')) return; el.classList.remove('is-open'); el.classList.add('is-leaving');
+    clearTimeout(el._flT); el._flT = setTimeout(function () { el.classList.remove('is-leaving'); }, 320); }
+  function open(el) { list.forEach(function (x) { if (x !== el) close(x); }); if (!el) return; clearTimeout(el._flT); el.classList.remove('is-leaving'); el.classList.add('is-open'); }
+  list.forEach(function (el) {
+    el.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') open(el); });
+    el.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') close(el); });
+    el.addEventListener('focusin', function () { if (el.matches(':focus-visible') || el.querySelector(':focus-visible')) open(el); });
+    el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget) && !el.matches(':hover')) close(el); });
+    el.addEventListener('click', function (e) { if (touch.matches && !el.classList.contains('is-open')) { e.preventDefault(); open(el); } });
+  });
+  document.addEventListener('click', function (e) { if (touch.matches && !list.some(function (x) { return x.contains(e.target); })) open(null); });
+  return {open:open, close:close};
+};
+
 // Services as three ovals (layout after tuxkarma.co, right half mirrored to three): outline only,
 // title in the middle; on hover/focus/tap the oval fills and shows six services of its group.
 (function () {
@@ -120,31 +138,12 @@ window.pmParticleFill = (function () {
   accordion.replaceWith(wrap);
   document.body.classList.add('service-ovals-variant');
   var ovals = Array.from(wrap.querySelectorAll('.service-oval'));
-  // Solid at rest; hover (CSS) or .is-open (focus, tap, menu link) flips the oval 180 degrees to its back with the services.
-  var touch = matchMedia('(hover: none)');
-  function open(o, on) { ovals.forEach(function (x) { x.classList.toggle('is-open', on && x === o); }); }
-  ovals.forEach(function (o) {
-    o.addEventListener('focusin', function () { if (o.matches(':focus-visible') || o.querySelector(':focus-visible')) open(o, true); });
-    o.addEventListener('focusout', function (e) { if (!o.contains(e.relatedTarget)) o.classList.remove('is-open'); });
-    o.addEventListener('click', function (e) { if (touch.matches && !o.classList.contains('is-open')) { e.preventDefault(); open(o, true); } });
-  });
-  document.addEventListener('click', function (e) { if (touch.matches && !e.target.closest('.service-oval')) open(null, false); });
-  function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) open(o, true); }
+  // Solid at rest; hover, focus or a tap flips the inner panel (window.pmFlip).
+  var flip = window.pmFlip(ovals);
+  function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) flip.open(o); }
   document.querySelectorAll('[data-open]').forEach(function (a) { a.addEventListener('click', function () { fromHash(a.dataset.open); }); });
   if (location.hash) fromHash(location.hash.slice(1));
 })();
-
-// Flip panels (same behaviour as the treatment ovals): hover, keyboard focus or a first tap turns the inner panel 180 degrees.
-window.pmFlip = function (list) {
-  var touch = matchMedia('(hover: none)');
-  function open(el, on) { list.forEach(function (x) { x.classList.toggle('is-open', on && x === el); }); }
-  list.forEach(function (el) {
-    el.addEventListener('focusin', function () { if (el.matches(':focus-visible') || el.querySelector(':focus-visible')) open(el, true); });
-    el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) el.classList.remove('is-open'); });
-    el.addEventListener('click', function (e) { if (touch.matches && !el.classList.contains('is-open')) { e.preventDefault(); open(el, true); } });
-  });
-  document.addEventListener('click', function (e) { if (touch.matches && !list.some(function (x) { return x.contains(e.target); })) open(null, false); });
-};
 
 // Gallery below the hero: the photo's outer 3 px stay as its frame, the inner photo flips to a light panel with one word.
 (function () {

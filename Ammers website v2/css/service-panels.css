@@ -89,7 +89,6 @@
 .so-face::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--color-surface);z-index:-1}
 .so-face>*{position:relative}
 .so-back{transform:rotateY(180deg)}
-@media(hover:hover){.service-oval:hover .so-inner{transform:rotateY(180deg)}}
 .service-oval.is-open .so-inner{transform:rotateY(180deg)}
 .service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em}
 .service-oval-hint{display:none}
@@ -109,7 +108,7 @@
   .service-oval-hint{display:block;grid-row:3;align-self:end;margin-bottom:18%;opacity:.7}
   .service-oval-list a{font-size:15px;padding:8px 2px}
 }
-@media(prefers-reduced-motion:reduce){.so-inner{transition:opacity .01s}.service-oval:hover .so-inner,.service-oval.is-open .so-inner{transform:rotateY(180deg)}}
+@media(prefers-reduced-motion:reduce){.so-inner,.fl-inner,.cp-inner{transition:none!important}}
 
 /* Particle fill canvas (js/service-variant.js, window.pmParticleFill). */
 .pf{position:relative}
@@ -124,7 +123,6 @@
 .fl-front img{position:absolute;top:-6px;left:-6px;width:calc(100% + 12px)!important;height:calc(100% + 12px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
 .fl-back{transform:rotateY(180deg);background:var(--color-surface);display:grid;place-items:center}
 .fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
-@media(hover:hover){.results .strip figure:hover .fl-inner{transform:rotateY(180deg)}}
 .results .strip figure.is-open .fl-inner{transform:rotateY(180deg)}
 .results .strip figure:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 
@@ -240,7 +238,11 @@
   .cp-back{position:absolute;inset:0;transform:rotateY(180deg);display:grid;place-items:center;padding:24px;text-align:center;text-decoration:none;
     font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--color-primary)}
   .cp-back .arr{font-size:.5em;margin-left:.3em;vertical-align:.35em}
-  @media(hover:hover){.course-panel:hover .cp-inner{transform:rotateY(180deg)}}
   .course-panel.is-open .cp-inner{transform:rotateY(180deg)}
   .cp-back:focus-visible{outline:2px solid var(--color-accent);outline-offset:-10px}
 }
+
+/* Leaving a flip panel: no spin back. The inner panel resets instantly, its back lies on top unrotated and fades out (js: window.pmFlip). */
+:is(.service-oval,.results .strip figure,.course-panel).is-leaving :is(.so-inner,.fl-inner,.cp-inner){transition:none;transform:none}
+:is(.service-oval,.results .strip figure,.course-panel).is-leaving :is(.so-back,.fl-back,.cp-back){transform:none;z-index:2;animation:flip-fade .3s ease-out forwards}
+@keyframes flip-fade{from{opacity:1}to{opacity:0}}
