@@ -936,3 +936,9 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Entfernt: alle alten Panel-/Foto-Rahmen in style.css, die umlaufende Rahmen-Animation und ihr Skript (js/experiment-frames.js, js/frame-draw.js gelöscht; experiment-frames.css auf reine Layoutregeln gekürzt).
 - Neu, ein System in service-panels.css: 3 px Linie, 3 px Abstand, dann Panel/Foto. Abstand zwischen benachbarten Panels überall 18 px (6 px frei zwischen den Linien), auch in Galerie, Kursen, Kontakt, Bewertungen, Gutscheinen. Handy: Über-mich als ein Panel mit Rand, damit der Rahmen nicht am Bildschirmrand verschwindet. Kursfotos (Diagonal-Form) bekommen denselben Rahmen als SVG, die der Form folgt.
 - Geprüft per Playwright bei 1440 und 375 px: keine Panel-Rahmen mehr außer der neuen Linie, kein Abstand unter 18 px, Zoom 3x zeigt eine einzelne Linie.
+
+### Claude (Opus 5.5), 10.11.2026: Rahmen in Panelfarbe, Fotos mit ausgeschnittenem Spalt
+- Lucas: Rahmen hatten nicht genau die Panelfarbe; Fotos sollen keinen Textpanel-Rahmen bekommen, sondern einen Schnitt.
+- Textpanels: Linienfarbe = jeweilige Panelfläche (Karte, „Alle Bewertungen“, Öffnungszeiten je eigene Farbe), per Messung identisch. Regler hat nur noch „Panelfarbe (Fläche und Rahmen)“.
+- Fotos (Galerie, Über mich, Kontakt, Kursfotos inkl. Diagonalform): SVG-Maske schneidet 3 px innen einen 3 px breiten Spalt, der Fotorand bildet den Rahmen. Galerie-Hover: Rand und Fläche werden beide solide. Erst blieb die Maske wirkungslos (CSS-Masken lesen Alpha, nicht Helligkeit), gelöst mit einer Helligkeitsmaske innerhalb der SVG.
+- Geprüft per Playwright bei 1440 und 375 px.

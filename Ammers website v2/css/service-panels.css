@@ -211,23 +211,22 @@
 #frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
 body.menu-open #frame-colors{visibility:hidden}
 
-/* One clean frame for every panel and photo (10.11.2026): 3 px line, 3 px gap, then the panel. No other borders.
+/* One clean frame for every text panel (10.11.2026): 3 px line in exactly the panel's own colour, 3 px gap, then the panel.
    The line sits outside the box (outline), so neighbouring frames need --frame-space between their boxes:
-   6 px frame + 6 px clear space + 6 px frame = 18 px, everywhere. Line colour = dial "Rahmenlinie". */
+   6 px frame + 6 px clear space + 6 px frame = 18 px, everywhere. */
 :root{--frame-w:3px;--frame-space:18px}
-:root,.theme-brown{--ring:var(--frame-line-brown,#dac6be)}
-.theme-pink,.services,.reviews{--ring:var(--frame-line-pink,#d0b3b8)}
-.review,.voucher,.contact-panel,.contact-figure,.hours,.course-panel,.strip figure,
-.about-figure,.about-panel{outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w)}
+.review,.voucher,.contact-panel,.hours,.course-panel,.about-panel{outline:var(--frame-w) solid var(--ring,var(--color-surface));outline-offset:var(--frame-w)}
+.voucher,.contact-panel,.course-panel,.about-panel{--ring:var(--color-surface)}
+.review{--ring:var(--color-surface-raised)}
+.review.review-all{--ring:color-mix(in srgb,var(--color-surface-deep) 86%,var(--color-accent))}
+.hours{--ring:var(--color-surface-deep)}
 .reviews-grid,.contact-grid,.vouchers-grid,.about-grid,.strip{gap:var(--frame-space)!important}
 @media(max-width:899px){
   /* phone: photo and text sit in one shared panel, so only that panel is framed */
-  .about-figure,.about-panel{outline:0}
-  .about-grid{outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w);margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
-  .strip{padding-bottom:12px}
+  .about-panel{outline:0}
+  .about-grid{--ring:var(--color-surface);outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w);margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
   .courses,.course{gap:var(--frame-space)!important}
 }
-/* course photos are cut to a shape (clip-path), so their frame is an SVG drawn by js/service-variant.js */
-.courses{position:relative}
-.course-ring{position:absolute;pointer-events:none;overflow:visible;z-index:1}
-.course-ring path{fill:none;stroke:var(--ring)}
+/* Photos have no added line: js/service-variant.js cuts a 3 px gap 3 px inside their edge (SVG mask),
+   so the outer 3 px of the photo itself forms the frame. The particle fill sits under the same mask. */
+.pm-cut{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
