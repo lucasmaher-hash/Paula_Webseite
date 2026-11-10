@@ -229,17 +229,31 @@
 
 /* Text panels (js/service-variant.js, .hv): at rest transparent with the near-white frame and a short title;
    hover/focus/tap (.is-open) fills them near-white and shows the full content. Both layers share one grid cell, so nothing jumps. */
-.hv{--ring:var(--hvc);background:transparent!important;background-image:none!important;display:grid!important;grid-template:minmax(0,1fr)/minmax(0,1fr);cursor:default;transition:background-color .35s}
-.hv>.hv-sum,.hv>.hv-det{grid-area:1/1;min-width:0}
-.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transition:opacity .3s;pointer-events:none}
+.hv{--ring:var(--hvc);background:transparent!important;background-image:none!important;display:grid!important;grid-template:minmax(0,1fr)/minmax(0,1fr);cursor:default;transition:background-color .4s}
+/* Title (icon + price, word) stays; the rest unfolds below it and the title slides up (grid rows 0fr -> 1fr, layer centred). The ghost copy fixes the open size. */
+.hv>.hv-layer{grid-area:1/1;align-self:center;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hv>.hv-ghost{visibility:hidden;pointer-events:none;align-self:stretch;justify-content:center}
+.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transition:color .4s;pointer-events:none}
 .hv-sum .hv-t{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.4vw,40px);line-height:1.05;letter-spacing:-.01em}
 .hv-sum .hv-s{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
-.hv-sum svg{width:34px;height:34px;color:var(--hvc)!important}
-.hv-det{display:flex;flex-direction:column;gap:inherit;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.hv-sum svg{width:34px;height:34px;color:inherit!important;transition:color .4s}
+.hv-det{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;width:100%;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1),opacity .3s,visibility 0s .5s}
+.hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3,14px);padding-top:var(--space-4,18px);transform:translateY(14px);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.hv-det-in>*{margin:0!important;max-width:100%}
+.hv-dup{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap}
+.hv-ghost .hv-det{grid-template-rows:1fr;transition:none}
+.hv-ghost .hv-det-in{transform:none}
+.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1),opacity .35s .12s,visibility 0s}
+.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det-in{transform:none}
+.hv.is-open .hv-sum{color:var(--color-on-surface)}
+.hv .course-heading,.hv .course-content{padding:0!important;background:transparent!important;border-radius:0!important}
+.hv .course-title h3{font-size:clamp(1.1rem,1.5vw,1.4rem)}
+.hv .course-content p{font-size:clamp(.9rem,1.05vw,1.02rem);line-height:1.5}
+.hv .course-content{gap:var(--space-3,14px);align-items:center}
+.hv .hv-det-in table{margin:0 auto}
+.hv.is-open{background:var(--hvc)!important}
 .review.review-all.hv,.hours.hv{--ring:var(--hvc)}
 .hv.is-open{background:var(--hvc)!important}
-.hv.is-open .hv-sum{opacity:0}
-.hv.is-open .hv-det{opacity:1;visibility:visible;transition-delay:.05s,0s}
 .hv:focus-visible{box-shadow:0 0 0 9px var(--color-accent)}
 .course.is-collapsed .hv .course-content{display:flex}
 .hv .course-toggle{display:none}
@@ -254,13 +268,8 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 /* Single reviews: always visible, no hover. Only the near-white frame and the text, like the other panels at rest. */
 .review:not(.review-all){--ring:var(--hvc);background:transparent!important;background-image:none!important}
 .review:not(.review-all),.review:not(.review-all) *{color:var(--hvc)!important}
-
-/* Course panels, revealed: only title, description and the DM button, centred in the frame (10.11.2026) */
-.course-panel .hv-det{justify-content:center;gap:clamp(18px,2vw,30px)}
-.course .course-panel .hv-det .course-heading{padding:0 clamp(28px,3vw,52px)}
-.course .course-panel .hv-det .course-content{padding:0 clamp(28px,3vw,52px);gap:clamp(18px,2vw,30px);flex:0 0 auto}
-.course .course-panel .hv-det .course-title h3{font-size:clamp(1.5rem,2.3vw,2.3rem);line-height:1.08}
-.course .course-panel .hv-det .course-content p{font-size:clamp(.95rem,1.15vw,1.1rem);line-height:1.55}
-.course .course-panel .hv-det .btn{align-self:flex-start}
-@media(max-width:899px){.course .course-panel .hv-det{padding:clamp(24px,6vw,36px) 0}}
-.course .course-panel .hv-det :is(.course-heading,.course-content){background:transparent!important;border-radius:0!important}
+.course-panel .hv-layer{padding:0 clamp(28px,3vw,52px);box-sizing:border-box;width:100%}
+.hv .course-content{width:100%;align-items:center!important;flex:0 0 auto!important}
+.hv .hv-det-in .btn{align-self:center!important}
+.review-all .hv-det-in{color:var(--color-on-surface)}
+.review-all .hv-det-in span{color:inherit!important}

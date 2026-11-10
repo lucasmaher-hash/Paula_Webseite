@@ -1015,3 +1015,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Schulungs-Panels reduziert
 - Aufgedeckte Kurs-Panels zeigen nur noch Titel, Beschreibung und „Per DM anfragen“; Badges, zweiter Absatz und Perks entfernt. Inhalt mittig im Rahmen, größere Schrift.
+
+### Claude (Sonnet 5.5), 10.11.2026: Aufklapp-Übergang der Panels
+- Statt Überblenden bleibt der Titel (Icon + Preis, Wort) stehen und rutscht nach oben, während der Rest darunter aufklappt (Grid-Zeilen 0fr→1fr, 0,5 s) und der Hintergrund einfärbt. Gilt für Gutscheine, Schulungen, „Alle Bewertungen“, Kontakt, Adresse, Öffnungszeiten, Über mich. Eine unsichtbare Kopie im Panel hält die Größe stabil (Höhen vor/nach Hover identisch, 1440 px geprüft); doppelte Überschriften bleiben nur für Screenreader.

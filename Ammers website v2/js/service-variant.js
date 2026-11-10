@@ -425,23 +425,28 @@ window.pmFlip = function (list) {
   if (!window.pmFlip) return;
   var desktop = matchMedia('(min-width:900px)').matches, all = [];
   function sum(html) { var s = document.createElement('div'); s.className = 'hv-sum'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = html; return s; }
-  function make(el, html) {
-    var det = document.createElement('div'); det.className = 'hv-det';
-    while (el.firstChild) det.append(el.firstChild);
-    el.append(sum(html), det); el.classList.add('hv'); if (!el.matches('a,button')) el.tabIndex = 0; all.push(el);
+  function make(el, html, dup) {
+    var det = document.createElement('div'), inn = document.createElement('div'), layer = document.createElement('div');
+    det.className = 'hv-det'; inn.className = 'hv-det-in'; layer.className = 'hv-layer';
+    while (el.firstChild) inn.append(el.firstChild);
+    if (dup) inn.querySelectorAll(dup).forEach(function (d) { d.classList.add('hv-dup'); });
+    det.append(inn); layer.append(sum(html), det);
+    var ghost = layer.cloneNode(true); ghost.classList.add('hv-ghost'); ghost.setAttribute('inert', ''); ghost.setAttribute('aria-hidden', 'true');
+    ghost.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
+    el.append(layer, ghost); el.classList.add('hv'); if (!el.matches('a,button')) el.tabIndex = 0; all.push(el);
   }
   var t = function (s) { return '<span class="hv-t">' + s + '</span>'; }, s2 = function (s) { return '<span class="hv-s">' + s + '</span>'; };
   document.querySelectorAll('.voucher').forEach(function (v) {
     var ic = v.querySelector('.voucher-ic'), am = v.querySelector('.amount');
-    make(v, (ic ? ic.outerHTML : '') + t(am ? am.innerHTML : 'Gutschein'));
+    make(v, (ic ? ic.outerHTML : '') + t(am ? am.innerHTML : 'Gutschein'), '.voucher-top,.amount');
   });
   var names = ['Korean Lashlift', 'Russian Manicure'];
-  document.querySelectorAll('.course-panel').forEach(function (p, i) { make(p, t(names[i] || (p.querySelector('h3') || {}).textContent || '')); });
+  document.querySelectorAll('.course-panel').forEach(function (p, i) { make(p, t(names[i] || (p.querySelector('h3') || {}).textContent || ''), '.course-heading'); });
   // single reviews stay plainly visible (frame + text, no hover); only "Alle Bewertungen" reveals
-  document.querySelectorAll('.review-all').forEach(function (r) { make(r, t('5.0 ★') + s2('Alle Bewertungen')); });
-  var c = document.querySelector('.contact-intro'); if (c) make(c, t('Kontakt'));
+  document.querySelectorAll('.review-all').forEach(function (r) { make(r, t('5.0 ★') + s2('Alle Bewertungen'), '.eyebrow,.review-all-score'); });
+  var c = document.querySelector('.contact-intro'); if (c) make(c, t('Kontakt'), '.eyebrow');
   c = document.querySelector('.contact-facts'); if (c) make(c, t('Adresse'));
-  c = document.querySelector('.hours'); if (c) make(c, t('Öffnungszeiten'));
-  c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'));
+  c = document.querySelector('.hours'); if (c) make(c, t('Öffnungszeiten'), '.eyebrow');
+  c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'), '.eyebrow');
   window.pmFlip(all);
 })();
