@@ -302,3 +302,20 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 body.menu-open .fab{visibility:hidden}
 @media(max-width:899px){.fab{width:78px;height:78px;font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){.fab{transition:none}}
+
+/* Local authoring control for the header's glass tint. */
+.glass-tuner{position:fixed;z-index:80;right:max(16px,env(safe-area-inset-right));bottom:calc(116px + env(safe-area-inset-bottom));width:min(300px,calc(100vw - 32px));box-sizing:border-box;padding:14px;border-radius:20px;background:#f0f0f3;color:#322b27;box-shadow:6px 6px 20px #21150e33,-3px -3px 12px #ffffff55;font:13px/1.4 var(--font-sans);touch-action:auto;cursor:grab}
+.glass-tuner.is-dragging{cursor:grabbing}
+.glass-tuner-head{touch-action:none;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600}
+.glass-tuner button{border:1px solid #ccc6c1;border-radius:9px;padding:6px 10px;cursor:pointer;background:#faf9f7;color:inherit}
+.glass-tuner-body{max-height:calc(100dvh - 112px);overflow:auto;padding-top:16px;touch-action:pan-y}
+.glass-tuner-body[hidden]{display:none}
+.glass-tuner label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.glass-tuner input[type=number]{width:62px;padding:6px;border:1px solid #ccc6c1;border-radius:7px;background:#fff;color:inherit;touch-action:auto}
+.glass-tuner-track{position:relative;margin:12px 8px 6px;height:24px}
+.glass-tuner input[type=range]{width:100%;margin:0;height:24px;accent-color:#745449;touch-action:pan-y;cursor:ew-resize}
+.glass-tuner-default{position:absolute;left:calc(8px + (100% - 16px) * .32);top:-3px;width:5px;height:5px;border-radius:50%;background:#745449;transform:translateX(-50%);pointer-events:none}
+.glass-tuner small{display:block;color:#6d625b;font-size:11px}
+.glass-tuner-presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.glass-tuner pre{padding:10px;margin:12px 0 0;border-radius:9px;background:#e6e3e1;font:11px/1.5 monospace;white-space:pre-wrap;user-select:text;cursor:text;touch-action:auto}
+body.menu-open .glass-tuner{visibility:hidden}

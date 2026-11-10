@@ -457,3 +457,58 @@ window.pmFlip = function (list) {
   c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'), '.eyebrow');
   window.pmFlip(all);
 })();
+
+// Temporary glass control, available on localhost and private LAN previews only.
+(function () {
+  var host = location.hostname;
+  if (!/^(localhost|127\.0\.0\.1|\[?::1\]?|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(host)) return;
+  var key = 'pm-beauty:v2:nav-glass:v1', original = 32, state = {transparency:original,collapsed:false}, drag;
+  try {
+    var saved = JSON.parse(localStorage.getItem(key));
+    if (saved && Number.isFinite(saved.transparency) && saved.transparency >= 0 && saved.transparency <= 100) state.transparency = saved.transparency;
+    if (saved) { state.collapsed = saved.collapsed === true; if (Number.isFinite(saved.x) && Number.isFinite(saved.y)) { state.x = saved.x; state.y = saved.y; } }
+  } catch (e) {}
+  var panel = document.createElement('aside'); panel.className = 'glass-tuner'; panel.setAttribute('aria-label','Navigation einstellen');
+  panel.innerHTML = '<div class="glass-tuner-head"><span>Navigation</span><button type="button" aria-controls="glass-tuner-body">Einklappen</button></div>' +
+    '<div class="glass-tuner-body" id="glass-tuner-body"><label for="nav-glass-number">Transparenz <span><input id="nav-glass-number" type="number" min="0" max="100" step="1"> %</span></label>' +
+    '<div class="glass-tuner-track"><input type="range" min="0" max="100" step="1" aria-label="Transparenz in Prozent"><span class="glass-tuner-default" role="img" aria-label="Ausgangswert: 32 Prozent"></span></div>' +
+    '<small>Punkt = Ausgangswert (32 %)</small><div class="glass-tuner-presets"><button type="button" data-glass="80">Klar</button><button type="button" data-glass="32">Frosted</button><button type="button" data-glass="0">Deckend</button><button type="button" data-glass="reset">Reset</button></div><pre tabindex="0" aria-label="Aktuelle Einstellungen"></pre></div>';
+  document.body.append(panel);
+  var body = panel.querySelector('.glass-tuner-body'), toggle = panel.querySelector('.glass-tuner-head button'), slider = panel.querySelector('[type=range]'), number = panel.querySelector('[type=number]'), output = panel.querySelector('pre');
+  function save() { try { localStorage.setItem(key,JSON.stringify(state)); } catch (e) {} }
+  function place(x,y) {
+    var rect = panel.getBoundingClientRect();
+    state.x = Math.max(8,Math.min(x,innerWidth-rect.width-8)); state.y = Math.max(8,Math.min(y,innerHeight-rect.height-8));
+    panel.style.left = state.x + 'px'; panel.style.top = state.y + 'px'; panel.style.right = 'auto'; panel.style.bottom = 'auto';
+  }
+  function collapse(on) {
+    var rect = panel.getBoundingClientRect(); state.collapsed = on; body.hidden = on;
+    toggle.textContent = on ? 'Öffnen' : 'Einklappen'; toggle.setAttribute('aria-expanded',String(!on));
+    place(rect.left,rect.top); save();
+  }
+  function apply(value) {
+    if (!Number.isFinite(value)) return;
+    state.transparency = Math.max(0,Math.min(100,value));
+    document.documentElement.style.setProperty('--nav-glass-opacity',(100-state.transparency)+'%');
+    slider.value = number.value = state.transparency;
+    output.textContent = JSON.stringify({transparenz:state.transparency,einheit:'%'},null,2); save();
+  }
+  // Establish the expanded bottom-right position before applying saved UI state.
+  apply(state.transparency);
+  if (Number.isFinite(state.x)) place(state.x,state.y);
+  collapse(state.collapsed);
+  slider.addEventListener('input',function () { apply(Number(slider.value)); });
+  number.addEventListener('input',function () { if (number.value !== '') apply(number.valueAsNumber); });
+  toggle.addEventListener('click',function () { collapse(!state.collapsed); });
+  panel.querySelectorAll('[data-glass]').forEach(function (button) { button.addEventListener('click',function () { apply(button.dataset.glass === 'reset' ? original : Number(button.dataset.glass)); }); });
+  panel.addEventListener('pointerdown',function (e) {
+    if (e.button !== 0 || e.target.closest('button,input,label,pre')) return;
+    var rect = panel.getBoundingClientRect(); drag = {id:e.pointerId,x:e.clientX-rect.left,y:e.clientY-rect.top};
+    panel.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); e.preventDefault();
+  });
+  panel.addEventListener('pointermove',function (e) { if (drag && e.pointerId === drag.id) place(e.clientX-drag.x,e.clientY-drag.y); });
+  function release(e) { if (drag && e.pointerId === drag.id) { drag = null; panel.classList.remove('is-dragging'); save(); } }
+  panel.addEventListener('pointerup',release); panel.addEventListener('pointercancel',release);
+  document.addEventListener('pointerdown',function (e) { if (!state.collapsed && !panel.contains(e.target)) collapse(true); });
+  window.addEventListener('resize',function () { var rect = panel.getBoundingClientRect(); place(rect.left,rect.top); save(); });
+})();
