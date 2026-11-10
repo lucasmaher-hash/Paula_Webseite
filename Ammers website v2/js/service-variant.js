@@ -451,8 +451,7 @@ window.pmFlip = function (list) {
   document.querySelectorAll('.course-panel').forEach(function (p, i) { make(p, t(names[i] || (p.querySelector('h3') || {}).textContent || ''), '.course-heading'); });
   // single reviews stay plainly visible (frame + text, no hover); only "Alle Bewertungen" reveals
   document.querySelectorAll('.review-all').forEach(function (r) { make(r, t('5.0 ★') + s2('Alle Bewertungen'), '.eyebrow,.review-all-score'); });
-  var c = document.querySelector('.contact-intro'); if (c) make(c, t('Kontakt'), '.eyebrow');
-  c = document.querySelector('.contact-facts'); if (c) make(c, t('Adresse'));
+  var c = document.querySelector('.contact-facts'); if (c) make(c, t('Adresse'));
   c = document.querySelector('.hours'); if (c) make(c, t('Öffnungszeiten'), '.eyebrow');
   c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'), '.eyebrow');
   window.pmFlip(all);
