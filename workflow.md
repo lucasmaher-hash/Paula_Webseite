@@ -921,3 +921,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Claude (Sonnet 5.5), 10.11.2026: Bewertungen ohne Außenrahmen, Ovale ohne Linien, Rahmenfarben-Regler, Rahmen-Animation entfernt, Schulungen-Text links
 - Versucht und umgesetzt (nur Ammers website v2): Außenrahmen der Bewertungen entfernt (Einzelkarten bleiben); Ovale: Trennlinien weg, „Alle N Leistungen“ weg, stattdessen ↗ hinter jeder Leistung; umlaufende Rahmen-Animation (experiment-frames.css) entfernt, Linie jetzt einfarbig; Regler „Rahmenfarben“ (Braun/Pink, Rahmenlinie + Innenfläche je Farbwähler und Hex, Reset, verschiebbar, einklappbar); Schulungen: Eyebrow „Schulungen · PM Beauty Academy“ entfernt, Überschrift + Text links neben die Korean-Lash-Karte (leere Fläche) verschoben.
 - Funktioniert: per Playwright bei 1440 px geprüft (Animation none, Außenrahmen 0 px, Regler färbt Rahmen und Karten). Nicht geprüft: Handy.
+
+### Claude (Sonnet 5.5), 10.11.2026: Ovale mit Abstand zwischen Kontur und Füllung
+- Die Partikel-Füllung sitzt 3 px (= Konturstärke) innerhalb der Kontur, elliptisch beschnitten. Bei 1440 px geprüft (3x-Screenshot: Ring, Lücke, Füllung).
