@@ -1,5 +1,55 @@
-// /1/ is generated from the experimental page. Since 10.11.2026 the 3D services rows are gone (standard accordion
-// as on the other pages, see git history before that date); this file now only holds the /1/ background and its dial.
+// /1/ is generated from the experimental page; this file holds what only /1/ shows:
+// the services as three ovals, the flowing background and its dial.
+
+// Services as three ovals (layout after tuxkarma.co, right half mirrored to three): outline only,
+// title in the middle; on hover/focus/tap the oval fills and shows six services of its group.
+(function () {
+  'use strict';
+  if (!/\/1\/?$/.test(location.pathname)) return;
+  var section = document.querySelector('#behandlungen');
+  var accordion = section && section.querySelector('.accordion');
+  if (!accordion) return;
+  var booking = section.querySelector('.section-head .btn');
+  var url = booking ? booking.href : '#kontakt';
+  var all = {};
+  accordion.querySelectorAll('details').forEach(function (d) {
+    all[d.id] = Array.from(d.querySelectorAll('.service-list .name')).map(function (n) { return n.textContent.trim(); });
+  });
+  // Six real service names per oval (sample), shortened for display only.
+  var groups = [
+    {id:'manikuere', anchors:[], title:'Maniküre', pick:[['manikuere',4],['manikuere',2],['manikuere',0],['manikuere',5],['manikuere',7],['manikuere',11]]},
+    {id:'wimpern', anchors:['brauen'], title:'Wimpern & Brauen', pick:[['wimpern',0],['wimpern',1],['wimpern',3],['wimpern',4],['brauen',1],['brauen',2]]},
+    {id:'gesicht', anchors:['pmu'], title:'Haut & Permanent Make-up', pick:[['pmu',0],['pmu',1],['pmu',2],['gesicht',1],['gesicht',6],['gesicht',5]]}
+  ];
+  function short(name) { return name.replace(/\s*\(.*?\)\s*/g, ' ').replace(/\s+—\s+.*$/, '').replace(/[„"“”]/g, '').trim(); }
+  function count(g) { return [g.id].concat(g.anchors).reduce(function (n, id) { return n + (all[id] ? all[id].length : 0); }, 0); }
+  var star = '<svg viewBox="0 0 40 56" aria-hidden="true"><path d="M20 0C21.6 18 24 26 40 28 24 30 21.6 38 20 56 18.4 38 16 30 0 28 16 26 18.4 18 20 0Z"/></svg>';
+  var wrap = document.createElement('div'); wrap.className = 'service-ovals';
+  groups.forEach(function (g, i) {
+    var items = g.pick.map(function (p) { return all[p[0]] && all[p[0]][p[1]]; }).filter(Boolean);
+    var oval = document.createElement('div');
+    oval.className = 'service-oval'; oval.id = g.id; oval.tabIndex = 0; oval.setAttribute('role', 'group'); oval.setAttribute('aria-label', g.title);
+    oval.innerHTML = g.anchors.map(function (a) { return '<span class="service-oval-anchor" id="' + a + '"></span>'; }).join('') +
+      '<h3 class="service-oval-title">' + g.title + '</h3>' +
+      '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span>' +
+      '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '</a></li>'; }).join('') +
+      '<li class="service-oval-more"><a class="mono" href="' + url + '" target="_blank" rel="noopener">Alle ' + count(g) + ' Leistungen ↗</a></li></ul>';
+    wrap.append(oval);
+    if (i < groups.length - 1) { var s = document.createElement('span'); s.className = 'service-oval-stars'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = star + star; wrap.append(s); }
+  });
+  accordion.replaceWith(wrap);
+  document.body.classList.add('service-ovals-variant');
+  var ovals = Array.from(wrap.querySelectorAll('.service-oval'));
+  function open(oval) { ovals.forEach(function (o) { o.classList.toggle('is-open', o === oval); }); }
+  // Touch has no hover: first tap opens, links work once the oval is open.
+  ovals.forEach(function (o) {
+    o.addEventListener('click', function (e) { if (!o.classList.contains('is-open') && matchMedia('(hover: none)').matches) { e.preventDefault(); open(o); } });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.service-oval')) open(null); });
+  function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) open(o); }
+  document.querySelectorAll('[data-open]').forEach(function (a) { a.addEventListener('click', function () { fromHash(a.dataset.open); }); });
+  if (location.hash) fromHash(location.hash.slice(1));
+})();
 
 // /1/ only: flowing colour background behind the frames, rebuilt after tuxkarma.co (Tux Creative House).
 // Studied from their app.js, style.css, fond.mp4 and brush PNGs:
@@ -15,7 +65,7 @@
   if (!/\/1\/?$/.test(location.pathname)) return;
   var query = new URLSearchParams(location.search);
   var local = /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname);
-  var tuning = local || query.get('regler') === '1' || query.get('hintergrund') === '1';
+  var tuning = true; // Lucas 10.11.2026: the dial is always on /1/, nobody else uses this page.
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   // design.md Hintergrund/Fläche/Fläche tief, plus a deeper step towards the button colour. Accent from the other palette.
   var PALETTES = {
@@ -223,7 +273,7 @@
   api.apply(); setRunning();
 })();
 
-// Dial for the flow background: localhost, ?regler=1 or ?hintergrund=1. Bottom right, draggable, collapsible.
+// Dial for the flow background, always on /1/. Bottom right, draggable, collapsible.
 (function () {
   'use strict';
   var bg = window.pmFlowBackground;

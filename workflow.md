@@ -811,6 +811,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Der Teil von `service-variant.js`, der den Abschnitt ersetzt hat, ist gelöscht; `/1/` zeigt jetzt dasselbe Akkordeon wie `/` und `index-experimentell.html`, der Three.js-Renderer wird nicht mehr geladen. Die Frame-Zieh-Leiste (`service-tuner.js`) erscheint nur noch, wenn es die alten Frames gibt. `design.md` (Bewegung) und die Übergabe angeglichen.
 - **Nicht funktioniert / offen:** Der 3D-Nagel im Styleguide bleibt unverändert. Der alte Code ist nur noch in der Git-Historie.
 
+### 10.11.2026 · Claude · Behandlungen als drei Ovale auf `/1/`
+- **Versucht:** Lucas schickte zwei Screenshots von tuxkarma.co (Ovale als Kontur, beim Hover gefüllt) und wollte die Behandlungen so: drei Ovale nebeneinander, die rechte Hälfte des Screenshots gespiegelt, ruhend nur der Titel, beim Hover gefüllt mit etwa sechs Leistungen. Dazu die Ansage: ab jetzt alles direkt auf der Arbeitsseite, keine Extra-Versionen; der Regler ist deshalb auf `/1/` immer sichtbar.
+- **Funktioniert:** `service-variant.js` ersetzt auf `/1/` das Akkordeon durch drei Ovale (Maniküre; Wimpern & Brauen; Haut & Permanent Make-up), je sechs echte Leistungsnamen aus dem Akkordeon, gekürzt um Klammerzusätze, plus „Alle N Leistungen“ zur Buchung. Ruhend 1 px Kontur in der Textfarbe, beim Hover/Fokus gefüllt (`--color-primary`, Text `--color-on-primary`), Titel blendet aus, Liste ein. Vierzackige Sterne zwischen den Ovalen wie im Screenshot. Abschnitt ohne eigenes Panel, die Ovale liegen direkt auf dem fließenden Hintergrund. Handy: untereinander, Antippen öffnet. Menü-Anker öffnen das passende Oval. Playwright 1440/375 px: Ovale 376×588 bzw. 330×458, Liste passt hinein, kein Querscrollen.
+- **Nicht funktioniert / offen:** Erster Wurf: Prozent-Innenabstand bezog sich auf die Zeilenbreite, nicht das Oval; Inhalt saß schief und die Ovale wurden zu hoch. Behoben. Nur sechs von bis zu 14 Leistungen pro Oval sichtbar, der Rest über die Buchung. Kein echtes Handy getestet.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

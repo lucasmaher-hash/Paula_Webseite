@@ -102,3 +102,47 @@
 #bg-tuner pre{margin:12px 0 10px;padding:10px;background:#e5e5e9;border-radius:10px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
 #bg-tuner .bg-tuner-actions{display:flex;gap:6px}
 body.menu-open #bg-tuner{visibility:hidden}
+
+/* /1/ services as three ovals (js/service-variant.js), after tuxkarma.co: outline at rest, solid on hover. */
+.service-ovals-variant .services{background:transparent;border:0;box-shadow:none}
+.service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
+.service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;
+  display:grid;place-items:center;text-align:center;padding:0;
+  border:1px solid color-mix(in srgb,var(--color-primary) 55%,transparent);
+  color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 0%,transparent);
+  transition:background-color .5s cubic-bezier(.3,0,.2,1),border-color .5s,color .5s;outline:none;cursor:default}
+.service-oval>*{grid-area:1/1}
+.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
+.service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;
+  transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
+.service-oval-hint{display:none;align-self:end;opacity:.8}
+.service-oval-list{list-style:none;margin:0;padding:0;width:66%;opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1),visibility 0s .35s}
+.service-oval-list li{border-top:1px solid color-mix(in srgb,currentColor 28%,transparent)}
+.service-oval-list li:last-child{border-bottom:1px solid color-mix(in srgb,currentColor 28%,transparent)}
+.service-oval-list a{display:block;padding:9px 4px;color:inherit;text-decoration:none;font-size:clamp(13px,1.05vw,16px);line-height:1.3}
+.service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.service-oval-list .service-oval-more{border:0}
+.service-oval-list .service-oval-more a{padding-top:14px;font-size:.66rem;white-space:nowrap;letter-spacing:.08em}
+.service-oval:hover,.service-oval:focus-within,.service-oval.is-open{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary)}
+.service-oval:hover .service-oval-title,.service-oval:focus-within .service-oval-title,.service-oval.is-open .service-oval-title{opacity:0;transform:translateY(-8px)}
+.service-oval:hover .service-oval-list,.service-oval:focus-within .service-oval-list,.service-oval.is-open .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
+.service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
+.service-oval-stars{position:relative;flex:0 0 0;width:0;z-index:1;pointer-events:none}
+.service-oval-stars svg{position:absolute;left:0;width:clamp(26px,2.4vw,40px);transform:translate(-50%,-50%);fill:var(--color-primary)}
+.service-oval-stars svg:first-child{top:16%}
+.service-oval-stars svg:last-child{top:84%}
+@media(max-width:799px){
+  .service-ovals{flex-direction:column;align-items:center;gap:10px}
+  .service-oval{flex:none;width:min(100%,330px);aspect-ratio:.72}
+  .service-oval-list{width:72%}
+  .service-oval-title{font-size:34px}
+  .service-oval-hint{display:block;margin-bottom:18%}
+  .service-oval.is-open .service-oval-hint{opacity:0}
+  .service-oval-list a{font-size:15px;padding:8px 2px}
+  .service-oval-stars{flex:0 0 0;width:min(100%,330px);height:0}
+  .service-oval-stars svg{width:28px}
+  .service-oval-stars svg:first-child{top:0;left:22%}
+  .service-oval-stars svg:last-child{top:0;left:78%}
+}
+@media(prefers-reduced-motion:reduce){.service-oval,.service-oval *{transition:none!important}}
