@@ -238,24 +238,22 @@ body.menu-open{overflow:hidden}
 /* ---------- Auszeichnungen: Lorbeer-Badges unter dem Hero ---------- */
 .awards{padding:var(--space-4) 0 0}
 .awards-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2);max-width:820px;margin:0 auto}
-.award{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:220px;width:100%;margin:0 auto;color:var(--color-on-surface)}
-.award .laurel{position:absolute;inset:0;width:100%;height:100%;color:var(--color-accent);fill:currentColor;opacity:.8}
+.award{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:220px;width:100%;margin:0 auto;color:var(--hvc,var(--color-on-surface))}
+.award .laurel{position:absolute;inset:0;width:100%;height:100%;color:inherit;fill:currentColor;opacity:1}
 .award-text{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:62%;margin-top:-6%}
 .award-text strong{font-size:clamp(1.3rem,6.4vw,2.1rem);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.award-text span{margin-top:2px;font-size:.6rem;letter-spacing:0;line-height:1.35;color:var(--color-on-surface-muted)}
+.award-text span{margin-top:2px;font-size:.6rem;letter-spacing:0;line-height:1.35;color:inherit}
 @media(min-width:900px){.awards{padding-top:var(--space-8)}.awards-grid{gap:var(--space-6)}.award-text span{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}}
-/* Erreicht man den Abschnitt, wachsen die Kränze in ca. 1 s aus der Mitte (js/main.js setzt .grown), leicht versetzt.
-   Startzustand nur mit JS (html.js) und ohne „Bewegung reduzieren“ */
+/* Alle drei Kränze wachsen in genau 1 s: Stiele von unten nach oben, Blätter knapp dahinter aus ihrem Ansatz. */
 @media(prefers-reduced-motion:no-preference){
-  .js .award .laurel{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s ease}
-  .js .award-text{transition:opacity .7s ease .35s,transform .7s ease .35s}
-  .js .awards-grid:not(.grown) .award .laurel{transform:scale(.45);opacity:0}
-  .js .awards-grid:not(.grown) .award-text{opacity:0;transform:translateY(6px)}
-  .js .award:nth-child(2) .laurel{transition-delay:.15s}
-  .js .award:nth-child(2) .award-text{transition-delay:.5s}
-  .js .award:nth-child(3) .laurel{transition-delay:.3s}
-  .js .award:nth-child(3) .award-text{transition-delay:.65s}
+  .js .awards-grid:not(.grown) .laurel-stem{stroke-dasharray:1;stroke-dashoffset:1}
+  .js .awards-grid:not(.grown) :is(.laurel-leaf,.laurel-star){transform:scale(0)}
+  .js .awards-grid.grown .laurel-stem{stroke-dasharray:1;animation:laurel-stem-grow .82s linear both}
+  .js .awards-grid.grown .laurel-leaf{animation:laurel-leaf-grow .155s cubic-bezier(.2,.65,.3,1) var(--leaf-delay) both}
+  .js .awards-grid.grown .laurel-star{transform-origin:100px 171px;animation:laurel-leaf-grow .12s ease-out both}
 }
+@keyframes laurel-stem-grow{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes laurel-leaf-grow{from{transform:scale(0)}to{transform:scale(1)}}
 
 /* ---------- Ergebnisse: horizontaler Streifen ---------- */
 .results{padding-bottom:var(--space-6)}

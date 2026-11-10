@@ -222,9 +222,35 @@
   });
   if (location.hash) openFromHash(location.hash.slice(1));
 
-  // Auszeichnungen: Lorbeerkränze wachsen aus der Mitte, sobald der Abschnitt im Blick ist (einmalig)
+  // Auszeichnungen: vorhandene Blattkonturen einzeln vom Stiel aus wachsen lassen.
   var awards = document.querySelector('.awards-grid');
   if (awards) {
+    var laurel = document.getElementById('laurel'), ns = 'http://www.w3.org/2000/svg';
+    if (laurel) awards.querySelectorAll('.laurel').forEach(function (svg) {
+      svg.setAttribute('viewBox',laurel.getAttribute('viewBox'));
+      svg.replaceChildren();
+      Array.from(laurel.children).forEach(function (node) { svg.append(node.cloneNode(true)); });
+      svg.querySelectorAll('g').forEach(function (branch) {
+        var foliage = branch.querySelector('path'), stem = branch.querySelector('path[stroke]');
+        // Beide Stiele beginnen unten mittig; die ursprüngliche Kontur bleibt erhalten.
+        stem.setAttribute('d',stem.getAttribute('d').replace('M92.1 171.6','M100 173Q96 172 92.1 171.6'));
+        stem.setAttribute('pathLength','1'); stem.classList.add('laurel-stem');
+        var length = stem.getTotalLength(), points = [];
+        for (var j = 0; j <= 200; j++) points.push(stem.getPointAtLength(length*j/200));
+        var leaves = document.createDocumentFragment();
+        (foliage.getAttribute('d').match(/M[^Z]+Z/gi) || []).forEach(function (d) {
+          var root = d.match(/^M([\d.]+)\s+([\d.]+)/), x = Number(root[1]), y = Number(root[2]), nearest = 0, distance = Infinity;
+          points.forEach(function (point,i) { var dist = (point.x-x)*(point.x-x)+(point.y-y)*(point.y-y); if (dist < distance) { distance = dist; nearest = i; } });
+          var leaf = document.createElementNS(ns,'path'); leaf.setAttribute('d',d); leaf.classList.add('laurel-leaf');
+          leaf.style.transformOrigin = x+'px '+y+'px';
+          // 820 ms Stiel + 25 ms Vorsprung + 155 ms Blatt = insgesamt 1 Sekunde.
+          leaf.style.setProperty('--leaf-delay',(nearest/200*.82+.025).toFixed(4)+'s');
+          leaves.append(leaf);
+        });
+        foliage.replaceWith(leaves);
+      });
+      svg.lastElementChild.classList.add('laurel-star');
+    });
     if (reduced || !('IntersectionObserver' in window)) awards.classList.add('grown');
     else {
       var awardsIO = new IntersectionObserver(function (entries) {
