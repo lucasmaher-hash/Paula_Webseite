@@ -254,3 +254,13 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 /* Single reviews: always visible, no hover. Only the near-white frame and the text, like the other panels at rest. */
 .review:not(.review-all){--ring:var(--hvc);background:transparent!important;background-image:none!important}
 .review:not(.review-all),.review:not(.review-all) *{color:var(--hvc)!important}
+
+/* Course panels, revealed: only title, description and the DM button, centred in the frame (10.11.2026) */
+.course-panel .hv-det{justify-content:center;gap:clamp(18px,2vw,30px)}
+.course .course-panel .hv-det .course-heading{padding:0 clamp(28px,3vw,52px)}
+.course .course-panel .hv-det .course-content{padding:0 clamp(28px,3vw,52px);gap:clamp(18px,2vw,30px);flex:0 0 auto}
+.course .course-panel .hv-det .course-title h3{font-size:clamp(1.5rem,2.3vw,2.3rem);line-height:1.08}
+.course .course-panel .hv-det .course-content p{font-size:clamp(.95rem,1.15vw,1.1rem);line-height:1.55}
+.course .course-panel .hv-det .btn{align-self:flex-start}
+@media(max-width:899px){.course .course-panel .hv-det{padding:clamp(24px,6vw,36px) 0}}
+.course .course-panel .hv-det :is(.course-heading,.course-content){background:transparent!important;border-radius:0!important}

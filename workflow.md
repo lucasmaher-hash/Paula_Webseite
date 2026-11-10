@@ -1012,3 +1012,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Pink-Werte fest, Regler entfernt
 - Lucas' Pink-Werte (Grund #825558, Töne #915f69/#8b656e/#754851, Akzent #d8c4ba; Bewegung unverändert) als Standard eingetragen. Hintergrund-Regler samt Skript, Styles und gespeichertem Zustand entfernt; `?bg=pink` zeigt weiter die Pink-Variante. Syntax geprüft, Seite nicht im Browser neu durchgeklickt.
+
+### Claude (Sonnet 5.5), 10.11.2026: Schulungs-Panels reduziert
+- Aufgedeckte Kurs-Panels zeigen nur noch Titel, Beschreibung und „Per DM anfragen“; Badges, zweiter Absatz und Perks entfernt. Inhalt mittig im Rahmen, größere Schrift.
