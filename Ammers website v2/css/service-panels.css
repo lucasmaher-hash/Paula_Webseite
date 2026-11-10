@@ -263,9 +263,9 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 :is(main>section:not(.hero),.site-footer) .muted:not(:is(.hv,.review,.voucher,.contact-panel,.hours,.about-panel,.about-grid,.course-panel) *){opacity:.85}
 .site-footer{border-top-color:color-mix(in srgb,var(--hvc) 40%,transparent)}
 
-/* Single reviews: always visible, no hover. Only the near-white frame and the text, like the other panels at rest. */
-.review:not(.review-all){--ring:var(--hvc);background:transparent!important;background-image:none!important}
-.review:not(.review-all),.review:not(.review-all) *{color:var(--hvc)!important}
+/* Single reviews: always visible on a solid near-white panel, with dark text. */
+.review:not(.review-all){--ring:var(--hvc);background:var(--hvc)!important;background-image:none!important}
+.review:not(.review-all),.review:not(.review-all) *{color:var(--color-on-surface)!important}
 .course-panel .hv-layer{padding:0 clamp(28px,3vw,52px);box-sizing:border-box;width:100%}
 .hv .course-content{width:100%;align-items:center!important;flex:0 0 auto!important}
 .hv .hv-det-in .btn{align-self:center!important}
