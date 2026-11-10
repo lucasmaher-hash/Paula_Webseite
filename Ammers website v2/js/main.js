@@ -55,8 +55,8 @@
     heroIO.observe(hero);
   }
 
-  // Schrift und Buttons im Header werden pink, solange seine Mitte über einem pinken Abschnitt liegt (Beobachtungslinie auf Header-Mitte)
-  var pinkSections = document.querySelectorAll('.services, .reviews');
+  // Header accents follow the alternating background sections at the header's centre line.
+  var pinkSections = document.querySelectorAll('[data-flow-theme="pink"]');
   if (siteHeader && pinkSections.length && 'IntersectionObserver' in window) {
     var pinkIO = null, overPink = new Set();
     var watchPink = function () {
@@ -364,7 +364,7 @@
     if (Math.abs(d) > 4) last = y;
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  var pinkSections = document.querySelectorAll('.services, .reviews');
+  var pinkSections = document.querySelectorAll('[data-flow-theme="pink"]');
   if (fab && pinkSections.length && 'IntersectionObserver' in window) {
     var io = null, over = new Set();
     var watch = function () {

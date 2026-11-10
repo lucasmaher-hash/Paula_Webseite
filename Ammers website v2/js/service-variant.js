@@ -172,6 +172,23 @@ window.pmFlip = function (list) {
   'use strict';
   var query = new URLSearchParams(location.search);
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  // Each neighbouring section alternates, starting with brown for the hero.
+  // Share this assignment with the header and the floating booking button.
+  var sections = Array.from(document.querySelectorAll('main > section, .site-footer')).map(function (el,i) {
+    var pink = i % 2 === 1; el.dataset.flowTheme = pink ? 'pink' : 'brown';
+    return {el:el,pink:pink};
+  });
+  var forced = query.get('bg') === 'pink' ? 1 : query.get('bg') === 'brown' ? 0 : null;
+  function mixTarget() {
+    if (forced !== null) return forced;
+    if (scrollY > 0 && scrollY + innerHeight >= document.documentElement.scrollHeight - 2) return sections[sections.length-1].pink ? 1 : 0;
+    var center = innerHeight / 2;
+    for (var i = 0; i < sections.length; i++) {
+      var rect = sections[i].el.getBoundingClientRect();
+      if (rect.top <= center && rect.bottom > center) return sections[i].pink ? 1 : 0;
+    }
+    return 0;
+  }
   // design.md Hintergrund/Fläche/Fläche tief, plus a deeper step towards the button colour. Accent from the other palette.
   var PALETTES = {
     // Brown and Pink: Lucas' dial values, 10.11.2026 (evening).
@@ -211,8 +228,10 @@ window.pmFlip = function (list) {
   window.pmFlowBackground = api;
   function fallback() {
     layer.classList.add('is-fallback');
-    api.apply = function () { applyLayout(); var c = state.colors[state.variant]; grain.style.opacity = state.motion.grain;
-      layer.style.background = 'radial-gradient(70% 60% at 25% 30%,' + c.tone2 + ',transparent),radial-gradient(60% 70% at 80% 75%,' + c.tone1 + ',transparent),' + c.base; };
+    api.apply = function () { applyLayout(); var c = state.colors[mixTarget() ? 'pink' : 'brown']; grain.style.opacity = state.motion.grain;
+      layer.style.background = 'radial-gradient(70% 60% at 25% 30%,' + c.tone2 + ',transparent),radial-gradient(60% 70% at 80% 75%,' + c.tone1 + ',transparent),' + c.base;
+      document.body.style.backgroundColor = c.base; };
+    window.addEventListener('scroll',api.apply,{passive:true});
     api.apply();
   }
   var gl = canvas.getContext('webgl', {antialias:false, depth:false, stencil:false, alpha:false, powerPreference:'low-power'});
@@ -339,19 +358,9 @@ window.pmFlip = function (list) {
     });
   }
 
-  // Brown <-> pink follows the sections: pink for .services/.reviews/.theme-pink, brown elsewhere.
-  // The share of pink sections in a band around the viewport centre is the target; the shown mix eases
-  // towards it (time constant .9 s), so colours drift over softly instead of switching. ?bg=pink|brown fixes one.
-  var forced = query.get('bg') === 'pink' ? 1 : query.get('bg') === 'brown' ? 0 : null;
-  var mix = forced !== null ? forced : null, sections = [], lastBody = '';
-  function collectSections() { sections = Array.from(document.querySelectorAll('main > section, .site-footer')).map(function (el) { return {el:el, pink:el.matches('.services,.reviews,.theme-pink')}; }); }
-  collectSections();
-  function mixTarget() {
-    if (forced !== null) return forced;
-    var c = innerHeight / 2, z = innerHeight * .35, a = c - z, b = c + z, pink = 0, all = 0;
-    sections.forEach(function (sec) { var r = sec.el.getBoundingClientRect(), o = Math.max(0, Math.min(b, r.bottom) - Math.max(a, r.top)); all += o; if (sec.pink) pink += o; });
-    return all ? pink / all : 0;
-  }
+  // The section at the viewport centre sets the target, including short sections.
+  // The displayed colour still eases towards it with the existing .9 s time constant.
+  var mix = forced !== null ? forced : null, lastBody = '';
   function blended() {
     var b = state.colors.brown, p = state.colors.pink, out = {};
     ['base','tone1','tone2','tone3','accent'].forEach(function (k) { var x = hex(b[k]), y = hex(p[k]); out[k] = [x[0] + (y[0] - x[0]) * mix, x[1] + (y[1] - x[1]) * mix, x[2] + (y[2] - x[2]) * mix]; });
@@ -407,6 +416,7 @@ window.pmFlip = function (list) {
     if (!go) { running = false; sprites = []; render(0); }
   }
   document.addEventListener('visibilitychange', setRunning); reduce.addEventListener('change', setRunning);
+  window.addEventListener('scroll', function () { if (!running) { mix = mixTarget(); render(0); } }, {passive:true});
   window.addEventListener('resize', function () { resize(); if (!running) render(0); });
   api.apply(); setRunning();
 })();
