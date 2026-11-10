@@ -924,3 +924,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Ovale mit Abstand zwischen Kontur und Füllung
 - Die Partikel-Füllung sitzt 3 px (= Konturstärke) innerhalb der Kontur, elliptisch beschnitten. Bei 1440 px geprüft (3x-Screenshot: Ring, Lücke, Füllung).
+
+### Claude (Sonnet 5.5), 10.11.2026: Galerie-Panels mit Kontur und Abstand beim Füllen
+- Wie bei den Ovalen: beim Hover erscheint eine 3-px-Kontur, 3 px Abstand, dann die Korn-Füllung; das Foto blendet aus, der Abstand zeigt den Seitenhintergrund. Bei 1440 px geprüft.

@@ -118,7 +118,11 @@
 
 /* Gallery: one word per picture over the particle fill. */
 .results .strip figure{position:relative;--pf-color:var(--color-primary)}
-.results .strip figure>.pf-canvas{z-index:1}
+.results .strip figure>.pf-canvas{z-index:1;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);border-radius:calc(var(--rounded-lg) - 6px)}
+.results .strip figure::after{content:"";position:absolute;inset:0;z-index:3;border:3px solid var(--color-primary);border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s}
+.results .strip figure.pf-on::after{opacity:1}
+.results .strip figure img{transition:opacity .5s ease,transform .6s ease}
+.results .strip figure.pf-on img{opacity:0}
 .strip-label{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;pointer-events:none;
   font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px);line-height:1;color:var(--color-on-primary);
   opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
