@@ -83,7 +83,7 @@
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;
   display:grid;place-items:center;text-align:center;padding:0;
   border:3px solid var(--color-surface);
-  color:var(--color-primary);--pf-color:var(--color-surface);overflow:hidden;isolation:isolate;
+  color:var(--color-surface);--pf-color:var(--color-surface);overflow:hidden;isolation:isolate;
   transition:border-color .5s,color .35s;outline:none;cursor:default}
 .service-oval>*{grid-area:1/1;position:relative;z-index:1}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}

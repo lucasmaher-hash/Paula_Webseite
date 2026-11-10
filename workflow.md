@@ -953,3 +953,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Ovale in hellem Pink
 - Kontur und Hover-Füllung der drei Behandlungs-Ovale jetzt in der Panelfarbe Pink (wie Karten, folgt dem Regler), Schrift bleibt dunkel. Bei 1440 px geprüft.
+
+### Claude (Opus 5.5), 10.11.2026: Hintergrundfarben wieder im Regler, Oval-Titel hell
+- Regler heißt jetzt „Farben“: je Variante Panelfarbe plus fünf Hintergrundfarben (Grundton, Ton 1–3, Akzent) mit Farbwähler und Hex, live, gespeichert im Browser, Reset je Variante. Oval-Titel im Ruhezustand in hellem Pink (Panelfarbe), beim Hover dunkle Schrift auf heller Füllung. Geprüft per Playwright (Grundton ändert den Seitenhintergrund sofort, keine Fehler).

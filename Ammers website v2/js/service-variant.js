@@ -391,7 +391,9 @@ window.pmParticleFill = (function () {
 (function () {
   var KEY = 'pm-beauty:v2:frame-colors', POS = 'pm-beauty:v2:frame-colors-pos';
   var VARS = {brown:{line:'--frame-line-brown', fill:'--frame-fill-brown'}, pink:{line:'--frame-line-pink', fill:'--frame-fill-pink'}};
-  var LABEL = {fill:'Panelfarbe (Fläche und Rahmen)'};
+  var BG = ['base', 'tone1', 'tone2', 'tone3', 'accent'], KEYS = ['fill'].concat(BG.map(function (b) { return 'bg_' + b; }));
+  var LABEL = {fill:'Panelfarbe (Fläche und Rahmen)', bg_base:'Hintergrund: Grundton', bg_tone1:'Hintergrund: Ton 1', bg_tone2:'Hintergrund: Ton 2', bg_tone3:'Hintergrund: Ton 3', bg_accent:'Hintergrund: Akzent'};
+  var flow = window.pmFlowBackground, PAL = flow && flow.defaults.palettes;
   var root = document.documentElement, cv = document.createElement('canvas'); cv.width = cv.height = 1;
   var ctx = cv.getContext('2d', {willReadFrequently:true});
   function hex(css) { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = '#000'; ctx.fillStyle = css; ctx.fillRect(0, 0, 1, 1); var d = ctx.getImageData(0, 0, 1, 1).data;
@@ -403,29 +405,31 @@ window.pmParticleFill = (function () {
     p.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;background:var(--color-surface)';
     document.body.append(p); var cs = getComputedStyle(p);
     base[v] = {fill:hex(cs.backgroundColor), line: v === 'pink' ? '#d0b3b8' : '#dac6be'}; p.remove();
+    BG.forEach(function (b) { base[v]['bg_' + b] = PAL ? hex(PAL[v][b]) : '#000000'; });
   });
   var state = {brown:{}, pink:{}};
-  try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); ['brown', 'pink'].forEach(function (v) { ['line', 'fill'].forEach(function (k) { if (s[v] && /^#[0-9a-f]{6}$/i.test(s[v][k])) state[v][k] = s[v][k]; }); }); } catch (e) {}
+  try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); ['brown', 'pink'].forEach(function (v) { KEYS.forEach(function (k) { if (s[v] && /^#[0-9a-f]{6}$/i.test(s[v][k])) state[v][k] = s[v][k]; }); }); } catch (e) {}
   var cur = 'brown';
   function value(v, k) { return state[v][k] || base[v][k]; }
   function apply() { ['brown', 'pink'].forEach(function (v) { ['line', 'fill'].forEach(function (k) {
     if (state[v][k]) root.style.setProperty(VARS[v][k], state[v][k]); else root.style.removeProperty(VARS[v][k]); });
-    if (state[v].fill) root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + state[v].fill + ' 92%,#000)'); else root.style.removeProperty('--frame-deep-' + v); }); }
+    if (state[v].fill) root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + state[v].fill + ' 92%,#000)'); else root.style.removeProperty('--frame-deep-' + v);
+    if (flow) BG.forEach(function (b) { flow.state.colors[v][b] = state[v]['bg_' + b] || PAL[v][b]; }); }); }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   apply();
 
   var box = document.createElement('div'); box.id = 'frame-colors'; box.setAttribute('role', 'region'); box.setAttribute('aria-label', 'Rahmenfarben');
-  box.innerHTML = '<div class="fc-head"><strong>Rahmenfarben</strong><button type="button" class="fc-toggle" aria-expanded="true" aria-controls="fc-body">Einklappen</button></div>' +
+  box.innerHTML = '<div class="fc-head"><strong>Farben</strong><button type="button" class="fc-toggle" aria-expanded="true" aria-controls="fc-body">Einklappen</button></div>' +
     '<div class="fc-body" id="fc-body"><div class="fc-tabs" role="group" aria-label="Variante">' +
     '<button type="button" data-v="brown" aria-pressed="true">Braun</button><button type="button" data-v="pink" aria-pressed="false">Pink</button></div>' +
-    ['fill'].map(function (k) { return '<label>' + LABEL[k] + '</label><div class="fc-row"><input type="color" data-k="' + k + '" aria-label="' + LABEL[k] + ' Farbe"><input type="text" data-t="' + k + '" maxlength="7" spellcheck="false" aria-label="' + LABEL[k] + ' Hex"></div>'; }).join('') +
+    KEYS.map(function (k) { return '<label>' + LABEL[k] + '</label><div class="fc-row"><input type="color" data-k="' + k + '" aria-label="' + LABEL[k] + ' Farbe"><input type="text" data-t="' + k + '" maxlength="7" spellcheck="false" aria-label="' + LABEL[k] + ' Hex"></div>'; }).join('') +
     '<pre class="fc-out" aria-label="Aktuelle Werte"></pre><button type="button" class="fc-reset">Variante zurücksetzen</button></div>';
   document.body.append(box);
   var out = box.querySelector('.fc-out');
   function refresh() {
     box.querySelectorAll('[data-v]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === cur)); });
-    ['fill'].forEach(function (k) { box.querySelector('[data-k="' + k + '"]').value = value(cur, k); box.querySelector('[data-t="' + k + '"]').value = value(cur, k); });
-    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': fill ' + value(v, 'fill'); }).join('\n');
+    KEYS.forEach(function (k) { box.querySelector('[data-k="' + k + '"]').value = value(cur, k); box.querySelector('[data-t="' + k + '"]').value = value(cur, k); });
+    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n');
   }
   function set(k, val) { if (!/^#[0-9a-f]{6}$/i.test(val)) return; state[cur][k] = val.toLowerCase(); apply(); save(); refresh(); }
   box.addEventListener('input', function (e) { var t = e.target; if (t.dataset.k) set(t.dataset.k, t.value); else if (t.dataset.t) { var v = t.value.charAt(0) === '#' ? t.value : '#' + t.value; if (/^#[0-9a-f]{6}$/i.test(v)) set(t.dataset.t, v); } });
