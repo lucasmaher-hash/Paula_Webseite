@@ -841,6 +841,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Maße aus den Karos: Spalten 335 : 240 : 332, oberes Bild verliert die Ecke unten links, unteres die Ecke oben rechts, beide Schrägen mit gleicher Steigung (1,24), damit der Spalt gleich breit bleibt. Umsetzung als ein Raster für beide Schulungen (`display:contents` auf den Artikeln), Überlappungszeile 0,5 × Spaltenbreite, Bildzuschnitt per `clip-path: shape()` mit kleinen Rundungen an den Knicken, `polygon()` als Ersatz für ältere Browser. Texte kompakter gesetzt (kleinere Badges, Vorteile als Liste mit Symbol statt Kacheln), damit die Textflächen ungefähr die Skizzen-Proportion halten. Handy: untereinander, kleinere Schrägen.
 - **Nicht funktioniert / offen:** Erst falsch: `cqw` auf dem Raster selbst bezog sich auf das Fenster statt auf den Container, die Überlappung war zu groß. Behoben (Container eine Ebene höher). Die Textflächen sind etwas höher als in der Skizze, weil der Inhalt nicht kürzer werden soll. Kein echtes Handy.
 
+### 10.11.2026 · Claude · v2: Schulungen exakt gespiegelt, Abstände und Rundungen −30 %
+- **Versucht:** Lucas: Die beiden Schulungen sollen perfekte Spiegelbilder sein (oben spiegelt unten), Abstände zwischen den Rahmen und Rundungen etwa 30 % kleiner.
+- **Funktioniert:** Unteres Bild ist jetzt das obere um 180° gedreht (Schräge von oben 100 % − 0,76 Spaltenbreiten bis rechts 0,942), Außenspalten gleich breit (333,5 : 240 : 333,5), beide Zeilen gleich hoch (`1fr … 1fr`), dadurch Bilder und Textflächen je 237 × 473 bzw. 329 × 473 px bei 1280 px. Spalt 3,4 → 2,38 cqw, Eckradius 0,17 → 0,119, Knickrundung 0,09 → 0,063 Spaltenbreiten; Überlappung neu berechnet (0,494), damit der schräge Spalt so breit ist wie der gerade. Handy-Radien ebenfalls −30 %.
+- **Nicht funktioniert / offen:** Kein echtes Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
