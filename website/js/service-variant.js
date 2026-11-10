@@ -90,3 +90,235 @@
   content.append(rows);section.replaceChildren(content);
   var renderer=document.createElement('script');renderer.src=new URL('service-panels-3d.js?v=5',scriptURL).href;renderer.defer=true;document.body.append(renderer);
 })();
+
+// /1/ only: flowing colour background behind the frames, after tuxkarma.co (Tux Creative House).
+// Their recipe: a looping gradient video as texture, rendered at half resolution, displaced by a hidden
+// layer of soft "brush" sprites that are stamped at the cursor and at panel edges while scrolling;
+// each sprite grows, turns and fades (opacity x0.98 per frame). The sprite value d becomes an angle
+// (d*2PI) and a length, so the picture smears in curls. Here the video is replaced by a procedural,
+// domain-warped noise gradient in the PM palettes, so colours stay tunable and no video is loaded.
+(function () {
+  'use strict';
+  if (!/\/1\/?$/.test(location.pathname)) return;
+  var query = new URLSearchParams(location.search);
+  var local = /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname);
+  var tuning = local || query.get('regler') === '1' || query.get('hintergrund') === '1';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var MAX = 48;
+  // design.md colours: brown = Hintergrund/Fläche/Fläche tief/Button; pink the same row. Accent comes from the other palette.
+  var PALETTES = {
+    brown:{base:'#f6edea',tone1:'#eeded8',tone2:'#e7d2ca',tone3:'#d9bcb0',accent:'#e1c1c6'},
+    pink:{base:'#f0e0e2',tone1:'#e8cfd3',tone2:'#e1c1c6',tone3:'#d2a9b0',accent:'#e7d2ca'}
+  };
+  var MOTION = {intensity:.9,accentAmount:.45,speed:1,scale:.5,warp:1,parallax:.15,
+    displace:.08,trailSize:170,trailStrength:.45,trailDecay:.975,trailGrowth:1.6,scrollWaves:.6,grain:.05,resolution:.5};
+  function fresh() { return {variant:query.get('bg') === 'pink' ? 'pink' : 'brown',
+    colors:{brown:Object.assign({},PALETTES.brown),pink:Object.assign({},PALETTES.pink)},motion:Object.assign({},MOTION)}; }
+  var key = 'pm-beauty:1:background:v1', uiKey = 'pm-beauty:1:background-ui:v1';
+  var state = fresh();
+  if (tuning) try {
+    var saved = JSON.parse(localStorage.getItem(key));
+    if (saved) {
+      if (saved.variant === 'brown' || saved.variant === 'pink') state.variant = saved.variant;
+      ['brown','pink'].forEach(function (v) { if (saved.colors && saved.colors[v]) Object.keys(PALETTES[v]).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(saved.colors[v][k])) state.colors[v][k] = saved.colors[v][k]; }); });
+      if (saved.motion) Object.keys(MOTION).forEach(function (k) { if (Number.isFinite(saved.motion[k])) state.motion[k] = saved.motion[k]; });
+    }
+    if (query.get('bg') === 'pink' || query.get('bg') === 'brown') state.variant = query.get('bg');
+  } catch (e) {}
+
+  var layer = document.createElement('div'); layer.className = 'flow-bg'; layer.setAttribute('aria-hidden','true');
+  var canvas = document.createElement('canvas'), grain = document.createElement('div'); grain.className = 'flow-bg-grain';
+  layer.append(canvas, grain); document.body.prepend(layer);
+  var gl = canvas.getContext('webgl', {antialias:false, depth:false, stencil:false, premultipliedAlpha:false, powerPreference:'low-power'});
+  function hex(h) { return [parseInt(h.slice(1,3),16)/255, parseInt(h.slice(3,5),16)/255, parseInt(h.slice(5,7),16)/255]; }
+  function paintFallback() { var c = state.colors[state.variant]; layer.style.background = 'radial-gradient(60% 50% at 20% 30%,' + c.tone2 + ',transparent),radial-gradient(50% 60% at 80% 70%,' + c.tone1 + ',transparent),' + c.base; }
+  var api = {state:state, defaults:{palettes:PALETTES, motion:MOTION}, fresh:fresh, key:key, uiKey:uiKey, tuning:tuning, apply:function () {}};
+  window.pmFlowBackground = api;
+  if (!gl) { layer.classList.add('is-fallback'); api.apply = function () { paintFallback(); grain.style.opacity = state.motion.grain; }; api.apply(); return; }
+
+  var vs = 'attribute vec2 p;varying vec2 vUv;void main(){vUv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  var fs = [
+    'precision highp float;varying vec2 vUv;',
+    'uniform vec2 uRes;uniform float uTime,uScroll,uIntensity,uAccent,uScale,uWarp,uDisp;uniform int uCount;',
+    'uniform vec3 uBase,uC1,uC2,uC3,uAcc;uniform vec4 uDrop[' + MAX + '];uniform vec2 uShape[' + MAX + '];',
+    // Ashima 2D simplex noise (MIT)
+    'vec3 m289(vec3 x){return x-floor(x*(1./289.))*289.;}vec2 m289(vec2 x){return x-floor(x*(1./289.))*289.;}vec3 perm(vec3 x){return m289(((x*34.)+1.)*x);}',
+    'float sn(vec2 v){const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=m289(i);vec3 p=perm(perm(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-.5;vec3 ox=floor(x+.5);vec3 a0=x-ox;m*=1.79284291400159-.85373472095314*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}',
+    'float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<2;i++){s+=a*sn(p);p=p*1.9+vec2(1.7,9.2);a*=.35;}return s*1.4;}',
+    'float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}',
+    'void main(){vec2 px=vec2(vUv.x,1.-vUv.y)*uRes;float d=0.;',
+    'for(int i=0;i<' + MAX + ';i++){if(i>=uCount)break;vec4 o=uDrop[i];vec2 s=uShape[i];vec2 q=px-o.xy;float c=cos(s.y),n=sin(s.y);q=vec2(c*q.x-n*q.y,n*q.x+c*q.y)/vec2(o.z,s.x);float r=length(q);',
+    'if(r<1.){float a=atan(q.y,q.x);float brush=smoothstep(1.,.15,r)*(.7+.3*sin(a*3.+r*5.));d+=o.w*brush;}}',
+    'd=min(d,1.6);float th=d*6.2831853;vec2 uv=px/uRes.y+vec2(sin(th),cos(th))*d*uDisp;uv.y+=uScroll;',
+    'vec2 p=uv*uScale;float t=uTime;vec2 w=vec2(fbm(p+vec2(0.,t*.05)),fbm(p+vec2(5.2,1.3)-t*.04));vec2 q=p+uWarp*w;',
+    'float f1=fbm(q+vec2(t*.03,0.)),f2=fbm(q*1.3+vec2(-t*.02,3.1)),f3=fbm(q*.7+vec2(8.,t*.025)),f4=fbm(q*.9+vec2(2.,-t*.03));',
+    'vec3 col=uBase;col=mix(col,uC1,clamp(smoothstep(-.45,.6,f1)*uIntensity,0.,1.));col=mix(col,uC2,clamp(smoothstep(-.2,.75,f2)*uIntensity,0.,1.));',
+    'col=mix(col,uC3,clamp(smoothstep(.05,.9,f3)*uIntensity*.85,0.,1.));col=mix(col,uAcc,clamp(smoothstep(.15,.95,f4)*uAccent,0.,1.));',
+    'col+=(hash(px+fract(t))-.5)/255.;gl_FragColor=vec4(col,1.);}'
+  ].join('\n');
+  function shader(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+  var prog;
+  try { prog = gl.createProgram(); gl.attachShader(prog, shader(gl.VERTEX_SHADER, vs)); gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(prog); if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog)); }
+  catch (e) { console.warn('flow background', e); layer.classList.add('is-fallback'); api.apply = function () { paintFallback(); }; api.apply(); return; }
+  gl.useProgram(prog);
+  var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var U = {}; ['uRes','uTime','uScroll','uIntensity','uAccent','uScale','uWarp','uDisp','uCount','uBase','uC1','uC2','uC3','uAcc','uDrop','uShape'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+
+  // Brush sprites (Tux: mouse sprite opacity .55, scale .7 growing towards ~1.7, opacity x.98, slow spin).
+  var drops = [], dropData = new Float32Array(MAX * 4), shapeData = new Float32Array(MAX * 2), next = 0;
+  function stamp(x, y, rx, ry, alpha) {
+    var d = drops[next] || (drops[next] = {});
+    d.x = x; d.y = y; d.rx = rx; d.ry = ry; d.a = alpha; d.rot = Math.random() * Math.PI * 2; d.s = .7;
+    next = (next + 1) % MAX;
+  }
+  var mouse = {x:null, y:null};
+  window.addEventListener('pointermove', function (e) {
+    if (reduce.matches) return;
+    if (mouse.x === null || Math.abs(e.clientX - mouse.x) >= 4 || Math.abs(e.clientY - mouse.y) >= 4) {
+      var m = state.motion; stamp(e.clientX, e.clientY, m.trailSize, m.trailSize, m.trailStrength);
+      mouse.x = e.clientX; mouse.y = e.clientY;
+    }
+  }, {passive:true});
+  // Scroll waves: panels drag a soft wave along their leading edge, like Tux's blocks.
+  var panels = [], lastY = scrollY;
+  function collectPanels() { panels = Array.from(document.querySelectorAll('.preview-frame-host')).filter(function (el) { return el.getBoundingClientRect().width > 220; }); }
+  setTimeout(collectPanels, 600); window.addEventListener('resize', collectPanels);
+  window.addEventListener('scroll', function () {
+    var dy = scrollY - lastY; if (Math.abs(dy) < 4 || reduce.matches || state.motion.scrollWaves <= 0) return; lastY = scrollY;
+    var vh = innerHeight;
+    panels.forEach(function (el) {
+      var b = el.getBoundingClientRect(), y = dy > 0 ? b.bottom : b.top;
+      if (y < -40 || y > vh + 40 || b.width === 0) return;
+      stamp(b.left + b.width / 2, y, b.width * .55, 90, .22 * state.motion.scrollWaves);
+      drops[(next + MAX - 1) % MAX].rot = 0;
+    });
+  }, {passive:true});
+
+  var w = 0, h = 0;
+  function resize() {
+    var r = Math.max(.05, state.motion.resolution);
+    w = innerWidth; h = innerHeight;
+    canvas.width = Math.max(1, Math.round(w * r)); canvas.height = Math.max(1, Math.round(h * r));
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  window.addEventListener('resize', resize);
+  api.apply = function () {
+    var c = state.colors[state.variant], m = state.motion;
+    gl.uniform3fv(U.uBase, hex(c.base)); gl.uniform3fv(U.uC1, hex(c.tone1)); gl.uniform3fv(U.uC2, hex(c.tone2)); gl.uniform3fv(U.uC3, hex(c.tone3)); gl.uniform3fv(U.uAcc, hex(c.accent));
+    gl.uniform1f(U.uIntensity, m.intensity); gl.uniform1f(U.uAccent, m.accentAmount); gl.uniform1f(U.uScale, m.scale); gl.uniform1f(U.uWarp, m.warp); gl.uniform1f(U.uDisp, m.displace);
+    grain.style.opacity = m.grain; document.body.style.backgroundColor = c.base;
+    resize(); if (!running) draw(now);
+  };
+  var now = 0, last = performance.now(), running = false;
+  function draw(t) {
+    var m = state.motion, live = 0, decay = Math.min(.9999, Math.max(0, m.trailDecay)), grow = m.trailGrowth;
+    for (var i = 0; i < MAX; i++) {
+      var d = drops[i];
+      if (!d || d.a < .002) continue;
+      dropData[live*4] = d.x; dropData[live*4+1] = d.y; dropData[live*4+2] = d.rx * d.s; dropData[live*4+3] = d.a;
+      shapeData[live*2] = d.ry * d.s; shapeData[live*2+1] = d.rot; live++;
+    }
+    gl.uniform2f(U.uRes, w, h); gl.uniform1f(U.uTime, t); gl.uniform1f(U.uScroll, scrollY / Math.max(1, h) * m.parallax);
+    gl.uniform1i(U.uCount, live); if (live) { gl.uniform4fv(U.uDrop, dropData); gl.uniform2fv(U.uShape, shapeData); }
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    return {decay:decay, grow:grow};
+  }
+  function frame(ts) {
+    if (!running) return;
+    var dt = Math.min(.05, (ts - last) / 1000); last = ts;
+    now += dt * state.motion.speed;
+    var k = draw(now), f = dt * 60;
+    drops.forEach(function (d) { if (!d || d.a < .002) return; d.a *= Math.pow(k.decay, f); d.s += (k.grow - d.s) * (1 - Math.pow(.982, f)); d.rot += dt / 2; });
+    requestAnimationFrame(frame);
+  }
+  function setRunning() {
+    var go = !document.hidden && !reduce.matches;
+    if (go && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    if (!go) { running = false; draw(now); }
+  }
+  document.addEventListener('visibilitychange', setRunning); reduce.addEventListener('change', setRunning);
+  api.apply(); setRunning();
+})();
+
+// Dial for the flow background: localhost, ?regler=1 or ?hintergrund=1. Bottom right, draggable, collapsible.
+(function () {
+  'use strict';
+  var bg = window.pmFlowBackground;
+  if (!bg || !bg.tuning) return;
+  var state = bg.state;
+  var ui = {x:null, y:null, collapsed:innerWidth < 600};
+  try { var su = JSON.parse(localStorage.getItem(bg.uiKey)); if (su) { if (Number.isFinite(su.x) && Number.isFinite(su.y)) { ui.x = su.x; ui.y = su.y; } ui.collapsed = su.collapsed === true; } } catch (e) {}
+  var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
+  var SLIDERS = [
+    ['Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×']]],
+    ['Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.05,6,.01,'×'],['warp','Verwirbelung',0,6,.05,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
+    ['Maus und Scroll', [['displace','Verzerrung',0,1,.005,''],['trailSize','Spurgröße',10,1200,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten',.8,.999,.001,''],['trailGrowth','Wachstum',.2,5,.05,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
+    ['Oberfläche', [['grain','Körnung',0,.6,.005,''],['resolution','Auflösung (klein = weicher)',.05,2,.01,'×']]]
+  ];
+  var panel = document.createElement('aside'); panel.id = 'bg-tuner'; panel.setAttribute('aria-label','Hintergrund einstellen');
+  var html = '<div class="bg-tuner-header"><strong>Hintergrund</strong><button type="button" id="bg-tuner-collapse" aria-controls="bg-tuner-body" aria-expanded="true">Einklappen</button></div><div class="bg-tuner-body" id="bg-tuner-body">';
+  html += '<div class="bg-tuner-seg" role="group" aria-label="Variante"><button type="button" data-variant="brown">Braun</button><button type="button" data-variant="pink">Pink</button></div>';
+  html += '<fieldset><legend>Farben <span id="bg-variant-name"></span></legend>' + COLORS.map(function (c) { return '<label for="bg-c-' + c[0] + '">' + c[1] + '</label><div class="bg-tuner-row"><input type="color" id="bg-c-' + c[0] + '" data-color="' + c[0] + '"><output id="bg-c-' + c[0] + '-v"></output></div>'; }).join('') + '</fieldset>';
+  SLIDERS.forEach(function (g) {
+    html += '<fieldset><legend>' + g[0] + '</legend>' + g[1].map(function (s) {
+      return '<label for="bg-s-' + s[0] + '">' + s[1] + '</label><div class="bg-tuner-row"><input type="range" id="bg-s-' + s[0] + '" data-key="' + s[0] + '" min="' + s[2] + '" max="' + s[3] + '" step="' + s[4] + '"><input type="number" aria-label="' + s[1] + '" data-num="' + s[0] + '" step="' + s[4] + '"><span>' + s[5] + '</span></div>';
+    }).join('') + '</fieldset>';
+  });
+  html += '<pre id="bg-settings" tabindex="0" aria-label="Aktuelle Hintergrundwerte"></pre><div class="bg-tuner-actions"><button type="button" id="bg-copy">Kopieren</button><button type="button" id="bg-reset">Zurücksetzen</button></div></div>';
+  panel.innerHTML = html; document.body.append(panel);
+  var body = panel.querySelector('#bg-tuner-body'), collapse = panel.querySelector('#bg-tuner-collapse'), out = panel.querySelector('#bg-settings');
+  var limits = {}; SLIDERS.forEach(function (g) { g[1].forEach(function (s) { limits[s[0]] = {min:s[2], max:s[3]}; }); });
+  function saveState() { try { localStorage.setItem(bg.key, JSON.stringify(state)); } catch (e) {} }
+  function saveUi() { try { localStorage.setItem(bg.uiKey, JSON.stringify(ui)); } catch (e) {} }
+  function exported() { return JSON.stringify({variant:state.variant, colors:state.colors[state.variant], motion:state.motion}, null, 2); }
+  function sync() {
+    panel.querySelectorAll('[data-variant]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.variant === state.variant)); });
+    panel.querySelector('#bg-variant-name').textContent = state.variant === 'pink' ? '(Pink)' : '(Braun)';
+    COLORS.forEach(function (c) { var v = state.colors[state.variant][c[0]]; panel.querySelector('#bg-c-' + c[0]).value = v; panel.querySelector('#bg-c-' + c[0] + '-v').textContent = v; });
+    Object.keys(limits).forEach(function (k) {
+      var v = state.motion[k], r = panel.querySelector('#bg-s-' + k), n = panel.querySelector('[data-num="' + k + '"]');
+      r.min = Math.min(limits[k].min, v); r.max = Math.max(limits[k].max, v); r.value = v;
+      if (document.activeElement !== n) n.value = v;
+    });
+    out.textContent = exported();
+  }
+  function changed() { bg.apply(); saveState(); sync(); }
+  panel.querySelectorAll('[data-variant]').forEach(function (b) { b.addEventListener('click', function () { state.variant = b.dataset.variant; changed(); }); });
+  panel.querySelectorAll('[data-color]').forEach(function (i) { i.addEventListener('input', function () { state.colors[state.variant][i.dataset.color] = i.value; changed(); }); });
+  panel.querySelectorAll('[data-key],[data-num]').forEach(function (i) {
+    i.addEventListener('input', function () {
+      if (i.value === '') return; var v = Number(i.value), k = i.dataset.key || i.dataset.num;
+      if (!Number.isFinite(v)) return;
+      if (k === 'resolution' && v <= 0) return; if (k === 'trailSize' && v <= 0) return;
+      state.motion[k] = v; changed();
+    });
+  });
+  panel.querySelector('#bg-reset').addEventListener('click', function () { var f = bg.fresh(); f.variant = state.variant; state.colors = f.colors; state.motion = f.motion; changed(); });
+  var copy = panel.querySelector('#bg-copy');
+  copy.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(exported()).then(function () { copy.textContent = 'Kopiert'; setTimeout(function () { copy.textContent = 'Kopieren'; }, 1200); }); });
+  function clamp() {
+    var b = panel.getBoundingClientRect();
+    ui.x = Math.max(8, Math.min(ui.x === null ? b.left : ui.x, innerWidth - b.width - 8));
+    ui.y = Math.max(8, Math.min(ui.y === null ? b.top : ui.y, innerHeight - Math.min(b.height, 56) - 8));
+    panel.style.left = ui.x + 'px'; panel.style.top = ui.y + 'px'; panel.style.right = panel.style.bottom = 'auto';
+  }
+  function setCollapsed() {
+    body.hidden = ui.collapsed; collapse.setAttribute('aria-expanded', String(!ui.collapsed)); collapse.textContent = ui.collapsed ? 'Ausklappen' : 'Einklappen';
+    if (ui.x !== null) { var b = panel.getBoundingClientRect(); if (ui.y + b.height > innerHeight - 8) ui.y = innerHeight - b.height - 8; clamp(); }
+    saveUi();
+  }
+  collapse.addEventListener('click', function () { if (ui.x === null) { var b = panel.getBoundingClientRect(); ui.x = b.left; ui.y = b.top; } ui.collapsed = !ui.collapsed; setCollapsed(); });
+  var drag = null;
+  panel.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('input,button,label,pre,output')) return;
+    var b = panel.getBoundingClientRect(); drag = {id:e.pointerId, x:e.clientX - b.left, y:e.clientY - b.top};
+    panel.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); e.preventDefault();
+  });
+  panel.addEventListener('pointermove', function (e) { if (!drag || e.pointerId !== drag.id) return; ui.x = e.clientX - drag.x; ui.y = e.clientY - drag.y; clamp(); });
+  function end() { if (!drag) return; drag = null; panel.classList.remove('is-dragging'); saveUi(); }
+  panel.addEventListener('pointerup', end); panel.addEventListener('pointercancel', end);
+  window.addEventListener('resize', function () { if (ui.x !== null) { clamp(); saveUi(); } });
+  if (ui.x !== null) clamp();
+  setCollapsed(); sync();
+})();
