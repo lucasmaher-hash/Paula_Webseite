@@ -1022,3 +1022,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Claude (Sonnet 5.5), 10.11.2026: Termin-Button, Header zieht sich ein, Panel-Feinschliff
 - Runder „Termin buchen“-Button unten rechts, immer sichtbar; hellbraun auf braunen, hellpink auf pinken Abschnitten (Übergang 1 s, Beobachtungslinie am unteren Rand). Header fährt beim Runterscrollen nach oben raus und beim Hochscrollen wieder ein (bleibt bei offenem Menü/Fokus). Geprüft bei 1190 und 375 px per Playwright; im ersten Anlauf fehlte dem Button die Farbfolge, weil das Skript vor dem Element lief (Element nach oben verschoben).
 - Aufklapp-Panels: Fakten (Adresse, Über mich) jetzt zentriert, doppeltes „Adresse“-Label entfernt, „Behandlungen“ im Menü bricht nicht mehr um, Hover-Helligkeitsfilter auf „Alle Bewertungen“ entfernt. Für „Alle Bewertungen“ konnte ich den gemeldeten Fehler nicht nachstellen (Hover öffnet/schließt bei 1440, 1024, 820, Tippen bei 375).
+
+### Claude (Sonnet 5.5), 10.11.2026: Gutschein-Hinweis und Button-Pfeil entfernt
+- Hinweistext unter den Gutscheinen („Nach dem Kauf erhältst du …“) und der Pfeil im runden Termin-Button entfernt.
