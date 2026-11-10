@@ -85,13 +85,12 @@ window.pmParticleFill = (function () {
   return {attach:attach, set:function (el, on) { if (el._pf) el._pf.set(on); }};
 })();
 
-// Flip panels (ovals, gallery, course panels): hover, keyboard focus or a first tap turns the inner panel 180 degrees.
-// Leaving does not spin back: the inner panel resets at once while its back fades out quickly (.is-leaving, css/service-panels.css).
+// Reveal panels (ovals, gallery, text panels): at rest only frame and a short title; hover, keyboard focus or a first tap
+// turns them solid and shows the full info (.is-open, css/service-panels.css). No spin.
 window.pmFlip = function (list) {
   var touch = matchMedia('(hover: none)');
-  function close(el) { if (!el.classList.contains('is-open')) return; el.classList.remove('is-open'); el.classList.add('is-leaving');
-    clearTimeout(el._flT); el._flT = setTimeout(function () { el.classList.remove('is-leaving'); }, 320); }
-  function open(el) { list.forEach(function (x) { if (x !== el) close(x); }); if (!el) return; clearTimeout(el._flT); el.classList.remove('is-leaving'); el.classList.add('is-open'); }
+  function close(el) { el.classList.remove('is-open'); }
+  function open(el) { list.forEach(function (x) { if (x !== el) close(x); }); if (el) el.classList.add('is-open'); }
   list.forEach(function (el) {
     el.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') open(el); });
     el.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') close(el); });
@@ -130,15 +129,15 @@ window.pmFlip = function (list) {
     var oval = document.createElement('div');
     oval.className = 'service-oval'; oval.id = g.id; oval.tabIndex = 0; oval.setAttribute('role', 'group'); oval.setAttribute('aria-label', g.title);
     oval.innerHTML = g.anchors.map(function (a) { return '<span class="service-oval-anchor" id="' + a + '"></span>'; }).join('') +
-      '<div class="so-inner"><div class="so-face so-front"><h3 class="service-oval-title">' + g.title + '</h3>' +
-      '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span></div>' +
-      '<div class="so-face so-back"><ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '<span class="arr" aria-hidden="true">↗</span></a></li>'; }).join('') + '</ul></div></div>';
+      '<h3 class="service-oval-title">' + g.title + '</h3>' +
+      '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span>' +
+      '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '<span class="arr" aria-hidden="true">↗</span></a></li>'; }).join('') + '</ul>';
     wrap.append(oval);
   });
   accordion.replaceWith(wrap);
   document.body.classList.add('service-ovals-variant');
   var ovals = Array.from(wrap.querySelectorAll('.service-oval'));
-  // Solid at rest; hover, focus or a tap flips the inner panel (window.pmFlip).
+  // Frame and title at rest; hover, focus or a tap turns the oval solid with its services (window.pmFlip).
   var flip = window.pmFlip(ovals);
   function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) flip.open(o); }
   document.querySelectorAll('[data-open]').forEach(function (a) { a.addEventListener('click', function () { fromHash(a.dataset.open); }); });
@@ -184,11 +183,11 @@ window.pmFlip = function (list) {
   var SHARED = ['sideGutter','pDuration','pSize','pScatter','pSpread'];
   var MOTIONS = {
     // Brown: Lucas' tuned values from the dial, 10.11.2026.
-    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
+    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:0,sheenHover:.97,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6},
     // Pink: Lucas' tuned values, 10.11.2026 (Formgröße 3.6 also used for brown).
-    pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
+    pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:0,sheenHover:.97,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6}
   };
@@ -391,14 +390,17 @@ window.pmFlip = function (list) {
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, target); gl.uniform1i(MU.uDisp, 0);
     gl.uniform2f(MU.uRes, w, h); gl.uniform1f(MU.uTime, time); gl.uniform1f(MU.uScroll, scrollY / Math.max(1, h) * m.parallax);
     gl.uniform1f(MU.uIntensity, m.intensity); gl.uniform1f(MU.uAccent, m.accentAmount); gl.uniform1f(MU.uSoft, Math.max(.005, m.softness));
-    gl.uniform1f(MU.uSheen, m.sheen); gl.uniform1f(MU.uScale, m.scale); gl.uniform1f(MU.uWarp, m.warp); gl.uniform1f(MU.uDisp2, m.displace);
+    gl.uniform1f(MU.uSheen, m.sheen + ((m.sheenHover === undefined ? m.sheen : m.sheenHover) - m.sheen) * hoverMix); gl.uniform1f(MU.uScale, m.scale); gl.uniform1f(MU.uWarp, m.warp); gl.uniform1f(MU.uDisp2, m.displace);
     gl.uniform3fv(MU.uBase, c.base); gl.uniform3fv(MU.uC1, c.tone1); gl.uniform3fv(MU.uC2, c.tone2); gl.uniform3fv(MU.uC3, c.tone3); gl.uniform3fv(MU.uAcc, c.accent);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
+  var hoverMix = 0;
   function frame(ts) {
     if (!running) return;
     var dt = Math.min(.05, (ts - last) / 1000); last = ts;
     time += dt * state.motion.speed;
+    // sheen eases between the rest and the hover value while the mouse is on a panel (.is-open)
+    hoverMix += ((document.querySelector('.is-open') ? 1 : 0) - hoverMix) * (1 - Math.exp(-dt / .35));
     stepMix(dt); trackMouse(); trackPanels(); render(dt);
     requestAnimationFrame(frame);
   }
@@ -463,21 +465,32 @@ window.pmFlip = function (list) {
   new IntersectionObserver(function (e) { c.classList.toggle('together', e[0].isIntersecting); }, {threshold:.35}).observe(c);
 })();
 
-// Course panels (desktop): the outer line stays, the inner panel flips like the ovals; its back says "Per DM buchen" and is the link.
+// Text panels: at rest only the frame and a short title in near-white; hover/focus/tap turns them solid and shows everything.
 (function () {
-  if (!matchMedia('(min-width:900px)').matches || !window.pmFlip) return;
-  var panels = Array.from(document.querySelectorAll('.course-panel'));
-  panels.forEach(function (p) {
-    var btn = p.querySelector('.course-content > .btn'), a = document.createElement('a');
-    var inner = document.createElement('div'); inner.className = 'cp-inner';
-    var front = document.createElement('div'); front.className = 'cp-face cp-front';
-    while (p.firstChild) front.append(p.firstChild);
-    a.className = 'cp-face cp-back course-book'; a.href = btn ? btn.href : 'https://www.instagram.com/pm_beauty___/'; a.target = '_blank'; a.rel = 'noopener';
-    var t = p.querySelector('h3') || front.querySelector('h3'); a.setAttribute('aria-label', 'Per DM buchen' + (t ? ': ' + t.textContent.trim() : ''));
-    a.innerHTML = '<span>Per DM buchen<span class="arr" aria-hidden="true">↗</span></span>';
-    inner.append(front, a); p.append(inner);
+  if (!window.pmFlip) return;
+  var desktop = matchMedia('(min-width:900px)').matches, all = [];
+  function sum(html) { var s = document.createElement('div'); s.className = 'hv-sum'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = html; return s; }
+  function make(el, html) {
+    var det = document.createElement('div'); det.className = 'hv-det';
+    while (el.firstChild) det.append(el.firstChild);
+    el.append(sum(html), det); el.classList.add('hv'); if (!el.matches('a,button')) el.tabIndex = 0; all.push(el);
+  }
+  var t = function (s) { return '<span class="hv-t">' + s + '</span>'; }, s2 = function (s) { return '<span class="hv-s">' + s + '</span>'; };
+  document.querySelectorAll('.voucher').forEach(function (v) {
+    var ic = v.querySelector('.voucher-ic'), am = v.querySelector('.amount');
+    make(v, (ic ? ic.outerHTML : '') + t(am ? am.innerHTML : 'Gutschein'));
   });
-  window.pmFlip(panels);
+  var names = ['Korean Lashlift', 'Russian Manicure'];
+  document.querySelectorAll('.course-panel').forEach(function (p, i) { make(p, t(names[i] || (p.querySelector('h3') || {}).textContent || '')); });
+  document.querySelectorAll('.review:not(.review-all)').forEach(function (r) {
+    var n = r.querySelector('footer span'); make(r, s2('★★★★★') + t(n ? n.textContent : 'Kundin'));
+  });
+  document.querySelectorAll('.review-all').forEach(function (r) { make(r, t('5.0 ★') + s2('Alle Bewertungen')); });
+  var c = document.querySelector('.contact-intro'); if (c) make(c, t('Kontakt'));
+  c = document.querySelector('.contact-facts'); if (c) make(c, t('Adresse'));
+  c = document.querySelector('.hours'); if (c) make(c, t('Öffnungszeiten'));
+  c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'));
+  window.pmFlip(all);
 })();
 
 // Background dial (restored 10.11.2026 on Lucas' request): colours and movement for Braun and Pink. Bottom right, draggable, collapsible.
@@ -489,12 +502,13 @@ window.pmFlip = function (list) {
   var state = bg.state, KEY = 'pm-beauty:v2:bg-dial:v1', UIKEY = 'pm-beauty:v2:bg-dial-ui:v1';
   try { var saved = JSON.parse(localStorage.getItem(KEY)); if (saved) ['brown','pink'].forEach(function (v) {
     if (saved.colors && saved.colors[v]) Object.keys(state.colors[v]).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(saved.colors[v][k])) state.colors[v][k] = saved.colors[v][k]; });
-    if (saved.motions && saved.motions[v]) Object.keys(state.motions[v]).forEach(function (k) { if (Number.isFinite(saved.motions[v][k])) state.motions[v][k] = saved.motions[v][k]; }); }); } catch (e) {}
+    if (saved.motions && saved.motions[v]) { var sm = saved.motions[v]; if (Number.isFinite(sm.sheen) && !Number.isFinite(sm.sheenHover)) { sm.sheenHover = sm.sheen; sm.sheen = 0; }
+      Object.keys(state.motions[v]).forEach(function (k) { if (Number.isFinite(sm[k])) state.motions[v][k] = sm[k]; }); } }); } catch (e) {}
   var ui = {x:null, y:null, collapsed:innerWidth < 600};
   try { var su = JSON.parse(localStorage.getItem(UIKEY)); if (su) { if (Number.isFinite(su.x) && Number.isFinite(su.y)) { ui.x = su.x; ui.y = su.y; } ui.collapsed = su.collapsed === true; } } catch (e) {}
   var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
   var SLIDERS = [
-    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten',0,3,.01,'×']]],
+    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten (normal)',0,3,.01,'×'],['sheenHover','Glanz an den Falten (Hover mit Maus)',0,3,.01,'×']]],
     ['Hintergrund: Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.1,8,.05,'×'],['warp','Faltung',0,4,.02,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
     ['Hintergrund: Maus und Scroll', [['displace','Verzerrung (Tux: 0,2)',0,1,.005,''],['trailSize','Spurgröße (Tux: 450)',20,2000,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten (Tux: 0,98)',.8,.999,.001,''],['trailGrowth','Wachstum (Tux: 1,67)',.2,5,.01,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
     ['Hintergrund: Oberfläche', [['grain','Körnung',0,.6,.005,''],['resolution','Auflösung (Tux: 0,5)',.05,2,.01,'×']]]

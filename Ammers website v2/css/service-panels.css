@@ -77,54 +77,53 @@
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .2 0 0 0 0 .18 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .flow-bg.is-fallback canvas{display:none}
 
-/* Services as three ovals (js/service-variant.js), after tuxkarma.co. Solid at rest (3 px line, 3 px gap, light fill);
-   on hover (or focus/tap: .is-open) the inner panel flips (the outer line stays) 180 degrees around its vertical axis to the back with the services. */
+/* Services as three ovals (js/service-variant.js), after tuxkarma.co. At rest only the near-white frame and title;
+   hover/focus/tap (.is-open) fills the oval (3 px gap inside the line) and shows six services. */
+:root{--hv-mix:35%}
+.hv,.service-oval,.results .strip figure{--hvc:color-mix(in srgb,var(--color-surface) var(--hv-mix),#fff)}
 .service-ovals-variant .services{background:transparent;border:0;box-shadow:none}
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
-.service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;perspective:1400px;border:3px solid var(--color-surface);border-radius:50%;outline:none;cursor:default;color:var(--color-primary);text-align:center}
+.service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;border:3px solid var(--hvc);
+  display:grid;place-items:center;text-align:center;color:var(--hvc);outline:none;cursor:default;isolation:isolate;transition:color .3s}
+.service-oval::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--hvc);opacity:0;transition:opacity .35s;z-index:-1}
+.service-oval>*{grid-area:1/1}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
-.so-inner{position:absolute;inset:3px;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
-.so-face{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;
-  -webkit-backface-visibility:hidden;backface-visibility:hidden}
-.so-face::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--color-surface);z-index:-1}
-.so-face>*{position:relative}
-.so-back{transform:rotateY(180deg)}
-.service-oval.is-open .so-inner{transform:rotateY(180deg)}
-.service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em}
+.service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;transition:opacity .3s}
 .service-oval-hint{display:none}
-.service-oval-list{list-style:none;margin:0;padding:0;width:66%}
+.service-oval-list{list-style:none;margin:0;padding:0;width:66%;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 .service-oval-list a{display:block;padding:9px 4px;color:inherit;text-decoration:none;font-size:clamp(13px,1.05vw,16px);line-height:1.3}
 .service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .service-oval-list .arr{display:inline-block;margin-left:.45em;font-size:.8em;opacity:.75;transition:transform .25s,opacity .25s}
 .service-oval-list a:hover .arr,.service-oval-list a:focus-visible .arr{transform:translate(2px,-2px);opacity:1}
+.service-oval.is-open{color:var(--color-primary)}
+.service-oval.is-open::before{opacity:1}
+.service-oval.is-open .service-oval-title{opacity:0}
+.service-oval.is-open .service-oval-list{opacity:1;visibility:visible;transition-delay:.05s,0s}
 .service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 @media(max-width:799px){
   .service-ovals{flex-direction:column;align-items:center;gap:18px}
   .service-oval{flex:none;width:min(100%,330px);aspect-ratio:.72}
   .service-oval-list{width:72%}
   .service-oval-title{font-size:34px}
-  .so-front{grid-template-rows:1fr auto 1fr}
-  .so-front .service-oval-title{grid-row:2}
-  .service-oval-hint{display:block;grid-row:3;align-self:end;margin-bottom:18%;opacity:.7}
   .service-oval-list a{font-size:15px;padding:8px 2px}
 }
-@media(prefers-reduced-motion:reduce){.so-inner,.fl-inner,.cp-inner{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.service-oval,.service-oval *,.hv,.hv *,.fl-back{transition:none!important}}
 
 /* Particle fill canvas (js/service-variant.js, window.pmParticleFill). */
 .pf{position:relative}
 .pf>.pf-canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:0;pointer-events:none;grid-area:auto}
 
 /* Gallery: one word per picture over the particle fill. */
-.results .strip figure{position:relative;perspective:1400px;outline:none}
+.results .strip figure{position:relative;outline:none}
 .results .strip figure>img{visibility:hidden}
 .results .strip figure img{transform:none!important;transition:none!important}   /* no hover zoom on the gallery photos */   /* keeps the size; the photo itself sits on the flipping front */
-.results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--color-surface);border-radius:inherit;pointer-events:none}
-.fl-inner{position:absolute;inset:6px;border-radius:calc(var(--rounded-lg) - 6px);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
-.fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--hvc);border-radius:inherit;pointer-events:none}
+.fl-inner{position:absolute;inset:6px;border-radius:calc(var(--rounded-lg) - 6px)}
+.fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
 .fl-front img{position:absolute;top:-6px;left:-6px;width:calc(100% + 12px)!important;height:calc(100% + 12px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
-.fl-back{transform:rotateY(180deg);background:var(--color-surface);display:grid;place-items:center}
+.fl-back{background:var(--hvc);display:grid;place-items:center;opacity:0;transition:opacity .35s}
 .fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
-.results .strip figure.is-open .fl-inner{transform:rotateY(180deg)}
+.results .strip figure.is-open .fl-back{opacity:1}
 .results .strip figure:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 
 /* Side padding for everything except the hero (13.25vw, set with the former dial). */
@@ -228,25 +227,24 @@
   .courses.together .course>:is(.course-media,.course-panel){translate:0 0}
 }
 
-/* Course panels (desktop): no button at rest; the outer line stays and the inner panel flips like the ovals (js/service-variant.js).
-   Its back is the link and only says "Per DM buchen". Phone keeps the normal button. */
-@media(min-width:900px){
-  .course-panel{background:transparent!important;overflow:visible!important;perspective:1600px}
-  .course-panel .course-content .btn{display:none}
-  .cp-inner{position:relative;flex:1;display:flex;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
-  .cp-face{border-radius:var(--r);background:var(--color-surface);-webkit-backface-visibility:hidden;backface-visibility:hidden}
-  .cp-front{flex:1;display:flex;flex-direction:column;overflow:hidden}
-  .cp-back{position:absolute;inset:0;transform:rotateY(180deg);display:grid;place-items:center;padding:24px;text-align:center;text-decoration:none;
-    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--color-primary)}
-  .cp-back .arr{font-size:.5em;margin-left:.3em;vertical-align:.35em}
-  .course-panel.is-open .cp-inner{transform:rotateY(180deg)}
-  .cp-back:focus-visible{outline:2px solid var(--color-accent);outline-offset:-10px}
-}
+/* Text panels (js/service-variant.js, .hv): at rest transparent with the near-white frame and a short title;
+   hover/focus/tap (.is-open) fills them near-white and shows the full content. Both layers share one grid cell, so nothing jumps. */
+.hv{--ring:var(--hvc);background:transparent!important;background-image:none!important;display:grid!important;grid-template:minmax(0,1fr)/minmax(0,1fr);cursor:default;transition:background-color .35s}
+.hv>.hv-sum,.hv>.hv-det{grid-area:1/1;min-width:0}
+.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transition:opacity .3s;pointer-events:none}
+.hv-sum .hv-t{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.4vw,40px);line-height:1.05;letter-spacing:-.01em}
+.hv-sum .hv-s{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.hv-sum svg{width:34px;height:34px;color:var(--hvc)!important}
+.hv-det{display:flex;flex-direction:column;gap:inherit;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.review.review-all.hv,.hours.hv{--ring:var(--hvc)}
+.hv.is-open{background:var(--hvc)!important}
+.hv.is-open .hv-sum{opacity:0}
+.hv.is-open .hv-det{opacity:1;visibility:visible;transition-delay:.05s,0s}
+.hv:focus-visible{box-shadow:0 0 0 9px var(--color-accent)}
+.course.is-collapsed .hv .course-content{display:flex}
+.hv .course-toggle{display:none}
+.review.hv{min-height:150px}
 
-/* Leaving a flip panel: no spin back. The inner panel resets instantly, its back lies on top unrotated and fades out (js: window.pmFlip). */
-:is(.service-oval,.results .strip figure,.course-panel).is-leaving :is(.so-inner,.fl-inner,.cp-inner){transition:none;transform:none}
-:is(.service-oval,.results .strip figure,.course-panel).is-leaving :is(.so-back,.fl-back,.cp-back){transform:none;z-index:2;animation:flip-fade .3s ease-out forwards}
-@keyframes flip-fade{from{opacity:1}to{opacity:0}}
 
 /* Background dial (js/service-variant.js) */
 #bg-tuner{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:901;
