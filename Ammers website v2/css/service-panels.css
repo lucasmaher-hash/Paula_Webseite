@@ -120,8 +120,10 @@
 .fl-inner{position:absolute;inset:0;border-radius:inherit}   /* gallery photos: no frame; hover = solid near-white with the word */
 .fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
 .fl-front img{position:absolute;top:0;left:0;width:100%!important;height:100%!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
-.fl-back{background:var(--hvc);display:grid;place-items:center;opacity:0;transition:opacity .35s}
-.fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
+.fl-back{background:transparent;border:3px solid var(--hvc);display:grid;place-items:center;opacity:0;transition:opacity .35s}
+.fl-front{transition:opacity .35s}
+.results .strip figure.is-open .fl-front{opacity:0}   /* hover: photo fades out, only frame and word remain */
+.fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--hvc);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
 .results .strip figure.is-open .fl-back{opacity:1}
 .results .strip figure:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 

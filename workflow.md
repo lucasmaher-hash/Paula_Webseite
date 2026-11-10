@@ -1006,3 +1006,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Neue Hintergrundwerte als Standard
 - Lucas' Reglerwerte für Braun (Grund #744334, Farbstärke 0,33, Glanz 0,08/0,6, Formgröße 3,55, Faltung 1,02 …) und Pink (Grund #c19093, Glanz 0,08/0,75 …) fest eingetragen. Regler bleibt. Geprüft ohne localStorage: Hintergrund #744334.
+
+### Claude (Opus 5.5), 10.11.2026: Galerie-Hover transparent
+- Beim Hover blendet das Foto aus; übrig bleiben nur 3-px-Rahmen und Wort in fast Weiß, der Hintergrund scheint durch. Geprüft per Playwright bei 1440 px.
