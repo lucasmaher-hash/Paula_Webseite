@@ -230,22 +230,20 @@
 /* Text panels (js/service-variant.js, .hv): at rest transparent with the near-white frame and a short title;
    hover/focus/tap (.is-open) fills them near-white and shows the full content. Both layers share one grid cell, so nothing jumps. */
 .hv{--ring:var(--hvc);background:transparent!important;background-image:none!important;display:grid!important;grid-template:minmax(0,1fr)/minmax(0,1fr);cursor:default;transition:background-color .4s}
-/* Title (icon + price, word) stays; the rest unfolds below it and the title slides up (grid rows 0fr -> 1fr, layer centred). The ghost copy fixes the open size. */
+/* Content keeps its open layout and only fades. The title moves from the centre to its place above it. */
 .hv>.hv-layer{grid-area:1/1;align-self:center;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
 .hv>.hv-ghost{visibility:hidden;pointer-events:none;align-self:stretch;justify-content:center}
-.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transition:color .4s;pointer-events:none}
+.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transform:translateY(var(--hv-title-shift,0px));transition:transform .5s cubic-bezier(.4,0,.2,1),color .4s;pointer-events:none}
 .hv-sum .hv-t{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.4vw,40px);line-height:1.05;letter-spacing:-.01em}
 .hv-sum .hv-s{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
 .hv-sum svg{width:34px;height:34px;color:inherit!important;transition:color .4s}
-.hv-det{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;width:100%;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1),opacity .3s,visibility 0s .5s}
-.hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3,14px);padding-top:var(--space-4,18px);transform:translateY(14px);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.hv-det{opacity:0;visibility:hidden;width:100%;transition:opacity .3s,visibility 0s .3s}
+.hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3,14px);padding-top:var(--space-4,18px)}
 .hv-det-in>*{margin:0!important;max-width:100%}
 .hv-dup{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap}
-.hv-ghost .hv-det{grid-template-rows:1fr;transition:none}
-.hv-ghost .hv-det-in{transform:none}
-.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1),opacity .35s .12s,visibility 0s}
-.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det-in{transform:none}
-.hv.is-open .hv-sum{color:var(--color-on-surface)}
+.hv-ghost .hv-det{transition:none}
+.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det{opacity:1;visibility:visible;transition:opacity .35s .12s,visibility 0s}
+.hv.is-open .hv-sum{color:var(--color-on-surface);transform:translateY(0)}
 .hv .course-heading,.hv .course-content{padding:0!important;background:transparent!important;border-radius:0!important}
 .hv .course-title h3{font-size:clamp(1.1rem,1.5vw,1.4rem)}
 .hv .course-content p{font-size:clamp(.9rem,1.05vw,1.02rem);line-height:1.5}

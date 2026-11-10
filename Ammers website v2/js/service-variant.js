@@ -424,6 +424,12 @@ window.pmFlip = function (list) {
 (function () {
   if (!window.pmFlip) return;
   var desktop = matchMedia('(min-width:900px)').matches, all = [];
+  // Keep the detail layout fixed; only the title travels by half the detail height.
+  var titleSizes = new ResizeObserver(function (entries) {
+    entries.forEach(function (entry) {
+      entry.target.closest('.hv').style.setProperty('--hv-title-shift', (entry.target.getBoundingClientRect().height / 2) + 'px');
+    });
+  });
   function sum(html) { var s = document.createElement('div'); s.className = 'hv-sum'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = html; return s; }
   function make(el, html, dup) {
     var det = document.createElement('div'), inn = document.createElement('div'), layer = document.createElement('div');
@@ -434,6 +440,7 @@ window.pmFlip = function (list) {
     var ghost = layer.cloneNode(true); ghost.classList.add('hv-ghost'); ghost.setAttribute('inert', ''); ghost.setAttribute('aria-hidden', 'true');
     ghost.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
     el.append(layer, ghost); el.classList.add('hv'); if (!el.matches('a,button')) el.tabIndex = 0; all.push(el);
+    titleSizes.observe(det);
   }
   var t = function (s) { return '<span class="hv-t">' + s + '</span>'; }, s2 = function (s) { return '<span class="hv-s">' + s + '</span>'; };
   document.querySelectorAll('.voucher').forEach(function (v) {

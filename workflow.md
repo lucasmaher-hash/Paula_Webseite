@@ -1025,3 +1025,8 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Gutschein-Hinweis und Button-Pfeil entfernt
 - Hinweistext unter den Gutscheinen („Nach dem Kauf erhältst du …“) und der Pfeil im runden Termin-Button entfernt.
+
+### Codex, 10.11.2026: Titel bewegt sich, Panel-Inhalt blendet an fester Position ein
+- Versucht und umgesetzt (nur Ammers website v2): Lucas möchte beim Hover keine aufwärts scrollenden Details. Die Detailbereiche behalten deshalb dauerhaft ihre aufgeklappte Anordnung und wechseln nur ihre Deckkraft. Nur der bereits sichtbare Kurztitel bewegt sich aus der Mitte an seine Position über dem Inhalt; seine Strecke folgt der tatsächlichen Inhaltshöhe, auch nach Größen- oder Schriftänderungen. Gilt ebenso für Fokus und erstes Antippen. Cache-Versionen erhöht.
+- Funktioniert: Mit Chrome/Playwright bei 375 px (9 Panels, Touch-Emulation), 1440 und 1024 px (je 10 Panels, Maus) während der Animation gemessen: Detailposition und Panelhöhe bleiben innerhalb von 1 px stabil, der Titel bewegt sich aufwärts, die Details durchlaufen Zwischenwerte der Deckkraft; Öffnen und Schließen funktionieren. Tastaturfokus auf „Alle Bewertungen“ und ausgeschaltete Übergänge bei reduzierter Bewegung geprüft; Desktop-Screenshot angesehen. JS-Syntax und Git-Diff geprüft.
+- Grenze der Prüfung: Kein echtes iPhone getestet. Bei 1024 px besteht ein horizontaler Überlauf von 19 px am Header-Buchungsbutton. Gegenprobe mit CSS/JS aus dem vorherigen Commit zeigt exakt denselben Überlauf; gehört nicht zu dieser Änderung. Keine Änderung an Markenwerten, Briefing oder Seitenaufbau.
