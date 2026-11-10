@@ -176,7 +176,7 @@ window.pmFlip = function (list) {
   var PALETTES = {
     // Brown and Pink: Lucas' dial values, 10.11.2026 (evening).
     brown:{base:'#744334',tone1:'#896b5d',tone2:'#6f594d',tone3:'#543327',accent:'#d4a8af'},
-    pink:{base:'#c19093',tone1:'#9d7b82',tone2:'#8c6971',tone3:'#7d545d',accent:'#d8c4ba'}
+    pink:{base:'#825558',tone1:'#915f69',tone2:'#8b656e',tone3:'#754851',accent:'#d8c4ba'}
   };
   // Background movement per variant; layout and particle values are shared by both (SHARED).
   var SHARED = ['sideGutter','pDuration','pSize','pScatter','pSpread'];
@@ -444,93 +444,4 @@ window.pmFlip = function (list) {
   c = document.querySelector('.hours'); if (c) make(c, t('Öffnungszeiten'));
   c = document.querySelector('.about-panel'); if (c && desktop) make(c, t('Über mich'));
   window.pmFlip(all);
-})();
-
-// Background dial (restored 10.11.2026 on Lucas' request): colours and movement for Braun and Pink. Bottom right, draggable, collapsible.
-// Values are saved in this browser only; send the exported block to make them the defaults.
-(function () {
-  'use strict';
-  var bg = window.pmFlowBackground;
-  if (!bg) return;
-  var state = bg.state, KEY = 'pm-beauty:v2:bg-dial:v1', UIKEY = 'pm-beauty:v2:bg-dial-ui:v1';
-  try { var saved = JSON.parse(localStorage.getItem(KEY)); if (saved) ['brown','pink'].forEach(function (v) {
-    if (saved.colors && saved.colors[v]) Object.keys(state.colors[v]).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(saved.colors[v][k])) state.colors[v][k] = saved.colors[v][k]; });
-    if (saved.motions && saved.motions[v]) { var sm = saved.motions[v]; if (Number.isFinite(sm.sheen) && !Number.isFinite(sm.sheenHover)) { sm.sheenHover = sm.sheen; sm.sheen = 0; }
-      Object.keys(state.motions[v]).forEach(function (k) { if (Number.isFinite(sm[k])) state.motions[v][k] = sm[k]; }); } }); } catch (e) {}
-  var ui = {x:null, y:null, collapsed:innerWidth < 600};
-  try { var su = JSON.parse(localStorage.getItem(UIKEY)); if (su) { if (Number.isFinite(su.x) && Number.isFinite(su.y)) { ui.x = su.x; ui.y = su.y; } ui.collapsed = su.collapsed === true; } } catch (e) {}
-  var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
-  var SLIDERS = [
-    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten (normal)',0,3,.01,'×'],['sheenHover','Glanz an den Falten (wo die Maus ist)',0,3,.01,'×']]],
-    ['Hintergrund: Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.1,8,.05,'×'],['warp','Faltung',0,4,.02,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
-    ['Hintergrund: Maus und Scroll', [['displace','Verzerrung (Tux: 0,2)',0,1,.005,''],['trailSize','Spurgröße (Tux: 450)',20,2000,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten (Tux: 0,98)',.8,.999,.001,''],['trailGrowth','Wachstum (Tux: 1,67)',.2,5,.01,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
-    ['Hintergrund: Oberfläche', [['grain','Körnung',0,.6,.005,''],['resolution','Auflösung (Tux: 0,5)',.05,2,.01,'×']]]
-  ];
-  var panel = document.createElement('aside'); panel.id = 'bg-tuner'; panel.setAttribute('aria-label','Hintergrund-Regler');
-  var html = '<div class="bg-tuner-header"><strong>Hintergrund</strong><button type="button" id="bg-tuner-collapse" aria-controls="bg-tuner-body" aria-expanded="true">Einklappen</button></div><div class="bg-tuner-body" id="bg-tuner-body">';
-  html += '<div class="bg-tuner-seg" role="group" aria-label="Variante"><button type="button" data-variant="brown">Braun</button><button type="button" data-variant="pink">Pink</button></div>';
-  html += '<fieldset><legend>Farben <span id="bg-variant-name"></span></legend>' + COLORS.map(function (c) { return '<label for="bg-c-' + c[0] + '">' + c[1] + '</label><div class="bg-tuner-row"><input type="color" id="bg-c-' + c[0] + '" data-color="' + c[0] + '"><output id="bg-c-' + c[0] + '-v"></output></div>'; }).join('') + '</fieldset>';
-  SLIDERS.forEach(function (g) {
-    html += '<fieldset><legend>' + g[0] + '</legend>' + g[1].map(function (s) {
-      return '<label for="bg-s-' + s[0] + '">' + s[1] + '</label><div class="bg-tuner-row"><input type="range" id="bg-s-' + s[0] + '" data-key="' + s[0] + '" min="' + s[2] + '" max="' + s[3] + '" step="' + s[4] + '"><input type="number" aria-label="' + s[1] + '" data-num="' + s[0] + '" step="' + s[4] + '"><span>' + s[5] + '</span></div>';
-    }).join('') + '</fieldset>';
-  });
-  html += '<pre id="bg-settings" tabindex="0" aria-label="Aktuelle Hintergrundwerte"></pre><div class="bg-tuner-actions"><button type="button" id="bg-copy">Kopieren</button><button type="button" id="bg-reset">Zurücksetzen</button></div></div>';
-  panel.innerHTML = html; document.body.append(panel);
-  var body = panel.querySelector('#bg-tuner-body'), collapse = panel.querySelector('#bg-tuner-collapse'), out = panel.querySelector('#bg-settings');
-  var limits = {}; SLIDERS.forEach(function (g) { g[1].forEach(function (s) { limits[s[0]] = {min:s[2], max:s[3]}; }); });
-  function saveState() { try { localStorage.setItem(KEY, JSON.stringify({colors:state.colors, motions:state.motions})); } catch (e) {} }
-  function saveUi() { try { localStorage.setItem(UIKEY, JSON.stringify(ui)); } catch (e) {} }
-  function exported() { return JSON.stringify({variant:state.variant, colors:state.colors[state.variant], motion:state.motion}, null, 2); }
-  function sync() {
-    panel.querySelectorAll('[data-variant]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.variant === state.variant)); });
-    panel.querySelector('#bg-variant-name').textContent = state.variant === 'pink' ? '(Pink)' : '(Braun)';
-    COLORS.forEach(function (c) { var v = state.colors[state.variant][c[0]]; panel.querySelector('#bg-c-' + c[0]).value = v; panel.querySelector('#bg-c-' + c[0] + '-v').textContent = v; });
-    Object.keys(limits).forEach(function (k) {
-      var v = state.motion[k], r = panel.querySelector('#bg-s-' + k), n = panel.querySelector('[data-num="' + k + '"]');
-      r.min = Math.min(limits[k].min, v); r.max = Math.max(limits[k].max, v); r.value = v;
-      if (document.activeElement !== n) n.value = v;
-    });
-    out.textContent = exported();
-  }
-  function changed() { bg.apply(); saveState(); sync(); }
-  panel.querySelectorAll('[data-variant]').forEach(function (b) { b.addEventListener('click', function () { bg.setVariant(b.dataset.variant); changed(); }); });
-  panel.querySelectorAll('[data-color]').forEach(function (i) { i.addEventListener('input', function () { state.colors[state.variant][i.dataset.color] = i.value; changed(); }); });
-  panel.querySelectorAll('[data-key],[data-num]').forEach(function (i) {
-    i.addEventListener('input', function () {
-      if (i.value === '') return; var v = Number(i.value), k = i.dataset.key || i.dataset.num;
-      if (!Number.isFinite(v)) return;
-      if (k === 'resolution' && v <= 0) return; if (k === 'trailSize' && v <= 0) return;
-      state.motion[k] = v;
-      if (bg.shared.indexOf(k) >= 0) ['brown','pink'].forEach(function (x) { state.motions[x][k] = v; });
-      changed();
-    });
-  });
-  panel.querySelector('#bg-reset').addEventListener('click', function () { var f = bg.fresh(); state.colors = f.colors; state.motions = f.motions; state.motion = state.motions[state.variant]; changed(); });
-  var copy = panel.querySelector('#bg-copy');
-  copy.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(exported()).then(function () { copy.textContent = 'Kopiert'; setTimeout(function () { copy.textContent = 'Kopieren'; }, 1200); }); });
-  function clamp() {
-    var b = panel.getBoundingClientRect();
-    ui.x = Math.max(8, Math.min(ui.x === null ? b.left : ui.x, innerWidth - b.width - 8));
-    ui.y = Math.max(8, Math.min(ui.y === null ? b.top : ui.y, innerHeight - Math.min(b.height, 56) - 8));
-    panel.style.left = ui.x + 'px'; panel.style.top = ui.y + 'px'; panel.style.right = panel.style.bottom = 'auto';
-  }
-  function setCollapsed() {
-    body.hidden = ui.collapsed; collapse.setAttribute('aria-expanded', String(!ui.collapsed)); collapse.textContent = ui.collapsed ? 'Ausklappen' : 'Einklappen';
-    if (ui.x !== null) { var b = panel.getBoundingClientRect(); if (ui.y + b.height > innerHeight - 8) ui.y = innerHeight - b.height - 8; clamp(); }
-    saveUi();
-  }
-  collapse.addEventListener('click', function () { if (ui.x === null) { var b = panel.getBoundingClientRect(); ui.x = b.left; ui.y = b.top; } ui.collapsed = !ui.collapsed; setCollapsed(); });
-  var drag = null;
-  panel.addEventListener('pointerdown', function (e) {
-    if (e.button !== 0 || e.target.closest('input,button,label,pre,output')) return;
-    var b = panel.getBoundingClientRect(); drag = {id:e.pointerId, x:e.clientX - b.left, y:e.clientY - b.top};
-    panel.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); e.preventDefault();
-  });
-  panel.addEventListener('pointermove', function (e) { if (!drag || e.pointerId !== drag.id) return; ui.x = e.clientX - drag.x; ui.y = e.clientY - drag.y; clamp(); });
-  function end() { if (!drag) return; drag = null; panel.classList.remove('is-dragging'); saveUi(); }
-  panel.addEventListener('pointerup', end); panel.addEventListener('pointercancel', end);
-  window.addEventListener('resize', function () { if (ui.x !== null) { clamp(); saveUi(); } });
-  if (ui.x !== null) clamp();
-  setCollapsed(); sync();
 })();

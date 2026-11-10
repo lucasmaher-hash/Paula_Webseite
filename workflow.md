@@ -1009,3 +1009,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Galerie-Hover transparent
 - Beim Hover blendet das Foto aus; übrig bleiben nur 3-px-Rahmen und Wort in fast Weiß, der Hintergrund scheint durch. Geprüft per Playwright bei 1440 px.
+
+### Claude (Sonnet 5.5), 10.11.2026: Pink-Werte fest, Regler entfernt
+- Lucas' Pink-Werte (Grund #825558, Töne #915f69/#8b656e/#754851, Akzent #d8c4ba; Bewegung unverändert) als Standard eingetragen. Hintergrund-Regler samt Skript, Styles und gespeichertem Zustand entfernt; `?bg=pink` zeigt weiter die Pink-Variante. Syntax geprüft, Seite nicht im Browser neu durchgeklickt.
