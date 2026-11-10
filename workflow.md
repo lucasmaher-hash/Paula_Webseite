@@ -997,3 +997,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Bewertungen immer sichtbar
 - Einzelne Bewertungen ohne Hover: Rahmen und Text in fast Weiß, Inhalt immer sichtbar. Nur „Alle Bewertungen“ bleibt ein Hover-Panel. Geprüft per Playwright bei 1440 px.
+
+### Claude (Opus 5.5), 10.11.2026: Galeriefotos ohne Rahmen
+- Helle Linie um die Galeriefotos entfernt; Fotos randlos, beim Hover wird das ganze Feld fast weiß mit dem Wort.

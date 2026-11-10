@@ -117,10 +117,9 @@
 .results .strip figure{position:relative;outline:none}
 .results .strip figure>img{visibility:hidden}
 .results .strip figure img{transform:none!important;transition:none!important}   /* no hover zoom on the gallery photos */   /* keeps the size; the photo itself sits on the flipping front */
-.results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--hvc);border-radius:inherit;pointer-events:none}
-.fl-inner{position:absolute;inset:3px;border-radius:calc(var(--rounded-lg) - 3px)}
+.fl-inner{position:absolute;inset:0;border-radius:inherit}   /* gallery photos: no frame; hover = solid near-white with the word */
 .fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
-.fl-front img{position:absolute;top:-3px;left:-3px;width:calc(100% + 6px)!important;height:calc(100% + 6px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
+.fl-front img{position:absolute;top:0;left:0;width:100%!important;height:100%!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
 .fl-back{background:var(--hvc);display:grid;place-items:center;opacity:0;transition:opacity .35s}
 .fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
 .results .strip figure.is-open .fl-back{opacity:1}
