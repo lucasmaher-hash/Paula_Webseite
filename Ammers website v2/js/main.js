@@ -260,6 +260,15 @@
       }, { threshold: 1 });
       awardsIO.observe(awards);
     }
+    awards.querySelectorAll('.award').forEach(function (award) {
+      award.addEventListener('pointerenter', function (event) {
+        if (event.pointerType === 'touch' || reduced || !awards.classList.contains('grown')) return;
+        award.querySelector('.laurel').getAnimations({subtree:true}).forEach(function (animation) {
+          animation.currentTime = 0;
+          animation.play();
+        });
+      });
+    });
   }
 
   // Gutscheine (Desktop): im Abschnitt driften die Karten senkrecht auseinander, beim Verlassen wieder zusammen
