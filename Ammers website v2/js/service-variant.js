@@ -493,3 +493,10 @@ window.pmParticleFill = (function () {
   addEventListener('resize', schedule); mobile.addEventListener('change', schedule); if (document.fonts) document.fonts.ready.then(schedule);
   addEventListener('load', schedule);
 })();
+
+// Courses drift together when the section is reached and apart when it is left (css/service-panels.css, like the vouchers in js/main.js).
+(function () {
+  var c = document.querySelector('.courses'); if (!c) return;
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { c.classList.add('together'); return; }
+  new IntersectionObserver(function (e) { c.classList.toggle('together', e[0].isIntersecting); }, {threshold:.35}).observe(c);
+})();

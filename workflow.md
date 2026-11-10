@@ -942,3 +942,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Textpanels: Linienfarbe = jeweilige Panelfläche (Karte, „Alle Bewertungen“, Öffnungszeiten je eigene Farbe), per Messung identisch. Regler hat nur noch „Panelfarbe (Fläche und Rahmen)“.
 - Fotos (Galerie, Über mich, Kontakt, Kursfotos inkl. Diagonalform): SVG-Maske schneidet 3 px innen einen 3 px breiten Spalt, der Fotorand bildet den Rahmen. Galerie-Hover: Rand und Fläche werden beide solide. Erst blieb die Maske wirkungslos (CSS-Masken lesen Alpha, nicht Helligkeit), gelöst mit einer Helligkeitsmaske innerhalb der SVG.
 - Geprüft per Playwright bei 1440 und 375 px.
+
+### Claude (Opus 5.5), 10.11.2026: Schulungen driften zusammen (wie Gutscheine)
+- Desktop: Die zwei Kursfotos starten auseinander (Abstand an der Diagonale 72 px = 4x 18 px, je 43 px senkrecht versetzt) und gleiten beim Erreichen des Abschnitts in 1,4 s zusammen; beim Verlassen wieder auseinander. Jedes Textpanel hängt an seinem Foto. Zeitbasiert über IntersectionObserver (Schwelle 35 %), nicht an Scroll gekoppelt. Handy und reduzierte Bewegung: statisch.
+- Geprüft per Playwright bei 1440 px: Versatz der Fotos 461 px -> 375 px nach dem Einrasten.

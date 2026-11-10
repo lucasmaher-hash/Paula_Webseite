@@ -230,3 +230,14 @@ body.menu-open #frame-colors{visibility:hidden}
 /* Photos have no added line: js/service-variant.js cuts a 3 px gap 3 px inside their edge (SVG mask),
    so the outer 3 px of the photo itself forms the frame. The particle fill sits under the same mask. */
 .pm-cut{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+
+/* Courses drift together (desktop), same principle as the vouchers: apart until the section is reached, then they ease into place;
+   leaving the section lets them drift apart again. Time-based, not linked to scroll (js/service-variant.js toggles .together).
+   Each photo carries its text panel. 43 px each way = gap along the diagonal 18 px -> 72 px (4x); vertical shift x .628 = normal gap. */
+@media(min-width:900px) and (prefers-reduced-motion:no-preference){
+  .courses{--drift:43px}
+  .courses .course>.course-media,.courses .course>.course-panel{transition:translate 1.4s cubic-bezier(.4,0,.2,1)}
+  .courses .course:nth-child(odd)>:is(.course-media,.course-panel){translate:0 calc(-1 * var(--drift))}
+  .courses .course:nth-child(even)>:is(.course-media,.course-panel){translate:0 var(--drift)}
+  .courses.together .course>:is(.course-media,.course-panel){translate:0 0}
+}
