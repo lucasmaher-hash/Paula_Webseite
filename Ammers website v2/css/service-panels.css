@@ -116,12 +116,17 @@
 .pf>.pf-canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:0;pointer-events:none;grid-area:auto}
 
 /* Gallery: one word per picture over the particle fill. */
-.results .strip figure{position:relative;--pf-color:var(--color-primary)}
-.results .strip figure>.pf-canvas{z-index:1}
-.strip-label{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;pointer-events:none;
-  font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px);line-height:1;color:var(--color-on-primary);
-  opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
-.results .strip figure.pf-on .strip-label{opacity:1;transform:none;transition-delay:.05s}
+.results .strip figure{position:relative;perspective:1400px;outline:none}
+.results .strip figure>img{visibility:hidden}   /* keeps the size; the photo itself sits on the flipping front */
+.results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--color-surface);border-radius:inherit;pointer-events:none}
+.fl-inner{position:absolute;inset:6px;border-radius:calc(var(--rounded-lg) - 6px);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
+.fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.fl-front img{position:absolute;top:-6px;left:-6px;width:calc(100% + 12px)!important;height:calc(100% + 12px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
+.fl-back{transform:rotateY(180deg);background:var(--color-surface);display:grid;place-items:center}
+.fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
+@media(hover:hover){.results .strip figure:hover .fl-inner{transform:rotateY(180deg)}}
+.results .strip figure.is-open .fl-inner{transform:rotateY(180deg)}
+.results .strip figure:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 
 /* Side padding for everything except the hero (13.25vw, set with the former dial). */
 @media(min-width:900px){
@@ -224,20 +229,18 @@
   .courses.together .course>:is(.course-media,.course-panel){translate:0 0}
 }
 
-/* Course panels (desktop): no button at rest; on hover the panel fills like the treatment ovals and only says "Per DM buchen".
-   The whole panel is the link (js/service-variant.js adds .course-book). Phone keeps the normal button. */
-.course-book{display:none}
+/* Course panels (desktop): no button at rest; the outer line stays and the inner panel flips like the ovals (js/service-variant.js).
+   Its back is the link and only says "Per DM buchen". Phone keeps the normal button. */
 @media(min-width:900px){
-  .course-panel{position:relative;--pf-color:var(--color-primary);transition:outline-color .35s}
-  .course-panel .course-content>.btn{display:none}
-  .course-panel>.pf-canvas{z-index:1}
-  .course-panel>:is(.course-heading,.course-content){transition:opacity .3s}
-  .course-panel.pf-on>:is(.course-heading,.course-content){opacity:0}
-  .course-panel.pf-on{--ring:var(--color-primary)}
-  .course-book{display:grid;place-items:center;position:absolute;inset:0;z-index:2;padding:24px;text-align:center;text-decoration:none;
-    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--color-on-primary);
-    opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
-  .course-panel.pf-on .course-book{opacity:1;transform:none;transition-delay:.05s}
-  .course-book .arr{font-size:.5em;margin-left:.3em;vertical-align:.35em}
-  .course-book:focus-visible{outline:2px solid var(--color-on-primary);outline-offset:-10px;border-radius:inherit}
+  .course-panel{background:transparent!important;overflow:visible!important;perspective:1600px}
+  .course-panel .course-content .btn{display:none}
+  .cp-inner{position:relative;flex:1;display:flex;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
+  .cp-face{border-radius:var(--r);background:var(--color-surface);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  .cp-front{flex:1;display:flex;flex-direction:column;overflow:hidden}
+  .cp-back{position:absolute;inset:0;transform:rotateY(180deg);display:grid;place-items:center;padding:24px;text-align:center;text-decoration:none;
+    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--color-primary)}
+  .cp-back .arr{font-size:.5em;margin-left:.3em;vertical-align:.35em}
+  @media(hover:hover){.course-panel:hover .cp-inner{transform:rotateY(180deg)}}
+  .course-panel.is-open .cp-inner{transform:rotateY(180deg)}
+  .cp-back:focus-visible{outline:2px solid var(--color-accent);outline-offset:-10px}
 }

@@ -971,3 +971,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Nur die innere Fläche der Ovale dreht sich
 - Die 3-px-Außenlinie bleibt beim Hover stehen, nur die innere Fläche (3 px Abstand) dreht sich um 180°. Geprüft per Playwright bei 1440 px mitten in der Drehung.
+
+### Claude (Opus 5.5), 10.11.2026: Galerie und Kurs-Panels drehen sich wie die Ovale
+- Gleicher Stil wie die Behandlungs-Ovale: feste 3-px-Linie in hellem Braun bzw. Pink, 3 px Abstand, die innere Fläche dreht sich beim Hover (0,8 s, 180°). Galerie: vorne das Foto, hinten helle Fläche mit dem Wort in Gambarino. Kurs-Panels (Desktop): vorne der Kurstext, hinten „Per DM buchen ↗“ als Link. Korn-Füllung dort entfernt. Tastatur und erster Tipp am Handy drehen ebenfalls. Geprüft per Playwright bei 1440 px (Galerie, Kurs) und 375 px Touch (Galerie).

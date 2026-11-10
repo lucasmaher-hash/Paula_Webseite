@@ -134,11 +134,31 @@ window.pmParticleFill = (function () {
   if (location.hash) fromHash(location.hash.slice(1));
 })();
 
-// Gallery below the hero: one word per picture, revealed with the same particle fill.
+// Flip panels (same behaviour as the treatment ovals): hover, keyboard focus or a first tap turns the inner panel 180 degrees.
+window.pmFlip = function (list) {
+  var touch = matchMedia('(hover: none)');
+  function open(el, on) { list.forEach(function (x) { x.classList.toggle('is-open', on && x === el); }); }
+  list.forEach(function (el) {
+    el.addEventListener('focusin', function () { if (el.matches(':focus-visible') || el.querySelector(':focus-visible')) open(el, true); });
+    el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) el.classList.remove('is-open'); });
+    el.addEventListener('click', function (e) { if (touch.matches && !el.classList.contains('is-open')) { e.preventDefault(); open(el, true); } });
+  });
+  document.addEventListener('click', function (e) { if (touch.matches && !list.some(function (x) { return x.contains(e.target); })) open(null, false); });
+};
+
+// Gallery below the hero: the photo's outer 3 px stay as its frame, the inner photo flips to a light panel with one word.
 (function () {
   'use strict';
-  var figures = Array.from(document.querySelectorAll('.results .strip figure'));
-  figures.forEach(function (f) { if (f.querySelector('.strip-label')) window.pmParticleFill.attach(f, {group:figures}); });
+  var figures = Array.from(document.querySelectorAll('.results .strip figure')).filter(function (f) { return f.querySelector('.strip-label'); });
+  figures.forEach(function (f) {
+    var img = f.querySelector('img'), label = f.querySelector('.strip-label');
+    var inner = document.createElement('div'); inner.className = 'fl-inner'; inner.setAttribute('aria-hidden', 'true');
+    var front = document.createElement('div'); front.className = 'fl-face fl-front';
+    var copy = img.cloneNode(); copy.removeAttribute('loading'); copy.alt = ''; copy.style.objectPosition = getComputedStyle(img).objectPosition; front.append(copy);
+    var back = document.createElement('div'); back.className = 'fl-face fl-back'; back.append(label.cloneNode(true));
+    inner.append(front, back); f.append(inner); label.classList.add('sr-only'); f.tabIndex = 0;
+  });
+  window.pmFlip(figures);
 })();
 
 // Flowing colour background behind the frames, rebuilt after tuxkarma.co (Tux Creative House).
@@ -411,7 +431,8 @@ window.pmParticleFill = (function () {
   }
   function targets() {
     var list = [];
-    document.querySelectorAll('.strip figure,.contact-figure').forEach(function (el) { list.push({el:el}); });
+    document.querySelectorAll('.strip figure').forEach(function (el) { if (!el.querySelector('.fl-inner')) list.push({el:el}); });   // flip photos get the light frame from CSS
+    document.querySelectorAll('.contact-figure').forEach(function (el) { list.push({el:el}); });
     var about = document.querySelector('.about-figure'); if (about) list.push({el: mobile.matches ? about.querySelector('img') : about, other: mobile.matches ? about : about.querySelector('img')});
     if (courses) courses.querySelectorAll('.course').forEach(function (c, i) { var m = c.querySelector('.course-media'); if (m) list.push({el:m, course:i % 2 === 0 ? 'odd' : 'even'}); });
     return list;
@@ -420,10 +441,10 @@ window.pmParticleFill = (function () {
     var w = 3, cw = px('var(--cw)'), f = px('var(--f)'), cr = px('var(--r)');
     targets().forEach(function (t) {
       if (t.other) { t.other.style.webkitMaskImage = t.other.style.maskImage = ''; t.other.classList.remove('pm-cut'); }
-      var el = t.el; if (!el) return; var W = el.offsetWidth, H = el.offsetHeight; if (!W || !H) return;
-      var d = t.course ? course(t.course === 'odd', W, H, cw, f, cr) : rect(W, H, parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0);
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none"><defs><mask id="c" maskUnits="userSpaceOnUse" x="0" y="0" width="' + W + '" height="' + H + '"><path d="' + d + '" fill="#fff"/>' +
-        '<path d="' + d + '" fill="none" stroke="#000" stroke-width="' + 4 * w + '"/><path d="' + d + '" fill="none" stroke="#fff" stroke-width="' + 2 * w + '"/></mask></defs>' +
+      var el = t.el; if (!el) return; var bx = t.box || el, W = bx.offsetWidth, H = bx.offsetHeight; if (!W || !H) return;
+      var d = t.course ? course(t.course === 'odd', W, H, cw, f, cr) : rect(W, H, parseFloat(getComputedStyle(bx).borderTopLeftRadius) || 0);
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none"><defs><mask id="c" maskUnits="userSpaceOnUse" x="0" y="0" width="' + W + '" height="' + H + '"><path d="' + d + '" fill="' + (t.ring ? '#000' : '#fff') + '"/>' +
+        (t.ring ? '' : '<path d="' + d + '" fill="none" stroke="#000" stroke-width="' + 4 * w + '"/>') + '<path d="' + d + '" fill="none" stroke="#fff" stroke-width="' + 2 * w + '"/></mask></defs>' +
         '<rect width="' + W + '" height="' + H + '" fill="#000" mask="url(#c)"/></svg>';   // luminance mask inside the SVG -> alpha for CSS
       var url = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
       el.classList.add('pm-cut'); el.style.webkitMaskImage = url; el.style.maskImage = url;
@@ -443,16 +464,19 @@ window.pmParticleFill = (function () {
   new IntersectionObserver(function (e) { c.classList.toggle('together', e[0].isIntersecting); }, {threshold:.35}).observe(c);
 })();
 
-// Course panels (desktop): the whole panel books via Instagram DM; on hover it fills like the ovals (css/service-panels.css).
+// Course panels (desktop): the outer line stays, the inner panel flips like the ovals; its back says "Per DM buchen" and is the link.
 (function () {
-  if (!matchMedia('(min-width:900px)').matches || !window.pmParticleFill) return;
+  if (!matchMedia('(min-width:900px)').matches || !window.pmFlip) return;
   var panels = Array.from(document.querySelectorAll('.course-panel'));
   panels.forEach(function (p) {
     var btn = p.querySelector('.course-content > .btn'), a = document.createElement('a');
-    a.className = 'course-book'; a.href = btn ? btn.href : 'https://www.instagram.com/pm_beauty___/'; a.target = '_blank'; a.rel = 'noopener';
-    var t = p.querySelector('h3'); a.setAttribute('aria-label', 'Per DM buchen' + (t ? ': ' + t.textContent.trim() : ''));
+    var inner = document.createElement('div'); inner.className = 'cp-inner';
+    var front = document.createElement('div'); front.className = 'cp-face cp-front';
+    while (p.firstChild) front.append(p.firstChild);
+    a.className = 'cp-face cp-back course-book'; a.href = btn ? btn.href : 'https://www.instagram.com/pm_beauty___/'; a.target = '_blank'; a.rel = 'noopener';
+    var t = p.querySelector('h3') || front.querySelector('h3'); a.setAttribute('aria-label', 'Per DM buchen' + (t ? ': ' + t.textContent.trim() : ''));
     a.innerHTML = '<span>Per DM buchen<span class="arr" aria-hidden="true">↗</span></span>';
-    p.append(a);
-    window.pmParticleFill.attach(p, {group:panels});
+    inner.append(front, a); p.append(inner);
   });
+  window.pmFlip(panels);
 })();
