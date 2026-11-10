@@ -962,3 +962,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Zwei getrennte Helligkeitsregler, Panels bleiben
 - Lucas: Regler waren an den Braun/Pink-Tab gekoppelt und dunkelten auch die Panels ab. Jetzt zwei feste Schieber „Helligkeit Hintergrund Braun“ und „… Pink“ (−100 bis +100 %), sie verschieben nur die Hintergrundfarben; Panels behalten ihre Farbe. Eigener Reset für die Helligkeit. Geprüft per Playwright (Braun −40, Pink +25, Panel unverändert, Reset).
+
+### Claude (Opus 5.5), 10.11.2026: Farbwerte übernommen, Regler entfernt
+- Lucas: „just use these settings“, dann „remove the dials“. Hintergrundpaletten fest um die Reglerwerte abgedunkelt (Braun −8 %: Grundton #a17062; Pink −6 %: Grundton #e2d3d4), Panelfarben unverändert (Standard). Regler-Skript und -Styles entfernt. Geprüft ohne localStorage: Hintergrund #a17062, kein Regler, Foto-Schnitte und Kurs-Hover laufen, keine Fehler.

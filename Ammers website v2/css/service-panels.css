@@ -193,26 +193,6 @@
 }
 
 
-/* Frame colour dial (js/service-variant.js, last module) */
-#frame-colors{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:900;width:min(280px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;
-  padding:12px 14px 14px;border:1px solid #ccc;border-radius:18px;background:#f0f0f3;color:#191919;box-shadow:5px 5px 16px #0002,-4px -4px 12px #fff9;
-  font:13px/1.5 var(--font-sans);cursor:grab;touch-action:none}
-#frame-colors.fc-drag{cursor:grabbing}
-#frame-colors .fc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
-#frame-colors .fc-body[hidden]{display:none}
-#frame-colors button{padding:5px 9px;border:1px solid #ccc;border-radius:9px;background:#fafafa;color:#191919;font:inherit;font-size:12px;cursor:pointer}
-#frame-colors button[aria-pressed=true]{background:#191919;color:#fff;border-color:#191919}
-#frame-colors .fc-tabs{display:flex;gap:6px;margin:6px 0 4px}
-#frame-colors label{display:block;margin:10px 0 4px}
-#frame-colors .fc-row{display:flex;gap:8px;align-items:center}
-#frame-colors input[type=color]{width:52px;height:34px;padding:2px;border:1px solid #ccc;border-radius:8px;background:#fafafa;cursor:pointer}
-#frame-colors input[type=text]{width:90px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919;font:12px var(--font-mono)}
-#frame-colors input[type=range]{flex:1;min-width:0;accent-color:#333}
-#frame-colors input[type=number]{width:64px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919;font:12px var(--font-mono)}
-#frame-colors .fc-sep{height:1px;background:#d6d6da;margin:14px 0 4px}
-#frame-colors .fc-out{margin:12px 0 8px;padding:8px;background:#e5e5e9;border-radius:9px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
-#frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
-body.menu-open #frame-colors{visibility:hidden}
 
 /* One clean frame for every text panel (10.11.2026): 3 px line in exactly the panel's own colour, 3 px gap, then the panel.
    The line sits outside the box (outline), so neighbouring frames need --frame-space between their boxes:
