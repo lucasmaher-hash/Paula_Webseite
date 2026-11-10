@@ -138,7 +138,7 @@
    by 180 degrees (same slope 1.24), so the diagonal gap equals the column gap. */
 /* container on the parent: cqw on .courses itself would otherwise resolve against the viewport */
 .training>.container{container-type:inline-size}
-.courses{--g:2.38cqw;--cw:calc((100cqw - 2 * var(--g)) * .2646);--r:calc(var(--cw) * .119);--f:calc(var(--cw) * .063)}
+.courses{--g:var(--frame-space,18px);--cw:calc((100cqw - 2 * var(--g)) * .2646);--r:calc(var(--cw) * .119);--f:calc(var(--cw) * .063)}
 .course .course-media,.course .course-media img{border-radius:var(--r)!important}
 .course .course-media{overflow:hidden;padding:0!important;position:relative}
 .course .course-panel{border-radius:var(--r)!important}
@@ -211,8 +211,23 @@
 #frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
 body.menu-open #frame-colors{visibility:hidden}
 
-/* Every panel and photo gets an outer frame: 3 px line, 3 px gap, then the panel itself (also at rest). Line colour = dial "Rahmenlinie". */
+/* One clean frame for every panel and photo (10.11.2026): 3 px line, 3 px gap, then the panel. No other borders.
+   The line sits outside the box (outline), so neighbouring frames need --frame-space between their boxes:
+   6 px frame + 6 px clear space + 6 px frame = 18 px, everywhere. Line colour = dial "Rahmenlinie". */
+:root{--frame-w:3px;--frame-space:18px}
 :root,.theme-brown{--ring:var(--frame-line-brown,#dac6be)}
 .theme-pink,.services,.reviews{--ring:var(--frame-line-pink,#d0b3b8)}
-.preview-frame-host::before{display:none}
-.preview-frame-host:not(.perks li):not(.service-copy),.strip figure,.about-figure,.contact-figure{outline:3px solid var(--ring);outline-offset:3px}
+.review,.voucher,.contact-panel,.contact-figure,.hours,.course-panel,.strip figure,
+.about-figure,.about-panel{outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w)}
+.reviews-grid,.contact-grid,.vouchers-grid,.about-grid,.strip{gap:var(--frame-space)!important}
+@media(max-width:899px){
+  /* phone: photo and text sit in one shared panel, so only that panel is framed */
+  .about-figure,.about-panel{outline:0}
+  .about-grid{outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w);margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
+  .strip{padding-bottom:12px}
+  .courses,.course{gap:var(--frame-space)!important}
+}
+/* course photos are cut to a shape (clip-path), so their frame is an SVG drawn by js/service-variant.js */
+.courses{position:relative}
+.course-ring{position:absolute;pointer-events:none;overflow:visible;z-index:1}
+.course-ring path{fill:none;stroke:var(--ring)}

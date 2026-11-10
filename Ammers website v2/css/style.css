@@ -341,7 +341,7 @@ body.menu-open{overflow:hidden}
 @media(min-width:900px){.section-head{flex-direction:row;justify-content:space-between;align-items:flex-end}}
 .section-head p{max-width:54ch}
 .accordion{display:flex;flex-direction:column;gap:var(--space-3);overflow-anchor:none}   /* Scroll-Ausgleich macht main.js */
-.accordion details{background:var(--color-surface-raised);border-radius:var(--rounded-lg);border:1px solid var(--color-border);overflow:hidden}
+.accordion details{background:var(--color-surface-raised);border-radius:var(--rounded-lg);overflow:hidden}
 .accordion summary{
   list-style:none;cursor:pointer;
   display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
@@ -403,7 +403,7 @@ body.menu-open{overflow:hidden}
 @media(min-width:560px){.perks{grid-template-columns:repeat(4,1fr)}}
 .perks li{
   display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
-  padding:12px 6px;border-radius:var(--rounded-md);background:transparent;border:1px solid var(--color-border);   /* nur Kontur, Fläche wie die Karte */
+  padding:12px 6px;border-radius:var(--rounded-md);background:transparent;
   font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-on-surface-muted);line-height:1.3;
 }
 .perks svg{width:22px;height:22px;color:var(--color-accent)}
@@ -560,19 +560,6 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 .hero h1{line-height:1.14}
 .tile h3{font-size:1.6rem}
 .accordion summary h3{font-size:clamp(1.35rem,3.5vw,1.65rem);line-height:1.3}
-/* One quiet outline per visual frame, including photo frames. */
-.tile,.strip figure,.services,.accordion details,.voucher,.review,.contact-panel,.contact-figure,.hours,.sg-panel,.sg-demo-panels .img{
-  border:1px solid var(--color-border);
-}
-@media(max-width:899px){
-  .about-grid,.course{border:1px solid var(--color-border)}
-  .about-figure img,.course-media img{border:1px solid var(--color-border)}
-}
-@media(min-width:900px){
-  .about-figure,.about-panel,.course-media{border:1px solid var(--color-border)}
-  .course-heading{border:1px solid var(--color-border);border-bottom:0}
-  .course-content{border:1px solid var(--color-border);border-top:0}
-}
 
 /* Desktop cursor tint: a background image, below all text, controls and photos.
    Each panel clips its own background naturally to its rounded border. */
@@ -599,12 +586,6 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
   :is(.about-figure,.course-media):is(.tint-brown,.tint-pink)::after{inset:10px 10px 0;border-radius:calc(var(--rounded-xl) - 10px)}
 }
 
-/* ---------- Linie fährt aus (js/frame-draw.js) ----------
-   Der echte Rahmen wird durchsichtig, eine SVG-Kontur zeichnet sich in 2 s im Uhrzeigersinn (Start oben links). */
-.frame-host{border-color:transparent!important}
-.frame-draw{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.frame-draw rect{fill:none;stroke:var(--color-border);stroke-width:1;stroke-dasharray:100;stroke-dashoffset:100}
-.frame-host.is-drawn .frame-draw rect{stroke-dashoffset:0;transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1)}
 
 /* ---------- Header-Logo schreibt sich (js/logo-write.js) ----------
    Beim ersten Laden einer Sitzung ist das Logo bis zum Start der Animation unsichtbar (Klasse aus dem Kopf-Skript). */

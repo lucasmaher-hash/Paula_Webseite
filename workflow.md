@@ -930,3 +930,9 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Äußerer Rahmen für alle Panels und Fotos
 - Jedes Panel und Foto hat im Ruhezustand eine 3-px-Linie außen, 3 px Abstand, dann das Panel (CSS outline, Farbe = Regler "Rahmenlinie"). Die dünne 1-px-Kontur entfällt. Galerie-Hover wieder ohne Innenring. Geprüft bei 1440 und 375 px. Ausnahme: Kursbilder (clip-path-Form) ohne Ring.
+
+### Claude (Opus 5.5), 10.11.2026: Rahmen neu aufgebaut (ein sauberer Rahmen, gleiche Abstände)
+- Problem (Lucas: „total verbockt“): Mein erster Versuch legte eine Outline über die alten 1-px-Rahmen. Dadurch überlagerten sich mehrere Rahmen, Abstände stimmten nicht.
+- Entfernt: alle alten Panel-/Foto-Rahmen in style.css, die umlaufende Rahmen-Animation und ihr Skript (js/experiment-frames.js, js/frame-draw.js gelöscht; experiment-frames.css auf reine Layoutregeln gekürzt).
+- Neu, ein System in service-panels.css: 3 px Linie, 3 px Abstand, dann Panel/Foto. Abstand zwischen benachbarten Panels überall 18 px (6 px frei zwischen den Linien), auch in Galerie, Kursen, Kontakt, Bewertungen, Gutscheinen. Handy: Über-mich als ein Panel mit Rand, damit der Rahmen nicht am Bildschirmrand verschwindet. Kursfotos (Diagonal-Form) bekommen denselben Rahmen als SVG, die der Form folgt.
+- Geprüft per Playwright bei 1440 und 375 px: keine Panel-Rahmen mehr außer der neuen Linie, kein Abstand unter 18 px, Zoom 3x zeigt eine einzelne Linie.

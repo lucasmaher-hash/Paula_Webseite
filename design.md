@@ -53,7 +53,7 @@ Rahmen: Palettenfarbe mit ca. 19 % (Braun) bzw. 18 % (Pink) Deckkraft. [Code]
 
 ## Formen und Elemente
 - Ecken: gerundet. 8 · 16 · 24 · 32 px, Buttons und Chips voll rund (999 px). Am Handy sind große Panels und Fotos etwas weniger rund (17 und 22 px). [Code]
-- Linien: 1 px in der Rahmenfarbe um jedes Panel, jedes Foto und jede Zeile („eine leise Linie pro Rahmen“). [Code]
+- Linien: 1 px in der Rahmenfarbe um jedes Panel, jedes Foto und jede Zeile („eine leise Linie pro Rahmen“). [Code] In Ammers website v2 seit 10.11.2026 stattdessen ein Rahmen pro Panel und Foto: 3 px Linie, 3 px Abstand, dann das Panel; zwischen Panels 18 px (6 px frei zwischen den Linien); keine Rahmen-Animation. [Code]
 - Schatten: nein. Tiefe entsteht durch Abstufung der Flächen. Einzige Ausnahme: das Dropdown-Panel der Navigation. [Code]
 - Typische Grafikelemente: handgezeichnetes PM-Monogramm (Schreibanimation), Lorbeerkränze bei den Auszeichnungen, Label mit Punkt (Eyebrow), Linien, die aus der Mitte wachsen. [Code]
 

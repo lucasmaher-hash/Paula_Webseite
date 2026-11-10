@@ -298,7 +298,7 @@ window.pmParticleFill = (function () {
   }
   // Scroll waves: frames leave a wave at their leading edge (bottom when scrolling down, top when up).
   var panels = [], lastScroll = scrollY, panelPrev = new Map();
-  function collectPanels() { panels = Array.from(document.querySelectorAll('.preview-frame-host,.services .accordion,.course-panel')).filter(function (el) { return el.getBoundingClientRect().width > 240; }); }
+  function collectPanels() { panels = Array.from(document.querySelectorAll('.review,.voucher,.contact-panel,.hours,.about-panel,.course-panel')).filter(function (el) { return el.getBoundingClientRect().width > 240; }); }
   setTimeout(collectPanels, 700); window.addEventListener('resize', collectPanels);
   function trackPanels() {
     var amount = state.motion.scrollWaves, dir = scrollY - lastScroll; lastScroll = scrollY;
@@ -449,4 +449,47 @@ window.pmParticleFill = (function () {
   try { var p = JSON.parse(localStorage.getItem(POS) || 'null'); if (p && /^-?\d+(\.\d+)?px$/.test(p.l) && /^-?\d+(\.\d+)?px$/.test(p.t)) { box.style.right = 'auto'; box.style.bottom = 'auto'; box.style.left = p.l; box.style.top = p.t; clamp(); } } catch (e) {}
   addEventListener('resize', clamp);
   refresh();
+})();
+
+// Frame for the shaped course photos: same 3 px line with 3 px gap as every other panel (outline cannot follow a clip-path).
+// The path repeats the clip shape from css/service-panels.css; a mask keeps only the band 3-6 px outside its edge.
+(function () {
+  var courses = document.querySelector('.courses'); if (!courses) return;
+  var NS = 'http://www.w3.org/2000/svg', PAD = 10, n = 0;
+  function px(expr) { var d = document.createElement('div'); d.style.cssText = 'position:absolute;visibility:hidden;height:0;width:' + expr; courses.append(d); var w = d.getBoundingClientRect().width; d.remove(); return w; }
+  function shape(odd, W, H, cw, f, r) {
+    var a = cw * .76, b = cw * .942, fx = f * .628, fy = f * .778, A = function (x, y) { return ' A' + r + ' ' + r + ' 0 0 1 ' + x + ' ' + y; };
+    return odd
+      ? 'M' + r + ' 0 L' + (W - r) + ' 0' + A(W, r) + ' L' + W + ' ' + (H - r) + A(W - r, H) + ' L' + (a + f) + ' ' + H +
+        ' Q' + a + ' ' + H + ' ' + (a - fx) + ' ' + (H - fy) + ' L' + fx + ' ' + (H - b + fy) + ' Q0 ' + (H - b) + ' 0 ' + (H - b - f) + ' L0 ' + r + A(r, 0) + 'Z'
+      : 'M' + r + ' 0 L' + (W - a - f) + ' 0 Q' + (W - a) + ' 0 ' + (W - a + fx) + ' ' + fy + ' L' + (W - fx) + ' ' + (b - fy) +
+        ' Q' + W + ' ' + b + ' ' + W + ' ' + (b + f) + ' L' + W + ' ' + (H - r) + A(W - r, H) + ' L' + r + ' ' + H + A(0, H - r) + ' L0 ' + r + A(r, 0) + 'Z';
+  }
+  var items = Array.from(courses.querySelectorAll('.course')).map(function (course, i) {
+    var media = course.querySelector('.course-media'); if (!media) return null;
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'course-ring'); svg.setAttribute('aria-hidden', 'true');
+    var id = 'course-ring-mask-' + (n++);
+    svg.innerHTML = '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse"><rect x="-50" y="-50" width="99999" height="99999" fill="#fff"/>' +
+      '<path class="m" fill="#000" stroke="#000" stroke-linejoin="round"/></mask></defs><path class="r" stroke-linejoin="round" mask="url(#' + id + ')"/>';
+    course.append(svg);
+    return {course:course, media:media, svg:svg, odd:i % 2 === 0};
+  }).filter(Boolean);
+  function layout() {
+    var cw = px('var(--cw)'), f = px('var(--f)'), r = px('var(--r)'), w = parseFloat(getComputedStyle(courses).getPropertyValue('--frame-w')) || 3;
+    items.forEach(function (it) {
+      var flat = getComputedStyle(it.course).display !== 'contents';
+      if (flat) it.course.style.position = 'relative'; else it.course.style.position = '';
+      var box = (flat ? it.course : courses).getBoundingClientRect(), m = it.media.getBoundingClientRect();
+      var W = m.width, H = m.height, d = shape(it.odd, W, H, cw, f, r);
+      it.svg.style.left = (m.left - box.left - PAD) + 'px'; it.svg.style.top = (m.top - box.top - PAD) + 'px';
+      it.svg.setAttribute('width', W + 2 * PAD); it.svg.setAttribute('height', H + 2 * PAD);
+      it.svg.setAttribute('viewBox', (-PAD) + ' ' + (-PAD) + ' ' + (W + 2 * PAD) + ' ' + (H + 2 * PAD));
+      var mk = it.svg.querySelector('.m'), rg = it.svg.querySelector('.r');
+      mk.setAttribute('d', d); mk.setAttribute('stroke-width', 2 * w);   // removes the shape and the 3 px gap
+      rg.setAttribute('d', d); rg.setAttribute('stroke-width', 4 * w);   // line reaches 6 px out, so 3-6 px remains
+    });
+  }
+  layout();
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { requestAnimationFrame(layout); }); items.forEach(function (it) { ro.observe(it.media); }); ro.observe(courses); }
+  addEventListener('resize', layout); if (document.fonts) document.fonts.ready.then(layout);
 })();
