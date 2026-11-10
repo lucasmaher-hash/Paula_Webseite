@@ -238,7 +238,7 @@ window.pmFlip = function (list) {
     mainProg = program(
       'attribute vec2 p;varying vec2 vUv;void main(){vUv=p*.5+.5;gl_Position=vec4(p,0.,1.);}',
       ['precision highp float;varying vec2 vUv;uniform sampler2D uDisp;',
-       'uniform vec2 uRes;uniform float uTime,uScroll,uIntensity,uAccent,uSoft,uSheen,uScale,uWarp,uDisp2;',
+       'uniform vec2 uRes;uniform float uTime,uScroll,uIntensity,uAccent,uSoft,uSheen,uSheenH,uScale,uWarp,uDisp2;',
        'uniform vec3 uBase,uC1,uC2,uC3,uAcc;',
        'float band(float v){return smoothstep(.5-uSoft,.5+uSoft,v);}',
        'void main(){',
@@ -258,7 +258,9 @@ window.pmFlip = function (list) {
        '  col=mix(col,uAcc,clamp(Cc*(1.-A)*uAccent,0.,1.));',
        // light rim where one sheet folds over the next, like the edges in the reference video
        '  float rim=pow(1.-abs(a-.5)*2.,10.)+pow(1.-abs(b-.5)*2.,10.)*.6;',
-       '  col=mix(col,vec3(1.),clamp(rim*uSheen*.3,0.,.6));',
+       '  float sh=mix(uSheen,uSheenH,smoothstep(.02,.35,d));',
+       // sheen: rest value everywhere, hover value where the mouse trail is (d = trail strength)
+       '  col=mix(col,vec3(1.),clamp(rim*sh*.3,0.,.6));',
        '  col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5)/255.;',
        '  gl_FragColor=vec4(col,1.);}'].join('\n'));
   } catch (e) { console.warn('flow background', e); return fallback(); }
@@ -266,7 +268,7 @@ window.pmFlip = function (list) {
   var quad = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, quad);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
   var SU = uniforms(spriteProg, ['uRes','uCenter','uSize','uRot','uBrush','uAlpha']);
-  var MU = uniforms(mainProg, ['uDisp','uRes','uTime','uScroll','uIntensity','uAccent','uSoft','uSheen','uScale','uWarp','uDisp2','uBase','uC1','uC2','uC3','uAcc']);
+  var MU = uniforms(mainProg, ['uDisp','uRes','uTime','uScroll','uIntensity','uAccent','uSoft','uSheen','uSheenH','uScale','uWarp','uDisp2','uBase','uC1','uC2','uC3','uAcc']);
   function bindQuad(p) { var l = gl.getAttribLocation(p, 'p'); gl.bindBuffer(gl.ARRAY_BUFFER, quad); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, 2, gl.FLOAT, false, 0, 0); }
 
   // Brushes drawn like Tux's PNGs: five blurred lumps on a ring; "water" with a filled core, "ring" hollow; "bar" for panel edges.
@@ -390,17 +392,14 @@ window.pmFlip = function (list) {
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, target); gl.uniform1i(MU.uDisp, 0);
     gl.uniform2f(MU.uRes, w, h); gl.uniform1f(MU.uTime, time); gl.uniform1f(MU.uScroll, scrollY / Math.max(1, h) * m.parallax);
     gl.uniform1f(MU.uIntensity, m.intensity); gl.uniform1f(MU.uAccent, m.accentAmount); gl.uniform1f(MU.uSoft, Math.max(.005, m.softness));
-    gl.uniform1f(MU.uSheen, m.sheen + ((m.sheenHover === undefined ? m.sheen : m.sheenHover) - m.sheen) * hoverMix); gl.uniform1f(MU.uScale, m.scale); gl.uniform1f(MU.uWarp, m.warp); gl.uniform1f(MU.uDisp2, m.displace);
+    gl.uniform1f(MU.uSheen, m.sheen); gl.uniform1f(MU.uSheenH, m.sheenHover === undefined ? m.sheen : m.sheenHover); gl.uniform1f(MU.uScale, m.scale); gl.uniform1f(MU.uWarp, m.warp); gl.uniform1f(MU.uDisp2, m.displace);
     gl.uniform3fv(MU.uBase, c.base); gl.uniform3fv(MU.uC1, c.tone1); gl.uniform3fv(MU.uC2, c.tone2); gl.uniform3fv(MU.uC3, c.tone3); gl.uniform3fv(MU.uAcc, c.accent);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
-  var hoverMix = 0;
   function frame(ts) {
     if (!running) return;
     var dt = Math.min(.05, (ts - last) / 1000); last = ts;
     time += dt * state.motion.speed;
-    // sheen eases between the rest and the hover value while the mouse is on a panel (.is-open)
-    hoverMix += ((document.querySelector('.is-open') ? 1 : 0) - hoverMix) * (1 - Math.exp(-dt / .35));
     stepMix(dt); trackMouse(); trackPanels(); render(dt);
     requestAnimationFrame(frame);
   }
@@ -464,7 +463,7 @@ window.pmFlip = function (list) {
   try { var su = JSON.parse(localStorage.getItem(UIKEY)); if (su) { if (Number.isFinite(su.x) && Number.isFinite(su.y)) { ui.x = su.x; ui.y = su.y; } ui.collapsed = su.collapsed === true; } } catch (e) {}
   var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
   var SLIDERS = [
-    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten (normal)',0,3,.01,'×'],['sheenHover','Glanz an den Falten (Hover mit Maus)',0,3,.01,'×']]],
+    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten (normal)',0,3,.01,'×'],['sheenHover','Glanz an den Falten (wo die Maus ist)',0,3,.01,'×']]],
     ['Hintergrund: Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.1,8,.05,'×'],['warp','Faltung',0,4,.02,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
     ['Hintergrund: Maus und Scroll', [['displace','Verzerrung (Tux: 0,2)',0,1,.005,''],['trailSize','Spurgröße (Tux: 450)',20,2000,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten (Tux: 0,98)',.8,.999,.001,''],['trailGrowth','Wachstum (Tux: 1,67)',.2,5,.01,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
     ['Hintergrund: Oberfläche', [['grain','Körnung',0,.6,.005,''],['resolution','Auflösung (Tux: 0,5)',.05,2,.01,'×']]]

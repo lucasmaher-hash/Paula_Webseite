@@ -1000,3 +1000,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Galeriefotos ohne Rahmen
 - Helle Linie um die Galeriefotos entfernt; Fotos randlos, beim Hover wird das ganze Feld fast weiß mit dem Wort.
+
+### Claude (Opus 5.5), 10.11.2026: Glanz getrennt nach Maus statt nach Panel
+- Lucas: der normale Glanz-Regler wirkte auf beide Zustände. Neu im Shader: Glanz (normal) gilt überall, Glanz (wo die Maus ist) dort, wo die Mausspur liegt (weicher Übergang über die Spurstärke). Die Panel-Hover-Kopplung ist entfernt. Geprüft per Playwright: normal 0, Maus 3 -> Glanz nur entlang der Mausspur.
