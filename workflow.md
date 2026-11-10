@@ -1046,3 +1046,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Codex, 10.11.2026: Titel schneller hoch, Inhalt etwas später einblenden
 - Lucas meldet noch Überlagerung von Titelbewegung und Reveal. Dauer der Titelbewegung um 30 % von 500 auf 350 ms verkürzt; Wartezeit vor dem Einblenden um 25 % von 120 auf 150 ms erhöht. Das Einblenden selbst dauert weiterhin 350 ms, die Details bleiben an fester Position. CSS-Cache-Version erhöht; keine Änderung an Designwerten oder Seitenaufbau.
 - Lokal in Chrome bei 375 und 1440 px alle 9 bzw. 10 Textpanels abgeglichen: angewendete Titelbewegung 350 ms, Reveal-Verzögerung 150 ms und Einblenddauer 350 ms. Git-Diff geprüft. Die Änderung reduziert die zeitliche Überlappung; die gewünschte Feinabstimmung bleibt lokal sichtbar.
+
+### Codex, 10.11.2026: Kränze erst bei vollständiger Sichtbarkeit starten
+- Sichtbarkeitsschwelle für die Kranzreihe von 35 auf 100 % erhöht und im Observer ausdrücklich geprüft, damit auch dessen erste Meldung bei nur teilweiser Sichtbarkeit keine Animation startet. Die drei Kränze wachsen weiterhin einmalig und gleichzeitig in einer Sekunde. JS-Cache-Version erhöht.
+- Lokal in Chrome bei 375 und 1440 px geprüft: Bei halb sichtbarer Kranzreihe startet die Animation nicht, nach vollständigem Hereinscrollen startet sie. JS-Syntax und Git-Diff geprüft. Keine Änderung an Designwerten oder Seitenaufbau.

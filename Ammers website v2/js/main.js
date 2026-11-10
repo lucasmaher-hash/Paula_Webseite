@@ -254,10 +254,10 @@
     if (reduced || !('IntersectionObserver' in window)) awards.classList.add('grown');
     else {
       var awardsIO = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) return;
+        if (entries[0].intersectionRatio < 1) return;
         awards.classList.add('grown');
         awardsIO.disconnect();
-      }, { threshold: 0.35 });
+      }, { threshold: 1 });
       awardsIO.observe(awards);
     }
   }
