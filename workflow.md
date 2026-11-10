@@ -988,3 +988,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Keine Drehung mehr. Alle Text-Panels (Ovale, Kurse, Gutscheine, Bewertungen, Kontakt, Adresse, Öffnungszeiten, Über mich am Desktop) zeigen im Ruhezustand nur die fast weiße 3-px-Linie und einen kurzen Titel (z. B. Geschenk-Icon + Preis, „Korean Lashlift“, „Russian Manicure“, „Öffnungszeiten“). Hover, Fokus oder Tippen füllt sie fast weiß (Panelfarbe 35 %, Rest Weiß) und blendet alle Infos ein. Beide Ebenen liegen in einer Rasterzelle, die Größe springt nicht. Galerie: Foto bleibt, beim Hover blendet die helle Fläche mit dem Wort ein.
 - Hintergrund-Regler: Glanz jetzt zweimal, „normal“ (Standard 0) und „Hover mit Maus“ (Standard 0,97, dein letzter Wert); der Glanz gleitet in ~0,35 s um, solange ein Panel geöffnet ist. Gespeicherter alter Glanzwert wird zum Hover-Wert.
 - Geprüft per Playwright bei 1440 px (Ruhe/Hover je Abschnitt, Glanz nur im Hover) und 375 px Touch (Gutschein).
+
+### Claude (Opus 5.5), 10.11.2026: Texte außerhalb der Rahmen hell
+- Überschriften, Einleitungen, Eyebrows, Bewertungszahl, Gutschein-Hinweis und Footer stehen jetzt im gleichen fast Weiß wie die Rahmen. Hero, Header, Buttons und Inhalte in Panels behalten ihre Farben. Geprüft per Playwright bei 1440 px (Schulungen, Bewertungen, Gutscheine, Kontakt/Footer, Behandlungen).

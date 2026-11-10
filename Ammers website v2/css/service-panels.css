@@ -271,3 +271,10 @@
 #bg-tuner pre{margin:12px 0 10px;padding:10px;background:#e5e5e9;border-radius:10px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
 #bg-tuner .bg-tuner-actions{display:flex;gap:6px}
 body.menu-open #bg-tuner{visibility:hidden}
+
+/* Text outside the frames is light too (same near-white as the frames): section titles, intros, eyebrows, rating, hints, footer.
+   Hero, header, buttons and everything inside a panel keep their own colours. */
+main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface) var(--hv-mix),#fff)}
+:is(main>section:not(.hero),.site-footer) :is(h1,h2,h3,p,span,li,a,.eyebrow,.score,.stars,small):not(:is(.hv,.service-oval,.review,.voucher,.contact-panel,.hours,.about-panel,.about-grid,.course-panel,figure,.btn,.course-media) *):not(.btn){color:var(--hvc)}
+:is(main>section:not(.hero),.site-footer) .muted:not(:is(.hv,.review,.voucher,.contact-panel,.hours,.about-panel,.about-grid,.course-panel) *){opacity:.85}
+.site-footer{border-top-color:color-mix(in srgb,var(--hvc) 40%,transparent)}
