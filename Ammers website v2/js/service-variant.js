@@ -1,4 +1,4 @@
-// Ammers website v2: services as three ovals, the flowing background and the dial.
+// Ammers website v2: services as three ovals, particle fills and the flowing background.
 
 // Particle fill for panels: on hover/focus/tap, fine grain gathers from the pointer and densifies into the
 // solid colour; on leave it dissolves the same way. The element's own background stays transparent; a canvas inside
@@ -149,24 +149,24 @@ window.pmParticleFill = (function () {
 (function () {
   'use strict';
   var query = new URLSearchParams(location.search);
-  var local = /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname);
-  var tuning = true; // Lucas 10.11.2026: the dial is always on v2, nobody else uses this page.
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   // design.md Hintergrund/Fläche/Fläche tief, plus a deeper step towards the button colour. Accent from the other palette.
   var PALETTES = {
     // Brown: Lucas' tuned values from the dial, 10.11.2026.
     brown:{base:'#af7a6a',tone1:'#e8ccbf',tone2:'#d3b6a7',tone3:'#daa995',accent:'#e6b7be'},
-    pink:{base:'#f0e0e2',tone1:'#e8cdd2',tone2:'#ddb9c0',tone3:'#cf9fa8',accent:'#e6d0c6'}
+    // Pink: Lucas' tuned values, 10.11.2026.
+    pink:{base:'#f0e0e2',tone1:'#e5c2c9',tone2:'#c9a6ad',tone3:'#ac8089',accent:'#e6d0c6'}
   };
   // Background movement per variant; layout and particle values are shared by both (SHARED).
   var SHARED = ['sideGutter','pDuration','pSize','pScatter','pSpread'];
   var MOTIONS = {
     // Brown: Lucas' tuned values from the dial, 10.11.2026.
-    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:2.3,warp:.76,parallax:1,
+    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6},
-    pink:{intensity:1,accentAmount:.5,softness:.28,sheen:.5,speed:1,scale:1.6,warp:1.2,parallax:.1,
-      displace:.12,trailSize:450,trailStrength:.45,trailDecay:.98,trailGrowth:1.67,scrollWaves:1,grain:0,resolution:.5,
+    // Pink: Lucas' tuned values, 10.11.2026 (Formgröße 3.6 also used for brown).
+    pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
+      displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6}
   };
   var MOTION = MOTIONS.brown;
@@ -176,18 +176,8 @@ window.pmParticleFill = (function () {
       motions:{brown:Object.assign({},MOTIONS.brown),pink:Object.assign({},MOTIONS.pink)}};
     f.motion = f.motions[f.variant]; return f;
   }
-  var key = 'pm-beauty:v2:settings:v4', uiKey = 'pm-beauty:1:background-ui:v1';
   var state = fresh();
-  if (tuning) try {
-    var saved = JSON.parse(localStorage.getItem(key));
-    if (saved) {
-      if (saved.variant === 'brown' || saved.variant === 'pink') state.variant = saved.variant;
-      ['brown','pink'].forEach(function (v) { if (saved.colors && saved.colors[v]) Object.keys(PALETTES[v]).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(saved.colors[v][k])) state.colors[v][k] = saved.colors[v][k]; }); });
-      ['brown','pink'].forEach(function (v) { var m = saved.motions && saved.motions[v]; if (m) Object.keys(MOTION).forEach(function (k) { if (Number.isFinite(m[k])) state.motions[v][k] = m[k]; }); });
-    }
-    if (query.get('bg') === 'pink' || query.get('bg') === 'brown') state.variant = query.get('bg');
-    state.motion = state.motions[state.variant];
-  } catch (e) {}
+  // Dial removed 10.11.2026: the approved values above are fixed; ?bg=pink shows the pink variant.
 
   var layer = document.createElement('div'); layer.className = 'flow-bg'; layer.setAttribute('aria-hidden','true');
   var canvas = document.createElement('canvas'), grain = document.createElement('div'); grain.className = 'flow-bg-grain';
@@ -197,7 +187,7 @@ window.pmParticleFill = (function () {
   function applyLayout() { document.documentElement.style.setProperty('--v2-side', Math.max(0, state.motion.sideGutter) + 'vw'); }
   applyLayout();
   var api_setVariant = function (v) { var prev = state.motion; state.variant = v; state.motion = state.motions[v]; SHARED.forEach(function (k) { state.motion[k] = prev[k]; }); };
-  var api = {state:state, shared:SHARED, setVariant:function (v) { api_setVariant(v); }, defaults:{palettes:PALETTES, motions:MOTIONS}, fresh:fresh, key:key, uiKey:uiKey, tuning:tuning, apply:function () {}};
+  var api = {state:state, shared:SHARED, setVariant:function (v) { api_setVariant(v); }, defaults:{palettes:PALETTES, motions:MOTIONS}, fresh:fresh, apply:function () {}};
   window.pmFlowBackground = api;
   function fallback() {
     layer.classList.add('is-fallback');
@@ -376,90 +366,4 @@ window.pmParticleFill = (function () {
   document.addEventListener('visibilitychange', setRunning); reduce.addEventListener('change', setRunning);
   window.addEventListener('resize', function () { resize(); if (!running) render(0); });
   api.apply(); setRunning();
-})();
-
-// Dial for the flow background, always on /1/. Bottom right, draggable, collapsible.
-(function () {
-  'use strict';
-  var bg = window.pmFlowBackground;
-  if (!bg || !bg.tuning) return;
-  var state = bg.state;
-  var ui = {x:null, y:null, collapsed:innerWidth < 600};
-  try { var su = JSON.parse(localStorage.getItem(bg.uiKey)); if (su) { if (Number.isFinite(su.x) && Number.isFinite(su.y)) { ui.x = su.x; ui.y = su.y; } ui.collapsed = su.collapsed === true; } } catch (e) {}
-  var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
-  var SLIDERS = [
-    ['Layout', [['sideGutter','Seitenrand links/rechts (Desktop)',0,35,.25,'vw']]],
-    ['Partikel (Hover-Flächen)', [['pDuration','Dauer',0,4000,10,'ms'],['pSize','Korngröße (Gerätepixel)',1,24,1,'px'],['pScatter','Flimmern am Rand',0,1,.01,''],['pSpread','Staffelung',0,.9,.01,'']]],
-    ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten',0,3,.01,'×']]],
-    ['Hintergrund: Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.1,8,.05,'×'],['warp','Faltung',0,4,.02,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
-    ['Hintergrund: Maus und Scroll', [['displace','Verzerrung (Tux: 0,2)',0,1,.005,''],['trailSize','Spurgröße (Tux: 450)',20,2000,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten (Tux: 0,98)',.8,.999,.001,''],['trailGrowth','Wachstum (Tux: 1,67)',.2,5,.01,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
-    ['Hintergrund: Oberfläche', [['grain','Körnung',0,.6,.005,''],['resolution','Auflösung (Tux: 0,5)',.05,2,.01,'×']]]
-  ];
-  var panel = document.createElement('aside'); panel.id = 'bg-tuner'; panel.setAttribute('aria-label','Regler');
-  var html = '<div class="bg-tuner-header"><strong>Regler</strong><button type="button" id="bg-tuner-collapse" aria-controls="bg-tuner-body" aria-expanded="true">Einklappen</button></div><div class="bg-tuner-body" id="bg-tuner-body">';
-  html += '<div class="bg-tuner-seg" role="group" aria-label="Variante"><button type="button" data-variant="brown">Braun</button><button type="button" data-variant="pink">Pink</button></div>';
-  html += '<fieldset><legend>Farben <span id="bg-variant-name"></span></legend>' + COLORS.map(function (c) { return '<label for="bg-c-' + c[0] + '">' + c[1] + '</label><div class="bg-tuner-row"><input type="color" id="bg-c-' + c[0] + '" data-color="' + c[0] + '"><output id="bg-c-' + c[0] + '-v"></output></div>'; }).join('') + '</fieldset>';
-  SLIDERS.forEach(function (g) {
-    html += '<fieldset><legend>' + g[0] + '</legend>' + g[1].map(function (s) {
-      return '<label for="bg-s-' + s[0] + '">' + s[1] + '</label><div class="bg-tuner-row"><input type="range" id="bg-s-' + s[0] + '" data-key="' + s[0] + '" min="' + s[2] + '" max="' + s[3] + '" step="' + s[4] + '"><input type="number" aria-label="' + s[1] + '" data-num="' + s[0] + '" step="' + s[4] + '"><span>' + s[5] + '</span></div>';
-    }).join('') + '</fieldset>';
-  });
-  html += '<pre id="bg-settings" tabindex="0" aria-label="Aktuelle Hintergrundwerte"></pre><div class="bg-tuner-actions"><button type="button" id="bg-copy">Kopieren</button><button type="button" id="bg-reset">Zurücksetzen</button></div></div>';
-  panel.innerHTML = html; document.body.append(panel);
-  var body = panel.querySelector('#bg-tuner-body'), collapse = panel.querySelector('#bg-tuner-collapse'), out = panel.querySelector('#bg-settings');
-  var limits = {}; SLIDERS.forEach(function (g) { g[1].forEach(function (s) { limits[s[0]] = {min:s[2], max:s[3]}; }); });
-  function saveState() { try { localStorage.setItem(bg.key, JSON.stringify(state)); } catch (e) {} }
-  function saveUi() { try { localStorage.setItem(bg.uiKey, JSON.stringify(ui)); } catch (e) {} }
-  function exported() { return JSON.stringify({variant:state.variant, colors:state.colors[state.variant], motion:state.motion}, null, 2); }
-  function sync() {
-    panel.querySelectorAll('[data-variant]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.variant === state.variant)); });
-    panel.querySelector('#bg-variant-name').textContent = state.variant === 'pink' ? '(Pink)' : '(Braun)';
-    COLORS.forEach(function (c) { var v = state.colors[state.variant][c[0]]; panel.querySelector('#bg-c-' + c[0]).value = v; panel.querySelector('#bg-c-' + c[0] + '-v').textContent = v; });
-    Object.keys(limits).forEach(function (k) {
-      var v = state.motion[k], r = panel.querySelector('#bg-s-' + k), n = panel.querySelector('[data-num="' + k + '"]');
-      r.min = Math.min(limits[k].min, v); r.max = Math.max(limits[k].max, v); r.value = v;
-      if (document.activeElement !== n) n.value = v;
-    });
-    out.textContent = exported();
-  }
-  function changed() { bg.apply(); saveState(); sync(); }
-  panel.querySelectorAll('[data-variant]').forEach(function (b) { b.addEventListener('click', function () { bg.setVariant(b.dataset.variant); changed(); }); });
-  panel.querySelectorAll('[data-color]').forEach(function (i) { i.addEventListener('input', function () { state.colors[state.variant][i.dataset.color] = i.value; changed(); }); });
-  panel.querySelectorAll('[data-key],[data-num]').forEach(function (i) {
-    i.addEventListener('input', function () {
-      if (i.value === '') return; var v = Number(i.value), k = i.dataset.key || i.dataset.num;
-      if (!Number.isFinite(v)) return;
-      if (k === 'resolution' && v <= 0) return; if (k === 'trailSize' && v <= 0) return;
-      state.motion[k] = v;
-      if (bg.shared.indexOf(k) >= 0) ['brown','pink'].forEach(function (x) { state.motions[x][k] = v; });
-      changed();
-    });
-  });
-  panel.querySelector('#bg-reset').addEventListener('click', function () { var f = bg.fresh(); state.colors = f.colors; state.motions = f.motions; state.motion = state.motions[state.variant]; changed(); });
-  var copy = panel.querySelector('#bg-copy');
-  copy.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(exported()).then(function () { copy.textContent = 'Kopiert'; setTimeout(function () { copy.textContent = 'Kopieren'; }, 1200); }); });
-  function clamp() {
-    var b = panel.getBoundingClientRect();
-    ui.x = Math.max(8, Math.min(ui.x === null ? b.left : ui.x, innerWidth - b.width - 8));
-    ui.y = Math.max(8, Math.min(ui.y === null ? b.top : ui.y, innerHeight - Math.min(b.height, 56) - 8));
-    panel.style.left = ui.x + 'px'; panel.style.top = ui.y + 'px'; panel.style.right = panel.style.bottom = 'auto';
-  }
-  function setCollapsed() {
-    body.hidden = ui.collapsed; collapse.setAttribute('aria-expanded', String(!ui.collapsed)); collapse.textContent = ui.collapsed ? 'Ausklappen' : 'Einklappen';
-    if (ui.x !== null) { var b = panel.getBoundingClientRect(); if (ui.y + b.height > innerHeight - 8) ui.y = innerHeight - b.height - 8; clamp(); }
-    saveUi();
-  }
-  collapse.addEventListener('click', function () { if (ui.x === null) { var b = panel.getBoundingClientRect(); ui.x = b.left; ui.y = b.top; } ui.collapsed = !ui.collapsed; setCollapsed(); });
-  var drag = null;
-  panel.addEventListener('pointerdown', function (e) {
-    if (e.button !== 0 || e.target.closest('input,button,label,pre,output')) return;
-    var b = panel.getBoundingClientRect(); drag = {id:e.pointerId, x:e.clientX - b.left, y:e.clientY - b.top};
-    panel.setPointerCapture(e.pointerId); panel.classList.add('is-dragging'); e.preventDefault();
-  });
-  panel.addEventListener('pointermove', function (e) { if (!drag || e.pointerId !== drag.id) return; ui.x = e.clientX - drag.x; ui.y = e.clientY - drag.y; clamp(); });
-  function end() { if (!drag) return; drag = null; panel.classList.remove('is-dragging'); saveUi(); }
-  panel.addEventListener('pointerup', end); panel.addEventListener('pointercancel', end);
-  window.addEventListener('resize', function () { if (ui.x !== null) { clamp(); saveUi(); } });
-  if (ui.x !== null) clamp();
-  setCollapsed(); sync();
 })();

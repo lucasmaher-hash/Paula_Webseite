@@ -851,6 +851,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Werte als Standard in `js/service-variant.js` übernommen (Grund #AF7A6A, Töne #E8CCBF / #D3B6A7 / #DAA995, Akzent #E6B7BE; Farbstärke 2,4, Tempo 0,3, Formgröße 2,3, Faltung 0,76, Scroll-Mitlauf 1, Auflösung 0,99, Körnung 0,08 usw.). Damit Braun und Pink sich nicht gegenseitig überschreiben, hat jetzt jede Variante eigene Hintergrund-Bewegungswerte; Seitenrand und Partikel (Korngröße 24, Flimmern 0,12) gelten für beide. Pink bleibt bei den bisherigen Werten. Neuer Speicherschlüssel, alte Browserwerte greifen nicht mehr. Geprüft: Start in Braun mit den neuen Werten, Wechsel zu Pink und zurück behält beide Sätze.
 - **Nicht funktioniert / offen:** Der dunklere Grund (#AF7A6A) senkt den Kontrast für Text, der direkt auf dem Hintergrund steht (Überschriften, Eyebrows); nicht gemessen.
 
+### 10.11.2026 · Claude · v2: Pink-Werte übernommen, Regler entfernt
+- **Versucht:** Lucas schickte seine Pink-Einstellung (Formgröße 3,6 soll auch für Braun gelten) und wollte danach die Regler von der Seite.
+- **Funktioniert:** Pink-Farben #F0E0E2 / #E5C2C9 / #C9A6AD / #AC8089, Akzent #E6D0C6, Bewegung wie Braun bis auf die Formgröße; Formgröße 3,6 jetzt für beide. Regler-Panel, sein CSS, die gespeicherten Browserwerte und die alte Frame-Zieh-Leiste (`service-tuner.js`) entfernt; die freigegebenen Werte stehen fest im Code. Braun bleibt Standard, `?bg=pink` zeigt Pink. Geprüft ohne gespeicherte Werte: beide Varianten laden mit den neuen Werten, kein Regler sichtbar, keine Fehler.
+- **Nicht funktioniert / offen:** Der ältere Rahmen-Regler in `experiment-frames.js` erscheint weiterhin nur mit `?regler=1` (seit Kurzprojekt 1 so), sonst nie.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
