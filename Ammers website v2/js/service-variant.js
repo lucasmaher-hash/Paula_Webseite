@@ -174,20 +174,18 @@ window.pmFlip = function (list) {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   // design.md Hintergrund/Fläche/Fläche tief, plus a deeper step towards the button colour. Accent from the other palette.
   var PALETTES = {
-    // Brown: Lucas' tuned values, then 8 % darker (brightness dial -8, 10.11.2026).
-    brown:{base:'#a17062',tone1:'#d5bcb0',tone2:'#c2a79a',tone3:'#c99b89',accent:'#d4a8af'},
-    // Pink: Lucas' tuned values, then 6 % darker (brightness dial -6, 10.11.2026).
-    pink:{base:'#e2d3d4',tone1:'#d7b6bd',tone2:'#bd9ca3',tone3:'#a27881',accent:'#d8c4ba'}
+    // Brown and Pink: Lucas' dial values, 10.11.2026 (evening).
+    brown:{base:'#744334',tone1:'#896b5d',tone2:'#6f594d',tone3:'#543327',accent:'#d4a8af'},
+    pink:{base:'#c19093',tone1:'#9d7b82',tone2:'#8c6971',tone3:'#7d545d',accent:'#d8c4ba'}
   };
   // Background movement per variant; layout and particle values are shared by both (SHARED).
   var SHARED = ['sideGutter','pDuration','pSize','pScatter','pSpread'];
   var MOTIONS = {
-    // Brown: Lucas' tuned values from the dial, 10.11.2026.
-    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:0,sheenHover:.97,speed:.3,scale:3.6,warp:.76,parallax:1,
+    // Lucas' dial values, 10.11.2026 (evening).
+    brown:{intensity:.33,accentAmount:.18,softness:.6,sheen:.08,sheenHover:.6,speed:.3,scale:3.55,warp:1.02,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6},
-    // Pink: Lucas' tuned values, 10.11.2026 (Formgröße 3.6 also used for brown).
-    pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:0,sheenHover:.97,speed:.3,scale:3.6,warp:.76,parallax:1,
+    pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.08,sheenHover:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
       sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6}
   };

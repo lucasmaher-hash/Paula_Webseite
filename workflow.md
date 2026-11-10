@@ -1003,3 +1003,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Glanz getrennt nach Maus statt nach Panel
 - Lucas: der normale Glanz-Regler wirkte auf beide Zustände. Neu im Shader: Glanz (normal) gilt überall, Glanz (wo die Maus ist) dort, wo die Mausspur liegt (weicher Übergang über die Spurstärke). Die Panel-Hover-Kopplung ist entfernt. Geprüft per Playwright: normal 0, Maus 3 -> Glanz nur entlang der Mausspur.
+
+### Claude (Opus 5.5), 10.11.2026: Neue Hintergrundwerte als Standard
+- Lucas' Reglerwerte für Braun (Grund #744334, Farbstärke 0,33, Glanz 0,08/0,6, Formgröße 3,55, Faltung 1,02 …) und Pink (Grund #c19093, Glanz 0,08/0,75 …) fest eingetragen. Regler bleibt. Geprüft ohne localStorage: Hintergrund #744334.
