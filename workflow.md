@@ -831,6 +831,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Partikel-Übergang neu: jedes Gerätepixel ist ein Korn (ImageData statt gezeichneter Kreise). Jedes Korn hat einen Schwellwert aus Zufall und Abstand zum Einstiegspunkt der Maus; steigt der Fortschritt darüber, wird es farbig. So sammelt sich eine Kornwolke um den Mauspunkt und verdichtet sich zur Vollfläche, beim Verlassen löst sie sich auf. Ein Teil des Rauschens wird pro Bild neu gewürfelt, der Rand flimmert. Regler: Dauer (1100 ms), Korngröße (1 Gerätepixel), Flimmern am Rand, Staffelung. Gespeicherte Reglerwerte auf neuen Schlüssel gesetzt, damit alte Werte nicht stören. Zwischenbilder bei 1280 px angesehen.
 - **Nicht funktioniert / offen:** Auf Retina sind die Körner halb so groß wie im Test (1 statt 2 CSS-Pixel pro Korn), dort also noch feiner; am echten Gerät nicht geprüft.
 
+### 10.11.2026 · Claude · v2: Schulungen in Lucas' Skizzenformen
+- **Versucht:** Lucas lieferte eine Handskizze auf Karopapier (`claude_background/branding/assets/sketches/2026-11-10-schulungen-formen.jpg`): links eine D-Form (runde Seite außen, gerade Seite mit kleinen Ecken), rechts ein Rechteck mit großen Ecken, gleich hoch. Die kleinere D-Form trägt das Bild; einmal rund links, einmal rund rechts.
+- **Funktioniert:** Maße aus den Karos abgelesen (D ca. 7,5 × 9,7 Kästchen, Rechteck ca. 14 × 9,9, Abstand ca. 1). Umgesetzt mit `border-radius` in Prozent: D `64% 13% 13% 64% / 50% 10% 10% 50%` (gespiegelt für die zweite Schulung), Text-Rechteck `9% / 13%`, Spalten 35 : 65. Erste Schulung D links, zweite D rechts; das PM-Zeichen wandert bei der zweiten nach links unten, damit es nicht in die Rundung fällt. Handy: D-Form 80 % breit, abwechselnd links/rechts, Karte darunter, ohne gemeinsame Hintergrundkarte. Bei 1280/375 px angesehen.
+- **Nicht funktioniert / offen:** Die Skizze ist freihändig; Kurvenverlauf ist angenähert (Ellipsenbogen), nicht nachgezeichnet. Kein echtes Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
