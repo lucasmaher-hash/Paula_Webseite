@@ -1,6 +1,6 @@
 # Seitenplan: PM Beauty Website
 
-Stand 31.10.2026. Nachträglicher Abgleich der gebauten Seite (`website/index.html`) mit dem Briefing, kein vorab durchlaufener Planungsschritt. Ersetzt die von Ammers Prompt vorgeschlagene `skizze.jpg` durch eine Textskizze.
+Stand 31.10.2026. Nachträglicher Abgleich der gebauten Seite (`Paula's website/index.html`) mit dem Briefing, kein vorab durchlaufener Planungsschritt. Ersetzt die von Ammers Prompt vorgeschlagene `skizze.jpg` durch eine Textskizze.
 
 ## Modell
 

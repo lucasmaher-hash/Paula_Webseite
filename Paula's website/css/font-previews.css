@@ -1,0 +1,13 @@
+/* Type comparisons retained after Gambarino became the main display face. */
+html.preview-gambarino{--font-display:"Gambarino",Georgia,serif}
+html.preview-melodrama{--font-display:"Melodrama",Georgia,serif}
+
+html.preview-gambarino h1,html.preview-gambarino h2,html.preview-gambarino h3,
+html.preview-gambarino .award-text strong,html.preview-gambarino .voucher .amount,
+html.preview-gambarino .rating-badge .score{font-weight:400;letter-spacing:-.02em}
+
+html.preview-melodrama h1,html.preview-melodrama h2,html.preview-melodrama h3,
+html.preview-melodrama .award-text strong,html.preview-melodrama .voucher .amount,
+html.preview-melodrama .rating-badge .score{font-weight:600;letter-spacing:-.02em}
+
+html.preview-gambarino .hero h1,html.preview-melodrama .hero h1{line-height:1.14}

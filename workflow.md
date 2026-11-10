@@ -816,6 +816,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** `service-variant.js` ersetzt auf `/1/` das Akkordeon durch drei Ovale (Maniküre; Wimpern & Brauen; Haut & Permanent Make-up), je sechs echte Leistungsnamen aus dem Akkordeon, gekürzt um Klammerzusätze, plus „Alle N Leistungen“ zur Buchung. Ruhend 1 px Kontur in der Textfarbe, beim Hover/Fokus gefüllt (`--color-primary`, Text `--color-on-primary`), Titel blendet aus, Liste ein. Vierzackige Sterne zwischen den Ovalen wie im Screenshot. Abschnitt ohne eigenes Panel, die Ovale liegen direkt auf dem fließenden Hintergrund. Handy: untereinander, Antippen öffnet. Menü-Anker öffnen das passende Oval. Playwright 1440/375 px: Ovale 376×588 bzw. 330×458, Liste passt hinein, kein Querscrollen.
 - **Nicht funktioniert / offen:** Erster Wurf: Prozent-Innenabstand bezog sich auf die Zeilenbreite, nicht das Oval; Inhalt saß schief und die Ovale wurden zu hoch. Behoben. Nur sechs von bis zu 14 Leistungen pro Oval sichtbar, der Rest über die Buchung. Kein echtes Handy getestet.
 
+### 10.11.2026 · Claude · Drei getrennte Websites
+- **Versucht:** Lucas hat die drei Fassungen benannt und getrennt: „Paula's website“ (echte Studio-Seite, nicht mehr anfassen), „Ammers website v1“ (abgeschlossene Kursfassung mit KI-Bildern und Behandlungsliste), „Ammers website v2“ (fließender Hintergrund, einzige Arbeitsfassung). Jede in einem eigenen Ordner.
+- **Funktioniert:** `website/` heißt jetzt `Paula's website/`; `Ammers website v1/` und `Ammers website v2/` sind vollständige Kopien mit eigener `index.html` (aus `index-experimentell.html` bzw. der früheren `/1/`-Seite). `build-variants.py` gelöscht, v2 erzeugt sich nicht mehr aus v1. Der Pages-Workflow setzt `/`, `/v1/`, `/v2/` zusammen, alte Adressen `/index-experimentell.html` und `/1/` leiten weiter. Lokaler Server `claude_background/scripts/serve.py` bildet dieselben Pfade nach und schaltet den Browser-Cache ab (Chrome hatte eine alte `/1/` gezeigt). Geprüft: alle drei Seiten laden ohne Fehler, Paula-Seite unverändert.
+- **Nicht funktioniert / offen:** Bilder und Schriften liegen jetzt dreifach im Repo (je ca. 9 MB). Alte Testskripte unter `claude_background/tests/` zeigen noch auf die alten Pfade.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

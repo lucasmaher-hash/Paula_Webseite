@@ -20,14 +20,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Branding übernehmen
+      - name: Drei Websites zusammenstellen
+        # / = Paula's website (live für das Studio), /v1/ = Ammers website v1, /v2/ = Ammers website v2.
+        # Alte Adressen /index-experimentell.html und /1/ leiten weiter.
         run: |
-          cp -R claude_background/branding website/branding
-          cp markenprofil.md workflow.md briefing.md website/branding/
-          python3 claude_background/scripts/build-variants.py
+          mkdir _site
+          cp -R "Paula's website/." _site/
+          cp -R claude_background/branding _site/branding
+          cp markenprofil.md workflow.md briefing.md _site/branding/
+          cp -R "Ammers website v1" _site/v1
+          cp -R "Ammers website v2" _site/v2
+          redirect() { mkdir -p "$(dirname "$1")"; printf '<!DOCTYPE html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=%s"><link rel="canonical" href="%s"><script>location.replace("%s"+location.search+location.hash)</script><a href="%s">Weiter</a>\n' "$2" "$2" "$2" "$2" > "$1"; }
+          redirect _site/index-experimentell.html /v1/
+          redirect _site/1/index.html /v2/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: website
+          path: _site
 
   deploy:
     needs: build

@@ -4,7 +4,7 @@ Styleguide für die Website. Regeln statt Formen: Wer nur diese Datei liest, sol
 
 Kennzeichnung: **[Code]** = aus dem Branding-Code übernommen · **[Ich]** = selbst festgelegt · **OFFEN** = fehlt noch
 
-Stand 31.10.2026. Werte aus `website/css/style.css` und `website/styleguide.html` (Hex aus den HSL-Variablen berechnet). Die ältere Datei `claude_background/docs/design.md` (Beige, Instrument Sans als Überschrift) gilt nicht mehr.
+Stand 31.10.2026. Werte aus `Paula's website/css/style.css` und `Paula's website/styleguide.html` (Hex aus den HSL-Variablen berechnet). Die ältere Datei `claude_background/docs/design.md` (Beige, Instrument Sans als Überschrift) gilt nicht mehr.
 
 ## Marke
 - Kernidee in einem Satz: Präzise Schönheit, die bleibt. [Code] (`markenprofil.md`)
@@ -36,7 +36,7 @@ Rahmen: Palettenfarbe mit ca. 19 % (Braun) bzw. 18 % (Pink) Deckkraft. [Code]
 
 ## Schrift
 - Überschriften: **Gambarino**, Gewicht 400, Quelle Fontshare (per `<link>` geladen), Fallback Lora (lokal) und Georgia. Auch große Zahlen (Gutschein-Beträge, Bewertung). [Code]
-- Fließtext und Bedienung: **Instrument Sans** 400/500/600, lokal in `website/fonts/`. [Code]
+- Fließtext und Bedienung: **Instrument Sans** 400/500/600, lokal in `Paula's website/fonts/`. [Code]
 - Technische Angaben (Dauer, Labels): **Space Mono** 400/700, lokal. [Code]
 - Größen: Display `clamp(2.4rem, 7.4vw, 4.4rem)` · H2 `clamp(1.7rem, 4.6vw, 2.6rem)` · H3 1,15–1,7 rem · Fließtext 1 rem · klein 0,85 rem · Mono-Label 0,72 rem. [Code]
 - Zeilenabstand: Fließtext 1,6 · Display 1,14 (Hero 1,02–1,14) · H2 1,1. Laufweite Überschriften −0,02 em, Mono-Label +0,12 em. [Code]
@@ -79,7 +79,7 @@ Nahaufnahmen echter Ergebnisse (Brauen, Lippen, Wimpern, Nägel) in abgerundeten
 - Don't: keine Behandlungspreise auf der Website (Wunsch von Paula; Gutschein-Beträge sind erlaubt) · kein Pink als große Fläche · keine Schatten · keine Script-Schriften oder Rosé-Gold-Glitzer · nichts, das seitlich hereinfliegt · keine erfundenen Fakten über das Studio. [Code/Ich]
 
 ## Quellen
-- Branding-Dateien: `website/css/style.css`, `website/styleguide.html`, `website/fonts/fonts.css`, `claude_background/branding/` (Logo, Assets), `claude_background/docs/prd.md` (Fakten).
+- Branding-Dateien: `Paula's website/css/style.css`, `Paula's website/styleguide.html`, `Paula's website/fonts/fonts.css`, `claude_background/branding/` (Logo, Assets), `claude_background/docs/prd.md` (Fakten).
 - Markenprofil: `markenprofil.md`
 - Briefing: `briefing.md`
 - Veraltet, nicht mehr verwenden: `claude_background/docs/design.md`
