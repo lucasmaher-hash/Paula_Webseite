@@ -61,7 +61,7 @@ Rahmen: Palettenfarbe mit ca. 19 % (Braun) bzw. 18 % (Pink) Deckkraft. [Code]
 Nahaufnahmen echter Ergebnisse (Brauen, Lippen, Wimpern, Nägel) in abgerundeten Rahmen, warme Töne, wenig Retusche. Das Hero zeigt Paula, am Handy hochformatig und unten ausgeblendet. KI-erzeugte Bilder und Mockups sind als solche gekennzeichnet; keine fremden Fotos als eigene Arbeit. [Code/Ich]
 
 ## Bewegung
-- Was bewegt sich? Logo-Schreibanimation, Inhalte beim Erscheinen, Hover-Linien, Akkordeons, Lorbeerkränze, 3D-Nagel/Panels in den Behandlungen (experimentell, Three.js). [Code]
+- Was bewegt sich? Logo-Schreibanimation, Inhalte beim Erscheinen, Hover-Linien, Akkordeons, Lorbeerkränze, 3D-Nagel im Styleguide (experimentell, Three.js). Auf `/1/` seit 10.11.2026 ein fließender Hintergrund aus gefalteten Farbflächen, der Maus und Scroll verwirbeln (experimentell, WebGL, Variante Braun oder Pink); die 3D-Behandlungsansicht dort ist entfernt. [Code]
 - Charakter: ruhig. Meist 0,25–0,6 s, ease; Linien und Bilder 0,35–0,8 s mit `cubic-bezier(.4,0,.2,1)`; Lorbeer 1 s mit `cubic-bezier(.2,.8,.2,1)`. Langsam ein, weich aus, nichts springt. [Code]
 - Auslöser: Laden (Logo), Scrollen (`.reveal`, Bewegung 14 px nach oben), Hover und Fokus (Linie wächst aus der Mitte), Klick (Akkordeon öffnet, gleitet in die Bildschirmmitte). [Code]
 - Was bleibt immer gleich? Richtung aus der Mitte nach außen. Bei `prefers-reduced-motion` entfallen alle Übergänge. [Code]

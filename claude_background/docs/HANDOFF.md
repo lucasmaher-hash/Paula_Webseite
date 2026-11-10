@@ -1,5 +1,7 @@
 # Übergabe: PM Beauty Website (Stand 28.10.2026)
 
+**/1/ ab 10.11.2026 (Claude):** Die 3D-Dienstleistungsansicht ist entfernt, `/1/` zeigt das Standard-Akkordeon wie die anderen Seiten (alter Code in der Git-Historie vor dem 10.11.). `js/service-variant.js` enthält nur noch den fließenden Hintergrund nach tuxkarma.co und dessen Regler (localhost, `?regler=1`, `?hintergrund=1`, `?bg=pink`). `service-panels-3d.js` wird nicht mehr geladen.
+
 
 **Freistehende 3D-Objekte 28.10.2026:** Auf `/1/` stehen alle drei 3D-Objekte ohne farbige Hintergrundrahmen und ohne Beschriftung darunter. Das Nagellayout folgt `branding/experiments/manicure-panels.html`: Liste neben der frei stehenden Nagelform, ausgewählte Beschreibung als barrierefreie Textebene auf dem Nagel. Handy untereinander. CSS `service-panels.css?v=3`, JS `service-variant.js?v=2`.
 

@@ -3,6 +3,7 @@
   'use strict';
   var local = /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname);
   if (!local && new URLSearchParams(location.search).get('regler') !== '1') return;
+  if (!document.querySelector('.service-copy')) return; // Nur für die frühere 3D-Dienstleistungsansicht.
   var key = 'pm-beauty:service-drag:v1', root = document.documentElement;
   var values = {};
   try { values = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) {}
