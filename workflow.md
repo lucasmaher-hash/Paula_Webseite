@@ -846,6 +846,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Unteres Bild ist jetzt das obere um 180° gedreht (Schräge von oben 100 % − 0,76 Spaltenbreiten bis rechts 0,942), Außenspalten gleich breit (333,5 : 240 : 333,5), beide Zeilen gleich hoch (`1fr … 1fr`), dadurch Bilder und Textflächen je 237 × 473 bzw. 329 × 473 px bei 1280 px. Spalt 3,4 → 2,38 cqw, Eckradius 0,17 → 0,119, Knickrundung 0,09 → 0,063 Spaltenbreiten; Überlappung neu berechnet (0,494), damit der schräge Spalt so breit ist wie der gerade. Handy-Radien ebenfalls −30 %.
 - **Nicht funktioniert / offen:** Kein echtes Handy.
 
+### 10.11.2026 · Claude · v2: Lucas' Braun-Werte als Standard
+- **Versucht:** Lucas hat den Hintergrund für Braun mit dem Regler eingestellt und die exportierten Werte geschickt: „save this for brown“.
+- **Funktioniert:** Werte als Standard in `js/service-variant.js` übernommen (Grund #AF7A6A, Töne #E8CCBF / #D3B6A7 / #DAA995, Akzent #E6B7BE; Farbstärke 2,4, Tempo 0,3, Formgröße 2,3, Faltung 0,76, Scroll-Mitlauf 1, Auflösung 0,99, Körnung 0,08 usw.). Damit Braun und Pink sich nicht gegenseitig überschreiben, hat jetzt jede Variante eigene Hintergrund-Bewegungswerte; Seitenrand und Partikel (Korngröße 24, Flimmern 0,12) gelten für beide. Pink bleibt bei den bisherigen Werten. Neuer Speicherschlüssel, alte Browserwerte greifen nicht mehr. Geprüft: Start in Braun mit den neuen Werten, Wechsel zu Pink und zurück behält beide Sätze.
+- **Nicht funktioniert / offen:** Der dunklere Grund (#AF7A6A) senkt den Kontrast für Text, der direkt auf dem Hintergrund steht (Überschriften, Eyebrows); nicht gemessen.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

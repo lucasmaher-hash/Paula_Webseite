@@ -154,24 +154,39 @@ window.pmParticleFill = (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   // design.md Hintergrund/Fläche/Fläche tief, plus a deeper step towards the button colour. Accent from the other palette.
   var PALETTES = {
-    brown:{base:'#f6edea',tone1:'#ecdad2',tone2:'#e3c9be',tone3:'#d4b0a2',accent:'#e4c3c8'},
+    // Brown: Lucas' tuned values from the dial, 10.11.2026.
+    brown:{base:'#af7a6a',tone1:'#e8ccbf',tone2:'#d3b6a7',tone3:'#daa995',accent:'#e6b7be'},
     pink:{base:'#f0e0e2',tone1:'#e8cdd2',tone2:'#ddb9c0',tone3:'#cf9fa8',accent:'#e6d0c6'}
   };
-  var MOTION = {intensity:1,accentAmount:.5,softness:.28,sheen:.5,speed:1,scale:1.6,warp:1.2,parallax:.1,
-    displace:.12,trailSize:450,trailStrength:.45,trailDecay:.98,trailGrowth:1.67,scrollWaves:1,grain:0,resolution:.5,
-    sideGutter:13.25,pDuration:1100,pSize:1,pScatter:.18,pSpread:.6};
-  function fresh() { return {variant:query.get('bg') === 'pink' ? 'pink' : 'brown',
-    colors:{brown:Object.assign({},PALETTES.brown),pink:Object.assign({},PALETTES.pink)},motion:Object.assign({},MOTION)}; }
-  var key = 'pm-beauty:v2:settings:v3', uiKey = 'pm-beauty:1:background-ui:v1';
+  // Background movement per variant; layout and particle values are shared by both (SHARED).
+  var SHARED = ['sideGutter','pDuration','pSize','pScatter','pSpread'];
+  var MOTIONS = {
+    // Brown: Lucas' tuned values from the dial, 10.11.2026.
+    brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:2.3,warp:.76,parallax:1,
+      displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
+      sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6},
+    pink:{intensity:1,accentAmount:.5,softness:.28,sheen:.5,speed:1,scale:1.6,warp:1.2,parallax:.1,
+      displace:.12,trailSize:450,trailStrength:.45,trailDecay:.98,trailGrowth:1.67,scrollWaves:1,grain:0,resolution:.5,
+      sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6}
+  };
+  var MOTION = MOTIONS.brown;
+  function fresh() {
+    var f = {variant:query.get('bg') === 'pink' ? 'pink' : 'brown',
+      colors:{brown:Object.assign({},PALETTES.brown),pink:Object.assign({},PALETTES.pink)},
+      motions:{brown:Object.assign({},MOTIONS.brown),pink:Object.assign({},MOTIONS.pink)}};
+    f.motion = f.motions[f.variant]; return f;
+  }
+  var key = 'pm-beauty:v2:settings:v4', uiKey = 'pm-beauty:1:background-ui:v1';
   var state = fresh();
   if (tuning) try {
     var saved = JSON.parse(localStorage.getItem(key));
     if (saved) {
       if (saved.variant === 'brown' || saved.variant === 'pink') state.variant = saved.variant;
       ['brown','pink'].forEach(function (v) { if (saved.colors && saved.colors[v]) Object.keys(PALETTES[v]).forEach(function (k) { if (/^#[0-9a-f]{6}$/i.test(saved.colors[v][k])) state.colors[v][k] = saved.colors[v][k]; }); });
-      if (saved.motion) Object.keys(MOTION).forEach(function (k) { if (Number.isFinite(saved.motion[k])) state.motion[k] = saved.motion[k]; });
+      ['brown','pink'].forEach(function (v) { var m = saved.motions && saved.motions[v]; if (m) Object.keys(MOTION).forEach(function (k) { if (Number.isFinite(m[k])) state.motions[v][k] = m[k]; }); });
     }
     if (query.get('bg') === 'pink' || query.get('bg') === 'brown') state.variant = query.get('bg');
+    state.motion = state.motions[state.variant];
   } catch (e) {}
 
   var layer = document.createElement('div'); layer.className = 'flow-bg'; layer.setAttribute('aria-hidden','true');
@@ -181,7 +196,8 @@ window.pmParticleFill = (function () {
   // Side padding of all content except the hero (desktop only, see service-panels.css).
   function applyLayout() { document.documentElement.style.setProperty('--v2-side', Math.max(0, state.motion.sideGutter) + 'vw'); }
   applyLayout();
-  var api = {state:state, defaults:{palettes:PALETTES, motion:MOTION}, fresh:fresh, key:key, uiKey:uiKey, tuning:tuning, apply:function () {}};
+  var api_setVariant = function (v) { var prev = state.motion; state.variant = v; state.motion = state.motions[v]; SHARED.forEach(function (k) { state.motion[k] = prev[k]; }); };
+  var api = {state:state, shared:SHARED, setVariant:function (v) { api_setVariant(v); }, defaults:{palettes:PALETTES, motions:MOTIONS}, fresh:fresh, key:key, uiKey:uiKey, tuning:tuning, apply:function () {}};
   window.pmFlowBackground = api;
   function fallback() {
     layer.classList.add('is-fallback');
@@ -407,17 +423,19 @@ window.pmParticleFill = (function () {
     out.textContent = exported();
   }
   function changed() { bg.apply(); saveState(); sync(); }
-  panel.querySelectorAll('[data-variant]').forEach(function (b) { b.addEventListener('click', function () { state.variant = b.dataset.variant; changed(); }); });
+  panel.querySelectorAll('[data-variant]').forEach(function (b) { b.addEventListener('click', function () { bg.setVariant(b.dataset.variant); changed(); }); });
   panel.querySelectorAll('[data-color]').forEach(function (i) { i.addEventListener('input', function () { state.colors[state.variant][i.dataset.color] = i.value; changed(); }); });
   panel.querySelectorAll('[data-key],[data-num]').forEach(function (i) {
     i.addEventListener('input', function () {
       if (i.value === '') return; var v = Number(i.value), k = i.dataset.key || i.dataset.num;
       if (!Number.isFinite(v)) return;
       if (k === 'resolution' && v <= 0) return; if (k === 'trailSize' && v <= 0) return;
-      state.motion[k] = v; changed();
+      state.motion[k] = v;
+      if (bg.shared.indexOf(k) >= 0) ['brown','pink'].forEach(function (x) { state.motions[x][k] = v; });
+      changed();
     });
   });
-  panel.querySelector('#bg-reset').addEventListener('click', function () { var f = bg.fresh(); f.variant = state.variant; state.colors = f.colors; state.motion = f.motion; changed(); });
+  panel.querySelector('#bg-reset').addEventListener('click', function () { var f = bg.fresh(); state.colors = f.colors; state.motions = f.motions; state.motion = state.motions[state.variant]; changed(); });
   var copy = panel.querySelector('#bg-copy');
   copy.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(exported()).then(function () { copy.textContent = 'Kopiert'; setTimeout(function () { copy.textContent = 'Kopieren'; }, 1200); }); });
   function clamp() {
