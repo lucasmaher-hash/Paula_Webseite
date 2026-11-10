@@ -856,6 +856,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Pink-Farben #F0E0E2 / #E5C2C9 / #C9A6AD / #AC8089, Akzent #E6D0C6, Bewegung wie Braun bis auf die Formgröße; Formgröße 3,6 jetzt für beide. Regler-Panel, sein CSS, die gespeicherten Browserwerte und die alte Frame-Zieh-Leiste (`service-tuner.js`) entfernt; die freigegebenen Werte stehen fest im Code. Braun bleibt Standard, `?bg=pink` zeigt Pink. Geprüft ohne gespeicherte Werte: beide Varianten laden mit den neuen Werten, kein Regler sichtbar, keine Fehler.
 - **Nicht funktioniert / offen:** Der ältere Rahmen-Regler in `experiment-frames.js` erscheint weiterhin nur mit `?regler=1` (seit Kurzprojekt 1 so), sonst nie.
 
+### 10.11.2026 · Claude · v2: Übergang wieder fein, dreimal schneller
+- **Versucht:** Lucas: Der Übergang ist jetzt sehr pixelig, außerdem 3× schneller.
+- **Funktioniert:** Ursache war die übernommene Korngröße 24 aus dem Regler-Export (24 Gerätepixel pro Korn = sichtbare Blöcke). Zurück auf 1 Gerätepixel, Dauer 1100 → 367 ms. Bei 2× Pixeldichte angesehen: feines Korn.
+- **Nicht funktioniert / offen:** –
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

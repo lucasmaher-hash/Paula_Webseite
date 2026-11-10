@@ -9,7 +9,7 @@ window.pmParticleFill = (function () {
   var touch = matchMedia('(hover: none)');
   function settings() {
     var m = window.pmFlowBackground && window.pmFlowBackground.state.motion || {};
-    return {duration:Number.isFinite(m.pDuration) ? m.pDuration : 1100, size:Number.isFinite(m.pSize) ? m.pSize : 1,
+    return {duration:Number.isFinite(m.pDuration) ? m.pDuration : 367, size:Number.isFinite(m.pSize) ? m.pSize : 1,
       flicker:Number.isFinite(m.pScatter) ? m.pScatter : .18, spread:Number.isFinite(m.pSpread) ? m.pSpread : .6};
   }
   // Fine grain (after gather.be-of-dao.com): every device pixel (or block of `size` pixels) is one grain.
@@ -163,11 +163,11 @@ window.pmParticleFill = (function () {
     // Brown: Lucas' tuned values from the dial, 10.11.2026.
     brown:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
-      sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6},
+      sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6},
     // Pink: Lucas' tuned values, 10.11.2026 (Formgröße 3.6 also used for brown).
     pink:{intensity:2.4,accentAmount:.18,softness:.585,sheen:.75,speed:.3,scale:3.6,warp:.76,parallax:1,
       displace:.08,trailSize:345,trailStrength:.45,trailDecay:.935,trailGrowth:2.38,scrollWaves:1.67,grain:.08,resolution:.99,
-      sideGutter:13.25,pDuration:1100,pSize:24,pScatter:.12,pSpread:.6}
+      sideGutter:13.25,pDuration:367,pSize:1,pScatter:.12,pSpread:.6}
   };
   var MOTION = MOTIONS.brown;
   function fresh() {
