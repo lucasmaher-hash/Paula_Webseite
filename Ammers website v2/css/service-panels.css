@@ -109,10 +109,10 @@ body.menu-open #bg-tuner{visibility:hidden}
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;
   display:grid;place-items:center;text-align:center;padding:0;
   border:1px solid color-mix(in srgb,var(--color-primary) 55%,transparent);
-  color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 0%,transparent);
-  transition:background-color .5s cubic-bezier(.3,0,.2,1),border-color .5s,color .5s;outline:none;cursor:default}
-.service-oval>*{grid-area:1/1}
-.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
+  color:var(--color-primary);--pf-color:var(--color-primary);overflow:hidden;isolation:isolate;
+  transition:border-color .5s,color .35s;outline:none;cursor:default}
+.service-oval>*{grid-area:1/1;position:relative;z-index:1}
+.service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
 .service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;
   transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
 .service-oval-hint{display:none;align-self:end;opacity:.8}
@@ -124,9 +124,9 @@ body.menu-open #bg-tuner{visibility:hidden}
 .service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .service-oval-list .service-oval-more{border:0}
 .service-oval-list .service-oval-more a{padding-top:14px;font-size:.66rem;white-space:nowrap;letter-spacing:.08em}
-.service-oval:hover,.service-oval:focus-within,.service-oval.is-open{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary)}
-.service-oval:hover .service-oval-title,.service-oval:focus-within .service-oval-title,.service-oval.is-open .service-oval-title{opacity:0;transform:translateY(-8px)}
-.service-oval:hover .service-oval-list,.service-oval:focus-within .service-oval-list,.service-oval.is-open .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
+.service-oval.pf-on{border-color:var(--color-primary);color:var(--color-on-primary)}
+.service-oval.pf-on .service-oval-title{opacity:0;transform:translateY(-8px)}
+.service-oval.pf-on .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
 .service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 .service-oval-stars{position:relative;flex:0 0 0;width:0;z-index:1;pointer-events:none}
 .service-oval-stars svg{position:absolute;left:0;width:clamp(26px,2.4vw,40px);transform:translate(-50%,-50%);fill:var(--color-primary)}
@@ -138,7 +138,7 @@ body.menu-open #bg-tuner{visibility:hidden}
   .service-oval-list{width:72%}
   .service-oval-title{font-size:34px}
   .service-oval-hint{display:block;margin-bottom:18%}
-  .service-oval.is-open .service-oval-hint{opacity:0}
+  .service-oval.pf-on .service-oval-hint{opacity:0}
   .service-oval-list a{font-size:15px;padding:8px 2px}
   .service-oval-stars{flex:0 0 0;width:min(100%,330px);height:0}
   .service-oval-stars svg{width:28px}
@@ -146,3 +146,25 @@ body.menu-open #bg-tuner{visibility:hidden}
   .service-oval-stars svg:last-child{top:0;left:78%}
 }
 @media(prefers-reduced-motion:reduce){.service-oval,.service-oval *{transition:none!important}}
+
+/* Particle fill canvas (js/service-variant.js, window.pmParticleFill). */
+.pf{position:relative}
+.pf>.pf-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;grid-area:auto}
+.service-oval>.pf-canvas{z-index:0}
+
+/* Gallery: one word per picture over the particle fill. */
+.results .strip figure{position:relative;--pf-color:var(--color-primary)}
+.results .strip figure>.pf-canvas{z-index:1}
+.strip-label{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;pointer-events:none;
+  font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px);line-height:1;color:var(--color-on-primary);
+  opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
+.results .strip figure.pf-on .strip-label{opacity:1;transform:none;transition-delay:.05s}
+
+/* Side padding for everything except the hero (dial: Layout > Seitenrand). */
+@media(min-width:900px){
+  :root{--v2-side:13.25vw}
+  .container,.strip{max-width:none!important;padding-left:max(var(--gutter),var(--v2-side))!important;padding-right:max(var(--gutter),var(--v2-side))!important}
+  .hero .container{padding-left:max(var(--gutter),var(--v2-side))!important;padding-right:max(var(--gutter),var(--v2-side))!important}
+  .reviews{margin-left:max(var(--gutter),var(--v2-side));margin-right:max(var(--gutter),var(--v2-side))}
+  .reviews>.container{padding-left:var(--space-7,48px)!important;padding-right:var(--space-7,48px)!important}
+}
