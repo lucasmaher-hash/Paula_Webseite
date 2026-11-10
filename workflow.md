@@ -991,3 +991,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Texte außerhalb der Rahmen hell
 - Überschriften, Einleitungen, Eyebrows, Bewertungszahl, Gutschein-Hinweis und Footer stehen jetzt im gleichen fast Weiß wie die Rahmen. Hero, Header, Buttons und Inhalte in Panels behalten ihre Farben. Geprüft per Playwright bei 1440 px (Schulungen, Bewertungen, Gutscheine, Kontakt/Footer, Behandlungen).
+
+### Claude (Opus 5.5), 10.11.2026: Kein Spalt mehr zwischen Rahmen und Fläche
+- Überall entfernt: Text-Panels (Linie direkt an der Kante), Ovale, Galerie (Linie direkt am Foto) und die Fotos mit ausgeschnittenem Spalt (Über mich, Kontakt, Kursbilder sind jetzt normale Fotos; Masken-Skript entfernt). Ruhe = nur die Linie, Hover = eine solide Fläche. Abstand zwischen Panels auf 12 px (3 + 6 frei + 3). Geprüft per Playwright bei 1440 px.

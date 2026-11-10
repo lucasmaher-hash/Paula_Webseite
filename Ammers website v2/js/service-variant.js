@@ -414,49 +414,7 @@ window.pmFlip = function (list) {
   api.apply(); setRunning();
 })();
 
-// Photo frames: a 3 px gap is cut 3 px inside the edge of every photo (SVG mask), so the photo's own outer 3 px is its frame.
-// Rounded rectangles use the element's radius; the course photos repeat their clip shape from css/service-panels.css.
-(function () {
-  var courses = document.querySelector('.courses'), mobile = matchMedia('(max-width:899px)');
-  function px(expr) { if (!courses) return 0; var d = document.createElement('div'); d.style.cssText = 'position:absolute;visibility:hidden;height:0;width:' + expr; courses.append(d); var w = d.getBoundingClientRect().width; d.remove(); return w; }
-  function A(r, x, y) { return ' A' + r + ' ' + r + ' 0 0 1 ' + x + ' ' + y; }
-  function rect(W, H, r) { r = Math.min(r, W / 2, H / 2);
-    return 'M' + r + ' 0 L' + (W - r) + ' 0' + A(r, W, r) + ' L' + W + ' ' + (H - r) + A(r, W - r, H) + ' L' + r + ' ' + H + A(r, 0, H - r) + ' L0 ' + r + A(r, r, 0) + 'Z'; }
-  function course(odd, W, H, cw, f, r) {
-    var a = cw * .76, b = cw * .942, fx = f * .628, fy = f * .778;
-    return odd
-      ? 'M' + r + ' 0 L' + (W - r) + ' 0' + A(r, W, r) + ' L' + W + ' ' + (H - r) + A(r, W - r, H) + ' L' + (a + f) + ' ' + H +
-        ' Q' + a + ' ' + H + ' ' + (a - fx) + ' ' + (H - fy) + ' L' + fx + ' ' + (H - b + fy) + ' Q0 ' + (H - b) + ' 0 ' + (H - b - f) + ' L0 ' + r + A(r, r, 0) + 'Z'
-      : 'M' + r + ' 0 L' + (W - a - f) + ' 0 Q' + (W - a) + ' 0 ' + (W - a + fx) + ' ' + fy + ' L' + (W - fx) + ' ' + (b - fy) +
-        ' Q' + W + ' ' + b + ' ' + W + ' ' + (b + f) + ' L' + W + ' ' + (H - r) + A(r, W - r, H) + ' L' + r + ' ' + H + A(r, 0, H - r) + ' L0 ' + r + A(r, r, 0) + 'Z';
-  }
-  function targets() {
-    var list = [];
-    document.querySelectorAll('.strip figure').forEach(function (el) { if (!el.querySelector('.fl-inner')) list.push({el:el}); });   // flip photos get the light frame from CSS
-    document.querySelectorAll('.contact-figure').forEach(function (el) { list.push({el:el}); });
-    var about = document.querySelector('.about-figure'); if (about) list.push({el: mobile.matches ? about.querySelector('img') : about, other: mobile.matches ? about : about.querySelector('img')});
-    if (courses) courses.querySelectorAll('.course').forEach(function (c, i) { var m = c.querySelector('.course-media'); if (m) list.push({el:m, course:i % 2 === 0 ? 'odd' : 'even'}); });
-    return list;
-  }
-  function cut() {
-    var w = 3, cw = px('var(--cw)'), f = px('var(--f)'), cr = px('var(--r)');
-    targets().forEach(function (t) {
-      if (t.other) { t.other.style.webkitMaskImage = t.other.style.maskImage = ''; t.other.classList.remove('pm-cut'); }
-      var el = t.el; if (!el) return; var bx = t.box || el, W = bx.offsetWidth, H = bx.offsetHeight; if (!W || !H) return;
-      var d = t.course ? course(t.course === 'odd', W, H, cw, f, cr) : rect(W, H, parseFloat(getComputedStyle(bx).borderTopLeftRadius) || 0);
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none"><defs><mask id="c" maskUnits="userSpaceOnUse" x="0" y="0" width="' + W + '" height="' + H + '"><path d="' + d + '" fill="' + (t.ring ? '#000' : '#fff') + '"/>' +
-        (t.ring ? '' : '<path d="' + d + '" fill="none" stroke="#000" stroke-width="' + 4 * w + '"/>') + '<path d="' + d + '" fill="none" stroke="#fff" stroke-width="' + 2 * w + '"/></mask></defs>' +
-        '<rect width="' + W + '" height="' + H + '" fill="#000" mask="url(#c)"/></svg>';   // luminance mask inside the SVG -> alpha for CSS
-      var url = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
-      el.classList.add('pm-cut'); el.style.webkitMaskImage = url; el.style.maskImage = url;
-    });
-  }
-  var queued = false; function schedule() { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; cut(); }); } }
-  cut();
-  if ('ResizeObserver' in window) { var ro = new ResizeObserver(schedule); targets().forEach(function (t) { ro.observe(t.el); if (t.other) ro.observe(t.other); }); }
-  addEventListener('resize', schedule); mobile.addEventListener('change', schedule); if (document.fonts) document.fonts.ready.then(schedule);
-  addEventListener('load', schedule);
-})();
+// Photos have no cut gap any more (10.11.2026): they are plain; gallery photos get the near-white frame from CSS.
 
 // Courses drift together when the section is reached and apart when it is left (css/service-panels.css, like the vouchers in js/main.js).
 (function () {

@@ -85,7 +85,7 @@
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;border:3px solid var(--hvc);
   display:grid;place-items:center;text-align:center;color:var(--hvc);outline:none;cursor:default;isolation:isolate;transition:color .3s}
-.service-oval::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--hvc);opacity:0;transition:opacity .35s;z-index:-1}
+.service-oval::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--hvc);opacity:0;transition:opacity .35s;z-index:-1}
 .service-oval>*{grid-area:1/1}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
 .service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;transition:opacity .3s}
@@ -118,9 +118,9 @@
 .results .strip figure>img{visibility:hidden}
 .results .strip figure img{transform:none!important;transition:none!important}   /* no hover zoom on the gallery photos */   /* keeps the size; the photo itself sits on the flipping front */
 .results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--hvc);border-radius:inherit;pointer-events:none}
-.fl-inner{position:absolute;inset:6px;border-radius:calc(var(--rounded-lg) - 6px)}
+.fl-inner{position:absolute;inset:3px;border-radius:calc(var(--rounded-lg) - 3px)}
 .fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
-.fl-front img{position:absolute;top:-6px;left:-6px;width:calc(100% + 12px)!important;height:calc(100% + 12px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
+.fl-front img{position:absolute;top:-3px;left:-3px;width:calc(100% + 6px)!important;height:calc(100% + 6px)!important;max-width:none;object-fit:cover;aspect-ratio:auto!important}
 .fl-back{background:var(--hvc);display:grid;place-items:center;opacity:0;transition:opacity .35s}
 .fl-back .strip-label{position:static;inset:auto;opacity:1;transform:none;color:var(--color-primary);font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px)}
 .results .strip figure.is-open .fl-back{opacity:1}
@@ -199,8 +199,8 @@
 /* One clean frame for every text panel (10.11.2026): 3 px line in exactly the panel's own colour, 3 px gap, then the panel.
    The line sits outside the box (outline), so neighbouring frames need --frame-space between their boxes:
    6 px frame + 6 px clear space + 6 px frame = 18 px, everywhere. */
-:root{--frame-w:3px;--frame-space:18px}
-.review,.voucher,.contact-panel,.hours,.course-panel,.about-panel{outline:var(--frame-w) solid var(--ring,var(--color-surface));outline-offset:var(--frame-w)}
+:root{--frame-w:3px;--frame-space:12px}   /* 3 px frame + 6 px clear + 3 px frame */
+.review,.voucher,.contact-panel,.hours,.course-panel,.about-panel{outline:var(--frame-w) solid var(--ring,var(--color-surface));outline-offset:0}
 .voucher,.contact-panel,.course-panel,.about-panel{--ring:var(--color-surface)}
 .review{--ring:var(--color-surface-raised)}
 .review.review-all{--ring:color-mix(in srgb,var(--color-surface-deep) 86%,var(--color-accent))}
@@ -209,12 +209,11 @@
 @media(max-width:899px){
   /* phone: photo and text sit in one shared panel, so only that panel is framed */
   .about-panel{outline:0}
-  .about-grid{--ring:var(--color-surface);outline:var(--frame-w) solid var(--ring);outline-offset:var(--frame-w);margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
+  .about-grid{--ring:var(--color-surface);outline:var(--frame-w) solid var(--ring);outline-offset:0;margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
   .courses,.course{gap:var(--frame-space)!important}
 }
 /* Photos have no added line: js/service-variant.js cuts a 3 px gap 3 px inside their edge (SVG mask),
    so the outer 3 px of the photo itself forms the frame. The particle fill sits under the same mask. */
-.pm-cut{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 
 /* Courses drift together (desktop), same principle as the vouchers: apart until the section is reached, then they ease into place;
    leaving the section lets them drift apart again. Time-based, not linked to scroll (js/service-variant.js toggles .together).
