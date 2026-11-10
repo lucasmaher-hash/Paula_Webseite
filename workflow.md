@@ -968,3 +968,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Ovale solide, Hover dreht sie um
 - Die drei Behandlungs-Ovale sind jetzt immer gefüllt (3 px Linie, 3 px Abstand, helle Fläche, dunkler Titel). Beim Hover drehen sie sich in 0,8 s um 180° um die senkrechte Achse; die Rückseite zeigt die sechs Leistungen. Tastatur-Fokus und Tippen am Handy drehen ebenfalls (erster Tipp dreht, zweiter öffnet den Link). Korn-Füllung bei den Ovalen entfernt. Geprüft per Playwright bei 1440 px (Vorderseite, Drehung, Rückseite) und 375 px mit Touch.
+
+### Claude (Opus 5.5), 10.11.2026: Nur die innere Fläche der Ovale dreht sich
+- Die 3-px-Außenlinie bleibt beim Hover stehen, nur die innere Fläche (3 px Abstand) dreht sich um 180°. Geprüft per Playwright bei 1440 px mitten in der Drehung.

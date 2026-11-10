@@ -78,15 +78,15 @@
 .flow-bg.is-fallback canvas{display:none}
 
 /* Services as three ovals (js/service-variant.js), after tuxkarma.co. Solid at rest (3 px line, 3 px gap, light fill);
-   on hover (or focus/tap: .is-open) the oval flips 180 degrees around its vertical axis to the back with the services. */
+   on hover (or focus/tap: .is-open) the inner panel flips (the outer line stays) 180 degrees around its vertical axis to the back with the services. */
 .service-ovals-variant .services{background:transparent;border:0;box-shadow:none}
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
-.service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;perspective:1400px;outline:none;cursor:default;color:var(--color-primary);text-align:center}
+.service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;perspective:1400px;border:3px solid var(--color-surface);border-radius:50%;outline:none;cursor:default;color:var(--color-primary);text-align:center}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
-.so-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
-.so-face{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;border:3px solid var(--color-surface);
+.so-inner{position:absolute;inset:3px;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
+.so-face{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;
   -webkit-backface-visibility:hidden;backface-visibility:hidden}
-.so-face::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--color-surface);z-index:-1}
+.so-face::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--color-surface);z-index:-1}
 .so-face>*{position:relative}
 .so-back{transform:rotateY(180deg)}
 @media(hover:hover){.service-oval:hover .so-inner{transform:rotateY(180deg)}}
@@ -98,7 +98,7 @@
 .service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .service-oval-list .arr{display:inline-block;margin-left:.45em;font-size:.8em;opacity:.75;transition:transform .25s,opacity .25s}
 .service-oval-list a:hover .arr,.service-oval-list a:focus-visible .arr{transform:translate(2px,-2px);opacity:1}
-.service-oval:focus-visible .so-face{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
+.service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
 @media(max-width:799px){
   .service-ovals{flex-direction:column;align-items:center;gap:18px}
   .service-oval{flex:none;width:min(100%,330px);aspect-ratio:.72}
