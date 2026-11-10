@@ -927,3 +927,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Sonnet 5.5), 10.11.2026: Galerie-Panels mit Kontur und Abstand beim Füllen
 - Wie bei den Ovalen: beim Hover erscheint eine 3-px-Kontur, 3 px Abstand, dann die Korn-Füllung; das Foto blendet aus, der Abstand zeigt den Seitenhintergrund. Bei 1440 px geprüft.
+
+### Claude (Sonnet 5.5), 10.11.2026: Äußerer Rahmen für alle Panels und Fotos
+- Jedes Panel und Foto hat im Ruhezustand eine 3-px-Linie außen, 3 px Abstand, dann das Panel (CSS outline, Farbe = Regler "Rahmenlinie"). Die dünne 1-px-Kontur entfällt. Galerie-Hover wieder ohne Innenring. Geprüft bei 1440 und 375 px. Ausnahme: Kursbilder (clip-path-Form) ohne Ring.

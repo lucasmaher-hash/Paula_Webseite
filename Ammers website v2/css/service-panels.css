@@ -118,11 +118,7 @@
 
 /* Gallery: one word per picture over the particle fill. */
 .results .strip figure{position:relative;--pf-color:var(--color-primary)}
-.results .strip figure>.pf-canvas{z-index:1;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);border-radius:calc(var(--rounded-lg) - 6px)}
-.results .strip figure::after{content:"";position:absolute;inset:0;z-index:3;border:3px solid var(--color-primary);border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s}
-.results .strip figure.pf-on::after{opacity:1}
-.results .strip figure img{transition:opacity .5s ease,transform .6s ease}
-.results .strip figure.pf-on img{opacity:0}
+.results .strip figure>.pf-canvas{z-index:1}
 .strip-label{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;pointer-events:none;
   font-family:var(--font-display);font-size:clamp(24px,2.3vw,38px);line-height:1;color:var(--color-on-primary);
   opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
@@ -214,3 +210,9 @@
 #frame-colors .fc-out{margin:12px 0 8px;padding:8px;background:#e5e5e9;border-radius:9px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
 #frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
 body.menu-open #frame-colors{visibility:hidden}
+
+/* Every panel and photo gets an outer frame: 3 px line, 3 px gap, then the panel itself (also at rest). Line colour = dial "Rahmenlinie". */
+:root,.theme-brown{--ring:var(--frame-line-brown,#dac6be)}
+.theme-pink,.services,.reviews{--ring:var(--frame-line-pink,#d0b3b8)}
+.preview-frame-host::before{display:none}
+.preview-frame-host:not(.perks li):not(.service-copy),.strip figure,.about-figure,.contact-figure{outline:3px solid var(--ring);outline-offset:3px}
