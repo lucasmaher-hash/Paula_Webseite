@@ -826,6 +826,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Nur in `Ammers website v2/`. Seitenrand als `--v2-side` (Standard 13,25 vw ≙ dem Screenshot: 212 px bei 1600 px Breite), gilt ab 900 px für alle Container, Galerie und das Bewertungs-Panel; Hero unverändert. Galerie: acht Wörter nach den Motiven (Lips, Lashes, Facials, Nails, Nail Art, Microneedling, Masks, Shellac), englisch wie in Lucas' Beispielen. Partikel-Übergang als gemeinsames Modul `pmParticleFill`: ein Canvas pro Fläche, Partikel auf einem leicht verschobenen Raster, starten versetzt (zufällig plus Abstand zum Einstiegspunkt der Maus), fliegen ein, wachsen und schließen die Fläche; beim Verlassen umgekehrt. Ovale nutzen es jetzt auch. Regler heißt „Regler“, neu: Layout > Seitenrand, Partikel > Dauer, Größe, Anflugweite, Staffelung. Playwright 1280/375 px: Zwischenbild und Endzustand angesehen, kein Querscrollen, Antippen am Handy füllt.
 - **Nicht funktioniert / offen:** Wörter sind englisch, deutsche Fassung wäre ein Tausch in `index.html`. Andere Hover-Animationen unverändert, wie gewünscht. Kein echtes Handy getestet.
 
+### 10.11.2026 · Claude · v2: Partikel als feines Korn
+- **Versucht:** Lucas zeigte gather.be-of-dao.com als Vorbild: sehr, sehr feine Partikel wie Filmkorn, keine Kleckse.
+- **Funktioniert:** Partikel-Übergang neu: jedes Gerätepixel ist ein Korn (ImageData statt gezeichneter Kreise). Jedes Korn hat einen Schwellwert aus Zufall und Abstand zum Einstiegspunkt der Maus; steigt der Fortschritt darüber, wird es farbig. So sammelt sich eine Kornwolke um den Mauspunkt und verdichtet sich zur Vollfläche, beim Verlassen löst sie sich auf. Ein Teil des Rauschens wird pro Bild neu gewürfelt, der Rand flimmert. Regler: Dauer (1100 ms), Korngröße (1 Gerätepixel), Flimmern am Rand, Staffelung. Gespeicherte Reglerwerte auf neuen Schlüssel gesetzt, damit alte Werte nicht stören. Zwischenbilder bei 1280 px angesehen.
+- **Nicht funktioniert / offen:** Auf Retina sind die Körner halb so groß wie im Test (1 statt 2 CSS-Pixel pro Korn), dort also noch feiner; am echten Gerät nicht geprüft.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):

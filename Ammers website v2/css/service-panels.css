@@ -149,7 +149,7 @@ body.menu-open #bg-tuner{visibility:hidden}
 
 /* Particle fill canvas (js/service-variant.js, window.pmParticleFill). */
 .pf{position:relative}
-.pf>.pf-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;grid-area:auto}
+.pf>.pf-canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:0;pointer-events:none;grid-area:auto}
 .service-oval>.pf-canvas{z-index:0}
 
 /* Gallery: one word per picture over the particle fill. */

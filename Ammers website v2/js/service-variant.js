@@ -1,7 +1,7 @@
 // Ammers website v2: services as three ovals, the flowing background and the dial.
 
-// Particle fill for panels: on hover/focus/tap, particles fly in, grow and merge into the solid colour;
-// on leave they shrink and drift away. The element's own background stays transparent; a canvas inside
+// Particle fill for panels: on hover/focus/tap, fine grain gathers from the pointer and densifies into the
+// solid colour; on leave it dissolves the same way. The element's own background stays transparent; a canvas inside
 // (clipped by the element's radius) paints the fill. `.pf-on` switches the content once the fill is mostly there.
 window.pmParticleFill = (function () {
   'use strict';
@@ -9,45 +9,51 @@ window.pmParticleFill = (function () {
   var touch = matchMedia('(hover: none)');
   function settings() {
     var m = window.pmFlowBackground && window.pmFlowBackground.state.motion || {};
-    return {duration:Number.isFinite(m.pDuration) ? m.pDuration : 900, size:Number.isFinite(m.pSize) ? m.pSize : 12,
-      scatter:Number.isFinite(m.pScatter) ? m.pScatter : 36, spread:Number.isFinite(m.pSpread) ? m.pSpread : .6};
+    return {duration:Number.isFinite(m.pDuration) ? m.pDuration : 1100, size:Number.isFinite(m.pSize) ? m.pSize : 1,
+      flicker:Number.isFinite(m.pScatter) ? m.pScatter : .18, spread:Number.isFinite(m.pSpread) ? m.pSpread : .6};
   }
-  function rand(seed) { var x = Math.sin(seed * 127.1) * 43758.5453; return x - Math.floor(x); }
+  // Fine grain (after gather.be-of-dao.com): every device pixel (or block of `size` pixels) is one grain.
+  // A grain switches on when its threshold drops below the progress. Thresholds mix noise with the distance
+  // from where the pointer entered, so a grain cloud gathers from there and densifies into the solid colour;
+  // `flicker` re-rolls part of the noise each frame so the edge shimmers like grain.
+  var swatch = document.createElement('canvas').getContext('2d', {willReadFrequently:true}), rgbaCache = {};
+  function rgba(color) {
+    if (rgbaCache[color]) return rgbaCache[color];
+    swatch.clearRect(0, 0, 1, 1); swatch.fillStyle = color; swatch.fillRect(0, 0, 1, 1);
+    var d = swatch.getImageData(0, 0, 1, 1).data;
+    return (rgbaCache[color] = (255 << 24 | d[2] << 16 | d[1] << 8 | d[0]) >>> 0);
+  }
   function attach(el, opts) {
     var canvas = document.createElement('canvas'); canvas.className = 'pf-canvas'; canvas.setAttribute('aria-hidden', 'true');
     el.prepend(canvas); el.classList.add('pf');
-    var ctx = canvas.getContext('2d'), st = {p:0, target:0, raf:0, last:0, parts:null, key:'', ox:.5, oy:.5};
+    var ctx = canvas.getContext('2d'), st = {p:0, target:0, raf:0, last:0, key:'', ox:.5, oy:.5, noise:null, noise2:null, img:null, cw:0, ch:0};
     el._pf = st;
-    function build(w, h, s) {
-      var c = Math.max(3, s.size), cols = Math.ceil(w / c) + 1, rows = Math.ceil(h / c) + 1, parts = [], i = 0;
-      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++, i++) {
-        var a = rand(i + 1) * Math.PI * 2, d = s.scatter * (.4 + .6 * rand(i + 7));
-        parts.push({x:(x + .5 + (rand(i + 3) - .5) * .6) * c, y:(y + .5 + (rand(i + 5) - .5) * .6) * c, dx:Math.cos(a) * d, dy:Math.sin(a) * d, r:rand(i + 11), c:c});
-      }
-      return parts;
-    }
     function draw() {
       var s = settings(), dpr = Math.min(2, devicePixelRatio || 1), w = el.clientWidth, h = el.clientHeight;
       if (!w || !h) return;
-      var key = [w, h, s.size, s.scatter, dpr].join(':');
-      if (st.key !== key) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); st.parts = build(w, h, s); st.key = key; }
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
-      if (st.p <= 0) return;
-      ctx.fillStyle = getComputedStyle(el).getPropertyValue('--pf-color').trim() || getComputedStyle(el).color;
-      if (st.p >= 1) { ctx.fillRect(0, 0, w, h); return; }
-      var spread = Math.min(.9, Math.max(0, s.spread)), ox = st.ox * w, oy = st.oy * h, diag = Math.hypot(w, h);
-      ctx.beginPath();
-      for (var i = 0; i < st.parts.length; i++) {
-        var q = st.parts[i], dist = Math.hypot(q.x - ox, q.y - oy) / diag;
-        var delay = spread * (.55 * q.r + .45 * Math.min(1, dist * 1.4));
-        var t = Math.min(1, Math.max(0, (st.p - delay) / (1 - spread)));
-        if (t <= 0) continue;
-        var e = 1 - Math.pow(1 - t, 3), grow = t * t * (3 - 2 * t);
-        var r = q.c * (.16 + .94 * Math.pow(grow, 1.6));
-        var px = q.x + q.dx * (1 - e), py = q.y + q.dy * (1 - e);
-        ctx.moveTo(px + r, py); ctx.arc(px, py, r, 0, Math.PI * 2);
+      var g = Math.max(1, Math.round(s.size)), cw = Math.ceil(w * dpr / g), ch = Math.ceil(h * dpr / g);
+      var key = [cw, ch, g].join(':');
+      if (st.key !== key) {
+        canvas.width = cw; canvas.height = ch; st.cw = cw; st.ch = ch; st.key = key;
+        var n = cw * ch; st.noise = new Float32Array(n); st.noise2 = new Float32Array(n);
+        for (var k = 0; k < n; k++) { st.noise[k] = Math.random(); st.noise2[k] = Math.random() - .5; }
+        st.img = ctx.createImageData(cw, ch);
       }
-      ctx.fill();
+      if (st.p <= 0) { ctx.clearRect(0, 0, cw, ch); return; }
+      var color = getComputedStyle(el).getPropertyValue('--pf-color').trim() || getComputedStyle(el).color;
+      if (st.p >= 1) { ctx.clearRect(0, 0, cw, ch); ctx.fillStyle = color; ctx.fillRect(0, 0, cw, ch); return; }
+      var px = rgba(color), buf = new Uint32Array(st.img.data.buffer), noise = st.noise, noise2 = st.noise2;
+      var spread = Math.min(.95, Math.max(0, s.spread)), flick = Math.max(0, s.flicker), v = st.p * (1 + flick);
+      var ox = st.ox * cw, oy = st.oy * ch, inv = 1 / Math.hypot(Math.max(ox, cw - ox), Math.max(oy, ch - oy));
+      var shift = (Math.random() * noise2.length) | 0, len = noise2.length, i = 0;
+      for (var y = 0; y < ch; y++) {
+        var dy = (y - oy) * (y - oy);
+        for (var x = 0; x < cw; x++, i++) {
+          var dx = x - ox, thr = (1 - spread) * noise[i] + spread * Math.sqrt(dx * dx + dy) * inv + flick * noise2[(i + shift) % len];
+          buf[i] = thr < v ? px : 0;
+        }
+      }
+      ctx.putImageData(st.img, 0, 0);
     }
     function step(ts) {
       var s = settings(), dt = st.last ? ts - st.last : 16; st.last = ts;
@@ -153,10 +159,10 @@ window.pmParticleFill = (function () {
   };
   var MOTION = {intensity:1,accentAmount:.5,softness:.28,sheen:.5,speed:1,scale:1.6,warp:1.2,parallax:.1,
     displace:.12,trailSize:450,trailStrength:.45,trailDecay:.98,trailGrowth:1.67,scrollWaves:1,grain:0,resolution:.5,
-    sideGutter:13.25,pDuration:900,pSize:12,pScatter:36,pSpread:.6};
+    sideGutter:13.25,pDuration:1100,pSize:1,pScatter:.18,pSpread:.6};
   function fresh() { return {variant:query.get('bg') === 'pink' ? 'pink' : 'brown',
     colors:{brown:Object.assign({},PALETTES.brown),pink:Object.assign({},PALETTES.pink)},motion:Object.assign({},MOTION)}; }
-  var key = 'pm-beauty:1:background:v2', uiKey = 'pm-beauty:1:background-ui:v1';
+  var key = 'pm-beauty:v2:settings:v3', uiKey = 'pm-beauty:1:background-ui:v1';
   var state = fresh();
   if (tuning) try {
     var saved = JSON.parse(localStorage.getItem(key));
@@ -367,7 +373,7 @@ window.pmParticleFill = (function () {
   var COLORS = [['base','Grund'],['tone1','Ton hell'],['tone2','Ton mittel'],['tone3','Ton tief'],['accent','Akzent (andere Palette)']];
   var SLIDERS = [
     ['Layout', [['sideGutter','Seitenrand links/rechts (Desktop)',0,35,.25,'vw']]],
-    ['Partikel (Hover-Flächen)', [['pDuration','Dauer',0,4000,10,'ms'],['pSize','Partikelgröße',3,80,1,'px'],['pScatter','Anflugweite',0,300,1,'px'],['pSpread','Staffelung',0,.9,.01,'']]],
+    ['Partikel (Hover-Flächen)', [['pDuration','Dauer',0,4000,10,'ms'],['pSize','Korngröße (Gerätepixel)',1,24,1,'px'],['pScatter','Flimmern am Rand',0,1,.01,''],['pSpread','Staffelung',0,.9,.01,'']]],
     ['Hintergrund: Farbe', [['intensity','Farbstärke',0,3,.01,'×'],['accentAmount','Akzentmenge',0,2,.01,'×'],['softness','Kantenweichheit',.005,.6,.005,''],['sheen','Glanz an den Falten',0,3,.01,'×']]],
     ['Hintergrund: Fluss', [['speed','Tempo',0,6,.05,'×'],['scale','Formgröße (klein = groß)',.1,8,.05,'×'],['warp','Faltung',0,4,.02,''],['parallax','Scroll-Mitlauf',-2,2,.01,'']]],
     ['Hintergrund: Maus und Scroll', [['displace','Verzerrung (Tux: 0,2)',0,1,.005,''],['trailSize','Spurgröße (Tux: 450)',20,2000,5,'px'],['trailStrength','Spurstärke',0,2,.01,''],['trailDecay','Nachleuchten (Tux: 0,98)',.8,.999,.001,''],['trailGrowth','Wachstum (Tux: 1,67)',.2,5,.01,'×'],['scrollWaves','Scroll-Wellen',0,3,.01,'×']]],
