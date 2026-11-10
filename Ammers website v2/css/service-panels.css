@@ -78,14 +78,14 @@
 .flow-bg.is-fallback canvas{display:none}
 
 /* Services as three ovals (js/service-variant.js), after tuxkarma.co. At rest only the near-white frame and title;
-   hover/focus/tap (.is-open) fills the oval (3 px gap inside the line) and shows six services. */
+   hover/focus/tap (.is-open) fills the oval and shows six services. */
 :root{--hv-mix:35%}
 .hv,.service-oval,.results .strip figure{--hvc:color-mix(in srgb,var(--color-surface) var(--hv-mix),#fff)}
 .service-ovals-variant .services{background:transparent;border:0;box-shadow:none}
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;border:3px solid var(--hvc);
   display:grid;place-items:center;text-align:center;color:var(--hvc);outline:none;cursor:default;isolation:isolate;transition:color .3s}
-.service-oval::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--hvc);opacity:0;transition:opacity .35s;z-index:-1}
+.service-oval::before{content:"";position:absolute;inset:-1px;border-radius:50%;background:var(--hvc);opacity:0;transition:opacity .35s;z-index:-1}
 .service-oval>*{grid-area:1/1}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
 .service-oval-title{margin:0;max-width:78%;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;transition:opacity .3s}
@@ -197,11 +197,10 @@
 
 
 
-/* One clean frame for every text panel (10.11.2026): 3 px line in exactly the panel's own colour, 3 px gap, then the panel.
-   The line sits outside the box (outline), so neighbouring frames need --frame-space between their boxes:
-   6 px frame + 6 px clear space + 6 px frame = 18 px, everywhere. */
+/* One 3 px frame in the panel's own colour. Overlap the fill by 1 px so the
+   separately antialiased rounded edges cannot reveal a hairline of background. */
 :root{--frame-w:3px;--frame-space:12px}   /* 3 px frame + 6 px clear + 3 px frame */
-.review,.voucher,.contact-panel,.hours,.course-panel,.about-panel{outline:var(--frame-w) solid var(--ring,var(--color-surface));outline-offset:0}
+.review,.voucher,.contact-panel,.hours,.course-panel,.about-panel{outline:var(--frame-w) solid var(--ring,var(--color-surface));outline-offset:-1px}
 .voucher,.contact-panel,.course-panel,.about-panel{--ring:var(--color-surface)}
 .review{--ring:var(--color-surface-raised)}
 .review.review-all{--ring:color-mix(in srgb,var(--color-surface-deep) 86%,var(--color-accent))}
@@ -210,7 +209,7 @@
 @media(max-width:899px){
   /* phone: photo and text sit in one shared panel, so only that panel is framed */
   .about-panel{outline:0}
-  .about-grid{--ring:var(--color-surface);outline:var(--frame-w) solid var(--ring);outline-offset:0;margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
+  .about-grid{--ring:var(--color-surface);outline:var(--frame-w) solid var(--ring);outline-offset:-1px;margin-left:var(--gutter)!important;margin-right:var(--gutter)!important;width:auto}
   .courses,.course{gap:var(--frame-space)!important}
 }
 /* Photos have no added line: js/service-variant.js cuts a 3 px gap 3 px inside their edge (SVG mask),
