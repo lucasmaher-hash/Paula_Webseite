@@ -82,8 +82,8 @@
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;
   display:grid;place-items:center;text-align:center;padding:0;
-  border:3px solid color-mix(in srgb,var(--color-primary) 55%,transparent);
-  color:var(--color-primary);--pf-color:var(--color-primary);overflow:hidden;isolation:isolate;
+  border:3px solid var(--color-surface);
+  color:var(--color-primary);--pf-color:var(--color-surface);overflow:hidden;isolation:isolate;
   transition:border-color .5s,color .35s;outline:none;cursor:default}
 .service-oval>*{grid-area:1/1;position:relative;z-index:1}
 .service-oval>.service-oval-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
@@ -96,7 +96,7 @@
 .service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .service-oval-list .arr{display:inline-block;margin-left:.45em;font-size:.8em;opacity:.75;transition:transform .25s,opacity .25s}
 .service-oval-list a:hover .arr,.service-oval-list a:focus-visible .arr{transform:translate(2px,-2px);opacity:1}
-.service-oval.pf-on{border-color:var(--color-primary);color:var(--color-on-primary)}
+.service-oval.pf-on{border-color:var(--color-surface);color:var(--color-primary)}
 .service-oval.pf-on .service-oval-title{opacity:0;transform:translateY(-8px)}
 .service-oval.pf-on .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
 .service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}

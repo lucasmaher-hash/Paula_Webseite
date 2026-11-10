@@ -950,3 +950,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Claude (Opus 5.5), 10.11.2026: Kurs-Panels mit Hover-Füllung „Per DM buchen“
 - Desktop: Button „Per DM anfragen“ entfernt; beim Hover füllt sich das Panel mit Korn wie die Behandlungs-Ovale (Textfarbe, Rahmenlinie wird mit solide) und zeigt nur „Per DM buchen ↗“ in Gambarino. Das ganze Panel ist der Link (Instagram). Handy behält den Button, weil es dort kein Hover gibt.
 - Geprüft per Playwright bei 1440 px (pf-on, Text sichtbar, keine Fehler).
+
+### Claude (Opus 5.5), 10.11.2026: Ovale in hellem Pink
+- Kontur und Hover-Füllung der drei Behandlungs-Ovale jetzt in der Panelfarbe Pink (wie Karten, folgt dem Regler), Schrift bleibt dunkel. Bei 1440 px geprüft.
