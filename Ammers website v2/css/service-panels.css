@@ -207,6 +207,8 @@
 #frame-colors .fc-row{display:flex;gap:8px;align-items:center}
 #frame-colors input[type=color]{width:52px;height:34px;padding:2px;border:1px solid #ccc;border-radius:8px;background:#fafafa;cursor:pointer}
 #frame-colors input[type=text]{width:90px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919;font:12px var(--font-mono)}
+#frame-colors input[type=range]{flex:1;min-width:0;accent-color:#333}
+#frame-colors input[type=number]{width:64px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919;font:12px var(--font-mono)}
 #frame-colors .fc-out{margin:12px 0 8px;padding:8px;background:#e5e5e9;border-radius:9px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
 #frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
 body.menu-open #frame-colors{visibility:hidden}

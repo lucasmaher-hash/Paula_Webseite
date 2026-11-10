@@ -408,13 +408,17 @@ window.pmParticleFill = (function () {
     BG.forEach(function (b) { base[v]['bg_' + b] = PAL ? hex(PAL[v][b]) : '#000000'; });
   });
   var state = {brown:{}, pink:{}};
-  try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); ['brown', 'pink'].forEach(function (v) { KEYS.forEach(function (k) { if (s[v] && /^#[0-9a-f]{6}$/i.test(s[v][k])) state[v][k] = s[v][k]; }); }); } catch (e) {}
+  try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); ['brown', 'pink'].forEach(function (v) { KEYS.forEach(function (k) { if (s[v] && /^#[0-9a-f]{6}$/i.test(s[v][k])) state[v][k] = s[v][k]; }); if (s[v] && isFinite(s[v].bright) && Math.abs(s[v].bright) <= 100) state[v].bright = +s[v].bright; }); } catch (e) {}
   var cur = 'brown';
   function value(v, k) { return state[v][k] || base[v][k]; }
-  function apply() { ['brown', 'pink'].forEach(function (v) { ['line', 'fill'].forEach(function (k) {
-    if (state[v][k]) root.style.setProperty(VARS[v][k], state[v][k]); else root.style.removeProperty(VARS[v][k]); });
-    if (state[v].fill) root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + state[v].fill + ' 92%,#000)'); else root.style.removeProperty('--frame-deep-' + v);
-    if (flow) BG.forEach(function (b) { flow.state.colors[v][b] = state[v]['bg_' + b] || PAL[v][b]; }); }); }
+  // brightness -100..+100 %: mixes every colour of the variant towards black (minus) or white (plus)
+  function shade(h, b) { if (!b) return h; var t = Math.abs(b) / 100, to = b > 0 ? 255 : 0;
+    return '#' + [1, 3, 5].map(function (o) { var c = parseInt(h.substr(o, 2), 16); return ('0' + Math.round(c + (to - c) * t).toString(16)).slice(-2); }).join(''); }
+  function eff(v, k) { return shade(value(v, k), state[v].bright || 0); }
+  function apply() { ['brown', 'pink'].forEach(function (v) { var on = state[v].fill || state[v].bright;
+    if (on) { root.style.setProperty(VARS[v].fill, eff(v, 'fill')); root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + eff(v, 'fill') + ' 92%,#000)'); }
+    else { root.style.removeProperty(VARS[v].fill); root.style.removeProperty('--frame-deep-' + v); }
+    if (flow) BG.forEach(function (b) { flow.state.colors[v][b] = eff(v, 'bg_' + b); }); }); }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   apply();
 
@@ -423,16 +427,21 @@ window.pmParticleFill = (function () {
     '<div class="fc-body" id="fc-body"><div class="fc-tabs" role="group" aria-label="Variante">' +
     '<button type="button" data-v="brown" aria-pressed="true">Braun</button><button type="button" data-v="pink" aria-pressed="false">Pink</button></div>' +
     KEYS.map(function (k) { return '<label>' + LABEL[k] + '</label><div class="fc-row"><input type="color" data-k="' + k + '" aria-label="' + LABEL[k] + ' Farbe"><input type="text" data-t="' + k + '" maxlength="7" spellcheck="false" aria-label="' + LABEL[k] + ' Hex"></div>'; }).join('') +
+    '<label for="fc-bright">Helligkeit (alle Farben der Variante)</label><div class="fc-row"><input type="range" id="fc-bright" data-b min="-100" max="100" step="1"><input type="number" data-bn min="-100" max="100" step="1" aria-label="Helligkeit in Prozent"><span>%</span></div>' +
     '<pre class="fc-out" aria-label="Aktuelle Werte"></pre><button type="button" class="fc-reset">Variante zurücksetzen</button></div>';
   document.body.append(box);
   var out = box.querySelector('.fc-out');
   function refresh() {
     box.querySelectorAll('[data-v]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === cur)); });
     KEYS.forEach(function (k) { box.querySelector('[data-k="' + k + '"]').value = value(cur, k); box.querySelector('[data-t="' + k + '"]').value = value(cur, k); });
-    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n');
+    box.querySelector('[data-b]').value = state[cur].bright || 0; box.querySelector('[data-bn]').value = state[cur].bright || 0;
+    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n');
   }
+  function refreshOut() { out.textContent = ['brown', 'pink'].map(function (v) { return v + ': brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n'); }
   function set(k, val) { if (!/^#[0-9a-f]{6}$/i.test(val)) return; state[cur][k] = val.toLowerCase(); apply(); save(); refresh(); }
-  box.addEventListener('input', function (e) { var t = e.target; if (t.dataset.k) set(t.dataset.k, t.value); else if (t.dataset.t) { var v = t.value.charAt(0) === '#' ? t.value : '#' + t.value; if (/^#[0-9a-f]{6}$/i.test(v)) set(t.dataset.t, v); } });
+  box.addEventListener('input', function (e) { var t = e.target;
+    if (t.hasAttribute('data-b') || t.hasAttribute('data-bn')) { var n = Math.max(-100, Math.min(100, Math.round(+t.value || 0))); state[cur].bright = n; apply(); save(); if (t.hasAttribute('data-b')) box.querySelector('[data-bn]').value = n; else box.querySelector('[data-b]').value = n; out.textContent = ''; refreshOut(); return; }
+    if (t.dataset.k) set(t.dataset.k, t.value); else if (t.dataset.t) { var v = t.value.charAt(0) === '#' ? t.value : '#' + t.value; if (/^#[0-9a-f]{6}$/i.test(v)) set(t.dataset.t, v); } });
   box.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     if (b.dataset.v) { cur = b.dataset.v; refresh(); }
