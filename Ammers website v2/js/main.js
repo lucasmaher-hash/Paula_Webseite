@@ -322,3 +322,33 @@
   window.addEventListener('resize', sync);
   window.addEventListener('load', sync);
 })();
+
+// Header retracts on scroll down (returns on scroll up); round booking button follows the brown/pink section
+(function () {
+  var header = document.querySelector('.site-header'), fab = document.querySelector('.fab');
+  var last = window.scrollY, ticking = false;
+  function update() {
+    ticking = false;
+    var y = window.scrollY, d = y - last;
+    if (header) {
+      var keep = document.body.classList.contains('menu-open') || header.matches(':focus-within') || header.querySelector('.nav-dd.open');
+      if (y < 90 || d < -4 || keep) header.classList.remove('is-retracted');
+      else if (d > 4) header.classList.add('is-retracted');
+    }
+    if (Math.abs(d) > 4) last = y;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  var pinkSections = document.querySelectorAll('.services, .reviews');
+  if (fab && pinkSections.length && 'IntersectionObserver' in window) {
+    var io = null, over = new Set();
+    var watch = function () {
+      if (io) io.disconnect(); over.clear();
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) over.add(e.target); else over.delete(e.target); });
+        fab.classList.toggle('over-pink', over.size > 0);
+      }, { rootMargin: '-' + Math.max(0, window.innerHeight - 70) + 'px 0px 0px 0px' });
+      pinkSections.forEach(function (s) { io.observe(s); });
+    };
+    watch(); window.addEventListener('resize', watch);
+  }
+})();

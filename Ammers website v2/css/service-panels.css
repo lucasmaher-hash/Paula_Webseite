@@ -273,3 +273,34 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 .hv .hv-det-in .btn{align-self:center!important}
 .review-all .hv-det-in{color:var(--color-on-surface)}
 .review-all .hv-det-in span{color:inherit!important}
+
+/* Panels: centred facts, no duplicate address label (10.11.2026) */
+.hv .facts{width:100%}
+.hv .fact{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;padding:12px 0}
+.hv .fact span:first-child{padding-top:0}
+.hv .fact span:last-child{text-align:center}
+.hv .fact.fact-address{flex-wrap:wrap}
+.hv .fact.fact-address>span:first-child{display:none}
+.hv .hours-actions,.hv .hero-actions{justify-content:center}
+.review-all:hover{filter:none}
+.nav-dd-btn,.site-nav>a{white-space:nowrap}
+
+/* Header retracts on scroll down, returns on scroll up */
+.site-header{transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.site-header.is-retracted{transform:translateY(-105%)}
+@media(prefers-reduced-motion:reduce){.site-header{transition:none}}
+
+/* Permanent round booking button, bottom right; follows the brown/pink section like the header */
+.fab{position:fixed;z-index:60;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));
+  width:92px;height:92px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  background:hsl(14 32% 78%);color:hsl(14 32% 24%);text-decoration:none;text-align:center;
+  font-size:.78rem;font-weight:500;line-height:1.15;letter-spacing:.01em;
+  box-shadow:0 6px 22px rgba(40,18,12,.22);-webkit-tap-highlight-color:transparent;
+  transition:background-color 1s ease,color 1s ease,transform .3s ease,box-shadow .3s ease}
+.fab svg{width:12px;height:12px}
+.fab.over-pink{background:hsl(351 38% 85%);color:hsl(351 28% 28%)}
+.fab:hover{transform:scale(1.06);box-shadow:0 10px 28px rgba(40,18,12,.28)}
+.fab:focus-visible{outline:2px solid #fff;outline-offset:3px}
+body.menu-open .fab{visibility:hidden}
+@media(max-width:899px){.fab{width:78px;height:78px;font-size:.72rem}}
+@media(prefers-reduced-motion:reduce){.fab{transition:none}}
