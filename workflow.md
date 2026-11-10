@@ -980,3 +980,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Kein Zoom der Galeriefotos
 - Beim Hover zoomte das Foto auf der Vorderseite noch hinein (alte Regel aus style.css griff auch auf die Kopie). Für die Galerie abgeschaltet. Geprüft: transform none beim Hover.
+
+### Claude (Opus 5.5), 10.11.2026: Hintergrund-Regler komplett zurück
+- Der frühere Hintergrund-Regler ist wieder da (unten rechts, verschiebbar, einklappbar): Umschalter Braun/Pink, je fünf Farben, dazu Farbe (Farbstärke, Akzent, Kantenweichheit, Glanz), Fluss (Tempo, Formgröße, Faltung, Scroll-Mitlauf), Maus und Scroll (Verzerrung, Spur, Nachleuchten, Wachstum, Scroll-Wellen) und Oberfläche (Körnung, Auflösung). Ausgangswerte = aktuelle Standards (inkl. der abgedunkelten Farben). Werte im Browser gespeichert, Kopieren und Zurücksetzen. Seitenrand- und Partikelregler weggelassen (Partikel werden nicht mehr genutzt). Geprüft per Playwright: Grundton ändert den Hintergrund live, Reset stellt #a17062 wieder her.
