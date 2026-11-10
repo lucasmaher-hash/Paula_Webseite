@@ -1109,3 +1109,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Kontakt-Formen rund statt gerade
 - Lucas: nur die gestrichelt markierten Seiten sind gerade, alles andere soll rund sein. Neu: Umrisse direkt aus dem Foto der Skizze vermessen (OpenCV: Bleistiftlinie freistellen, Innenfläche füllen, Außenkontur, stark geglättet, alle ~3 Karos ein Stützpunkt). Gerade nur noch die markierten Seiten, markierte Ecken mit einem gemeinsamen Radius (gemessen ~1,9 Karos), alle anderen Kanten als glatte Kurven durch die Stützpunkte. Rasterproportionen ebenfalls aus dem Foto (Spalten 706/193/698/1000, Zeilen 703/410/485). Geprüft bei 1190 und 1440 px.
+
+### Claude (Opus 5.5), 10.11.2026: Kontakt-Formen zurück auf ersten Stand
+- Auf Lucas Wunsch den Schritt „Kontakt-Formen rund statt gerade“ rückgängig gemacht: wieder die geometrische Fassung (gerade Schrägen mit Rundungen, Raster 412/103/357/515).
