@@ -125,9 +125,11 @@ h3{font-size:var(--type-h3);font-weight:500;letter-spacing:-.01em;line-height:1.
 }
 
 /* ---------- Header: transparent, volle Breite ---------- */
-.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);--nav-ink:color-mix(in srgb,var(--color-surface) var(--hv-mix,35%),#fff)}
-.site-header.over-hero{--nav-ink:color-mix(in srgb,var(--color-primary) 90%,#000)}
+.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);--nav-ink:color-mix(in srgb,var(--color-surface) var(--hv-mix,35%),#fff);--nav-action-ink:color-mix(in srgb,var(--color-primary) 90%,#000)}
+.site-header.over-hero{--nav-ink:color-mix(in srgb,var(--color-primary) 90%,#000);--nav-action-ink:color-mix(in srgb,var(--color-surface) var(--hv-mix,35%),#fff)}
 .site-header :is(.brand,.site-nav>a,.nav-dd-btn){color:var(--nav-ink)}
+.site-header .header-actions :is(.btn-primary,.icon-btn-primary){background:color-mix(in srgb,var(--nav-ink) 96%,var(--color-button));border-color:transparent;color:var(--nav-action-ink)}
+.site-header .header-actions :is(.btn-primary,.icon-btn-primary):hover{background:color-mix(in srgb,var(--nav-ink) 92%,var(--color-button))}
 .site-header::before{
   content:"";position:absolute;inset:0;z-index:-1;
   background:color-mix(in srgb,var(--color-background) var(--nav-glass-opacity,5%),transparent);
