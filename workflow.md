@@ -836,6 +836,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Maße aus den Karos abgelesen (D ca. 7,5 × 9,7 Kästchen, Rechteck ca. 14 × 9,9, Abstand ca. 1). Umgesetzt mit `border-radius` in Prozent: D `64% 13% 13% 64% / 50% 10% 10% 50%` (gespiegelt für die zweite Schulung), Text-Rechteck `9% / 13%`, Spalten 35 : 65. Erste Schulung D links, zweite D rechts; das PM-Zeichen wandert bei der zweiten nach links unten, damit es nicht in die Rundung fällt. Handy: D-Form 80 % breit, abwechselnd links/rechts, Karte darunter, ohne gemeinsame Hintergrundkarte. Bei 1280/375 px angesehen.
 - **Nicht funktioniert / offen:** Die Skizze ist freihändig; Kurvenverlauf ist angenähert (Ellipsenbogen), nicht nachgezeichnet. Kein echtes Handy.
 
+### 10.11.2026 · Claude · v2: Schulungen nach zweiter Skizze (verzahnte Bilder)
+- **Versucht:** Lucas ersetzte die erste Skizze durch eine zweite (`claude_background/branding/assets/sketches/2026-11-10-schulungen-formen-2.jpg`): vier Formen, versetzt in drei Spalten. Die zwei inneren sind die Bilder; sie teilen sich die Mittelspalte und greifen entlang einer schrägen Kante ineinander. Oben Bild + Text rechts (1. Schulung), unten Text links + Bild (2. Schulung).
+- **Funktioniert:** Maße aus den Karos: Spalten 335 : 240 : 332, oberes Bild verliert die Ecke unten links, unteres die Ecke oben rechts, beide Schrägen mit gleicher Steigung (1,24), damit der Spalt gleich breit bleibt. Umsetzung als ein Raster für beide Schulungen (`display:contents` auf den Artikeln), Überlappungszeile 0,5 × Spaltenbreite, Bildzuschnitt per `clip-path: shape()` mit kleinen Rundungen an den Knicken, `polygon()` als Ersatz für ältere Browser. Texte kompakter gesetzt (kleinere Badges, Vorteile als Liste mit Symbol statt Kacheln), damit die Textflächen ungefähr die Skizzen-Proportion halten. Handy: untereinander, kleinere Schrägen.
+- **Nicht funktioniert / offen:** Erst falsch: `cqw` auf dem Raster selbst bezog sich auf das Fenster statt auf den Container, die Überlappung war zu groß. Behoben (Container eine Ebene höher). Die Textflächen sind etwas höher als in der Skizze, weil der Inhalt nicht kürzer werden soll. Kein echtes Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
