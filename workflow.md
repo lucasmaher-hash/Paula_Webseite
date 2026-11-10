@@ -965,3 +965,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Farbwerte übernommen, Regler entfernt
 - Lucas: „just use these settings“, dann „remove the dials“. Hintergrundpaletten fest um die Reglerwerte abgedunkelt (Braun −8 %: Grundton #a17062; Pink −6 %: Grundton #e2d3d4), Panelfarben unverändert (Standard). Regler-Skript und -Styles entfernt. Geprüft ohne localStorage: Hintergrund #a17062, kein Regler, Foto-Schnitte und Kurs-Hover laufen, keine Fehler.
+
+### Claude (Opus 5.5), 10.11.2026: Ovale solide, Hover dreht sie um
+- Die drei Behandlungs-Ovale sind jetzt immer gefüllt (3 px Linie, 3 px Abstand, helle Fläche, dunkler Titel). Beim Hover drehen sie sich in 0,8 s um 180° um die senkrechte Achse; die Rückseite zeigt die sechs Leistungen. Tastatur-Fokus und Tippen am Handy drehen ebenfalls (erster Tipp dreht, zweiter öffnet den Link). Korn-Füllung bei den Ovalen entfernt. Geprüft per Playwright bei 1440 px (Vorderseite, Drehung, Rückseite) und 375 px mit Touch.

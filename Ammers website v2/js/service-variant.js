@@ -112,17 +112,24 @@ window.pmParticleFill = (function () {
     var oval = document.createElement('div');
     oval.className = 'service-oval'; oval.id = g.id; oval.tabIndex = 0; oval.setAttribute('role', 'group'); oval.setAttribute('aria-label', g.title);
     oval.innerHTML = g.anchors.map(function (a) { return '<span class="service-oval-anchor" id="' + a + '"></span>'; }).join('') +
-      '<h3 class="service-oval-title">' + g.title + '</h3>' +
-      '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span>' +
-      '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '<span class="arr" aria-hidden="true">↗</span></a></li>'; }).join('') + '</ul>';
+      '<div class="so-inner"><div class="so-face so-front"><h3 class="service-oval-title">' + g.title + '</h3>' +
+      '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span></div>' +
+      '<div class="so-face so-back"><ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '<span class="arr" aria-hidden="true">↗</span></a></li>'; }).join('') + '</ul></div></div>';
     wrap.append(oval);
   });
   accordion.replaceWith(wrap);
   document.body.classList.add('service-ovals-variant');
   var ovals = Array.from(wrap.querySelectorAll('.service-oval'));
-  var pf = window.pmParticleFill;
-  ovals.forEach(function (o) { pf.attach(o, {group:ovals}); });
-  function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) pf.set(o, true); }
+  // Solid at rest; hover (CSS) or .is-open (focus, tap, menu link) flips the oval 180 degrees to its back with the services.
+  var touch = matchMedia('(hover: none)');
+  function open(o, on) { ovals.forEach(function (x) { x.classList.toggle('is-open', on && x === o); }); }
+  ovals.forEach(function (o) {
+    o.addEventListener('focusin', function () { if (o.matches(':focus-visible') || o.querySelector(':focus-visible')) open(o, true); });
+    o.addEventListener('focusout', function (e) { if (!o.contains(e.relatedTarget)) o.classList.remove('is-open'); });
+    o.addEventListener('click', function (e) { if (touch.matches && !o.classList.contains('is-open')) { e.preventDefault(); open(o, true); } });
+  });
+  document.addEventListener('click', function (e) { if (touch.matches && !e.target.closest('.service-oval')) open(null, false); });
+  function fromHash(id) { var t = document.getElementById(id); var o = t && t.closest('.service-oval'); if (o) open(o, true); }
   document.querySelectorAll('[data-open]').forEach(function (a) { a.addEventListener('click', function () { fromHash(a.dataset.open); }); });
   if (location.hash) fromHash(location.hash.slice(1));
 })();
