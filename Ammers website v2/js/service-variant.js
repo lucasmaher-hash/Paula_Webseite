@@ -462,7 +462,7 @@ window.pmFlip = function (list) {
 (function () {
   var host = location.hostname;
   if (!/^(localhost|127\.0\.0\.1|\[?::1\]?|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(host)) return;
-  var key = 'pm-beauty:v2:nav-glass:v1', original = 32, state = {transparency:original,collapsed:false}, drag;
+  var key = 'pm-beauty:v2:nav-glass:v2', original = 95, state = {transparency:original,collapsed:false}, drag;
   try {
     var saved = JSON.parse(localStorage.getItem(key));
     if (saved && Number.isFinite(saved.transparency) && saved.transparency >= 0 && saved.transparency <= 100) state.transparency = saved.transparency;
@@ -471,8 +471,8 @@ window.pmFlip = function (list) {
   var panel = document.createElement('aside'); panel.className = 'glass-tuner'; panel.setAttribute('aria-label','Navigation einstellen');
   panel.innerHTML = '<div class="glass-tuner-head"><span>Navigation</span><button type="button" aria-controls="glass-tuner-body">Einklappen</button></div>' +
     '<div class="glass-tuner-body" id="glass-tuner-body"><label for="nav-glass-number">Transparenz <span><input id="nav-glass-number" type="number" min="0" max="100" step="1"> %</span></label>' +
-    '<div class="glass-tuner-track"><input type="range" min="0" max="100" step="1" aria-label="Transparenz in Prozent"><span class="glass-tuner-default" role="img" aria-label="Ausgangswert: 32 Prozent"></span></div>' +
-    '<small>Punkt = Ausgangswert (32 %)</small><div class="glass-tuner-presets"><button type="button" data-glass="80">Klar</button><button type="button" data-glass="32">Frosted</button><button type="button" data-glass="0">Deckend</button><button type="button" data-glass="reset">Reset</button></div><pre tabindex="0" aria-label="Aktuelle Einstellungen"></pre></div>';
+    '<div class="glass-tuner-track"><input type="range" min="0" max="100" step="1" aria-label="Transparenz in Prozent"><span class="glass-tuner-default" role="img" aria-label="Ausgangswert: 95 Prozent"></span></div>' +
+    '<small>Punkt = Ausgangswert (95 %)</small><div class="glass-tuner-presets"><button type="button" data-glass="100">Klar</button><button type="button" data-glass="95">Frosted</button><button type="button" data-glass="0">Deckend</button><button type="button" data-glass="reset">Reset</button></div><pre tabindex="0" aria-label="Aktuelle Einstellungen"></pre></div>';
   document.body.append(panel);
   var body = panel.querySelector('.glass-tuner-body'), toggle = panel.querySelector('.glass-tuner-head button'), slider = panel.querySelector('[type=range]'), number = panel.querySelector('[type=number]'), output = panel.querySelector('pre');
   function save() { try { localStorage.setItem(key,JSON.stringify(state)); } catch (e) {} }

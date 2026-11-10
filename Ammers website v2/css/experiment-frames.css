@@ -1,7 +1,7 @@
 /* Layout leftovers from the former frame experiment (no frames, no animation since 10.11.2026). */
 @media(max-width:899px){
   .hero-ai .hero-media img{aspect-ratio:4/5;object-position:100% 35%;mask-image:linear-gradient(#000 72%,transparent 100%)}
-  .hero-ai .hero-media{padding-top:var(--header-h)}
+  .hero-ai .hero-media{padding-top:0}
   .hero-ai .hero-content{margin-top:-36px}
 }
 /* Heading and course content form one continuous panel. */
