@@ -237,6 +237,8 @@
 .hv-sum .hv-t{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.4vw,40px);line-height:1.05;letter-spacing:-.01em}
 .hv-sum .hv-s{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
 .hv-sum svg{width:34px;height:34px;color:inherit!important;transition:color .4s}
+.voucher .hv-sum{flex-direction:row;gap:12px}
+.voucher .hv-sum svg{width:44px;height:44px;flex-shrink:0}
 .hv-det{opacity:0;visibility:hidden;width:100%;transition:opacity .3s,visibility 0s .3s}
 .hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3,14px);padding-top:var(--space-4,18px)}
 .hv-det-in>*{margin:0!important;max-width:100%}

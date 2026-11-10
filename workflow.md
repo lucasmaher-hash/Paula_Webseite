@@ -1085,3 +1085,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Codex, 10.11.2026: Kränze beim Hover erneut wachsen lassen
 - Jeder der drei Kränze unter dem Hero spielt beim Betreten mit dem Mauszeiger seine bestehende Ein-Sekunden-Animation erneut ab. Nur der berührte Kranz startet neu; die anderen bleiben stehen. Der erste Start wartet weiterhin auf vollständige Sichtbarkeit. Touch-Ereignisse und reduzierte Bewegung lösen keine Wiederholung aus. JS-Cache-Version erhöht.
 - Lokal in Chrome bei 375 und 1440 px alle drei Kränze mit Maus geprüft: Hover startet nur den jeweiligen Kranz neu, die anderen bleiben fertig stehen; die Animation läuft auch nach Verlassen zu Ende, erneutes Betreten startet sie wieder. Reduzierte Bewegung löst keine Animation aus. JS-Syntax und Git-Diff geprüft. Bestehende Animationsfolge, Farbwerte, Schrift und Seitenaufbau bleiben erhalten.
+
+### Codex, 10.11.2026: Geschenk-Icon links neben dem Preis
+- Gutschein-Kurztitel als waagrechte Zeile angeordnet: Geschenk-Icon links, Preis rechts. Icon von 34 auf 44 px vergrößert, mit 12 px Abstand. Gilt im Ruhe- und geöffneten Zustand; andere Panel-Titel behalten ihre Anordnung. CSS-Cache-Version erhöht.
+- Lokal in Chrome bei 375 und 1440 px alle drei Gutscheine geprüft: Icon 44×44 px, links neben dem Preis und vertikal mittig ausgerichtet. Git-Diff geprüft. Schrift, Farben und Gutschein-Inhalte bleiben erhalten.
