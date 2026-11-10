@@ -977,3 +977,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Kein Zurückdrehen beim Verlassen
 - Ovale, Galerie und Kurs-Panels: Beim Verlassen springt die innere Fläche ohne Drehung zurück, die Rückseite liegt kurz darüber und blendet in 0,3 s aus (weiche Überblendung). Hover läuft jetzt für alle drei über eine gemeinsame Funktion (window.pmFlip). Geprüft per Playwright: 60 ms nach dem Verlassen keine Drehung mehr, Rückseite halb ausgeblendet, danach Vorderseite.
+
+### Claude (Opus 5.5), 10.11.2026: Kein Zoom der Galeriefotos
+- Beim Hover zoomte das Foto auf der Vorderseite noch hinein (alte Regel aus style.css griff auch auf die Kopie). Für die Galerie abgeschaltet. Geprüft: transform none beim Hover.

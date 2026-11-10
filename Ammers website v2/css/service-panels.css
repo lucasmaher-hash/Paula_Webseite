@@ -116,7 +116,8 @@
 
 /* Gallery: one word per picture over the particle fill. */
 .results .strip figure{position:relative;perspective:1400px;outline:none}
-.results .strip figure>img{visibility:hidden}   /* keeps the size; the photo itself sits on the flipping front */
+.results .strip figure>img{visibility:hidden}
+.results .strip figure img{transform:none!important;transition:none!important}   /* no hover zoom on the gallery photos */   /* keeps the size; the photo itself sits on the flipping front */
 .results .strip figure::before{content:"";position:absolute;inset:0;border:3px solid var(--color-surface);border-radius:inherit;pointer-events:none}
 .fl-inner{position:absolute;inset:6px;border-radius:calc(var(--rounded-lg) - 6px);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.45,0,.2,1)}
 .fl-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
