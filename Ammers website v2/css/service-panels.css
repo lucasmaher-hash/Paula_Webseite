@@ -304,3 +304,10 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 body.menu-open .fab{visibility:hidden}
 @media(max-width:899px){.fab{width:78px;height:78px;font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){.fab{transition:none}}
+
+/* Small ink islands grow on one GPU layer; the original text remains in the layout. */
+.ink-pending{opacity:0}
+.ink-forming>.ink-source{opacity:0}
+.ink-stage{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.ink-stage[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.ink-pending{opacity:1}}
