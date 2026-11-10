@@ -106,7 +106,6 @@ window.pmParticleFill = (function () {
   ];
   function short(name) { return name.replace(/\s*\(.*?\)\s*/g, ' ').replace(/\s+—\s+.*$/, '').replace(/[„"“”]/g, '').trim(); }
   function count(g) { return [g.id].concat(g.anchors).reduce(function (n, id) { return n + (all[id] ? all[id].length : 0); }, 0); }
-  var star = '<svg viewBox="0 0 40 56" aria-hidden="true"><path d="M20 0C21.6 18 24 26 40 28 24 30 21.6 38 20 56 18.4 38 16 30 0 28 16 26 18.4 18 20 0Z"/></svg>';
   var wrap = document.createElement('div'); wrap.className = 'service-ovals';
   groups.forEach(function (g, i) {
     var items = g.pick.map(function (p) { return all[p[0]] && all[p[0]][p[1]]; }).filter(Boolean);
@@ -118,7 +117,6 @@ window.pmParticleFill = (function () {
       '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '</a></li>'; }).join('') +
       '<li class="service-oval-more"><a class="mono" href="' + url + '" target="_blank" rel="noopener">Alle ' + count(g) + ' Leistungen ↗</a></li></ul>';
     wrap.append(oval);
-    if (i < groups.length - 1) { var s = document.createElement('span'); s.className = 'service-oval-stars'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = star + star; wrap.append(s); }
   });
   accordion.replaceWith(wrap);
   document.body.classList.add('service-ovals-variant');
@@ -317,10 +315,31 @@ window.pmParticleFill = (function () {
     });
   }
 
-  api.apply = function () { applyLayout(); grain.style.opacity = state.motion.grain; document.body.style.backgroundColor = state.colors[state.variant].base; resize(); if (!running) render(0); };
+  // Brown <-> pink follows the sections: pink for .services/.reviews/.theme-pink, brown elsewhere.
+  // The share of pink sections in a band around the viewport centre is the target; the shown mix eases
+  // towards it (time constant .9 s), so colours drift over softly instead of switching. ?bg=pink|brown fixes one.
+  var forced = query.get('bg') === 'pink' ? 1 : query.get('bg') === 'brown' ? 0 : null;
+  var mix = forced !== null ? forced : null, sections = [], lastBody = '';
+  function collectSections() { sections = Array.from(document.querySelectorAll('main > section, .site-footer')).map(function (el) { return {el:el, pink:el.matches('.services,.reviews,.theme-pink')}; }); }
+  collectSections();
+  function mixTarget() {
+    if (forced !== null) return forced;
+    var c = innerHeight / 2, z = innerHeight * .35, a = c - z, b = c + z, pink = 0, all = 0;
+    sections.forEach(function (sec) { var r = sec.el.getBoundingClientRect(), o = Math.max(0, Math.min(b, r.bottom) - Math.max(a, r.top)); all += o; if (sec.pink) pink += o; });
+    return all ? pink / all : 0;
+  }
+  function blended() {
+    var b = state.colors.brown, p = state.colors.pink, out = {};
+    ['base','tone1','tone2','tone3','accent'].forEach(function (k) { var x = hex(b[k]), y = hex(p[k]); out[k] = [x[0] + (y[0] - x[0]) * mix, x[1] + (y[1] - x[1]) * mix, x[2] + (y[2] - x[2]) * mix]; });
+    var css = 'rgb(' + out.base.map(function (v) { return Math.round(v * 255); }).join(',') + ')';
+    if (css !== lastBody) { document.body.style.backgroundColor = css; lastBody = css; }
+    return out;
+  }
+  function stepMix(dt) { var t = mixTarget(); if (mix === null) mix = t; else mix += (t - mix) * (1 - Math.exp(-dt / .9)); }
+  api.apply = function () { applyLayout(); grain.style.opacity = state.motion.grain; stepMix(0); resize(); if (!running) render(0); };
   var time = 0, last = performance.now(), running = false;
   function render(dt) {
-    var m = state.motion, c = state.colors[state.variant], f = dt * 60, r = canvas.width / Math.max(1, w);
+    var m = state.motion, c = blended(), f = dt * 60, r = canvas.width / Math.max(1, w);
     // 1. displacement target
     gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
@@ -348,14 +367,14 @@ window.pmParticleFill = (function () {
     gl.uniform2f(MU.uRes, w, h); gl.uniform1f(MU.uTime, time); gl.uniform1f(MU.uScroll, scrollY / Math.max(1, h) * m.parallax);
     gl.uniform1f(MU.uIntensity, m.intensity); gl.uniform1f(MU.uAccent, m.accentAmount); gl.uniform1f(MU.uSoft, Math.max(.005, m.softness));
     gl.uniform1f(MU.uSheen, m.sheen); gl.uniform1f(MU.uScale, m.scale); gl.uniform1f(MU.uWarp, m.warp); gl.uniform1f(MU.uDisp2, m.displace);
-    gl.uniform3fv(MU.uBase, hex(c.base)); gl.uniform3fv(MU.uC1, hex(c.tone1)); gl.uniform3fv(MU.uC2, hex(c.tone2)); gl.uniform3fv(MU.uC3, hex(c.tone3)); gl.uniform3fv(MU.uAcc, hex(c.accent));
+    gl.uniform3fv(MU.uBase, c.base); gl.uniform3fv(MU.uC1, c.tone1); gl.uniform3fv(MU.uC2, c.tone2); gl.uniform3fv(MU.uC3, c.tone3); gl.uniform3fv(MU.uAcc, c.accent);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
   function frame(ts) {
     if (!running) return;
     var dt = Math.min(.05, (ts - last) / 1000); last = ts;
     time += dt * state.motion.speed;
-    trackMouse(); trackPanels(); render(dt);
+    stepMix(dt); trackMouse(); trackPanels(); render(dt);
     requestAnimationFrame(frame);
   }
   function setRunning() {

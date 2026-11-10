@@ -82,7 +82,7 @@
 .service-ovals{display:flex;align-items:stretch;gap:12px;margin-top:var(--space-7,48px)}
 .service-oval{position:relative;flex:1 1 0;min-width:0;aspect-ratio:.64;border-radius:50%;
   display:grid;place-items:center;text-align:center;padding:0;
-  border:1px solid color-mix(in srgb,var(--color-primary) 55%,transparent);
+  border:3px solid color-mix(in srgb,var(--color-primary) 55%,transparent);
   color:var(--color-primary);--pf-color:var(--color-primary);overflow:hidden;isolation:isolate;
   transition:border-color .5s,color .35s;outline:none;cursor:default}
 .service-oval>*{grid-area:1/1;position:relative;z-index:1}
@@ -102,10 +102,6 @@
 .service-oval.pf-on .service-oval-title{opacity:0;transform:translateY(-8px)}
 .service-oval.pf-on .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
 .service-oval:focus-visible{box-shadow:0 0 0 3px var(--color-background),0 0 0 5px var(--color-accent)}
-.service-oval-stars{position:relative;flex:0 0 0;width:0;z-index:1;pointer-events:none}
-.service-oval-stars svg{position:absolute;left:0;width:clamp(26px,2.4vw,40px);transform:translate(-50%,-50%);fill:var(--color-primary)}
-.service-oval-stars svg:first-child{top:16%}
-.service-oval-stars svg:last-child{top:84%}
 @media(max-width:799px){
   .service-ovals{flex-direction:column;align-items:center;gap:10px}
   .service-oval{flex:none;width:min(100%,330px);aspect-ratio:.72}
@@ -114,11 +110,7 @@
   .service-oval-hint{display:block;margin-bottom:18%}
   .service-oval.pf-on .service-oval-hint{opacity:0}
   .service-oval-list a{font-size:15px;padding:8px 2px}
-  .service-oval-stars{flex:0 0 0;width:min(100%,330px);height:0}
-  .service-oval-stars svg{width:28px}
-  .service-oval-stars svg:first-child{top:0;left:22%}
-  .service-oval-stars svg:last-child{top:0;left:78%}
-}
+        }
 @media(prefers-reduced-motion:reduce){.service-oval,.service-oval *{transition:none!important}}
 
 /* Particle fill canvas (js/service-variant.js, window.pmParticleFill). */
@@ -200,3 +192,4 @@
   .course{background:transparent!important;border:0!important;overflow:visible!important;gap:10px}
   .course .course-media img{aspect-ratio:4/5}
 }
+

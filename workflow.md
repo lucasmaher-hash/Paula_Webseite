@@ -861,6 +861,11 @@ Nachträglich zusammengefasst am 31.10.2026 aus dem Logbuch unten, damit die Web
 - **Funktioniert:** Ursache war die übernommene Korngröße 24 aus dem Regler-Export (24 Gerätepixel pro Korn = sichtbare Blöcke). Zurück auf 1 Gerätepixel, Dauer 1100 → 367 ms. Bei 2× Pixeldichte angesehen: feines Korn.
 - **Nicht funktioniert / offen:** –
 
+### 10.11.2026 · Claude · v2: Sterne weg, Oval-Kontur 3×, Hintergrund wechselt Braun ↔ Pink je Abschnitt
+- **Versucht:** Lucas: Sterne zwischen den Ovalen entfernen, Konturen dreimal so dick, und der Hintergrund soll zwischen den Abschnitten von Braun zu Pink wechseln, weich und natürlich.
+- **Funktioniert:** Sterne aus JS und CSS entfernt, Oval-Kontur 1 → 3 px. Hintergrund: Abschnitte mit Pink-Thema (Behandlungen, Bewertungen) gelten als Pink, alle anderen als Braun. Ziel ist der Pink-Anteil in einem Band um die Bildschirmmitte (±35 % Höhe), die gezeigte Mischung gleitet mit 0,9 s Zeitkonstante dorthin; Shader-Farben und Seitenfarbe werden zwischen Lucas' beiden Paletten gemischt. Gemessen: nach dem Scrollen zu den Behandlungen Seitenfarbe nach 0,4 / 0,8 / 1,5 / 2,5 s von #AF7A6A über #C49A90 und #DCC0BC zu #E9D6D6. `?bg=pink` bzw. `?bg=brown` hält eine Farbe fest.
+- **Nicht funktioniert / offen:** Welche Abschnitte pink sind, folgt der bestehenden Zuordnung; andere Wünsche (z. B. abwechselnd) wären eine Zeile. Kein echtes Handy.
+
 ## Werkzeuge
 
 Reihenfolge, wie sie tatsächlich gelaufen ist (18. und 19.10.2026):
