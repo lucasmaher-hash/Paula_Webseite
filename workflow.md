@@ -1112,3 +1112,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Kontakt-Formen zurück auf ersten Stand
 - Auf Lucas Wunsch den Schritt „Kontakt-Formen rund statt gerade“ rückgängig gemacht: wieder die geometrische Fassung (gerade Schrägen mit Rundungen, Raster 412/103/357/515).
+
+### Claude (Opus 5.5), 11.11.2026: Tinten-Animation und „Preise & Termine“ entfernt
+- Die wachsende Tinten-Animation der Überschriften (WebGL-Ebene, `.ink-*`) komplett entfernt, Überschriften stehen wieder normal da. Den Button „Preise & Termine“ im Kopf der Behandlungen entfernt. Die Überlappung der Ovale mit der Überschrift kommt aus der laufenden Oval-Arbeit des parallelen Chats (linkes Oval wird beim Ankommen bis ~200 px angehoben) und bleibt dort.
