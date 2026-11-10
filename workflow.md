@@ -959,3 +959,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Helligkeitsregler je Variante
 - Regler „Farben“: Schieber Helligkeit −100 bis +100 % je Braun/Pink, mischt alle Farben der Variante (Panelfläche samt Rahmen, fünf Hintergrundfarben) Richtung Schwarz bzw. Weiß. Gespeichert, im Wertekasten, Reset je Variante. Geprüft per Playwright (−40, +30, −100, Reset).
+
+### Claude (Opus 5.5), 10.11.2026: Zwei getrennte Helligkeitsregler, Panels bleiben
+- Lucas: Regler waren an den Braun/Pink-Tab gekoppelt und dunkelten auch die Panels ab. Jetzt zwei feste Schieber „Helligkeit Hintergrund Braun“ und „… Pink“ (−100 bis +100 %), sie verschieben nur die Hintergrundfarben; Panels behalten ihre Farbe. Eigener Reset für die Helligkeit. Geprüft per Playwright (Braun −40, Pink +25, Panel unverändert, Reset).

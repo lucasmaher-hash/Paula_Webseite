@@ -415,8 +415,8 @@ window.pmParticleFill = (function () {
   function shade(h, b) { if (!b) return h; var t = Math.abs(b) / 100, to = b > 0 ? 255 : 0;
     return '#' + [1, 3, 5].map(function (o) { var c = parseInt(h.substr(o, 2), 16); return ('0' + Math.round(c + (to - c) * t).toString(16)).slice(-2); }).join(''); }
   function eff(v, k) { return shade(value(v, k), state[v].bright || 0); }
-  function apply() { ['brown', 'pink'].forEach(function (v) { var on = state[v].fill || state[v].bright;
-    if (on) { root.style.setProperty(VARS[v].fill, eff(v, 'fill')); root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + eff(v, 'fill') + ' 92%,#000)'); }
+  function apply() { ['brown', 'pink'].forEach(function (v) { var on = state[v].fill;   // panels keep their colour; brightness only shifts the background
+    if (on) { root.style.setProperty(VARS[v].fill, value(v, 'fill')); root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + value(v, 'fill') + ' 92%,#000)'); }
     else { root.style.removeProperty(VARS[v].fill); root.style.removeProperty('--frame-deep-' + v); }
     if (flow) BG.forEach(function (b) { flow.state.colors[v][b] = eff(v, 'bg_' + b); }); }); }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -427,25 +427,27 @@ window.pmParticleFill = (function () {
     '<div class="fc-body" id="fc-body"><div class="fc-tabs" role="group" aria-label="Variante">' +
     '<button type="button" data-v="brown" aria-pressed="true">Braun</button><button type="button" data-v="pink" aria-pressed="false">Pink</button></div>' +
     KEYS.map(function (k) { return '<label>' + LABEL[k] + '</label><div class="fc-row"><input type="color" data-k="' + k + '" aria-label="' + LABEL[k] + ' Farbe"><input type="text" data-t="' + k + '" maxlength="7" spellcheck="false" aria-label="' + LABEL[k] + ' Hex"></div>'; }).join('') +
-    '<label for="fc-bright">Helligkeit (alle Farben der Variante)</label><div class="fc-row"><input type="range" id="fc-bright" data-b min="-100" max="100" step="1"><input type="number" data-bn min="-100" max="100" step="1" aria-label="Helligkeit in Prozent"><span>%</span></div>' +
-    '<pre class="fc-out" aria-label="Aktuelle Werte"></pre><button type="button" class="fc-reset">Variante zurücksetzen</button></div>';
+    '<div class="fc-sep"></div>' + [['brown', 'Braun'], ['pink', 'Pink']].map(function (x) { return '<label for="fc-bright-' + x[0] + '">Helligkeit Hintergrund ' + x[1] + '</label><div class="fc-row"><input type="range" id="fc-bright-' + x[0] + '" data-b="' + x[0] + '" min="-100" max="100" step="1"><input type="number" data-bn="' + x[0] + '" min="-100" max="100" step="1" aria-label="Helligkeit Hintergrund ' + x[1] + ' in Prozent"><span>%</span></div>'; }).join('') +
+    '<pre class="fc-out" aria-label="Aktuelle Werte"></pre><button type="button" class="fc-reset">Farben der Variante zurücksetzen</button> <button type="button" class="fc-reset-b">Helligkeit zurücksetzen</button></div>';
   document.body.append(box);
   var out = box.querySelector('.fc-out');
   function refresh() {
     box.querySelectorAll('[data-v]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === cur)); });
     KEYS.forEach(function (k) { box.querySelector('[data-k="' + k + '"]').value = value(cur, k); box.querySelector('[data-t="' + k + '"]').value = value(cur, k); });
-    box.querySelector('[data-b]').value = state[cur].bright || 0; box.querySelector('[data-bn]').value = state[cur].bright || 0;
-    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n');
+    ['brown', 'pink'].forEach(function (v) { box.querySelector('[data-b="' + v + '"]').value = state[v].bright || 0; box.querySelector('[data-bn="' + v + '"]').value = state[v].bright || 0; });
+    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': bg brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n');
   }
-  function refreshOut() { out.textContent = ['brown', 'pink'].map(function (v) { return v + ': brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n'); }
+  function refreshOut() { out.textContent = ['brown', 'pink'].map(function (v) { return v + ': bg brightness ' + (state[v].bright || 0) + '%, ' + KEYS.map(function (k) { return k.replace('bg_', 'bg ') + ' ' + value(v, k); }).join(', '); }).join('\n'); }
   function set(k, val) { if (!/^#[0-9a-f]{6}$/i.test(val)) return; state[cur][k] = val.toLowerCase(); apply(); save(); refresh(); }
   box.addEventListener('input', function (e) { var t = e.target;
-    if (t.hasAttribute('data-b') || t.hasAttribute('data-bn')) { var n = Math.max(-100, Math.min(100, Math.round(+t.value || 0))); state[cur].bright = n; apply(); save(); if (t.hasAttribute('data-b')) box.querySelector('[data-bn]').value = n; else box.querySelector('[data-b]').value = n; out.textContent = ''; refreshOut(); return; }
+    var bv = t.dataset.b || t.dataset.bn;
+    if (bv) { var n = Math.max(-100, Math.min(100, Math.round(+t.value || 0))); state[bv].bright = n; apply(); save(); box.querySelector('[data-b="' + bv + '"]').value = n; if (t.dataset.b) box.querySelector('[data-bn="' + bv + '"]').value = n; refreshOut(); return; }
     if (t.dataset.k) set(t.dataset.k, t.value); else if (t.dataset.t) { var v = t.value.charAt(0) === '#' ? t.value : '#' + t.value; if (/^#[0-9a-f]{6}$/i.test(v)) set(t.dataset.t, v); } });
   box.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     if (b.dataset.v) { cur = b.dataset.v; refresh(); }
-    else if (b.classList.contains('fc-reset')) { state[cur] = {}; apply(); save(); refresh(); }
+    else if (b.classList.contains('fc-reset-b')) { delete state.brown.bright; delete state.pink.bright; apply(); save(); refresh(); }
+    else if (b.classList.contains('fc-reset')) { var keep = state[cur].bright; state[cur] = {}; if (keep) state[cur].bright = keep; apply(); save(); refresh(); }
     else if (b.classList.contains('fc-toggle')) { var body = box.querySelector('.fc-body'), open = body.hidden; body.hidden = !open; b.setAttribute('aria-expanded', String(open)); b.textContent = open ? 'Einklappen' : 'Ausklappen'; clamp(); }
   });
   // draggable, starts bottom right
