@@ -277,3 +277,7 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 :is(main>section:not(.hero),.site-footer) :is(h1,h2,h3,p,span,li,a,.eyebrow,.score,.stars,small):not(:is(.hv,.service-oval,.review,.voucher,.contact-panel,.hours,.about-panel,.about-grid,.course-panel,figure,.btn,.course-media) *):not(.btn){color:var(--hvc)}
 :is(main>section:not(.hero),.site-footer) .muted:not(:is(.hv,.review,.voucher,.contact-panel,.hours,.about-panel,.about-grid,.course-panel) *){opacity:.85}
 .site-footer{border-top-color:color-mix(in srgb,var(--hvc) 40%,transparent)}
+
+/* Single reviews: always visible, no hover. Only the near-white frame and the text, like the other panels at rest. */
+.review:not(.review-all){--ring:var(--hvc);background:transparent!important;background-image:none!important}
+.review:not(.review-all),.review:not(.review-all) *{color:var(--hvc)!important}

@@ -994,3 +994,6 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 
 ### Claude (Opus 5.5), 10.11.2026: Kein Spalt mehr zwischen Rahmen und Fläche
 - Überall entfernt: Text-Panels (Linie direkt an der Kante), Ovale, Galerie (Linie direkt am Foto) und die Fotos mit ausgeschnittenem Spalt (Über mich, Kontakt, Kursbilder sind jetzt normale Fotos; Masken-Skript entfernt). Ruhe = nur die Linie, Hover = eine solide Fläche. Abstand zwischen Panels auf 12 px (3 + 6 frei + 3). Geprüft per Playwright bei 1440 px.
+
+### Claude (Opus 5.5), 10.11.2026: Bewertungen immer sichtbar
+- Einzelne Bewertungen ohne Hover: Rahmen und Text in fast Weiß, Inhalt immer sichtbar. Nur „Alle Bewertungen“ bleibt ein Hover-Panel. Geprüft per Playwright bei 1440 px.

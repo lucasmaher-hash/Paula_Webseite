@@ -440,9 +440,7 @@ window.pmFlip = function (list) {
   });
   var names = ['Korean Lashlift', 'Russian Manicure'];
   document.querySelectorAll('.course-panel').forEach(function (p, i) { make(p, t(names[i] || (p.querySelector('h3') || {}).textContent || '')); });
-  document.querySelectorAll('.review:not(.review-all)').forEach(function (r) {
-    var n = r.querySelector('footer span'); make(r, s2('★★★★★') + t(n ? n.textContent : 'Kundin'));
-  });
+  // single reviews stay plainly visible (frame + text, no hover); only "Alle Bewertungen" reveals
   document.querySelectorAll('.review-all').forEach(function (r) { make(r, t('5.0 ★') + s2('Alle Bewertungen')); });
   var c = document.querySelector('.contact-intro'); if (c) make(c, t('Kontakt'));
   c = document.querySelector('.contact-facts'); if (c) make(c, t('Adresse'));
