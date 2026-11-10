@@ -92,12 +92,10 @@
 .service-oval-hint{display:none;align-self:end;opacity:.8}
 .service-oval-list{list-style:none;margin:0;padding:0;width:66%;opacity:0;visibility:hidden;transform:translateY(8px);
   transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1),visibility 0s .35s}
-.service-oval-list li{border-top:1px solid color-mix(in srgb,currentColor 28%,transparent)}
-.service-oval-list li:last-child{border-bottom:1px solid color-mix(in srgb,currentColor 28%,transparent)}
 .service-oval-list a{display:block;padding:9px 4px;color:inherit;text-decoration:none;font-size:clamp(13px,1.05vw,16px);line-height:1.3}
 .service-oval-list a:hover,.service-oval-list a:focus-visible{text-decoration:underline;text-underline-offset:3px}
-.service-oval-list .service-oval-more{border:0}
-.service-oval-list .service-oval-more a{padding-top:14px;font-size:.66rem;white-space:nowrap;letter-spacing:.08em}
+.service-oval-list .arr{display:inline-block;margin-left:.45em;font-size:.8em;opacity:.75;transition:transform .25s,opacity .25s}
+.service-oval-list a:hover .arr,.service-oval-list a:focus-visible .arr{transform:translate(2px,-2px);opacity:1}
 .service-oval.pf-on{border-color:var(--color-primary);color:var(--color-on-primary)}
 .service-oval.pf-on .service-oval-title{opacity:0;transform:translateY(-8px)}
 .service-oval.pf-on .service-oval-list{opacity:1;visibility:visible;transform:none;transition-delay:.08s,0s,0s}
@@ -131,8 +129,6 @@
   :root{--v2-side:13.25vw}
   .container,.strip{max-width:none!important;padding-left:max(var(--gutter),var(--v2-side))!important;padding-right:max(var(--gutter),var(--v2-side))!important}
   .hero .container{padding-left:max(var(--gutter),var(--v2-side))!important;padding-right:max(var(--gutter),var(--v2-side))!important}
-  .reviews{margin-left:max(var(--gutter),var(--v2-side));margin-right:max(var(--gutter),var(--v2-side))}
-  .reviews>.container{padding-left:var(--space-7,48px)!important;padding-right:var(--space-7,48px)!important}
 }
 
 /* Courses after Lucas' sketch 2 (10.11.2026, claude_background/branding/assets/sketches/2026-11-10-schulungen-formen-2.jpg):
@@ -173,6 +169,8 @@
   .course:nth-child(odd) .course-panel{grid-column:3!important;grid-row:1 / 3!important}
   .course:nth-child(even) .course-media{grid-column:2!important;grid-row:2 / 4!important;min-height:calc(var(--cw) * 1.6)}
   .course:nth-child(even) .course-panel{grid-column:1!important;grid-row:2 / 4!important}
+  .course-intro{grid-column:1;grid-row:1;align-self:start;margin:0;padding-right:var(--g);flex-direction:column;align-items:flex-start;justify-content:flex-start}
+  .course-intro p{max-width:none}
   .course .course-panel .course-heading{padding:clamp(24px,2.4vw,40px) clamp(24px,2.6vw,44px) 0}
   .course .course-panel .course-content{padding:var(--space-4) clamp(24px,2.6vw,44px) clamp(24px,2.4vw,40px)}
   /* compact text so the panels keep roughly the sketch proportions (332 x 450 squares) */
@@ -188,8 +186,27 @@
   .course:nth-child(odd) .course-media,.course:nth-child(even) .course-media{min-height:calc(var(--cw) * 1.88)}
 }
 @media(max-width:899px){
+  .course-intro{order:-1}
   .courses{--cw:50cqw;--r:clamp(20px,6.3vw,31px);--f:3.5cqw}
   .course{background:transparent!important;border:0!important;overflow:visible!important;gap:10px}
   .course .course-media img{aspect-ratio:4/5}
 }
 
+
+/* Frame colour dial (js/service-variant.js, last module) */
+#frame-colors{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:900;width:min(280px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;
+  padding:12px 14px 14px;border:1px solid #ccc;border-radius:18px;background:#f0f0f3;color:#191919;box-shadow:5px 5px 16px #0002,-4px -4px 12px #fff9;
+  font:13px/1.5 var(--font-sans);cursor:grab;touch-action:none}
+#frame-colors.fc-drag{cursor:grabbing}
+#frame-colors .fc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+#frame-colors .fc-body[hidden]{display:none}
+#frame-colors button{padding:5px 9px;border:1px solid #ccc;border-radius:9px;background:#fafafa;color:#191919;font:inherit;font-size:12px;cursor:pointer}
+#frame-colors button[aria-pressed=true]{background:#191919;color:#fff;border-color:#191919}
+#frame-colors .fc-tabs{display:flex;gap:6px;margin:6px 0 4px}
+#frame-colors label{display:block;margin:10px 0 4px}
+#frame-colors .fc-row{display:flex;gap:8px;align-items:center}
+#frame-colors input[type=color]{width:52px;height:34px;padding:2px;border:1px solid #ccc;border-radius:8px;background:#fafafa;cursor:pointer}
+#frame-colors input[type=text]{width:90px;padding:6px;border:1px solid #ccc;border-radius:7px;background:#fafafa;color:#191919;font:12px var(--font-mono)}
+#frame-colors .fc-out{margin:12px 0 8px;padding:8px;background:#e5e5e9;border-radius:9px;white-space:pre-wrap;font:11px/1.5 var(--font-mono);user-select:text;cursor:text}
+#frame-colors :focus-visible{outline:2px solid #555;outline-offset:2px}
+body.menu-open #frame-colors{visibility:hidden}

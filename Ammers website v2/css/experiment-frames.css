@@ -1,8 +1,8 @@
 /* Only loaded by index-experimentell.html. A single border at each visual frame's outer edge. */
 @property --preview-frame-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 :root{
-  --preview-frame-brown-width:1.4px;--preview-frame-brown-start:#dac6be;--preview-frame-brown-end:#e5d8d2;
-  --preview-frame-pink-width:1.4px;--preview-frame-pink-start:#d0b3b8;--preview-frame-pink-end:#d9bfc1;
+  --preview-frame-brown-width:1.4px;--preview-frame-brown-start:var(--frame-line-brown,#dac6be);--preview-frame-brown-end:var(--frame-line-brown,#dac6be);
+  --preview-frame-pink-width:1.4px;--preview-frame-pink-start:var(--frame-line-pink,#d0b3b8);--preview-frame-pink-end:var(--frame-line-pink,#d0b3b8);
 }
 /* Photographs and their image containers carry no outlines. */
 .strip figure,.contact-figure,.about-figure,.about-figure img,.course-media,.course-media img{border:0!important}
@@ -37,28 +37,8 @@
     var(--preview-frame-start) 350deg,var(--preview-frame-start) 360deg);
   mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   mask-composite:exclude;
-  animation:preview-frame-orbit 5s linear infinite;animation-play-state:paused;
 }
-.preview-frame-host.is-frame-active::before{animation-play-state:running}
 @keyframes preview-frame-orbit{from{--preview-frame-angle:0deg}to{--preview-frame-angle:360deg}}
-/* Treatment categories have a quiet, solid outline until opened or hovered. */
-.accordion details.preview-frame-host{
-  --preview-frame-start:color-mix(in srgb,var(--preview-frame-pink-start) 75%,#80545e);
-}
-.accordion details.preview-frame-host::before{
-  --category-frame-gradient:conic-gradient(from var(--preview-frame-angle),
-    var(--preview-frame-end) 0deg,
-    color-mix(in srgb,var(--preview-frame-start) 25%,var(--preview-frame-end)) 110deg,
-    color-mix(in srgb,var(--preview-frame-start) 55%,var(--preview-frame-end)) 240deg,
-    var(--preview-frame-start) 350deg,var(--preview-frame-start) 360deg);
-  background:var(--preview-frame-pink-start);animation:none;
-}
-.accordion details.preview-frame-host[open]::before{background:var(--category-frame-gradient);animation:preview-frame-orbit 5s linear infinite paused}
-.accordion details.preview-frame-host[open].is-frame-active::before{animation-play-state:running}
-@media(hover:hover){
-  .accordion details.preview-frame-host:hover::before{background:var(--category-frame-gradient);animation:preview-frame-orbit 5s linear infinite paused}
-  .accordion details.preview-frame-host:hover.is-frame-active::before{animation-play-state:running}
-}
 /* Heading and course content form one continuous panel, with no internal seam. */
 .course-panel{display:flex;flex-direction:column;min-width:0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--rounded-xl);overflow:hidden}
 .course-heading,.course-content{border:0;border-radius:0}

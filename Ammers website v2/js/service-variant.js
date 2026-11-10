@@ -114,8 +114,7 @@ window.pmParticleFill = (function () {
     oval.innerHTML = g.anchors.map(function (a) { return '<span class="service-oval-anchor" id="' + a + '"></span>'; }).join('') +
       '<h3 class="service-oval-title">' + g.title + '</h3>' +
       '<span class="service-oval-hint mono" aria-hidden="true">Leistungen ansehen</span>' +
-      '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '</a></li>'; }).join('') +
-      '<li class="service-oval-more"><a class="mono" href="' + url + '" target="_blank" rel="noopener">Alle ' + count(g) + ' Leistungen ↗</a></li></ul>';
+      '<ul class="service-oval-list">' + items.map(function (n) { return '<li><a href="' + url + '" target="_blank" rel="noopener">' + short(n) + '<span class="arr" aria-hidden="true">↗</span></a></li>'; }).join('') + '</ul>';
     wrap.append(oval);
   });
   accordion.replaceWith(wrap);
@@ -385,4 +384,69 @@ window.pmParticleFill = (function () {
   document.addEventListener('visibilitychange', setRunning); reduce.addEventListener('change', setRunning);
   window.addEventListener('resize', function () { resize(); if (!running) render(0); });
   api.apply(); setRunning();
+})();
+
+// Frame colour dial: pick the border and the inner colour of every panel frame, separately for the brown and the pink variant.
+// Sets --frame-line-* / --frame-fill-* on :root (css/style.css falls back to the built-in colours while a value is unset).
+(function () {
+  var KEY = 'pm-beauty:v2:frame-colors', POS = 'pm-beauty:v2:frame-colors-pos';
+  var VARS = {brown:{line:'--frame-line-brown', fill:'--frame-fill-brown'}, pink:{line:'--frame-line-pink', fill:'--frame-fill-pink'}};
+  var LABEL = {line:'Rahmenlinie', fill:'Innenfläche'};
+  var root = document.documentElement, cv = document.createElement('canvas'); cv.width = cv.height = 1;
+  var ctx = cv.getContext('2d', {willReadFrequently:true});
+  function hex(css) { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = '#000'; ctx.fillStyle = css; ctx.fillRect(0, 0, 1, 1); var d = ctx.getImageData(0, 0, 1, 1).data;
+    return '#' + [d[0], d[1], d[2]].map(function (v) { return ('0' + v.toString(16)).slice(-2); }).join(''); }
+  // built-in colours, read before any override exists
+  var base = {};
+  ['brown', 'pink'].forEach(function (v) {
+    var p = document.createElement('div'); p.className = v === 'pink' ? 'theme-pink' : 'theme-brown';
+    p.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;background:var(--color-surface)';
+    document.body.append(p); var cs = getComputedStyle(p);
+    base[v] = {fill:hex(cs.backgroundColor), line: v === 'pink' ? '#d0b3b8' : '#dac6be'}; p.remove();
+  });
+  var state = {brown:{}, pink:{}};
+  try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); ['brown', 'pink'].forEach(function (v) { ['line', 'fill'].forEach(function (k) { if (s[v] && /^#[0-9a-f]{6}$/i.test(s[v][k])) state[v][k] = s[v][k]; }); }); } catch (e) {}
+  var cur = 'brown';
+  function value(v, k) { return state[v][k] || base[v][k]; }
+  function apply() { ['brown', 'pink'].forEach(function (v) { ['line', 'fill'].forEach(function (k) {
+    if (state[v][k]) root.style.setProperty(VARS[v][k], state[v][k]); else root.style.removeProperty(VARS[v][k]); });
+    if (state[v].fill) root.style.setProperty('--frame-deep-' + v, 'color-mix(in srgb,' + state[v].fill + ' 92%,#000)'); else root.style.removeProperty('--frame-deep-' + v); }); }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  apply();
+
+  var box = document.createElement('div'); box.id = 'frame-colors'; box.setAttribute('role', 'region'); box.setAttribute('aria-label', 'Rahmenfarben');
+  box.innerHTML = '<div class="fc-head"><strong>Rahmenfarben</strong><button type="button" class="fc-toggle" aria-expanded="true" aria-controls="fc-body">Einklappen</button></div>' +
+    '<div class="fc-body" id="fc-body"><div class="fc-tabs" role="group" aria-label="Variante">' +
+    '<button type="button" data-v="brown" aria-pressed="true">Braun</button><button type="button" data-v="pink" aria-pressed="false">Pink</button></div>' +
+    ['line', 'fill'].map(function (k) { return '<label>' + LABEL[k] + '</label><div class="fc-row"><input type="color" data-k="' + k + '" aria-label="' + LABEL[k] + ' Farbe"><input type="text" data-t="' + k + '" maxlength="7" spellcheck="false" aria-label="' + LABEL[k] + ' Hex"></div>'; }).join('') +
+    '<pre class="fc-out" aria-label="Aktuelle Werte"></pre><button type="button" class="fc-reset">Variante zurücksetzen</button></div>';
+  document.body.append(box);
+  var out = box.querySelector('.fc-out');
+  function refresh() {
+    box.querySelectorAll('[data-v]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === cur)); });
+    ['line', 'fill'].forEach(function (k) { box.querySelector('[data-k="' + k + '"]').value = value(cur, k); box.querySelector('[data-t="' + k + '"]').value = value(cur, k); });
+    out.textContent = ['brown', 'pink'].map(function (v) { return v + ': line ' + value(v, 'line') + ', fill ' + value(v, 'fill'); }).join('\n');
+  }
+  function set(k, val) { if (!/^#[0-9a-f]{6}$/i.test(val)) return; state[cur][k] = val.toLowerCase(); apply(); save(); refresh(); }
+  box.addEventListener('input', function (e) { var t = e.target; if (t.dataset.k) set(t.dataset.k, t.value); else if (t.dataset.t) { var v = t.value.charAt(0) === '#' ? t.value : '#' + t.value; if (/^#[0-9a-f]{6}$/i.test(v)) set(t.dataset.t, v); } });
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.v) { cur = b.dataset.v; refresh(); }
+    else if (b.classList.contains('fc-reset')) { state[cur] = {}; apply(); save(); refresh(); }
+    else if (b.classList.contains('fc-toggle')) { var body = box.querySelector('.fc-body'), open = body.hidden; body.hidden = !open; b.setAttribute('aria-expanded', String(open)); b.textContent = open ? 'Einklappen' : 'Ausklappen'; clamp(); }
+  });
+  // draggable, starts bottom right
+  var drag = null;
+  function clamp() { if (!box.style.left) return; var r = box.getBoundingClientRect();
+    box.style.left = Math.min(Math.max(r.left, 8 - r.width + 80), innerWidth - 80) + 'px'; box.style.top = Math.min(Math.max(r.top, 0), innerHeight - 40) + 'px'; }
+  box.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('button,input')) return;
+    var r = box.getBoundingClientRect(); drag = {dx:e.clientX - r.left, dy:e.clientY - r.top}; box.setPointerCapture(e.pointerId); box.classList.add('fc-drag'); e.preventDefault(); });
+  box.addEventListener('pointermove', function (e) { if (!drag) return;
+    box.style.right = 'auto'; box.style.bottom = 'auto'; box.style.left = e.clientX - drag.dx + 'px'; box.style.top = e.clientY - drag.dy + 'px'; clamp(); });
+  box.addEventListener('pointerup', function () { if (!drag) return; drag = null; box.classList.remove('fc-drag');
+    try { localStorage.setItem(POS, JSON.stringify({l:box.style.left, t:box.style.top})); } catch (e) {} });
+  try { var p = JSON.parse(localStorage.getItem(POS) || 'null'); if (p && /^-?\d+(\.\d+)?px$/.test(p.l) && /^-?\d+(\.\d+)?px$/.test(p.t)) { box.style.right = 'auto'; box.style.bottom = 'auto'; box.style.left = p.l; box.style.top = p.t; clamp(); } } catch (e) {}
+  addEventListener('resize', clamp);
+  refresh();
 })();

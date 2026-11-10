@@ -917,3 +917,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Fakten der KI überlassen. Leistungen, Zahlen und Zitate kommen nur von Paula; die KI hat mehrfach nachgefragt statt zu erfinden, das muss Regel bleiben.
 
 **Offen:** Foto-Mockups und zusammenhängende Bildserie sind seit 26.10.2026 im Styleguide mit KI-Kennzeichnung eingebunden. Kein Video erstellt; Test des dynamischen Header-Logos auf echten Geräten weiterhin offen. Ein möglicher Austausch weiterer Bilder auf der Kundenwebsite ist nicht Teil dieser Styleguide-Integration.
+
+### Claude (Sonnet 5.5), 10.11.2026: Bewertungen ohne Außenrahmen, Ovale ohne Linien, Rahmenfarben-Regler, Rahmen-Animation entfernt, Schulungen-Text links
+- Versucht und umgesetzt (nur Ammers website v2): Außenrahmen der Bewertungen entfernt (Einzelkarten bleiben); Ovale: Trennlinien weg, „Alle N Leistungen“ weg, stattdessen ↗ hinter jeder Leistung; umlaufende Rahmen-Animation (experiment-frames.css) entfernt, Linie jetzt einfarbig; Regler „Rahmenfarben“ (Braun/Pink, Rahmenlinie + Innenfläche je Farbwähler und Hex, Reset, verschiebbar, einklappbar); Schulungen: Eyebrow „Schulungen · PM Beauty Academy“ entfernt, Überschrift + Text links neben die Korean-Lash-Karte (leere Fläche) verschoben.
+- Funktioniert: per Playwright bei 1440 px geprüft (Animation none, Außenrahmen 0 px, Regler färbt Rahmen und Karten). Nicht geprüft: Handy.

@@ -3,7 +3,7 @@
   'use strict';
   var root = document.documentElement;
   var mobile = matchMedia('(max-width:899px)');
-  var selector = '.tile,.services,.reviews,.accordion details,.voucher,.review,.contact-panel,.hours,.about-panel,.course-panel,.perks li,.service-copy';
+  var selector = '.tile,.services,.accordion details,.voucher,.review,.contact-panel,.hours,.about-panel,.course-panel,.perks li,.service-copy';
   var hosts = Array.from(document.querySelectorAll(selector));
   var queued = false;
   function update() {

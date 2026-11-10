@@ -35,9 +35,9 @@
 }
 :root,.theme-brown,.theme-pink,.services,.reviews{
   --color-background:hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((95 + var(--tone-light)) * 1%));
-  --color-surface-raised:hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((96 + var(--tone-light)) * 1%));
-  --color-surface:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((90 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
-  --color-surface-deep:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((86 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
+  --raised-calc:hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((96 + var(--tone-light)) * 1%));
+  --surface-calc:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((90 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
+  --deep-calc:color-mix(in srgb,hsl(var(--tone-h) calc(var(--tone-s) * 1%) calc((86 + var(--tone-light)) * 1%)) calc(var(--tone-opacity) * 1%),var(--color-background));
   --color-primary:hsl(var(--tone-h) calc(var(--tone-s) * .6%) calc(var(--tone-text) * 1%));
   --color-on-surface:var(--color-primary);
   --color-on-surface-muted:hsl(var(--tone-h) calc(var(--tone-s) * .55%) calc((var(--tone-text) + 9) * 1%));
@@ -45,10 +45,12 @@
   --color-button:hsl(var(--tone-h) calc(var(--tone-s) * .65%) calc(var(--tone-button) * 1%));
   --color-button-hover:hsl(var(--tone-h) calc(var(--tone-s) * .65%) calc((var(--tone-button) - 5) * 1%));
   --color-on-primary:hsl(var(--tone-h) calc(var(--tone-s) * 1%) 97%);
-  --color-border:hsl(var(--tone-h) calc(var(--tone-s) * .65%) 42% / calc(var(--tone-border) * .01));
+  --border-calc:hsl(var(--tone-h) calc(var(--tone-s) * .65%) 42% / calc(var(--tone-border) * .01));
   --color-accent-pink:hsl(var(--pink-hue) calc(var(--pink-saturation) * 1%) 72%);
   --color-accent-pink-soft:hsl(var(--pink-hue) calc(var(--pink-saturation) * 1%) calc((90 + var(--pink-brightness)) * 1%));
 }
+:root,.theme-brown{--color-surface-raised:var(--frame-fill-brown,var(--raised-calc));--color-surface-deep:var(--frame-deep-brown,var(--deep-calc));--color-surface:var(--frame-fill-brown,var(--surface-calc));--color-border:var(--frame-line-brown,var(--border-calc))}
+.theme-pink,.services,.reviews{--color-surface-raised:var(--frame-fill-pink,var(--raised-calc));--color-surface-deep:var(--frame-deep-pink,var(--deep-calc));--color-surface:var(--frame-fill-pink,var(--surface-calc));--color-border:var(--frame-line-pink,var(--border-calc))}
 .theme-brown,.theme-pink,.services,.reviews{color:var(--color-on-surface)}
 @media(min-width:900px){:root{--brand-w:72px;--gutter:32px}}
 /* Handy: Rahmen von Panels und Fotos ca. 30 % weniger rund (Buttons und Kacheln bleiben) */
@@ -444,7 +446,7 @@ body.menu-open{overflow:hidden}
 .voucher-hint{margin-top:var(--space-5);color:var(--color-on-surface-muted);font-size:.92rem;max-width:70ch}
 
 /* ---------- Bewertungen ---------- */
-.reviews{background:var(--color-surface);border-radius:var(--rounded-xl)}
+.reviews{background:none;border:0;border-radius:0}
 .rating-badge{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4);margin:var(--space-4) 0}
 .rating-badge .score{font-size:clamp(3.2rem,9vw,4.6rem);font-weight:500;letter-spacing:-.04em;line-height:1}
 .rating-badge .stars{color:var(--color-accent);font-size:1.3rem;letter-spacing:.15em}
@@ -559,7 +561,7 @@ h1,h2,h3,.hero h1,.legal h1,.award-text strong,.voucher .amount,.rating-badge .s
 .tile h3{font-size:1.6rem}
 .accordion summary h3{font-size:clamp(1.35rem,3.5vw,1.65rem);line-height:1.3}
 /* One quiet outline per visual frame, including photo frames. */
-.tile,.strip figure,.services,.reviews,.accordion details,.voucher,.review,.contact-panel,.contact-figure,.hours,.sg-panel,.sg-demo-panels .img{
+.tile,.strip figure,.services,.accordion details,.voucher,.review,.contact-panel,.contact-figure,.hours,.sg-panel,.sg-demo-panels .img{
   border:1px solid var(--color-border);
 }
 @media(max-width:899px){
