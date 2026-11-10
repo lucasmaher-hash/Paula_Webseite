@@ -500,3 +500,17 @@ window.pmParticleFill = (function () {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { c.classList.add('together'); return; }
   new IntersectionObserver(function (e) { c.classList.toggle('together', e[0].isIntersecting); }, {threshold:.35}).observe(c);
 })();
+
+// Course panels (desktop): the whole panel books via Instagram DM; on hover it fills like the ovals (css/service-panels.css).
+(function () {
+  if (!matchMedia('(min-width:900px)').matches || !window.pmParticleFill) return;
+  var panels = Array.from(document.querySelectorAll('.course-panel'));
+  panels.forEach(function (p) {
+    var btn = p.querySelector('.course-content > .btn'), a = document.createElement('a');
+    a.className = 'course-book'; a.href = btn ? btn.href : 'https://www.instagram.com/pm_beauty___/'; a.target = '_blank'; a.rel = 'noopener';
+    var t = p.querySelector('h3'); a.setAttribute('aria-label', 'Per DM buchen' + (t ? ': ' + t.textContent.trim() : ''));
+    a.innerHTML = '<span>Per DM buchen<span class="arr" aria-hidden="true">↗</span></span>';
+    p.append(a);
+    window.pmParticleFill.attach(p, {group:panels});
+  });
+})();

@@ -241,3 +241,21 @@ body.menu-open #frame-colors{visibility:hidden}
   .courses .course:nth-child(even)>:is(.course-media,.course-panel){translate:0 var(--drift)}
   .courses.together .course>:is(.course-media,.course-panel){translate:0 0}
 }
+
+/* Course panels (desktop): no button at rest; on hover the panel fills like the treatment ovals and only says "Per DM buchen".
+   The whole panel is the link (js/service-variant.js adds .course-book). Phone keeps the normal button. */
+.course-book{display:none}
+@media(min-width:900px){
+  .course-panel{position:relative;--pf-color:var(--color-primary);transition:outline-color .35s}
+  .course-panel .course-content>.btn{display:none}
+  .course-panel>.pf-canvas{z-index:1}
+  .course-panel>:is(.course-heading,.course-content){transition:opacity .3s}
+  .course-panel.pf-on>:is(.course-heading,.course-content){opacity:0}
+  .course-panel.pf-on{--ring:var(--color-primary)}
+  .course-book{display:grid;place-items:center;position:absolute;inset:0;z-index:2;padding:24px;text-align:center;text-decoration:none;
+    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,2.9vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--color-on-primary);
+    opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s cubic-bezier(.3,0,.2,1)}
+  .course-panel.pf-on .course-book{opacity:1;transform:none;transition-delay:.05s}
+  .course-book .arr{font-size:.5em;margin-left:.3em;vertical-align:.35em}
+  .course-book:focus-visible{outline:2px solid var(--color-on-primary);outline-offset:-10px;border-radius:inherit}
+}
