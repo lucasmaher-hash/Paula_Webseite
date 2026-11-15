@@ -109,7 +109,7 @@ window.pmFlip = function (list) {
   var section = document.querySelector('#behandlungen');
   var accordion = section && section.querySelector('.accordion');
   if (!accordion) return;
-  var booking = section.querySelector('.section-head .btn');
+  var booking = section.querySelector('.section-head .btn') || document.querySelector('.fab[href*="beautinda"]');   // the head button may be gone; the booking FAB has the same link
   var url = booking ? booking.href : '#kontakt';
   var all = {};
   accordion.querySelectorAll('details').forEach(function (d) {
@@ -434,10 +434,12 @@ window.pmFlip = function (list) {
 (function () {
   if (!window.pmFlip) return;
   var desktop = matchMedia('(min-width:900px)').matches, all = [];
-  // Keep the detail layout fixed; only the title travels by half the detail height.
+  // Design the open layout first. Only the title travels from the closed centre to its final position.
   var titleSizes = new ResizeObserver(function (entries) {
-    entries.forEach(function (entry) {
-      entry.target.closest('.hv').style.setProperty('--hv-title-shift', (entry.target.getBoundingClientRect().height / 2) + 'px');
+    new Set(entries.map(function (entry) { return entry.target.closest('.hv'); })).forEach(function (panel) {
+      var layer = panel.querySelector('.hv-layer:not(.hv-ghost)'), title = layer.querySelector('.hv-sum'), detail = layer.querySelector('.hv-det');
+      panel.style.setProperty('--hv-title-shift', (detail.getBoundingClientRect().height / 2) + 'px');
+      panel.style.setProperty('--hv-title-shift-x', Math.max(0,(detail.getBoundingClientRect().width-title.getBoundingClientRect().width)/2) + 'px');
     });
   });
   function sum(html) { var s = document.createElement('div'); s.className = 'hv-sum'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = html; return s; }
@@ -450,7 +452,7 @@ window.pmFlip = function (list) {
     var ghost = layer.cloneNode(true); ghost.classList.add('hv-ghost'); ghost.setAttribute('inert', ''); ghost.setAttribute('aria-hidden', 'true');
     ghost.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
     el.append(layer, ghost); el.classList.add('hv'); if (!el.matches('a,button')) el.tabIndex = 0; all.push(el);
-    titleSizes.observe(det);
+    titleSizes.observe(det); titleSizes.observe(layer.querySelector('.hv-sum'));
   }
   var t = function (s) { return '<span class="hv-t">' + s + '</span>'; }, s2 = function (s) { return '<span class="hv-s">' + s + '</span>'; };
   document.querySelectorAll('.voucher').forEach(function (v) {
@@ -467,3 +469,295 @@ window.pmFlip = function (list) {
   window.pmFlip(all);
 })();
 
+// Lucas' four grid shapes (IMG_0370): 12 px seams like the contact frames, one shared corner radius.
+(function () {
+  var grid = document.querySelector('.reviews-grid');
+  if (!grid) return;
+  var reviews = Array.from(grid.querySelectorAll('article.review')), link = grid.querySelector('.review-all');
+  if (reviews.length < 3 || !link) return;
+  var mosaic = document.createElement('div'); mosaic.className = 'reviews-mosaic';
+  grid.prepend(mosaic); grid.classList.add('has-review-mosaic');
+  // Eyebrow, hidden heading and score move with the mosaic so they can sit in its top-left hollow.
+  var badge = grid.parentElement.querySelector(':scope>.rating-badge'), head = null;
+  if (badge) {
+    head = document.createElement('div'); head.className = 'reviews-head';
+    Array.from(grid.parentElement.children).filter(function (el) { return el.matches('.eyebrow,#reviews-heading,.rating-badge'); }).forEach(function (el) { head.append(el); });
+    grid.prepend(head);
+  }
+  // Longest quote in the tallest shape, shortest under the bottom diagonal, so no line runs into a cut.
+  var cards = [reviews[2], reviews[0], link, reviews[1]];
+  cards.forEach(function (card) { mosaic.append(card); });
+  // Retain the fourth real quote in the source, outside the requested three-quote composition.
+  reviews.slice(3).forEach(function (card) { card.hidden = true; card.setAttribute('data-review-unplaced', ''); });
+  var defs = [
+    {w:7,h:8,p:[[2,0],[7,0],[7,8],[0,8],[0,3]]},
+    {w:9,h:6,p:[[0,0],[6,0],[9,2],[9,6],[0,6]]},
+    {w:13,h:7,p:[[0,0],[13,0],[13,7],[2,7],[0,5]]},
+    {w:8,h:6,p:[[0,0],[6-Math.SQRT2,0],[8,2+Math.SQRT2],[8,6],[0,6]]}
+  ];
+  var paths = cards.map(function (card, i) {
+    if (card !== link) {
+      var content = document.createElement('div'); content.className = 'review-shape-content';
+      while (card.firstChild) content.append(card.firstChild);
+      card.append(content);
+    }
+    var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.classList.add('review-shape'); svg.setAttribute('aria-hidden','true');
+    var path = document.createElementNS(svg.namespaceURI,'path'); svg.append(path); card.prepend(svg);
+    return path;
+  });
+  // Desktop: shapes keep their sketch size in cells s, but every seam is the panel gap g
+  // (same 12 px as the contact frames below). The diagonal seam is measured normal to both edges.
+  var wide = matchMedia('(min-width:1000px)'), SQ = Math.SQRT2;
+  function gap() { return parseFloat(getComputedStyle(mosaic).getPropertyValue('--frame-space')) || 12; }
+  function cellSize() { return wide.matches ? (mosaic.clientWidth-gap())/20 : mosaic.clientWidth/9; }
+  function desk(s,g) {
+    return [
+      {x:0,y:3*s,w:7*s,h:8*s,p:[[2*s,0],[7*s,0],[7*s,8*s],[0,8*s],[0,3*s]]},
+      {x:7*s+g,y:0,w:9*s,h:6*s,p:[[0,0],[6*s,0],[9*s,2*s],[9*s,6*s],[0,6*s]]},
+      {x:7*s+g,y:6*s+g,w:13*s,h:7*s,p:[[0,0],[13*s,0],[13*s,7*s],[2*s,7*s],[0,5*s]]},
+      {x:2*s,y:11*s+g,w:8*s,h:6*s,p:[[0,0],[5*s+g*(1-SQ),0],[8*s,3*s+g*(SQ-1)],[8*s,6*s],[0,6*s]]}
+    ];
+  }
+  function layout() {
+    if (!wide.matches) { mosaic.style.height = ''; cards.forEach(function (c) { c.style.left = c.style.top = c.style.width = c.style.height = ''; }); return null; }
+    var s = cellSize(), g = gap(), L = desk(s,g);
+    mosaic.style.height = (17*s+g)+'px';
+    cards.forEach(function (c,i) { c.style.left = L[i].x+'px'; c.style.top = L[i].y+'px'; c.style.width = L[i].w+'px'; c.style.height = L[i].h+'px'; });
+    return L;
+  }
+  var placed = null;
+  function vertices(i) {
+    if (placed) return placed[i].p;
+    var box = cards[i].getBoundingClientRect(), def = defs[i];
+    return def.p.map(function (p) { return [p[0]/def.w*box.width,p[1]/def.h*box.height]; });
+  }
+  function corners(points) {
+    return points.map(function (p,i) {
+      var a = points[(i+points.length-1)%points.length], b = points[(i+1)%points.length];
+      var al = Math.hypot(a[0]-p[0],a[1]-p[1]), bl = Math.hypot(b[0]-p[0],b[1]-p[1]);
+      var u = [(a[0]-p[0])/al,(a[1]-p[1])/al], v = [(b[0]-p[0])/bl,(b[1]-p[1])/bl];
+      var tan = Math.tan(Math.acos(Math.max(-1,Math.min(1,u[0]*v[0]+u[1]*v[1])))/2);
+      return {p:p,u:u,v:v,tan:tan,limit:Math.min(al,bl)*.48*tan};
+    });
+  }
+  // r is the radius of the right-angled corners. Blunt corners (at the diagonal cuts) get a larger radius,
+  // r * tan(half angle)^.75 (about 1.9 r at 135 degrees), so they read as rounded too; each stays within its own limit.
+  function rounded(cs,r) {
+    var ends = cs.map(function (c) { var ri = r ? Math.min(r*Math.pow(Math.max(1,c.tan),.75), c.limit) : 0, t = ri ? ri/c.tan : 0;
+      return {r:ri,a:[c.p[0]+c.u[0]*t,c.p[1]+c.u[1]*t],b:[c.p[0]+c.v[0]*t,c.p[1]+c.v[1]*t]};
+    });
+    return ends.map(function (c,i) { return (i?'L':'M')+c.a.join(',')+(c.r?' A'+c.r+','+c.r+' 0 0 1 '+c.b.join(','):''); }).join(' ')+' Z';
+  }
+  // Inset the outlined link by half its stroke so its visible edge stays on the grid.
+  function inset(points,d) {
+    return corners(points).map(function (c) {
+      var bis = [c.u[0]+c.v[0],c.u[1]+c.v[1]], len = Math.hypot(bis[0],bis[1]);
+      var sin = Math.sqrt((1-(c.u[0]*c.v[0]+c.u[1]*c.v[1]))/2);
+      return [c.p[0]+bis[0]/len*d/sin,c.p[1]+bis[1]/len*d/sin];
+    });
+  }
+  // Same corner radius as the contact frames below: 46 sketch units there (js/contact-shapes.js sets --u),
+  // otherwise the plain contact card radius (phone, where the contact shapes are off).
+  function cardRadius() {
+    var cg = document.querySelector('.contact-grid'), u = cg && parseFloat(cg.style.getPropertyValue('--u'));
+    if (u) return 46*u;
+    var card = document.querySelector('.contact .hours');
+    return card ? parseFloat(getComputedStyle(card).borderTopLeftRadius) || 0 : 0;
+  }
+  window.pmShape = {corners: corners, rounded: rounded, inset: inset, radius: cardRadius};
+  // Heading and score sit in the hollow above the left shape, left of the top shape.
+  function placeHead(s) {
+    if (!head) return;
+    if (!placed) { head.style.left = head.style.top = head.style.width = head.style.height = ''; return; }
+    var inset = mosaic.getBoundingClientRect().left - grid.getBoundingClientRect().left;
+    head.style.left = '0px'; head.style.top = '0px';
+    head.style.width = (inset + 7*s) + 'px'; head.style.height = (3*s - gap()) + 'px';
+  }
+  function draw() {
+    // Below the breakpoint the quotes no longer fit their shapes, so the cards stack (same breakpoint as the CSS).
+    placed = layout();
+    var cell = cellSize();
+    var sets = cards.map(function (_,i) { var p = vertices(i); return corners(i===2?inset(p,1.5):p); });
+    var r = Math.min(cardRadius(),...sets.flat().map(function (c) { return c.limit; }));
+    sets.forEach(function (cs,i) {
+      paths[i].setAttribute('d',rounded(cs,r));
+      // Solid cards have the same visible path as their SVG; content stays in the safe rectangle.
+      cards[i].style.clipPath = 'path("'+rounded(corners(vertices(i)),r+(i===2?1.5:0))+'")';
+    });
+    mosaic.style.setProperty('--review-cell',cell+'px'); grid.style.setProperty('--review-cell',cell+'px');
+    placeHead(cell);
+  }
+  // Two frames later, so the contact shapes have set their unit first.
+  var raf = 0; function later() { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = requestAnimationFrame(draw); }); }
+  var ro = new ResizeObserver(later); [mosaic].concat(cards).forEach(function (el) { ro.observe(el); });
+  var contactGrid = document.querySelector('.contact-grid'); if (contactGrid) ro.observe(contactGrid);
+  window.addEventListener('load', later);
+  draw();
+})();
+
+// Assemble and drift (Lucas, 10.11.2026, reference vivmgmt.com): when a group of panels comes into view, the seams between stacked items
+// start at about five times the normal gap and close as the group reaches its place. Afterwards the columns drift
+// slightly up and down against each other while scrolling, vertically only. Uses the CSS `translate` property, so the
+// existing transforms (reveal, hover flips) stay untouched. Desktop only; off with reduced motion.
+(function () {
+  'use strict';
+  var mq = matchMedia('(min-width:900px)'), reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var specs = [
+    {group: '.results .strip', items: ':scope>figure', drift: 56, stagger: 60},
+    {group: '.about-grid', items: ':scope>.about-figure,:scope>.about-panel', drift: 36, stagger: 48, rest: 25},
+    {group: '.service-ovals', items: ':scope>.service-oval', drift: 36, stagger: 48},   // after Lucas' sketch: left far higher, right a little higher than the middle
+    {group: '.courses', items: ':scope>.course>.course-media,:scope>.course>.course-panel,:scope>.course-intro', drift: 36, stagger: 48},
+    {group: '.vouchers-grid', items: ':scope>.voucher', drift: 36, stagger: 48},
+    {group: '.reviews-grid', items: ':scope>.reviews-head,:scope>.reviews-mosaic>.review', drift: 24, stagger: 48},
+    {group: '.contact-grid', items: ':scope>*', drift: 36, stagger: 48}
+  ];
+  var groups = [], raf = 0, last = 0, settled = false;
+  function abs(el) { var x = 0, y = 0; for (var e = el; e; e = e.offsetParent) { x += e.offsetLeft; y += e.offsetTop; } return [x, y]; }
+  // Rank = length of the longest chain of items fully before this one (left of it, or above it).
+  function ranks(boxes, a, b) {
+    var order = boxes.map(function (_, i) { return i; }).sort(function (i, j) { return boxes[i][a] - boxes[j][a]; }), r = [];
+    order.forEach(function (i) {
+      r[i] = 0;
+      order.forEach(function (j) { if (r[j] !== undefined && j !== i && boxes[j][b] <= boxes[i][a] + 1) r[i] = Math.max(r[i], r[j] + 1); });
+    });
+    return r;
+  }
+  // Column clusters: items whose horizontal extents overlap (stacked, or interlocking along a diagonal) are joined and
+  // always move together; different clusters are separated horizontally, so moving them vertically never makes them overlap.
+  // Returns the cluster index (left to right) per item. A group that forms one cluster breathes instead.
+  function clusters(boxes) {
+    var id = boxes.map(function (_, i) { return i; });
+    function root(i) { while (id[i] !== i) i = id[i] = id[id[i]]; return i; }
+    boxes.forEach(function (a, i) { boxes.forEach(function (b, j) { if (j > i && a.l < b.r - 1 && b.l < a.r - 1) id[root(j)] = root(i); }); });
+    var roots = [], left = {};
+    boxes.forEach(function (b, i) { var r = root(i); if (!(r in left)) { left[r] = b.l; roots.push(r); } else left[r] = Math.min(left[r], b.l); });
+    roots.sort(function (a, b) { return left[a] - left[b]; });
+    return boxes.map(function (_, i) { return roots.indexOf(root(i)); });
+  }
+  function measure() {
+    groups = [];
+    if (!mq.matches || reduce.matches) return;
+    specs.forEach(function (s) {
+      var g = document.querySelector(s.group); if (!g || !g.offsetParent) return;
+      var items = Array.from(g.querySelectorAll(s.items)).filter(function (el) { return el.offsetParent && !el.hidden; });
+      if (items.length < 2) return;
+      var boxes = items.map(function (el) { var p = abs(el); return {l: p[0], t: p[1], r: p[0] + el.offsetWidth, b: p[1] + el.offsetHeight}; });
+      var rx = clusters(boxes), ry = ranks(boxes, 't', 'b');
+      var mx = Math.max.apply(null, rx), my = Math.max.apply(null, ry);
+      var gap = parseFloat(getComputedStyle(g).columnGap) || parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--frame-space')) || 12;
+      groups.push({el: g, spec: s, items: items.map(function (el, i) {
+        return {el: el, i: i, sy: (ry[i] - my / 2) * 4 * gap, row: ry[i] - my / 2, col: rx[i], x: el._pmx || 0, y: el._pmy || 0};
+      }), single: mx === 0});
+    });
+  }
+  function clear() { document.querySelectorAll('[data-pm-drift]').forEach(function (el) { el.style.translate = el.style.transition = ''; el.removeAttribute('data-pm-drift'); el._pmx = el._pmy = 0; el._pmTr = false; }); }
+  // The older drift-together rules (vouchers in js/main.js, courses above) animate `translate` over 1.4 s. This script
+  // replaces them, so their translate transition is dropped per element; every other transition stays as it was.
+  function noTranslateTransition(el) {
+    if (el._pmTr) return; el._pmTr = true;
+    var cs = getComputedStyle(el), split = function (s) { return s.split(/,(?![^(]*\))/).map(function (x) { return x.trim(); }); };
+    var p = split(cs.transitionProperty), du = split(cs.transitionDuration), tf = split(cs.transitionTimingFunction), de = split(cs.transitionDelay);
+    if (p.indexOf('translate') < 0 && p.indexOf('all') < 0) return;
+    var keep = p.map(function (name, i) { return name === 'translate' ? null : (name === 'all' ? 'opacity' : name) + ' ' + du[i % du.length] + ' ' + tf[i % tf.length] + ' ' + de[i % de.length]; }).filter(Boolean);
+    el.style.transition = keep.join(', ') || 'none';
+  }
+  function ease(t) { return t * t * (3 - 2 * t); }   // smoothstep: the seams close visibly over the whole approach
+  function frame(now) {
+    raf = 0;
+    var dt = Math.min(64, now - (last || now)); last = now;
+    var k = last && dt ? 1 - Math.exp(-dt / 140) : 1, vh = innerHeight, moving = false;
+    groups.forEach(function (G) {
+      var r = G.el.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > 2 * vh) return;
+      var p = Math.max(0, Math.min(1, (vh * .95 - r.top) / (vh * .55))), open = 1 - ease(p);
+      var d = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
+      G.items.forEach(function (it) {
+        var side = it.col % 2 ? 1 : -1;
+        // Column clusters drift against each other; a group that is one cluster (everything interlocks) "breathes"
+        // instead (rows spread apart away from the screen centre), so its seams only ever widen.
+        var move = G.single ? it.row * G.spec.drift * Math.abs(d) : side * ((G.spec.stagger || 0) * open + G.spec.drift * d + (G.spec.rest || 0)) + (G.spec.restH ? G.spec.restH[it.i] * G.el.clientHeight : 0);   // rest/restH: offset kept once assembled (px / share of the group height)
+        var tx = 0, ty = it.sy * open + move;
+        it.x += (tx - it.x) * (settled ? k : 1); it.y += (ty - it.y) * (settled ? k : 1);
+        if (Math.abs(tx - it.x) > .1 || Math.abs(ty - it.y) > .1) moving = true;
+        it.el._pmx = it.x; it.el._pmy = it.y; it.el.setAttribute('data-pm-drift', ''); noTranslateTransition(it.el);
+        it.el.style.translate = it.x.toFixed(2) + 'px ' + it.y.toFixed(2) + 'px';
+      });
+    });
+    settled = true;
+    if (moving) raf = requestAnimationFrame(frame); else last = 0;
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+  function rebuild() { if (!mq.matches || reduce.matches) { groups = []; clear(); return; } measure(); kick(); }
+  var t = 0; function later() { clearTimeout(t); t = setTimeout(rebuild, 120); }
+  addEventListener('scroll', kick, {passive: true});
+  addEventListener('resize', later);
+  addEventListener('load', later);
+  mq.addEventListener('change', later); reduce.addEventListener('change', later);
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(later); specs.forEach(function (s) { var g = document.querySelector(s.group); if (g) ro.observe(g); }); }
+  rebuild();
+})();
+
+// About (Lucas' sketch, 10.11.2026): photo 9 x 12 cells with the bottom-left corner cut 3 x 3, text panel 12 x 12 with the
+// top-right corner cut 3 x 3. Same seam (--frame-space, 12 px) and the same corner radius as the reviews (window.pmShape).
+(function () {
+  var grid = document.querySelector('.about-grid'), fig = grid && grid.querySelector('.about-figure'), panel = grid && grid.querySelector('.about-panel');
+  if (!fig || !panel || !window.pmShape) return;
+  var S = window.pmShape, mq = matchMedia('(min-width:900px)'), NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg'); svg.classList.add('about-shape'); svg.setAttribute('aria-hidden', 'true');
+  var path = document.createElementNS(NS, 'path'); svg.append(path);
+  function draw() {
+    if (!mq.matches) { grid.classList.remove('has-about-shape'); fig.style.clipPath = panel.style.clipPath = ''; svg.remove(); grid.style.removeProperty('--about-s'); return; }
+    grid.classList.add('has-about-shape'); if (!svg.parentNode) panel.prepend(svg);
+    var g = parseFloat(getComputedStyle(grid).columnGap) || 12, s = (fig.offsetWidth + panel.offsetWidth) / 21;
+    grid.style.setProperty('--about-s', s + 'px');
+    var fw = fig.offsetWidth, fh = fig.offsetHeight, pw = panel.offsetWidth, ph = panel.offsetHeight;
+    var F = [[0,0],[fw,0],[fw,fh],[3*s,fh],[0,fh-3*s]], P = [[0,0],[pw-3*s,0],[pw,3*s],[pw,ph],[0,ph]];
+    var cf = S.corners(F), cp = S.corners(S.inset(P, 1.5));
+    var r = Math.min(S.radius(), ...cf.concat(cp).map(function (c) { return c.limit; }));
+    fig.style.clipPath = 'path("' + S.rounded(cf, r) + '")';
+    path.setAttribute('d', S.rounded(cp, r));
+    panel.style.clipPath = 'path("' + S.rounded(S.corners(P), r + 1.5) + '")';
+  }
+  var raf = 0; function later() { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = requestAnimationFrame(draw); }); }
+  var ro = new ResizeObserver(later); [grid, fig, panel].forEach(function (el) { ro.observe(el); });
+  var cg = document.querySelector('.contact-grid'); if (cg) ro.observe(cg);
+  mq.addEventListener('change', later); addEventListener('load', later); draw();
+})();
+
+// Three Figma polygons (68:11, 67:6, 68:7), rounded with the shared frame geometry.
+(function () {
+  var wrap = document.querySelector('.service-ovals'); if (!wrap) return;
+  var slices = Array.from(wrap.querySelectorAll(':scope>.service-oval')); if (slices.length !== 3) return;
+  var mq = matchMedia('(min-width:900px)'), NS = 'http://www.w3.org/2000/svg';
+  var vertices = [
+    [[0,0],[263,0],[263,513.5],[0,337]],
+    [[0,129],[263,0],[263,513.5],[0,639.5]],
+    [[0,0],[244.5,192.5],[244.5,380.5],[0,506]]
+  ];
+  var widths = [263,263,244.5];
+  var shapes = slices.map(function (el) {
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'oval-slice-shape'); svg.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS(NS, 'path'); svg.append(path); return {svg: svg, path: path};
+  });
+  function draw() {
+    if (!mq.matches) {
+      wrap.classList.remove('is-sliced');
+      slices.forEach(function (el, i) { el.style.clipPath = ''; shapes[i].svg.remove(); });
+      return;
+    }
+    wrap.classList.add('is-sliced');
+    var S = window.pmShape; if (!S) return;
+    var scale = slices[0].offsetWidth / 263, r = S.radius(), sw = 1.5;
+    slices.forEach(function (el, i) {
+      if (!shapes[i].svg.parentNode) el.prepend(shapes[i].svg);
+      var points = vertices[i].map(function (p) { return [p[0] * el.offsetWidth / widths[i], p[1] * scale]; });
+      el.style.clipPath = 'path("' + S.rounded(S.corners(points), r) + '")';
+      shapes[i].path.setAttribute('d', S.rounded(S.corners(S.inset(points, sw)), Math.max(0, r - sw)));
+    });
+  }
+  var raf = 0; function later() { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = requestAnimationFrame(draw); }); }
+  var ro = new ResizeObserver(later); ro.observe(wrap);
+  var cg = document.querySelector('.contact-grid'); if (cg) ro.observe(cg);
+  mq.addEventListener('change', later); addEventListener('load', later); draw();
+})();

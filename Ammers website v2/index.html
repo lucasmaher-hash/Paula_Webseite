@@ -37,7 +37,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=gambarino%40400&amp;display=swap">
 <link rel="stylesheet" href="css/style.css?v=82">
 <link rel="stylesheet" href="css/experiment-frames.css?v=10">
-<link rel="stylesheet" href="css/service-panels.css?v=80">
+<link rel="stylesheet" href="css/service-panels.css?v=82">
 <link rel="stylesheet" href="css/contact-shapes.css?v=4">
 </head>
 <body>
@@ -171,7 +171,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
       </div>
       <div class="about-panel">
         <span class="eyebrow">Über mich &amp; Studio</span>
-        <h2 id="about-heading">Hey, ich bin Paula.</h2>
+        <h2 id="about-heading" class="sr-only">Über mich: Paula Maher</h2>   <!-- sichtbar entfernt (Lucas, 11.11.2026), bleibt als Abschnittsname für Screenreader -->
         <blockquote>„Beauty war für mich nie nur ein Trend, sondern schon immer eine Leidenschaft. Heute ist daraus ein Business mit klaren Standards geworden. Präzision, Ästhetik und Qualität stehen bei mir an erster Stelle. Willkommen bei PM Beauty."</blockquote>
         <div class="facts">
           <div class="fact"><span>Standort</span><span><a href="https://www.google.com/maps?q=48.1418,11.50383" target="_blank" rel="noopener">Fürstenrieder Str. 11, München</a></span></div>
@@ -453,7 +453,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
 </footer>
 
 <a class="fab" href="https://beautinda.de/book/hebb68m5vleBjoPRrOEG3Bi5mP43/orders" target="_blank" rel="noopener" aria-label="Termin buchen"><span>Termin<br>buchen</span></a>
-<script src="js/service-variant.js?v=60"></script>
+<script src="js/service-variant.js?v=61"></script>
 <script src="js/contact-shapes.js?v=4"></script>
 <script src="js/main.js?v=44"></script>
 <script src="js/logo-write.js?v=5"></script>

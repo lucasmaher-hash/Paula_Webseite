@@ -230,26 +230,25 @@
    hover/focus/tap (.is-open) fills them near-white and shows the full content. Both layers share one grid cell, so nothing jumps. */
 .hv{--ring:var(--hvc);background:transparent!important;background-image:none!important;display:grid!important;grid-template:minmax(0,1fr)/minmax(0,1fr);cursor:default;transition:background-color .4s}
 /* Content keeps its open layout and only fades. The title moves from the centre to its place above it. */
-.hv>.hv-layer{grid-area:1/1;align-self:center;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hv>.hv-layer{grid-area:1/1;align-self:center;min-width:0;display:flex;flex-direction:column;align-items:stretch;text-align:left}
 .hv>.hv-ghost{visibility:hidden;pointer-events:none;align-self:stretch;justify-content:center}
-.hv-sum{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--hvc);transform:translateY(var(--hv-title-shift,0px));transition:transform .35s cubic-bezier(.4,0,.2,1),color .4s;pointer-events:none}
+.hv-sum{display:flex;flex-direction:column;align-items:flex-start;align-self:flex-start;max-width:100%;justify-content:center;gap:10px;text-align:left;color:var(--hvc);transform:translate(var(--hv-title-shift-x,0px),var(--hv-title-shift,0px));transition:transform .35s cubic-bezier(.4,0,.2,1),color .4s;pointer-events:none}
 .hv-sum .hv-t{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.4vw,40px);line-height:1.05;letter-spacing:-.01em}
 .hv-sum .hv-s{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
 .hv-sum svg{width:34px;height:34px;color:inherit!important;transition:color .4s}
-.voucher .hv-sum{flex-direction:row;gap:12px}
+.voucher .hv-sum{flex-direction:row;align-items:center;gap:12px}
 .voucher .hv-sum svg{width:44px;height:44px;flex-shrink:0}
 .hv-det{opacity:0;visibility:hidden;width:100%;transition:opacity .3s,visibility 0s .3s}
-.hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3,14px);padding-top:var(--space-4,18px)}
+.hv-det-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:left;gap:var(--space-3,14px);padding-top:var(--space-4,18px)}
 .hv-det-in>*{margin:0!important;max-width:100%}
 .hv-dup{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap}
 .hv-ghost .hv-det{transition:none}
 .hv.is-open>.hv-layer:not(.hv-ghost) .hv-det{opacity:1;visibility:visible;transition:opacity .35s .15s,visibility 0s}
-.hv.is-open .hv-sum{color:var(--color-on-surface);transform:translateY(0)}
+.hv.is-open .hv-sum{color:var(--color-on-surface);transform:translate(0,0)}
 .hv .course-heading,.hv .course-content{padding:0!important;background:transparent!important;border-radius:0!important}
 .hv .course-title h3{font-size:clamp(1.1rem,1.5vw,1.4rem)}
 .hv .course-content p{font-size:clamp(.9rem,1.05vw,1.02rem);line-height:1.5}
-.hv .course-content{gap:var(--space-3,14px);align-items:center}
-.hv .hv-det-in table{margin:0 auto}
+.hv .course-content{gap:var(--space-3,14px)}
 .hv.is-open{background:var(--hvc)!important}
 .review.review-all.hv,.hours.hv{--ring:var(--hvc)}
 .hv.is-open{background:var(--hvc)!important}
@@ -268,21 +267,79 @@ main>section:not(.hero),.site-footer{--hvc:color-mix(in srgb,var(--color-surface
 .review:not(.review-all){--ring:var(--hvc);background:var(--hvc)!important;background-image:none!important}
 .review:not(.review-all),.review:not(.review-all) *{color:var(--color-on-surface)!important}
 .course-panel .hv-layer{padding:0 clamp(28px,3vw,52px);box-sizing:border-box;width:100%}
-.hv .course-content{width:100%;align-items:center!important;flex:0 0 auto!important}
-.hv .hv-det-in .btn{align-self:center!important}
+.hv .course-content{width:100%;flex:0 0 auto!important}
+.course-panel .hv-det-in .btn{align-self:flex-start}
 .review-all .hv-det-in{color:var(--color-on-surface)}
 .review-all .hv-det-in span{color:inherit!important}
+.review-all-cta{padding-right:3px} /* room for the existing 2 px arrow hover movement */
 
-/* Panels: centred facts, no duplicate address label (10.11.2026) */
+/* Open content keeps its own layout; only the short title travels into place. */
 .hv .facts{width:100%}
-.hv .fact{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;padding:12px 0}
-.hv .fact span:first-child{padding-top:0}
-.hv .fact span:last-child{text-align:center}
-.hv .fact.fact-address{flex-wrap:wrap}
 .hv .fact.fact-address>span:first-child{display:none}
-.hv .hours-actions,.hv .hero-actions{justify-content:center}
+.contact-facts .fact{flex-direction:column;align-items:flex-start;gap:3px}
+.contact-facts .fact>span{max-width:100%}
+.contact-facts .fact>span:last-child{text-align:left}
+.hours>.hv-layer{align-self:stretch}
+.hours .hv-det{display:flex;flex:1}
+.hours .hv-det-in{width:100%}
+.hours .hours-actions{align-self:stretch;margin-top:auto!important}
+.hours td:first-child{padding-right:8px}
+.hours-actions .btn{max-width:100%;white-space:normal;padding-inline:clamp(12px,1.6vw,24px);gap:8px}
+@media(min-width:900px){
+  .contact-grid{grid-template-columns:1.2fr 1.2fr minmax(236px,.85fr)}
+  .contact-facts{padding-inline:clamp(24px,3.33vw,48px)}
+}
 .review-all:hover{filter:none}
 .nav-dd-btn,.site-nav>a{white-space:nowrap}
+
+/* Reviews follow Lucas' squared-paper drawing. The diagonal seam is offset
+   by sqrt(2) cells, giving one full cell measured normal to both edges. */
+.reviews-grid.has-review-mosaic{display:block}
+.reviews-mosaic{--review-cell:calc((100vw - 40px)/9);display:grid;gap:var(--frame-space,12px)}
+.reviews-mosaic>.review{position:relative;isolation:isolate;outline:0;border:0;border-radius:0;background:transparent!important;overflow:visible;padding:0;min-width:0;transform:none!important;opacity:1!important;transition:none}
+.review-shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:visible;fill:var(--hvc)}
+.reviews-mosaic>.review-all{padding:40px 40px 85px;cursor:pointer;min-height:300px}
+.reviews-mosaic>.review-all .review-shape{fill:transparent;stroke:var(--hvc);stroke-width:3px}
+.reviews-mosaic>.review-all.is-open .review-shape{fill:var(--hvc)}
+.reviews-grid>[data-review-unplaced]{display:none!important}
+.review-shape-content{padding:28px;display:flex;flex-direction:column;justify-content:center;gap:24px;flex:1;min-height:0}
+.review-shape-content p{margin:0}
+.reviews-mosaic>.review:nth-child(1){min-height:390px}
+.reviews-mosaic>.review:nth-child(1) .review-shape-content{padding-top:100px}
+.reviews-mosaic>.review:nth-child(2){min-height:260px}
+.reviews-mosaic>.review:nth-child(2) .review-shape-content{padding-right:65px}
+.reviews-mosaic>.review:nth-child(3){min-height:340px}
+.reviews-mosaic>.review:nth-child(3) .review-shape-content{padding-bottom:80px}
+.reviews-mosaic>.review:nth-child(4){min-height:260px}
+.reviews-mosaic>.review:nth-child(4) .review-shape-content{padding-top:95px}
+.has-review-mosaic>.review-all{margin-top:var(--review-cell,32px)}
+@media(min-width:1000px){ /* below this the quotes overflow their shapes; the cards stack instead */
+  /* 75 % of the former size, centred; never narrower than 720 px, below which the quotes no longer fit.
+     js/service-variant.js places the shapes absolutely: sketch size in cells, every seam = --frame-space
+     (12 px, as in the contact frames). */
+  .reviews-mosaic{--review-cell:calc((100cqw - 12px)/20);display:block;position:relative;width:max(75%,min(100%,720px));margin-inline:auto;container-type:inline-size;gap:0}
+  .reviews-mosaic>.review{position:absolute!important;min-height:0!important}
+  .reviews-mosaic .review-shape-content{padding:clamp(18px,2.6cqw,32px)}
+  .reviews-mosaic .review-shape-content p{font-size:clamp(.8rem,1.75cqw,1.02rem)}
+  .reviews-mosaic .review-shape-content footer{font-size:clamp(.68rem,1.45cqw,.82rem)}
+  .reviews-mosaic>.review:nth-child(1) .review-shape-content{padding-top:calc(var(--review-cell) * 2.1)}
+  .reviews-mosaic>.review:nth-child(2) .review-shape-content{padding-right:calc(var(--review-cell) * 2.1)}
+  .reviews-mosaic>.review:nth-child(3) .review-shape-content{padding-bottom:calc(var(--review-cell) * 1.7)}
+  .reviews-mosaic>.review:nth-child(4) .review-shape-content{padding-top:calc(var(--review-cell) * 2.2);padding-right:calc(var(--review-cell) * 1.2)}
+  .reviews-mosaic>.review-all{padding:clamp(18px,2.6cqw,32px) clamp(18px,2.6cqw,32px) calc(var(--review-cell) * 1.7)}
+  .has-review-mosaic>.review-all{margin-top:calc((100vw - 64px)/21)}
+}
+/* Eyebrow and score: in the flow on the phone, in the hollow above the left shape on desktop (js sets the box). */
+.has-review-mosaic{margin-top:0!important}
+.reviews-head{margin-bottom:var(--space-6)}
+@media(min-width:1000px){
+  .reviews-grid.has-review-mosaic{position:relative}
+  .reviews-head{position:absolute;margin:0;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;min-width:0}
+  .reviews-head .rating-badge{margin:0;flex-wrap:nowrap;align-items:center;gap:calc(var(--review-cell) * .4)}
+  .reviews-head .rating-badge .score{font-size:calc(var(--review-cell) * 1.5)}
+  .reviews-head .rating-badge .stars{font-size:clamp(.95rem,calc(var(--review-cell) * .45),1.3rem)}
+  .reviews-head .rating-badge .muted{font-size:clamp(.78rem,calc(var(--review-cell) * .42),1rem)}
+}
 
 /* Header retracts on scroll down, returns on scroll up */
 .site-header{transition:transform .45s cubic-bezier(.4,0,.2,1)}
@@ -304,3 +361,83 @@ body.menu-open .fab{visibility:hidden}
 @media(max-width:899px){.fab{width:78px;height:78px;font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){.fab{transition:none}}
 
+
+/* Gallery columns start at different heights (after vivmgmt.com), 14 row units instead of 12.
+   js/service-variant.js ("Assemble and drift") moves the columns slightly against each other while scrolling. */
+@media(min-width:900px){
+  .results .strip{grid-template-rows:repeat(14,clamp(34px,3.7vw,53px))}
+  .results .strip figure:nth-child(1){grid-column:1;grid-row:2 / 7}
+  .results .strip figure:nth-child(2){grid-column:1;grid-row:7 / 14}
+  .results .strip figure:nth-child(3){grid-column:2;grid-row:1 / 8}
+  .results .strip figure:nth-child(4){grid-column:2;grid-row:8 / 13}
+  .results .strip figure:nth-child(5){grid-column:3;grid-row:3 / 8}
+  .results .strip figure:nth-child(6){grid-column:3;grid-row:8 / 15}
+  .results .strip figure:nth-child(7){grid-column:4;grid-row:1 / 7}
+  .results .strip figure:nth-child(8){grid-column:4;grid-row:7 / 10}
+  [data-pm-drift]{will-change:translate}
+}
+
+/* About after Lucas' sketch (desktop): photo 9 cells wide, text panel 12, both 12 cells high; js/service-variant.js
+   draws the cut corners with the reviews' radius. The panel's frame and fill come from its SVG, like "Alle Bewertungen". */
+@media(min-width:900px){
+  .about-grid.has-about-shape{grid-template-columns:9fr 12fr;grid-auto-rows:minmax(calc(var(--about-s,48px) * 12),auto)}
+  .has-about-shape>.about-figure{min-height:0;border-radius:0}
+  .has-about-shape>.about-panel{position:relative;isolation:isolate;outline:0!important;border-radius:0}
+  .about-grid.has-about-shape>.about-panel.hv,.about-grid.has-about-shape>.about-panel.hv.is-open{background:transparent!important}
+  .about-shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:visible;fill:transparent;stroke:var(--hvc);stroke-width:3px;transition:fill .4s}
+  .has-about-shape>.about-panel.is-open>.about-shape{fill:var(--hvc)}
+  .has-about-shape>.about-panel{padding-block:clamp(24px,calc(var(--about-s,48px) * .9),64px);padding-right:calc(var(--about-s,48px) * 1.6)}
+}
+
+/* Section spacing: +25% (Lucas, 15.11.2026). Internal frame gaps stay unchanged. */
+@media(max-width:899px){
+  main>section:not(.hero):not(.awards){padding-top:130px;padding-bottom:130px}
+  main>section.awards{padding-top:calc(var(--space-4) * 1.25)}
+}
+@media(min-width:900px){
+  main>section:not(.hero):not(.awards){padding-top:calc(var(--section-pad,144px) * 1.25);padding-bottom:calc(var(--section-pad,144px) * 1.25)}
+  main>section.awards{padding-top:calc(var(--space-8) * 1.25);padding-bottom:calc(var(--section-pad,144px) * 1.25)}
+}
+
+/* Services: one ellipse (width : height = 1.6) cut into three slices, side 3.2 : middle 3.6 : side 3.2, 12 px seams
+   (js/service-variant.js draws outline and clip). Phone keeps the three separate ovals. */
+@media(min-width:900px){
+  .service-ovals.is-sliced{position:relative;display:grid;grid-template-columns:263fr 263fr 244.5fr;gap:var(--frame-space,12px);aspect-ratio:794.5/642.5;align-items:start;
+    width:85%;margin-inline:auto;margin-top:var(--space-7,48px);margin-bottom:0}
+  .is-sliced>.service-oval{aspect-ratio:263/513.5;border:0;border-radius:0;height:auto;padding:0}
+  .is-sliced>.service-oval:first-child{margin-top:48.86%}
+  .is-sliced>.service-oval:nth-child(2){aspect-ratio:263/639.5}
+  .is-sliced>.service-oval:last-child{aspect-ratio:244.5/506}
+  .is-sliced>.service-oval::before{display:none}
+  .is-sliced>.service-oval>.oval-slice-shape{grid-area:auto}   /* absolute grid child: span the padding box, not the padded grid area */
+  .oval-slice-shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:visible;fill:transparent;stroke:var(--hvc);stroke-width:3px;transition:fill .35s}
+  .is-sliced>.service-oval.is-open>.oval-slice-shape{fill:var(--hvc)}
+  .is-sliced>.service-oval:first-child{padding-bottom:38%}
+  .is-sliced>.service-oval:last-child{padding-right:14%}
+  .is-sliced>.service-oval:not(:nth-child(2)) .service-oval-list{width:84%}
+  .is-sliced>.service-oval:focus-visible{box-shadow:none}
+  .is-sliced>.service-oval:focus-visible>.oval-slice-shape{stroke:var(--color-accent)}
+}
+
+
+/* Hover/focus transitions in sequence instead of all at once (Lucas, 11.11.2026: "grad noch grob").
+   Open: the short title travels first, the details fade in once it has nearly arrived.
+   Close: the details fade out quickly, then the title travels back. No text overlaps mid-way. */
+.hv .hv-sum{transition:transform .42s cubic-bezier(.4,0,.2,1) .12s,color .4s}
+.hv.is-open .hv-sum{transition:transform .34s cubic-bezier(.3,.6,.2,1) 0s,color .4s}
+.hv .hv-det{transition:opacity .16s,visibility 0s .16s}
+.hv.is-open>.hv-layer:not(.hv-ghost) .hv-det{transition:opacity .32s .24s,visibility 0s}
+/* Ovals: title out, list in (and back), never both at once */
+.service-oval .service-oval-title{transition:opacity .3s .14s}
+.service-oval.is-open .service-oval-title{transition:opacity .14s}
+.service-oval .service-oval-list{transition:opacity .14s,visibility 0s .14s}
+.service-oval.is-open .service-oval-list{transition:opacity .3s .16s,visibility 0s}
+@media(prefers-reduced-motion:reduce){.hv .hv-sum,.hv .hv-det,.service-oval .service-oval-title,.service-oval .service-oval-list{transition:none!important}}
+/* Phone: the course panels' open text sat on the top edge; give them the same breathing room as the vouchers */
+@media(max-width:899px){.course-panel.hv{padding-block:28px}}
+
+/* Keep six links inside the narrower diagonal treatment frames. */
+@media(min-width:900px){
+ .is-sliced>.service-oval .service-oval-list a{font-size:clamp(10px,1vw,14px);line-height:1.2;padding:4px 0}
+ .is-sliced>.service-oval:last-child .service-oval-list{width:76%}
+}
