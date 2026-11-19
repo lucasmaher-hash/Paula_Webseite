@@ -1182,3 +1182,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Codex, 15.11.2026: Abschnittsabstände um 25 % erhöht
 - Nur v2: Außenabstände der Inhaltsabschnitte am Desktop von 144 auf 180 px je Seite, mobil von 104 auf 130 px. Abstand Hero/Auszeichnungen ebenfalls um 25 % erhöht. Innere Frame-Fugen bleiben 12 px.
 - CSS-Werte lokal in Chrome bei 375 und 1440 px geprüft. Farben, Schrift und Frame-Geometrie unverändert; keine neue Abweichung vom Seitenplan. Weiterhin lokal wegen bereits vorhandener überlappender uncommitteter Arbeit.
+
+### Claude (Opus 5.5), 20.11.2026: Favicon „P“ für v2
+- Nur v2: schlichtes Favicon, dunkles „P“ als Linie auf weißem Grund (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` für den iPhone-Home-Bildschirm), in allen HTML-Seiten von v2 verlinkt. Paula's website und v1 unverändert.
+- Gilt ab jetzt als Standard für Lucas' Projektseiten: ein einfaches, zum Projekt passendes Linien-Icon auf Weiß.
