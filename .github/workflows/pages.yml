@@ -27,7 +27,7 @@ jobs:
           mkdir _site
           cp -R "Paula's website/." _site/
           cp -R claude_background/branding _site/branding
-          cp markenprofil.md workflow.md briefing.md _site/branding/
+          cp workflow.md briefing.md _site/branding/
           cp -R "Ammers website v1" _site/v1
           cp -R "Ammers website v2" _site/v2
           redirect() { mkdir -p "$(dirname "$1")"; printf '<!DOCTYPE html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=%s"><link rel="canonical" href="%s"><script>location.replace("%s"+location.search+location.hash)</script><a href="%s">Weiter</a>\n' "$2" "$2" "$2" "$2" > "$1"; }

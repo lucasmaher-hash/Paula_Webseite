@@ -31,7 +31,7 @@ Behandlung finden: Menü → Kategorie (1 Klick, öffnet das Akkordeon) → „P
 
 ## Wiederkehrende Komponenten
 
-Eyebrow-Label · Akkordeon-Zeile · Pillen-Button (Hauptbutton braun, Zweitbutton soft) · Panel mit 1-px-Rahmen · Lorbeer · Mono-Label. Regeln in `design.md`.
+Eyebrow-Label · Akkordeon-Zeile · Pillen-Button (Hauptbutton braun, Zweitbutton soft) · Panel mit 1-px-Rahmen · Lorbeer · Mono-Label. Regeln in `kurs/Marke/design.md`.
 
 ## Abgleich mit dem Briefing
 
