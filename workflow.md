@@ -1186,3 +1186,7 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 ### Claude (Opus 5.5), 20.11.2026: Favicon „P“ für v2
 - Nur v2: schlichtes Favicon, dunkles „P“ als Linie auf weißem Grund (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` für den iPhone-Home-Bildschirm), in allen HTML-Seiten von v2 verlinkt. Paula's website und v1 unverändert.
 - Gilt ab jetzt als Standard für Lucas' Projektseiten: ein einfaches, zum Projekt passendes Linien-Icon auf Weiß.
+
+### Claude (Opus 5.5), 22.11.2026: Ordner für Kurzprojekt 3 neu gegliedert
+- Designfabrik-Ordner hat jetzt drei Unterordner: `Paula_Webseite/` (dieses Repo), `Design-Tool/` (Kurzprojekt 3) und `Marke/` für das, was beide brauchen.
+- `markenprofil.md` und `design.md` liegen jetzt in `Marke/` (außerhalb des Repos, erreichbar über `kurs/Marke/`). Der Deploy kopiert das Markenprofil nicht mehr nach `/branding/`; keine Seite hatte darauf verlinkt. Logo, Schriften und Bilder bleiben im Repo, weil die Websites sie ausliefern.
