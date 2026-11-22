@@ -1191,3 +1191,8 @@ Der nachträglich formulierte Logo-Prompt mit Bewertungskriterien steht in `bran
 - Designfabrik-Ordner hat jetzt drei Unterordner: `Paula_Webseite/` (dieses Repo), `Design-Tool/` (Kurzprojekt 3) und `Marke/` für das, was beide brauchen.
 - `markenprofil.md` und `design.md` liegen jetzt in `Marke/` (außerhalb des Repos, erreichbar über `kurs/Marke/`). Der Deploy kopiert das Markenprofil nicht mehr nach `/branding/`; keine Seite hatte darauf verlinkt. Logo, Schriften und Bilder bleiben im Repo, weil die Websites sie ausliefern.
 - Nachtrag (Lucas): oben im Designfabrik-Ordner sollen nur drei Ordner stehen. `KURS.md`, `aufgaben/`, `vorlagen/` und `Marke/` liegen jetzt in `Gemeinsam/`; `kurs/` zeigt auf `../Gemeinsam`, die Pfade `kurs/KURS.md` und `kurs/Marke/design.md` gelten weiter.
+
+### Claude (Sonnet 5.5), 22.11.2026: Workflow-Analyse für Kurzprojekt 3
+- Versucht: Vault, Logbuch, Projektordner und Apps (Stichprobe) nach wiederkehrender Arbeit durchsucht, daraus 20 Tool-Vorschläge abgeleitet (siehe `kurs/KURS.md`, Kurzprojekt 3).
+- Funktioniert: klare Muster (Prüfen bei 375/1440 px, Freigaben als Engpass, doppelte Regeln, handgepflegtes Logbuch).
+- Nicht funktioniert / offen: nicht der ganze Mac gelesen, nur Stichprobe. Auswahl der Idee steht aus.
